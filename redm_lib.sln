@@ -8,7 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Included_Files", "Included_Files", "{69F4DFBF-1B98-4053-A5AC-A83D114F64ED}"
 	ProjectSection(SolutionItems) = preProject
 		readme.txt = readme.txt
-		redm_lib\bin\Debug\RedLib.dll = redm_lib\bin\Debug\RedLib.dll
 	EndProjectSection
 EndProject
 Global
