@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls.cs" />
+    <Compile Include="Lib.cs" />
     <Compile Include="Math.cs" />
     <Compile Include="Natives.cs" />
     <Compile Include="Print.cs" />
