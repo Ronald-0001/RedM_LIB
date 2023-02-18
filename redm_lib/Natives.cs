@@ -25,11 +25,7 @@ namespace RedLib
 		/// <summary>
 		/// 
 		/// </summary>
-		public virtual void Wait(int _ms)
-		{
-			Function.Call((Hash)0x4EDE34FBADD967A6, _ms);
-			return;
-		}
+		public virtual void Wait(int _ms) => Function.Call((Hash)0x4EDE34FBADD967A6, _ms); // way to shorten file size ???
 		
 		/// <summary>
 		/// Counts up. Every 1000 is 1 real-time second. Use SETTIMERA(int value) to set the timer (e.g.: SETTIMERA(0)).
