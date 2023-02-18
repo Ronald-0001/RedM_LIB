@@ -15,18 +15,13 @@ namespace RedLib
 	/// </summary>
 	public abstract class Natives
 	{
-		
-		
 		// :####################: //
 		// : namespace: BUILTIN : //
 		// :####################: //
-		
-		
 		/// <summary>
 		/// 
 		/// </summary>
-		public virtual void Wait(int _ms) => Function.Call((Hash)0x4EDE34FBADD967A6, _ms); // way to shorten file size ???
-		
+		public virtual void Wait(int _ms) => Function.Call((Hash)0x4EDE34FBADD967A6, _ms);
 		/// <summary>
 		/// Counts up. Every 1000 is 1 real-time second. Use SETTIMERA(int value) to set the timer (e.g.: SETTIMERA(0)).
 		/// </summary>
