@@ -53,6 +53,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(ProjectDir)$(OutDir)\RedLib.dll  $(ProjectDir)\Output</PostBuildEvent>
+    <PostBuildEvent>copy $(ProjectDir)$(OutDir)\RedLib.dll $(SolutionDir)\include</PostBuildEvent>
   </PropertyGroup>
 </Project>
