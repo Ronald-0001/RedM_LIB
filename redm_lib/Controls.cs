@@ -1,4 +1,4 @@
-﻿// made by Ronald#1000 using his automated composing software
+// made by Ronald#1000 using his automated composing software
 using System;
 using System.Collections.Generic;
 using System.Linq;
