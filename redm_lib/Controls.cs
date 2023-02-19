@@ -13,7 +13,6 @@ namespace RedLib
 		public readonly string Name;
 		public readonly string QWERTY;
 		public readonly string GameVersion;
-
 		public GameControl(uint _Hash, string _Name, string _QWERTY = "", string _GameVersion = "")
 		{
 			this.Hash = _Hash;
@@ -21,9 +20,11 @@ namespace RedLib
 			this.QWERTY = _QWERTY;
 			this.GameVersion = _GameVersion;
 		}
-
 		public override string ToString() => $"{this.Name}";
 	}
+	/// <summary>
+	/// https://github.com/femga/rdr3_discoveries/blob/master/Controls/README.md
+	/// </summary>
 	public static class Controls
 	{
 		public static GameControl INPUT_FRONTEND_RIGHT_AXIS_X = new GameControl(0x3D23549A, "INPUT_FRONTEND_RIGHT_AXIS_X", "[", "1207.80");
