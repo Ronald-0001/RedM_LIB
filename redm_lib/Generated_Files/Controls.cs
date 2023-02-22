@@ -25,7 +25,7 @@ namespace RedLib
 	/// <summary>
 	/// https://github.com/femga/rdr3_discoveries/blob/master/Controls/README.md
 	/// </summary>
-	public static class Controls
+	public static class Control
 	{
 		public static GameControl INPUT_FRONTEND_RIGHT_AXIS_X = new GameControl(0x3D23549A, "INPUT_FRONTEND_RIGHT_AXIS_X", "[", "1207.80");
 		public static GameControl INPUT_SNIPER_ZOOM_OUT_ONLY = new GameControl(0x430593AA, "INPUT_SNIPER_ZOOM_OUT_ONLY", "[", "1207.80");
