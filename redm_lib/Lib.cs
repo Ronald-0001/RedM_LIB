@@ -16,16 +16,6 @@ namespace RedLib
         // :####################: //
         // : namespace: BUILTIN : //
         // :####################: //
-        /* override example
-        /// <summary>
-        /// Waits in x seconds.
-        /// </summary>
-        /// <param name="_sec">Seconds to wait in.</param>
-        public override void Wait(int _sec)
-        {
-            base.Wait(_sec * 1000);
-        }
-        */
         /// <summary>
         /// Calculates the magnitude of a vector.
         /// </summary>
