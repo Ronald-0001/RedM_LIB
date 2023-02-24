@@ -24,7 +24,7 @@ namespace RedLib
             return _sid.sid; // implicit conversion
         }
     }
-    public struct UUID // unique User Identifier
+    public struct UUID // Unique User Identifier
     {
         private readonly uint uuid;
         public UUID(uint _uuid)
