@@ -18,5818 +18,6 @@ namespace RedLib
 	/// </summary>
 	public partial class Lib
 	{
-		// :################: //
-		// : namespace: CFX : //
-		// :################: //
-		/// <summary>
-		/// Adds an output for the specified audio submix.
-		/// </summary>
-		public static void AddAudioSubmixOutput_CFX(int _submixId, int _outputSubmixId)
-		{
-			Function.Call((Hash)0xAC6E290D, _submixId, _outputSubmixId);
-		}
-		/// <summary>
-		/// Loads a minimap overlay from a GFx file in the current resource.
-		/// </summary>
-		public static int AddMinimapOverlay_CFX(string _name)
-		{
-			return Function.Call<int>((Hash)0x4AFD2499, _name);
-		}
-		/// <summary>
-		/// Experimental natives, please do not use in a live environment.
-		/// </summary>
-		public static void AddReplaceTexture_CFX(string _origTxd, string _origTxn, string _newTxd, string _newTxn)
-		{
-			Function.Call((Hash)0xA66F8F75, _origTxd, _origTxn, _newTxd, _newTxn);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void AddTextEntry_CFX(string _entryKey, string _entryText)
-		{
-			Function.Call((Hash)0x32CA01C3, _entryKey, _entryText);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void AddTextEntryByHash_CFX(uint _entryKey, string _entryText)
-		{
-			Function.Call((Hash)0x289DA860, _entryKey, _entryText);
-		}
-		/// <summary>
-		/// Cancels the currently executing event.
-		/// </summary>
-		public static void CancelEvent_CFX()
-		{
-			Function.Call((Hash)0xFA29D35D);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void EndFindObject_CFX(int _findHandle)
-		{
-			Function.Call((Hash)0xDEDA4E50, _findHandle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void EndFindKvp_CFX(int _handle)
-		{
-			Function.Call((Hash)0xB3210203, _handle);
-		}
-		/// <summary>
-		/// Returns whether or not the specified player has enough information to start a commerce session for.
-		/// </summary>
-		public static bool CanPlayerStartCommerceSession_CFX(string _playerSrc)
-		{
-			return Function.Call<bool>((Hash)0x429461C3, _playerSrc);
-		}
-		/// <summary>
-		/// This is similar to the PushScaleformMovieFunction natives, except it calls in the `TIMELINE` of a minimap overlay.
-		/// </summary>
-		public static bool CallMinimapScaleformFunction_CFX(int _miniMap, string _fnName)
-		{
-			return Function.Call<bool>((Hash)0x4C89C0ED, _miniMap, _fnName);
-		}
-		/// <summary>
-		/// Adds a handler for changes to a state bag.
-		/// 
-		/// The function called expects to match the following signature:
-		/// 
-		/// ```ts
-		/// function StateBagChangeHandler(bagName: string, key: string, value: any, reserved: number, replicated: boolean);
-		/// ```
-		/// 
-		/// *   **bagName**: The internal bag ID for the state bag which changed. This is usually `player:Source`, `entity:NetID`
-		///     or `localEntity:Handle`.
-		/// *   **key**: The changed key.
-		/// *   **value**: The new value stored at key. The old value is still stored in the state bag at the time this callback executes.
-		/// *   **reserved**: Currently unused.
-		/// *   **replicated**: Whether the set is meant to be replicated.
-		/// 
-		/// At this time, the change handler can't opt to reject changes.
-		/// 
-		/// If bagName refers to an entity, use [GET_ENTITY_FROM_STATE_BAG_NAME](?\_0x4BDF1868) to get the entity handle
-		/// If bagName refers to a player, use [GET_PLAYER_FROM_STATE_BAG_NAME](?\_0xA56135E0) to get the player handle
-		/// </summary>
-		public static int AddStateBagChangeHandler_CFX(string _keyFilter, string _bagFilter, InputArgument _handler)
-		{
-			return Function.Call<int>((Hash)0x5BA35AAF, _keyFilter, _bagFilter, _handler);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void EndFindPed_CFX(int _findHandle)
-		{
-			Function.Call((Hash)0x9615C2AD, _findHandle);
-		}
-		/// <summary>
-		/// Removes vehicle xenon lights custom RGB color.
-		/// </summary>
-		public static void ClearVehicleXenonLightsCustomColor_CFX(int _vehicle)
-		{
-			Function.Call((Hash)0x2867ED8C, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void EndFindVehicle_CFX(int _findHandle)
-		{
-			Function.Call((Hash)0x9227415A, _findHandle);
-		}
-		/// <summary>
-		/// Commits the backing pixels to the specified runtime texture.
-		/// </summary>
-		public static void CommitRuntimeTexture_CFX(long _tex)
-		{
-			Function.Call((Hash)0x19D81F4E, _tex);
-		}
-		/// <summary>
-		/// Internal function for ensuring an entity has a state bag.
-		/// </summary>
-		public static void EnsureEntityStateBag_CFX(int _entity)
-		{
-			Function.Call((Hash)0x3BB78F05, _entity);
-		}
-		/// <summary>
-		/// Creates a volume where water effects do not apply.
-		/// Useful for preventing water collisions from flooding areas underneath them.
-		/// This has no effect on waterquads, only water created from drawables and collisions.
-		/// Don't create volumes when your local ped is swimming (e.g. use IS_PED_SWIMMING in your scripts before you call this)
-		/// </summary>
-		public static int CreateDryVolume_CFX(float _xMin, float _yMin, float _zMin, float _xMax, float _yMax, float _zMax)
-		{
-			return Function.Call<int>((Hash)0xEB1C6DD, _xMin, _yMin, _zMin, _xMax, _yMax, _zMax);
-		}
-		/// <summary>
-		/// Creates an audio submix with the specified name, or gets the existing audio submix by that name.
-		/// </summary>
-		public static int CreateAudioSubmix_CFX(string _name)
-		{
-			return Function.Call<int>((Hash)0x658D2BC8, _name);
-		}
-		/// <summary>
-		/// Creates a DUI browser. This can be used to draw on a runtime texture using CREATE_RUNTIME_TEXTURE_FROM_DUI_HANDLE.
-		/// </summary>
-		public static long CreateDui_CFX(string _url, int _width, int _height)
-		{
-			return Function.Call<long>((Hash)0x23EAF899, _url, _width, _height);
-		}
-		/// <summary>
-		/// Returns the current console output buffer.
-		/// </summary>
-		public static string GetConsoleBuffer_CFX()
-		{
-			return Function.Call<string>((Hash)0xE57429FA);
-		}
-		/// <summary>
-		/// Creates a runtime texture dictionary with the specified name.
-		/// Example:
-		/// 
-		/// ```lua
-		/// local txd = CreateRuntimeTxd('meow')
-		/// ```
-		/// </summary>
-		public static long CreateRuntimeTxd_CFX(string _name)
-		{
-			return Function.Call<long>((Hash)0x1F3AC778, _name);
-		}
-		/// <summary>
-		/// Creates a runtime texture from a DUI handle.
-		/// </summary>
-		public static long CreateRuntimeTextureFromDuiHandle_CFX(long _txd, string _txn, string _duiHandle)
-		{
-			return Function.Call<long>((Hash)0xB135472B, _txd, _txn, _duiHandle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void ExecuteCommand_CFX(string _commandString)
-		{
-			Function.Call((Hash)0x561C060B, _commandString);
-		}
-		/// <summary>
-		/// This native is not implemented.
-		/// </summary>
-		public static int ExperimentalLoadCloneCreate_CFX(string _data, int _objectId, string _tree)
-		{
-			return Function.Call<int>((Hash)0xD2CB95A3, _data, _objectId, _tree);
-		}
-		/// <summary>
-		/// Deletes the specified entity.
-		/// </summary>
-		public static void DeleteEntity_CFX(int _entity)
-		{
-			Function.Call((Hash)0xFAA3D236, _entity);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void EndFindPickup_CFX(int _findHandle)
-		{
-			Function.Call((Hash)0x3C407D53, _findHandle);
-		}
-		/// <summary>
-		/// Creates a runtime texture from the specified file in the current resource or a base64 data URL.
-		/// </summary>
-		public static long CreateRuntimeTextureFromImage_CFX(long _txd, string _txn, string _fileName)
-		{
-			return Function.Call<long>((Hash)0x786D8BC3, _txd, _txn, _fileName);
-		}
-		/// <summary>
-		/// Returns the world matrix of the specified camera. To turn this into a view matrix, calculate the inverse.
-		/// </summary>
-		public static void GetCamMatrix_CFX(int _camera, Vector3 _rightVector, Vector3 _forwardVector, Vector3 _upVector, Vector3 _position)
-		{
-			Function.Call((Hash)0x8F57A89D, _camera, _rightVector, _forwardVector, _upVector, _position);
-		}
-		/// <summary>
-		/// Creates a blank runtime texture.
-		/// </summary>
-		public static long CreateRuntimeTexture_CFX(long _txd, string _txn, int _width, int _height)
-		{
-			return Function.Call<long>((Hash)0xFEC3766D, _txd, _txn, _width, _height);
-		}
-		/// <summary>
-		/// This native is not implemented.
-		/// </summary>
-		public static void ExperimentalLoadCloneSync_CFX(int _entity, string _data)
-		{
-			Function.Call((Hash)0x6BC189AC, _entity, _data);
-		}
-		/// <summary>
-		/// Can be used to get a console variable of type `char*`, for example a string.
-		/// </summary>
-		public static string GetConvar_CFX(string _varName, string _default_)
-		{
-			return Function.Call<string>((Hash)0x6CCD2564, _varName, _default_);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void DeleteResourceKvp_CFX(string _key)
-		{
-			Function.Call((Hash)0x7389B5DF, _key);
-		}
-		/// <summary>
-		/// This native is not implemented.
-		/// </summary>
-		public static string ExperimentalSaveCloneCreate_CFX(int _entity)
-		{
-			return Function.Call<string>((Hash)0x9D65CAD2, _entity);
-		}
-		/// <summary>
-		/// Nonsynchronous [DELETE_RESOURCE_KVP](#\_0x7389B5DF) operation; see [FLUSH_RESOURCE_KVP](#\_0x5240DA5A).
-		/// </summary>
-		public static void DeleteResourceKvpNoSync_CFX(string _key)
-		{
-			Function.Call((Hash)0x4152C90, _key);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int FindFirstObject_CFX(int _outEntity)
-		{
-			return Function.Call<int>((Hash)0xFAA6CB5D, _outEntity);
-		}
-		/// <summary>
-		/// This native returns the currently used game's name.
-		/// </summary>
-		public static string GetCurrentGameName_CFX()
-		{
-			return Function.Call<string>((Hash)0xACA18ECD);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void DeleteFunctionReference_CFX(string _referenceIdentity)
-		{
-			Function.Call((Hash)0x1E86F206, _referenceIdentity);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int FindFirstPed_CFX(int _outEntity)
-		{
-			return Function.Call<int>((Hash)0xFB012961, _outEntity);
-		}
-		/// <summary>
-		/// This native is not implemented.
-		/// </summary>
-		public static string ExperimentalSaveCloneSync_CFX(int _entity)
-		{
-			return Function.Call<string>((Hash)0x38D19210, _entity);
-		}
-		/// <summary>
-		/// Disables the game's afk camera that starts panning around after 30 seconds of inactivity.
-		/// </summary>
-		public static void DisableIdleCamera_CFX(bool _state)
-		{
-			Function.Call((Hash)0x3D5AB7F0, _state);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int FindFirstPickup_CFX(int _outEntity)
-		{
-			return Function.Call<int>((Hash)0x3FF9D340, _outEntity);
-		}
-		/// <summary>
-		/// Destroys a DUI browser.
-		/// </summary>
-		public static void DestroyDui_CFX(long _duiObject)
-		{
-			Function.Call((Hash)0xA085CB10, _duiObject);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool FindNextPickup_CFX(int _findHandle, int _outEntity)
-		{
-			return Function.Call<bool>((Hash)0x4107EF0F, _findHandle, _outEntity);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int DoorSystemGetSize_CFX()
-		{
-			return Function.Call<int>((Hash)0x237613B3);
-		}
-		/// <summary>
-		/// Returns the name of the currently executing resource.
-		/// </summary>
-		public static string GetCurrentResourceName_CFX()
-		{
-			return Function.Call<string>((Hash)0xE5E9EBBB);
-		}
-		/// <summary>
-		/// Requests whether or not the player owns the specified SKU.
-		/// </summary>
-		public static bool DoesPlayerOwnSku_CFX(string _playerSrc, int _skuId)
-		{
-			return Function.Call<bool>((Hash)0x167ABA27, _playerSrc, _skuId);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void GetInteriorEntitiesExtents_CFX(int _interiorId, float _bbMinX, float _bbMinY, float _bbMinZ, float _bbMaxX, float _bbMaxY, float _bbMaxZ)
-		{
-			Function.Call((Hash)0x322B1192, _interiorId, _bbMinX, _bbMinY, _bbMinZ, _bbMaxX, _bbMaxY, _bbMaxZ);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool FindNextObject_CFX(int _findHandle, int _outEntity)
-		{
-			return Function.Call<bool>((Hash)0x4E129DBF, _findHandle, _outEntity);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetInstanceId_CFX()
-		{
-			return Function.Call<int>((Hash)0x9F1C4383);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static string FindKvp_CFX(int _handle)
-		{
-			return Function.Call<string>((Hash)0xBD7BEBC5, _handle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool FindNextPed_CFX(int _findHandle, int _outEntity)
-		{
-			return Function.Call<bool>((Hash)0xAB09B548, _findHandle, _outEntity);
-		}
-		/// <summary>
-		/// Can be used to get a console variable casted back to `int` (an integer value).
-		/// </summary>
-		public static int GetConvarInt_CFX(string _varName, int _default_)
-		{
-			return Function.Call<int>((Hash)0x935C0AB2, _varName, _default_);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int FindFirstVehicle_CFX(int _outEntity)
-		{
-			return Function.Call<int>((Hash)0x15E55694, _outEntity);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool DoesEntityExist_CFX(int _entity)
-		{
-			return Function.Call<bool>((Hash)0x3AC90869, _entity);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void EnableEnhancedHostSupport_CFX(bool _enabled)
-		{
-			Function.Call((Hash)0xF97B1C93, _enabled);
-		}
-		/// <summary>
-		/// Returns a list of door system entries: a door system hash (see [ADD_DOOR_TO_SYSTEM](#\_0x6F8838D03D1DC226)) and its object handle.
-		/// 
-		/// The data returned adheres to the following layout:
-		/// 
-		/// ```
-		/// [{doorHash1, doorHandle1}, ..., {doorHashN, doorHandleN}]
-		/// ```
-		/// </summary>
-		public static InputArgument DoorSystemGetActive_CFX()
-		{
-			return Function.Call<InputArgument>((Hash)0xF65BBA4B);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static string DuplicateFunctionReference_CFX(string _referenceIdentity)
-		{
-			return Function.Call<string>((Hash)0xF4E2079D, _referenceIdentity);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void DropPlayer_CFX(string _playerSrc, string _reason)
-		{
-			Function.Call((Hash)0xBA0613E1, _playerSrc, _reason);
-		}
-		/// <summary>
-		/// Returns entity's archetype name, if available.
-		/// </summary>
-		public static string GetEntityArchetypeName_CFX(int _entity)
-		{
-			return Function.Call<string>((Hash)0x47B870F5, _entity);
-		}
-		/// <summary>
-		/// Returns the NUI window handle for a specified DUI browser object.
-		/// </summary>
-		public static string GetDuiHandle_CFX(long _duiObject)
-		{
-			return Function.Call<string>((Hash)0x1655D41D, _duiObject);
-		}
-		/// <summary>
-		/// Requests whether or not the player owns the specified package.
-		/// </summary>
-		public static bool DoesPlayerOwnSkuExt_CFX(string _playerSrc, int _skuId)
-		{
-			return Function.Call<bool>((Hash)0xDEF0480B, _playerSrc, _skuId);
-		}
-		/// <summary>
-		/// Returns the peer address of the remote game server that the user is currently connected to.
-		/// </summary>
-		public static string GetCurrentServerEndpoint_CFX()
-		{
-			return Function.Call<string>((Hash)0xEA11BFBA);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void FlagServerAsPrivate_CFX(bool _private_)
-		{
-			Function.Call((Hash)0x13B6855D, _private_);
-		}
-		/// <summary>
-		/// Gets the entity that this entity is attached to.
-		/// </summary>
-		public static int GetEntityAttachedTo_CFX(int _entity)
-		{
-			return Function.Call<int>((Hash)0xFE1589F9, _entity);
-		}
-		/// <summary>
-		/// Returns all player indices for 'active' physical players known to the client.
-		/// The data returned adheres to the following layout:
-		/// 
-		/// ```
-		/// [127, 42, 13, 37]
-		/// ```
-		/// </summary>
-		public static InputArgument GetActivePlayers_CFX()
-		{
-			return Function.Call<InputArgument>((Hash)0xCF143FB9);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetNumResources_CFX()
-		{
-			return Function.Call<int>((Hash)0x863F27B);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void GetInteriorPortalCornerPosition_CFX(int _interiorId, int _portalIndex, int _cornerIndex, float _posX, float _posY, float _posZ)
-		{
-			Function.Call((Hash)0xF772BB2C, _interiorId, _portalIndex, _cornerIndex, _posX, _posY, _posZ);
-		}
-		/// <summary>
-		/// Returns all object handles known to the server.
-		/// The data returned adheres to the following layout:
-		/// 
-		/// ```
-		/// [127, 42, 13, 37]
-		/// ```
-		/// </summary>
-		public static InputArgument GetAllObjects_CFX()
-		{
-			return Function.Call<InputArgument>((Hash)0x6886C3FE);
-		}
-		/// <summary>
-		/// Gets the current coordinates for a specified entity. This native is used server side when using OneSync.
-		/// 
-		/// See [GET_ENTITY_COORDS](#\_0x3FEF770D40960D5A) for client side.
-		/// </summary>
-		public static Vector3 GetEntityCoords_CFX(int _entity)
-		{
-			return Function.Call<Vector3>((Hash)0x1647F1CB, _entity);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static Vector3 GetEntityRotationVelocity_CFX(int _entity)
-		{
-			return Function.Call<Vector3>((Hash)0x9BF8A73F, _entity);
-		}
-		/// <summary>
-		/// Currently it only works with peds.
-		/// </summary>
-		public static int GetEntityHealth_CFX(int _entity)
-		{
-			return Function.Call<int>((Hash)0x8E3222B7, _entity);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetEntityHeading_CFX(int _entity)
-		{
-			return Function.Call<float>((Hash)0x972CC383, _entity);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetAirDragMultiplierForPlayersVehicle_CFX(string _playerSrc)
-		{
-			return Function.Call<float>((Hash)0x62FC38D0, _playerSrc);
-		}
-		/// <summary>
-		/// Returns all rope handles. The data returned adheres to the following layout:
-		/// 
-		/// ```
-		/// [ 770, 1026, 1282, 1538, 1794, 2050, 2306, 2562, 2818, 3074, 3330, 3586, 3842, 4098, 4354, 4610, ...]
-		/// ```
-		/// </summary>
-		public static InputArgument GetAllRopes_CFX()
-		{
-			return Function.Call<InputArgument>((Hash)0x760A2D67);
-		}
-		/// <summary>
-		/// Gets the amount of metadata values with the specified key existing in the specified resource's manifest.
-		/// See also: [Resource manifest](https://docs.fivem.net/resources/manifest/)
-		/// </summary>
-		public static int GetNumResourceMetadata_CFX(string _resourceName, string _metadataKey)
-		{
-			return Function.Call<int>((Hash)0x776E864, _resourceName, _metadataKey);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static Vector3 GetEntityRotation_CFX(int _entity)
-		{
-			return Function.Call<Vector3>((Hash)0x8FF45B04, _entity);
-		}
-		/// <summary>
-		/// Currently it only works with peds.
-		/// </summary>
-		public static int GetEntityMaxHealth_CFX(int _entity)
-		{
-			return Function.Call<int>((Hash)0xC7AE6AA1, _entity);
-		}
-		/// <summary>
-		/// Returns all vehicle handles known to the server.
-		/// The data returned adheres to the following layout:
-		/// 
-		/// ```
-		/// [127, 42, 13, 37]
-		/// ```
-		/// </summary>
-		public static InputArgument GetAllVehicles_CFX()
-		{
-			return Function.Call<InputArgument>((Hash)0x332169F5);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static uint GetEntityModel_CFX(int _entity)
-		{
-			return Function.Call<uint>((Hash)0xDAFCB3EC, _entity);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetInteriorPortalEntityCount_CFX(int _interiorId, int _portalIndex)
-		{
-			return Function.Call<int>((Hash)0xC68021B, _interiorId, _portalIndex);
-		}
-		/// <summary>
-		/// A getter for [SET_AMBIENT_VEHICLE_RANGE_MULTIPLIER_THIS_FRAME](#\_0x90B6DA738A9A25DA).
-		/// </summary>
-		public static float GetAmbientVehicleRangeMultiplier_CFX()
-		{
-			return Function.Call<float>((Hash)0x667EC929);
-		}
-		/// <summary>
-		/// A getter for [SET_AMBIENT_PED_RANGE_MULTIPLIER_THIS_FRAME](#\_0x0B919E1FB47CC4E0).
-		/// </summary>
-		public static float GetAmbientPedRangeMultiplier_CFX()
-		{
-			return Function.Call<float>((Hash)0xB550232D);
-		}
-		/// <summary>
-		/// This native gets an entity's population type.
-		/// </summary>
-		public static int GetEntityPopulationType_CFX(int _entity)
-		{
-			return Function.Call<int>((Hash)0xFC30DDFF, _entity);
-		}
-		/// <summary>
-		/// Returns the entity handle for the specified state bag name. For use with [ADD_STATE_BAG_CHANGE_HANDLER](?\_0x5BA35AAF).
-		/// </summary>
-		public static int GetEntityFromStateBagName_CFX(string _bagName)
-		{
-			return Function.Call<int>((Hash)0x4BDF1867, _bagName);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetInteriorPortalCount_CFX(int _interiorId)
-		{
-			return Function.Call<int>((Hash)0xD05BB8B1, _interiorId);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void GetInteriorPortalEntityPosition_CFX(int _interiorId, int _portalIndex, int _entityIndex, float _posX, float _posY, float _posZ)
-		{
-			Function.Call((Hash)0x9B7AB83C, _interiorId, _portalIndex, _entityIndex, _posX, _posY, _posZ);
-		}
-		/// <summary>
-		/// Returns all peds handles known to the server.
-		/// The data returned adheres to the following layout:
-		/// 
-		/// ```
-		/// [127, 42, 13, 37]
-		/// ```
-		/// </summary>
-		public static InputArgument GetAllPeds_CFX()
-		{
-			return Function.Call<InputArgument>((Hash)0xB8584FEF);
-		}
-		/// <summary>
-		/// Nonsynchronous operations will not wait for a disk/filesystem flush before returning from a write or delete call. They will be much faster than their synchronous counterparts (e.g., bulk operations), however, a system crash may lose the data to some recent operations.
-		/// 
-		/// This native ensures all `_NO_SYNC` operations are synchronized with the disk/filesystem.
-		/// </summary>
-		public static void FlushResourceKvp_CFX()
-		{
-			Function.Call((Hash)0xE27C97A0);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void GetInteriorPortalEntityRotation_CFX(int _interiorId, int _portalIndex, int _entityIndex, float _rotX, float _rotY, float _rotZ, float _rotW)
-		{
-			Function.Call((Hash)0x9F9CEB63, _interiorId, _portalIndex, _entityIndex, _rotX, _rotY, _rotZ, _rotW);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetInteriorPortalEntityArchetype_CFX(int _interiorId, int _portalIndex, int _entityIndex)
-		{
-			return Function.Call<int>((Hash)0x9A0E1700, _interiorId, _portalIndex, _entityIndex);
-		}
-		/// <summary>
-		/// Returns all registered vehicle model names, including non-dlc vehicles and custom vehicles in no particular order.
-		/// 
-		/// **Example output**
-		/// 
-		/// ```
-		/// 	["dubsta", "dubsta2", "dubsta3", "myverycoolcar", "sultan", "sultanrs", ...]
-		/// ```
-		/// 
-		/// This native will not return vehicles that are unregistered (i.e from a resource being stopped) during runtime.
-		/// </summary>
-		public static InputArgument GetAllVehicleModels_CFX()
-		{
-			return Function.Call<InputArgument>((Hash)0xD7531645);
-		}
-		/// <summary>
-		/// Forces the game snow pass to render.
-		/// </summary>
-		public static void ForceSnowPass_CFX(bool _enabled)
-		{
-			Function.Call((Hash)0xE6E16170, _enabled);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetPlayerMaxArmour_CFX(string _playerSrc)
-		{
-			return Function.Call<int>((Hash)0x2A50657, _playerSrc);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static Vector3 GetEntityVelocity_CFX(int _entity)
-		{
-			return Function.Call<Vector3>((Hash)0xC14C9B6B, _entity);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static string GetEntityScript_CFX(int _entity)
-		{
-			return Function.Call<string>((Hash)0xB7F70784, _entity);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetPlayerLastMsg_CFX(string _playerSrc)
-		{
-			return Function.Call<int>((Hash)0x427E8E6A, _playerSrc);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static uint GetPedCauseOfDeath_CFX(int _ped)
-		{
-			return Function.Call<uint>((Hash)0x63458C27, _ped);
-		}
-		/// <summary>
-		/// A getter for [SET_PARKED_VEHICLE_DENSITY_MULTIPLIER_THIS_FRAME](#\_0xEAE6DCC7EEE3DB1D).
-		/// </summary>
-		public static float GetParkedVehicleDensityMultiplier_CFX()
-		{
-			return Function.Call<float>((Hash)0xFF72DF84);
-		}
-		/// <summary>
-		/// Returns the current game being executed.
-		/// 
-		/// Possible values:
-		/// 
-		/// | Return value | Meaning                        |
-		/// | ------------ | ------------------------------ |
-		/// | `fxserver`   | Server-side code ('Duplicity') |
-		/// | `fivem`      | FiveM for GTA V                |
-		/// | `libertym`   | LibertyM for GTA IV            |
-		/// | `redm`       | RedM for Red Dead Redemption 2 |
-		/// </summary>
-		public static string GetGameName_CFX()
-		{
-			return Function.Call<string>((Hash)0xE8EAA18B);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetInteriorPortalEntityFlag_CFX(int _interiorId, int _portalIndex, int _entityIndex)
-		{
-			return Function.Call<int>((Hash)0x9DA2E811, _interiorId, _portalIndex, _entityIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static string GetPasswordHash_CFX(string _password)
-		{
-			return Function.Call<string>((Hash)0x23473EA4, _password);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool FindNextVehicle_CFX(int _findHandle, int _outEntity)
-		{
-			return Function.Call<bool>((Hash)0x8839120D, _findHandle, _outEntity);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetInteriorPortalRoomFrom_CFX(int _interiorId, int _portalIndex)
-		{
-			return Function.Call<int>((Hash)0xAA9C141D, _interiorId, _portalIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void GetInteriorPosition_CFX(int _interiorId, float _posX, float _posY, float _posZ)
-		{
-			Function.Call((Hash)0x77A435B0, _interiorId, _posX, _posY, _posZ);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static string GetInteriorRoomName_CFX(int _interiorId, int _roomIndex)
-		{
-			return Function.Call<string>((Hash)0x11755DF2, _interiorId, _roomIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void GetInteriorRoomExtents_CFX(int _interiorId, int _roomIndex, float _bbMinX, float _bbMinY, float _bbMinZ, float _bbMaxX, float _bbMaxY, float _bbMaxZ)
-		{
-			Function.Call((Hash)0xF9E795DD, _interiorId, _roomIndex, _bbMinX, _bbMinY, _bbMinZ, _bbMaxX, _bbMaxY, _bbMaxZ);
-		}
-		/// <summary>
-		/// Gets the current game timer in milliseconds.
-		/// </summary>
-		public static long GetGameTimer_CFX()
-		{
-			return Function.Call<long>((Hash)0xA4EA0691);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetInteriorRoomIndexByHash_CFX(int _interiorId, int _roomHash)
-		{
-			return Function.Call<int>((Hash)0xE0EE05F8, _interiorId, _roomHash);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetInteriorRoomFlag_CFX(int _interiorId, int _roomIndex)
-		{
-			return Function.Call<int>((Hash)0x6B7AF743, _interiorId, _roomIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetInteriorPortalRoomTo_CFX(int _interiorId, int _portalIndex)
-		{
-			return Function.Call<int>((Hash)0x3F47F0E8, _interiorId, _portalIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetHeliTailRotorHealth_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0xA41BC13D, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetHeliMainRotorHealth_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0xF01E2AAB, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetInteriorRoomTimecycle_CFX(int _interiorId, int _roomIndex)
-		{
-			return Function.Call<int>((Hash)0x82BA3F88, _interiorId, _roomIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static string GetHostId_CFX()
-		{
-			return Function.Call<string>((Hash)0x5F70F5A3);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetInteriorPortalFlag_CFX(int _interiorId, int _portalIndex)
-		{
-			return Function.Call<int>((Hash)0xC74DA47C, _interiorId, _portalIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetRopeLengthChangeRate_CFX(int _rope)
-		{
-			return Function.Call<float>((Hash)0x66D70EA3, _rope);
-		}
-		/// <summary>
-		/// Returns a list of entity handles (script GUID) for all entities in the specified pool - the data returned is an array as
-		/// follows:
-		/// 
-		/// ```json
-		/// [ 770, 1026, 1282, 1538, 1794, 2050, 2306, 2562, 2818, 3074, 3330, 3586, 3842, 4098, 4354, 4610, ...]
-		/// ```
-		/// 
-		/// ### Supported pools
-		/// 
-		/// *   `CPed`: Peds (including animals) and players.
-		/// *   `CObject`: Objects (props), doors, and projectiles.
-		/// *   `CVehicle`: Vehicles.
-		/// *   `CPickup`: Pickups.
-		/// </summary>
-		public static InputArgument GetGamePool_CFX(string _poolName)
-		{
-			return Function.Call<InputArgument>((Hash)0x2B9D4F50, _poolName);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetPedDesiredHeading_CFX(int _ped)
-		{
-			return Function.Call<float>((Hash)0xC182F76E, _ped);
-		}
-		/// <summary>
-		/// Gets the entity type (as an integer), which can be one of the following defined down below:
-		/// 
-		/// **The following entities will return type `2`:**
-		/// 
-		/// *   Automobile
-		/// *   Bike
-		/// *   Boat
-		/// *   Heli
-		/// *   Plane
-		/// *   Submarine
-		/// *   Trailer
-		/// *   Train
-		/// *   DraftVeh (Red Dead Redemption 2)
-		/// 
-		/// **The following entities will return type `1`:**
-		/// 
-		/// *   Ped
-		/// *   Player
-		/// *   Animal (Red Dead Redemption 2)
-		/// *   Horse (Red Dead Redemption 2)
-		/// 
-		/// **The following entities will return type `3`:**
-		/// 
-		/// *   Object
-		/// *   Door
-		/// *   Pickup
-		/// 
-		/// Otherwise, a value of `0` will be returned.
-		/// </summary>
-		public static int GetEntityType_CFX(int _entity)
-		{
-			return Function.Call<int>((Hash)0xB1BD08D, _entity);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetPlayerMaxHealth_CFX(string _playerSrc)
-		{
-			return Function.Call<int>((Hash)0x8154E470, _playerSrc);
-		}
-		/// <summary>
-		/// This native converts the passed string to a hash.
-		/// </summary>
-		public static uint GetHashKey_CFX(string _model)
-		{
-			return Function.Call<uint>((Hash)0x98EFF6F1, _model);
-		}
-		/// <summary>
-		/// Returns the internal build number of the current game being executed.
-		/// 
-		/// Possible values:
-		/// 
-		/// *   FiveM
-		///     *   1604
-		///     *   2060
-		///     *   2189
-		///     *   2372
-		///     *   2545
-		///     *   2612
-		///     *   2699
-		/// *   RedM
-		///     *   1311
-		///     *   1355
-		///     *   1436
-		///     *   1491
-		/// *   LibertyM
-		///     *   43
-		/// *   FXServer
-		///     *   0
-		/// </summary>
-		public static int GetGameBuildNumber_CFX()
-		{
-			return Function.Call<int>((Hash)0x804B9F7B);
-		}
-		/// <summary>
-		/// Returns a list of decorations applied to a ped.
-		/// 
-		/// The data returned adheres to the following layout:
-		/// 
-		/// ```
-		/// [ [ collectionHash1, overlayHash1 ], ..., [c ollectionHashN, overlayHashN ] ]
-		/// ```
-		/// 
-		/// This command will return undefined data if invoked on a remote player ped.
-		/// </summary>
-		public static InputArgument GetPedDecorations_CFX(int _ped)
-		{
-			return Function.Call<InputArgument>((Hash)0x7CCE1163, _ped);
-		}
-		/// <summary>
-		/// Gets the current speed of the entity in meters per second.
-		/// 
-		/// ```
-		/// To convert to MPH: speed * 2.236936
-		/// To convert to KPH: speed * 3.6
-		/// ```
-		/// </summary>
-		public static float GetEntitySpeed_CFX(int _entity)
-		{
-			return Function.Call<float>((Hash)0x9E1E4798, _entity);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static string GetInvokingResource_CFX()
-		{
-			return Function.Call<string>((Hash)0x4D52FE5B);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetPedMovementClipset_CFX(int _ped)
-		{
-			return Function.Call<int>((Hash)0x69E81E3D, _ped);
-		}
-		/// <summary>
-		/// A getter for [\_SET_PED_HAIR_COLOR](#\_0x4CFFC65454C93A49). Returns -1 if fails to get.
-		/// </summary>
-		public static int GetPedHairHighlightColor_CFX(int _ped)
-		{
-			return Function.Call<int>((Hash)0x4B087305, _ped);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetInteriorRoomCount_CFX(int _interiorId)
-		{
-			return Function.Call<int>((Hash)0xA2737C2C, _interiorId);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetRopeTimeMultiplier_CFX(int _rope)
-		{
-			return Function.Call<float>((Hash)0xF341E6CA, _rope);
-		}
-		/// <summary>
-		/// A getter for [SET_PLAYER_MELEE_WEAPON_DEFENSE_MODIFIER](#\_0xAE540335B4ABC4E2).
-		/// </summary>
-		public static float GetPlayerMeleeWeaponDefenseModifier_CFX(int _playerId)
-		{
-			return Function.Call<float>((Hash)0x27E94EF8, _playerId);
-		}
-		/// <summary>
-		/// A getter for [SET_PED_DENSITY_MULTIPLIER_THIS_FRAME](#\_0x95E3D6257B166CF2).
-		/// </summary>
-		public static float GetPedDensityMultiplier_CFX()
-		{
-			return Function.Call<float>((Hash)0xF5A904F9);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetPlayerMaxStamina_CFX(int _playerId)
-		{
-			return Function.Call<float>((Hash)0xD014AB79, _playerId);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool GetIsVehicleSecondaryColourCustom_CFX(int _vehicle)
-		{
-			return Function.Call<bool>((Hash)0x288AD228, _vehicle);
-		}
-		/// <summary>
-		/// Gets the script task command currently assigned to the ped.
-		/// </summary>
-		public static uint GetPedScriptTaskCommand_CFX(int _ped)
-		{
-			return Function.Call<uint>((Hash)0x84FE084, _ped);
-		}
-		/// <summary>
-		/// A getter for [\_SET_PED_FACE_FEATURE](#\_0x71A5C1DBA060049E). Returns 0.0 if fails to get.
-		/// </summary>
-		public static float GetPedFaceFeature_CFX(int _ped, int _index)
-		{
-			return Function.Call<float>((Hash)0xBA352ADD, _ped, _index);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetPedMaxHealth_CFX(int _ped)
-		{
-			return Function.Call<int>((Hash)0xA45B6C8D, _ped);
-		}
-		/// <summary>
-		/// A getter for [\_SET_PED_HAIR_COLOR](#\_0x4CFFC65454C93A49). Returns -1 if fails to get.
-		/// </summary>
-		public static int GetPedHairColor_CFX(int _ped)
-		{
-			return Function.Call<int>((Hash)0xA3EA2893, _ped);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetPedInVehicleSeat_CFX(int _vehicle, int _seatIndex)
-		{
-			return Function.Call<int>((Hash)0x388FDE9A, _vehicle, _seatIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetNumPlayerIndices_CFX()
-		{
-			return Function.Call<int>((Hash)0x63D13184);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetPedArmour_CFX(int _ped)
-		{
-			return Function.Call<int>((Hash)0x2CE311A7, _ped);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetLastPedInVehicleSeat_CFX(int _vehicle, int _seatIndex)
-		{
-			return Function.Call<int>((Hash)0xF7C6792D, _vehicle, _seatIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetPlayerPing_CFX(string _playerSrc)
-		{
-			return Function.Call<int>((Hash)0xFF1290D4, _playerSrc);
-		}
-		/// <summary>
-		/// Gets the stage of the peds scripted task.
-		/// </summary>
-		public static int GetPedScriptTaskStage_CFX(int _ped)
-		{
-			return Function.Call<int>((Hash)0x44B0E5E2, _ped);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool GetNetworkWalkMode_CFX()
-		{
-			return Function.Call<bool>((Hash)0x2CAFD5E9);
-		}
-		/// <summary>
-		/// Gets the routing bucket for the specified entity.
-		/// 
-		/// Routing buckets are also known as 'dimensions' or 'virtual worlds' in past echoes, however they are population-aware.
-		/// </summary>
-		public static int GetEntityRoutingBucket_CFX(int _entity)
-		{
-			return Function.Call<int>((Hash)0xED4B0486, _entity);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetNumPlayerIdentifiers_CFX(string _playerSrc)
-		{
-			return Function.Call<int>((Hash)0xFF7F66AB, _playerSrc);
-		}
-		/// <summary>
-		/// A getter for [\_SET_PED_EYE_COLOR](#\_0x50B56988B170AFDF). Returns -1 if fails to get.
-		/// </summary>
-		public static int GetPedEyeColor_CFX(int _ped)
-		{
-			return Function.Call<int>((Hash)0xA47B860F, _ped);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleDashboardWaterTemp_CFX()
-		{
-			return Function.Call<float>((Hash)0x8E3B3E42);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetPlayerPed_CFX(string _playerSrc)
-		{
-			return Function.Call<int>((Hash)0x6E31E993, _playerSrc);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetRopeUpdateOrder_CFX(int _rope)
-		{
-			return Function.Call<int>((Hash)0x2AB2E0F6, _rope);
-		}
-		/// <summary>
-		/// Get the entity that killed the ped. This native is used server side when using OneSync.
-		/// </summary>
-		public static int GetPedSourceOfDeath_CFX(int _ped)
-		{
-			return Function.Call<int>((Hash)0x84ADF9EB, _ped);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static string GetPlayerName_CFX(string _playerSrc)
-		{
-			return Function.Call<string>((Hash)0x406B4B20, _playerSrc);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetPlayerTeam_CFX(string _playerSrc)
-		{
-			return Function.Call<int>((Hash)0x9873E404, _playerSrc);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleDashboardVacuum_CFX()
-		{
-			return Function.Call<float>((Hash)0xFABE67A9);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetNumPlayerTokens_CFX(string _playerSrc)
-		{
-			return Function.Call<int>((Hash)0x619E4A3D, _playerSrc);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool GetIsVehiclePrimaryColourCustom_CFX(int _vehicle)
-		{
-			return Function.Call<bool>((Hash)0xD7EC8760, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void GetNuiCursorPosition_CFX(int _x, int _y)
-		{
-			Function.Call((Hash)0xBDBA226F, _x, _y);
-		}
-		/// <summary>
-		/// Returns the zoom level data by index from mapzoomdata.meta file.
-		/// </summary>
-		public static bool GetMapZoomDataLevel_CFX(int _index, float _zoomScale, float _zoomSpeed, float _scrollSpeed, float _tilesX, float _tilesY)
-		{
-			return Function.Call<bool>((Hash)0x1363A998, _index, _zoomScale, _zoomSpeed, _scrollSpeed, _tilesX, _tilesY);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetPlayerServerId_CFX(int _player)
-		{
-			return Function.Call<int>((Hash)0x4D97BCC7, _player);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetPlayerStamina_CFX(int _playerId)
-		{
-			return Function.Call<float>((Hash)0xE415EC5C, _playerId);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool GetIsVehicleEngineRunning_CFX(int _vehicle)
-		{
-			return Function.Call<bool>((Hash)0x7DC6D022, _vehicle);
-		}
-		/// <summary>
-		/// Gets the width of the specified runtime texture.
-		/// </summary>
-		public static int GetRuntimeTextureWidth_CFX(long _tex)
-		{
-			return Function.Call<int>((Hash)0xC9F55558, _tex);
-		}
-		/// <summary>
-		/// See the client-side [GET_LANDING_GEAR_STATE](#\_0x9B0F3DCA3DB0F4CD) native for a description of landing gear states.
-		/// </summary>
-		public static int GetLandingGearState_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0xA6F02670, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static string GetPlayerFromIndex_CFX(int _index)
-		{
-			return Function.Call<string>((Hash)0xC8A9CE08, _index);
-		}
-		/// <summary>
-		/// Gets the current known coordinates for the specified player from cops perspective. This native is used server side when using OneSync.
-		/// </summary>
-		public static Vector3 GetPlayerWantedCentrePosition_CFX(string _playerSrc)
-		{
-			return Function.Call<Vector3>((Hash)0x821F2D2C, _playerSrc);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool GetPlayerInvincible_CFX(string _playerSrc)
-		{
-			return Function.Call<bool>((Hash)0x680C90EE, _playerSrc);
-		}
-		/// <summary>
-		/// Gets a player's token. Tokens can be used to enhance banning logic, however are specific to a server.
-		/// </summary>
-		public static string GetPlayerToken_CFX(string _playerSrc, int _index)
-		{
-			return Function.Call<string>((Hash)0x54C06897, _playerSrc, _index);
-		}
-		/// <summary>
-		/// A getter for [SET_PLAYER_MELEE_WEAPON_DAMAGE_MODIFIER](#\_0x4A3DC7ECCC321032).
-		/// </summary>
-		public static float GetPlayerMeleeWeaponDamageModifier_CFX(int _playerId)
-		{
-			return Function.Call<float>((Hash)0x8689A825, _playerId);
-		}
-		/// <summary>
-		/// A getter for [SET_PLAYER_VEHICLE_DEFENSE_MODIFIER](#\_0x4C60E6EFDAFF2462).
-		/// </summary>
-		public static float GetPlayerVehicleDefenseModifier_CFX(int _playerId)
-		{
-			return Function.Call<float>((Hash)0x8326E7CD, _playerId);
-		}
-		/// <summary>
-		/// A getter for [SET_VEHICLE_DENSITY_MULTIPLIER_THIS_FRAME](#\_0x245A6883D966D537).
-		/// </summary>
-		public static float GetVehicleDensityMultiplier_CFX()
-		{
-			return Function.Call<float>((Hash)0xEF7C6538);
-		}
-		/// <summary>
-		/// Returns the value of a state bag key.
-		/// </summary>
-		public static InputArgument GetStateBagValue_CFX(string _bagName, string _key)
-		{
-			return Function.Call<InputArgument>((Hash)0x637F4C75, _bagName, _key);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static string GetPlayerIdentifier_CFX(string _playerSrc, int _identifier)
-		{
-			return Function.Call<string>((Hash)0x7302DBCF, _playerSrc, _identifier);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static string GetPlayerEndpoint_CFX(string _playerSrc)
-		{
-			return Function.Call<string>((Hash)0xFEE404F9, _playerSrc);
-		}
-		/// <summary>
-		/// A getter for [SET_PLAYER_VEHICLE_DAMAGE_MODIFIER](#\_0xA50E117CDDF82F0C).
-		/// </summary>
-		public static float GetPlayerVehicleDamageModifier_CFX(int _playerId)
-		{
-			return Function.Call<float>((Hash)0x78F27B1F, _playerId);
-		}
-		/// <summary>
-		/// Returns a hash of selected ped weapon.
-		/// </summary>
-		public static uint GetSelectedPedWeapon_CFX(int _ped)
-		{
-			return Function.Call<uint>((Hash)0xD240123E, _ped);
-		}
-		/// <summary>
-		/// ```
-		/// Returns given players wanted level server-side.
-		/// ```
-		/// </summary>
-		public static int GetPlayerWantedLevel_CFX(string _playerSrc)
-		{
-			return Function.Call<int>((Hash)0xBDCDD163, _playerSrc);
-		}
-		/// <summary>
-		/// Gets the door count for the specified train.
-		/// </summary>
-		public static int GetTrainDoorCount_CFX(int _train)
-		{
-			return Function.Call<int>((Hash)0x99974721, _train);
-		}
-		/// <summary>
-		/// Gets the height of the specified runtime texture.
-		/// </summary>
-		public static int GetRuntimeTextureHeight_CFX(long _tex)
-		{
-			return Function.Call<int>((Hash)0x3574AACE, _tex);
-		}
-		/// <summary>
-		/// Gets the routing bucket for the specified player.
-		/// 
-		/// Routing buckets are also known as 'dimensions' or 'virtual worlds' in past echoes, however they are population-aware.
-		/// </summary>
-		public static int GetPlayerRoutingBucket_CFX(string _playerSrc)
-		{
-			return Function.Call<int>((Hash)0x52441C34, _playerSrc);
-		}
-		/// <summary>
-		/// A getter for [SET_PED_HEAD_OVERLAY](#\_0x48F44967FA05CC1E) and [\_SET_PED_HEAD_OVERLAY_COLOR](#\_0x497BF74A7B9CB952) natives.
-		/// </summary>
-		public static bool GetPedHeadOverlayData_CFX(int _ped, int _index, int _overlayValue, int _colourType, int _firstColour, int _secondColour, float _overlayOpacity)
-		{
-			return Function.Call<bool>((Hash)0xC46EE605, _ped, _index, _overlayValue, _colourType, _firstColour, _secondColour, _overlayOpacity);
-		}
-		/// <summary>
-		/// A getter for [SET_PLAYER_WEAPON_DEFENSE_MODIFIER](#\_0x2D83BC011CA14A3C).
-		/// </summary>
-		public static float GetPlayerWeaponDefenseModifier_CFX(int _playerId)
-		{
-			return Function.Call<float>((Hash)0xF1543251, _playerId);
-		}
-		/// <summary>
-		/// Gets the current camera rotation for a specified player. This native is used server side when using OneSync.
-		/// </summary>
-		public static Vector3 GetPlayerCameraRotation_CFX(string _playerSrc)
-		{
-			return Function.Call<Vector3>((Hash)0x433C765D, _playerSrc);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static string GetPlayerGuid_CFX(string _playerSrc)
-		{
-			return Function.Call<string>((Hash)0xE52D9680, _playerSrc);
-		}
-		/// <summary>
-		/// Unlike [GET_PLAYER_INVINCIBLE](#\_0xB721981B2B939E07) this native gets both [SET_PLAYER_INVINCIBLE_KEEP_RAGDOLL_ENABLED](#\_0x6BC97F4F4BB3C04B) and [SET_PLAYER_INVINCIBLE](#\_0x239528EACDC3E7DE) invincibility state.
-		/// </summary>
-		public static bool GetPlayerInvincible2_CFX(int _player)
-		{
-			return Function.Call<bool>((Hash)0xF2E3912B, _player);
-		}
-		/// <summary>
-		/// A getter for [SET_SCENARIO_PED_DENSITY_MULTIPLIER_THIS_FRAME](#\_0x7A556143A1C03898).
-		/// </summary>
-		public static float GetScenarioPedDensityMultiplier_CFX()
-		{
-			return Function.Call<float>((Hash)0x77C598B2);
-		}
-		/// <summary>
-		/// On the server this will return the players source, on the client it will return the player handle.
-		/// </summary>
-		public static int GetPlayerFromStateBagName_CFX(string _bagName)
-		{
-			return Function.Call<int>((Hash)0xA56135E0, _bagName);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void GetInteriorRotation_CFX(int _interiorId, float _rotx, float _rotY, float _rotZ, float _rotW)
-		{
-			Function.Call((Hash)0x5A039998, _interiorId, _rotx, _rotY, _rotZ, _rotW);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehiclePetrolTankHealth_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0xE41595CE, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetPlayerFromServerId_CFX(int _serverId)
-		{
-			return Function.Call<int>((Hash)0x344EA166, _serverId);
-		}
-		/// <summary>
-		/// Gets the vehicle the specified Ped is/was in depending on bool value. This native is used server side when using OneSync.
-		/// </summary>
-		public static int GetVehiclePedIsIn_CFX(int _ped, bool _lastVehicle)
-		{
-			return Function.Call<int>((Hash)0xAFE92319, _ped, _lastVehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetTrainCarriageIndex_CFX(int _train)
-		{
-			return Function.Call<int>((Hash)0x4B8285CF, _train);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleClutch_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0x1DAD4583, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetTrainCurrentTrackNode_CFX(int _train)
-		{
-			return Function.Call<int>((Hash)0xE015E854, _train);
-		}
-		/// <summary>
-		/// Gets the type of a ped's specific task given an index of the CPedTaskSpecificDataNode nodes.
-		/// A ped will typically have a task at index 0, if a ped has multiple tasks at once they will be in the order 0, 1, 2, etc.
-		/// </summary>
-		public static int GetPedSpecificTaskType_CFX(int _ped, int _index)
-		{
-			return Function.Call<int>((Hash)0x7F4563D3, _ped, _index);
-		}
-		/// <summary>
-		/// Currently it only works when set to "all players".
-		/// </summary>
-		public static int GetVehicleDoorsLockedForPlayer_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0x1DC50247, _vehicle);
-		}
-		/// <summary>
-		/// Gets the current fake wanted level for a specified player. This native is used server side when using OneSync.
-		/// </summary>
-		public static int GetPlayerFakeWantedLevel_CFX(string _playerSrc)
-		{
-			return Function.Call<int>((Hash)0x98D244, _playerSrc);
-		}
-		/// <summary>
-		/// Gets the row pitch of the specified runtime texture, for use when creating data for `SET_RUNTIME_TEXTURE_ARGB_DATA`.
-		/// </summary>
-		public static int GetRuntimeTexturePitch_CFX(long _tex)
-		{
-			return Function.Call<int>((Hash)0xCA0A085F, _tex);
-		}
-		/// <summary>
-		/// A getter for [SET_RESOURCE_KVP_FLOAT](#\_0x9ADD2938).
-		/// </summary>
-		public static float GetResourceKvpFloat_CFX(string _key)
-		{
-			return Function.Call<float>((Hash)0x35BDCEEA, _key);
-		}
-		/// <summary>
-		/// Returns the current state of the specified resource.
-		/// </summary>
-		public static string GetResourceState_CFX(string _resourceName)
-		{
-			return Function.Call<string>((Hash)0x4039B485, _resourceName);
-		}
-		/// <summary>
-		/// A getter for [SET_VEHICLE_CHEAT_POWER_INCREASE](#\_0xB59E4BD37AE292DB).
-		/// </summary>
-		public static float GetVehicleCheatPowerIncrease_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0xC3C93F28, _vehicle);
-		}
-		/// <summary>
-		/// Returns the physical on-disk path of the specified resource.
-		/// </summary>
-		public static string GetResourcePath_CFX(string _resourceName)
-		{
-			return Function.Call<string>((Hash)0x61DCF017, _resourceName);
-		}
-		/// <summary>
-		/// Returns all commands that are registered in the command system.
-		/// The data returned adheres to the following layout:
-		/// 
-		/// ```
-		/// [
-		/// {
-		/// "name": "cmdlist"
-		/// },
-		/// {
-		/// "name": "command1"
-		/// }
-		/// ]
-		/// ```
-		/// </summary>
-		public static InputArgument GetRegisteredCommands_CFX()
-		{
-			return Function.Call<InputArgument>((Hash)0xD4BEF069);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleEngineHealth_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0x8880038A, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleFuelLevel_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0x5F739BB8, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetVehicleAlarmTimeLeft_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0xC62AAC98, _vehicle);
-		}
-		/// <summary>
-		/// Gets a vehicle's multiplier used with a wheel's GET_VEHICLE_WHEEL_STEERING_ANGLE to determine the angle the wheel is rendered.
-		/// </summary>
-		public static float GetVehicleDrawnWheelAngleMult_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0x21C1DA8E, _vehicle);
-		}
-		/// <summary>
-		/// ```
-		/// Gets the amount of time player has spent evading the cops.
-		/// Counter starts and increments only when cops are chasing the player.
-		/// If the player is evading, the timer will pause.
-		/// ```
-		/// </summary>
-		public static int GetPlayerTimeInPursuit_CFX(string _playerSrc, bool _lastPursuit)
-		{
-			return Function.Call<int>((Hash)0x7ADE63E1, _playerSrc, _lastPursuit);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleBodyHealth_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0x2B2FCC28, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetTrainCarriageEngine_CFX(int _train)
-		{
-			return Function.Call<int>((Hash)0x95070FA, _train);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void GetVehicleColours_CFX(int _vehicle, int _colorPrimary, int _colorSecondary)
-		{
-			Function.Call((Hash)0x40D82D88, _vehicle, _colorPrimary, _colorSecondary);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleCurrentRpm_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0xE7B12B54, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetVehicleRadioStationIndex_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0x57037960, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleDirtLevel_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0xFD15C065, _vehicle);
-		}
-		/// <summary>
-		/// A getter for [SET_RESOURCE_KVP](#\_0x21C7A35B).
-		/// </summary>
-		public static string GetResourceKvpString_CFX(string _key)
-		{
-			return Function.Call<string>((Hash)0x5240DA5A, _key);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetVehicleDoorStatus_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0x6E35C49C, _vehicle);
-		}
-		/// <summary>
-		/// ```cpp
-		/// enum eRopeFlags
-		/// {
-		///     DrawShadowEnabled = 2,
-		/// 	Breakable = 4,
-		/// 	RopeUnwindingFront = 8,
-		/// 	RopeWinding = 32
-		/// }
-		/// ```
-		/// </summary>
-		public static int GetRopeFlags_CFX(int _rope)
-		{
-			return Function.Call<int>((Hash)0xA80FFE99, _rope);
-		}
-		/// <summary>
-		/// A getter for [SET_RANDOM_VEHICLE_DENSITY_MULTIPLIER_THIS_FRAME](#\_0xB3B3359379FE77D3).
-		/// Same as vehicle density multiplier.
-		/// </summary>
-		public static float GetRandomVehicleDensityMultiplier_CFX()
-		{
-			return Function.Call<float>((Hash)0x7B0D00C5);
-		}
-		/// <summary>
-		/// A getter for [SET_WEAPON_ANIMATION_OVERRIDE](\_0x1055AC3A667F09D9).
-		/// </summary>
-		public static uint GetWeaponAnimationOverride_CFX(int _ped)
-		{
-			return Function.Call<uint>((Hash)0x63ED2E7, _ped);
-		}
-		/// <summary>
-		/// Get the last entity that damaged the ped. This native is used server side when using OneSync.
-		/// </summary>
-		public static int GetPedSourceOfDamage_CFX(int _ped)
-		{
-			return Function.Call<int>((Hash)0x535DB43F, _ped);
-		}
-		/// <summary>
-		/// Gets the metadata value at a specified key/index from a resource's manifest.
-		/// See also: [Resource manifest](https://docs.fivem.net/resources/manifest/)
-		/// </summary>
-		public static string GetResourceMetadata_CFX(string _resourceName, string _metadataKey, int _index)
-		{
-			return Function.Call<string>((Hash)0x964BAB1D, _resourceName, _metadataKey, _index);
-		}
-		/// <summary>
-		/// Returns vehicle xenon lights custom RGB color values. Do note this native doesn't return non-RGB colors that was set with [\_SET_VEHICLE_XENON_LIGHTS_COLOR](#\_0xE41033B25D003A07).
-		/// </summary>
-		public static bool GetVehicleXenonLightsCustomColor_CFX(int _vehicle, int _red, int _green, int _blue)
-		{
-			return Function.Call<bool>((Hash)0xC715F730, _vehicle, _red, _green, _blue);
-		}
-		/// <summary>
-		/// Returns the effective handling data of a vehicle as a vector value.
-		/// Example: `local inertiaMultiplier = GetVehicleHandlingVector(vehicle, 'CHandlingData', 'vecInertiaMultiplier')`
-		/// </summary>
-		public static Vector3 GetVehicleHandlingVector_CFX(int _vehicle, string _class_, string _fieldName)
-		{
-			return Function.Call<Vector3>((Hash)0xFB341304, _vehicle, _class_, _fieldName);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void GetVehicleExtraColours_CFX(int _vehicle, int _pearlescentColor, int _wheelColor)
-		{
-			Function.Call((Hash)0x80E4659B, _vehicle, _pearlescentColor, _wheelColor);
-		}
-		/// <summary>
-		/// A getter for [SET_RESOURCE_KVP_INT](#\_0x6A2B1E8).
-		/// </summary>
-		public static int GetResourceKvpInt_CFX(string _key)
-		{
-			return Function.Call<int>((Hash)0x557B586A, _key);
-		}
-		/// <summary>
-		/// Gets the flight nozzel position for the specified vehicle. See the client-side [\_GET_VEHICLE_FLIGHT_NOZZLE_POSITION](#\_0xDA62027C8BDB326E) native for usage examples.
-		/// </summary>
-		public static float GetVehicleFlightNozzlePosition_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0xAD40AD55, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static string GetResourceByFindIndex_CFX(int _findIndex)
-		{
-			return Function.Call<string>((Hash)0x387246B7, _findIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleDashboardSpeed_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0x9AAD420E, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleDashboardFuel_CFX()
-		{
-			return Function.Call<float>((Hash)0x19B0B2CE);
-		}
-		/// <summary>
-		/// ```lua
-		/// enum_VehicleLockStatus = {
-		///     None = 0,
-		///     Locked = 2,
-		///     LockedForPlayer = 3,
-		///     StickPlayerInside = 4, -- Doesn't allow players to exit the vehicle with the exit vehicle key.
-		///     CanBeBrokenInto = 7, -- Can be broken into the car. If the glass is broken, the value will be set to 1
-		///     CanBeBrokenIntoPersist = 8, -- Can be broken into persist
-		///     CannotBeTriedToEnter = 10, -- Cannot be tried to enter (Nothing happens when you press the vehicle enter key).
-		/// }
-		/// ```
-		/// 
-		/// It should be [noted](https://forum.cfx.re/t/4863241) that while the [client-side command](#\_0x25BC98A59C2EA962) and its
-		/// setter distinguish between states 0 (unset) and 1 (unlocked), the game will synchronize both as state 0, so the server-side
-		/// command will return only '0' if unlocked.
-		/// </summary>
-		public static int GetVehicleDoorLockStatus_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0xD72CEF2, _vehicle);
-		}
-		/// <summary>
-		/// A getter for [\_SET_PLAYER_WEAPON_DEFENSE_MODIFIER\_2](#\_0xBCFDE9EDE4CF27DC).
-		/// </summary>
-		public static float GetPlayerWeaponDefenseModifier2_CFX(int _playerId)
-		{
-			return Function.Call<float>((Hash)0x986B65FF, _playerId);
-		}
-		/// <summary>
-		/// Returns the effective handling data of a vehicle as an integer value.
-		/// Example: `local modelFlags = GetVehicleHandlingInt(vehicle, 'CHandlingData', 'strModelFlags')`
-		/// </summary>
-		public static int GetVehicleHandlingInt_CFX(int _vehicle, string _class_, string _fieldName)
-		{
-			return Function.Call<int>((Hash)0x27396C75, _vehicle, _class_, _fieldName);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool GetVehicleHandbrake_CFX(int _vehicle)
-		{
-			return Function.Call<bool>((Hash)0x483B013C, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleSteeringScale_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0x954465DE, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleDashboardRpm_CFX()
-		{
-			return Function.Call<float>((Hash)0xF9716A11);
-		}
-		/// <summary>
-		/// Gets the ratio that a door is open for on a train.
-		/// </summary>
-		public static float GetTrainDoorOpenRatio_CFX(int _train, int _doorIndex)
-		{
-			return Function.Call<float>((Hash)0x40B16551, _train, _doorIndex);
-		}
-		/// <summary>
-		/// Returns the effective handling data of a vehicle as a floating-point value.
-		/// Example: `local fSteeringLock = GetVehicleHandlingFloat(vehicle, 'CHandlingData', 'fSteeringLock')`
-		/// </summary>
-		public static float GetVehicleHandlingFloat_CFX(int _vehicle, string _class_, string _fieldName)
-		{
-			return Function.Call<float>((Hash)0x642FC12F, _vehicle, _class_, _fieldName);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleTurboPressure_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0xE02B51D7, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleEngineTemperature_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0xF4F495CB, _vehicle);
-		}
-		/// <summary>
-		/// A getter for `CWeaponAccuracyModifier` in a weapon component.
-		/// </summary>
-		public static float GetWeaponComponentAccuracyModifier_CFX(uint _componentHash)
-		{
-			return Function.Call<float>((Hash)0xC693E278, _componentHash);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleDashboardTemp_CFX()
-		{
-			return Function.Call<float>((Hash)0x6B6ADAFA);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleDashboardOilPressure_CFX()
-		{
-			return Function.Call<float>((Hash)0x3856D767);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleDashboardOilTemp_CFX()
-		{
-			return Function.Call<float>((Hash)0x1F5996AA);
-		}
-		/// <summary>
-		/// A getter for [MODIFY_VEHICLE_TOP_SPEED](#\_0x93A3996368C94158). Returns -1.0 if a modifier is not set.
-		/// </summary>
-		public static float GetVehicleTopSpeedModifier_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0x998B7FEE, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetVehicleHeadlightsColour_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0xD7147656, _vehicle);
-		}
-		/// <summary>
-		/// Gets the lock on state for the specified vehicle. See the client-side [GET_VEHICLE_HOMING_LOCKON_STATE](#\_0xE6B0E8CFC3633BF0) native for a description of lock on states.
-		/// </summary>
-		public static int GetVehicleHomingLockonState_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0xFBDE9FD8, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void GetVehicleCustomSecondaryColour_CFX(int _vehicle, int _r, int _g, int _b)
-		{
-			Function.Call((Hash)0x3FF247A2, _vehicle, _r, _g, _b);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleDashboardBoost_CFX()
-		{
-			return Function.Call<float>((Hash)0xDFFABA2A);
-		}
-		/// <summary>
-		/// Gets the state of the player vehicle's dashboard lights as a bit set
-		/// indicator_left = 1
-		/// indicator_right = 2
-		/// handbrakeLight = 4
-		/// engineLight = 8
-		/// ABSLight = 16
-		/// gasLight = 32
-		/// oilLight = 64
-		/// headlights = 128
-		/// highBeam = 256
-		/// batteryLight = 512
-		/// </summary>
-		public static int GetVehicleDashboardLights_CFX()
-		{
-			return Function.Call<int>((Hash)0x500FFE9D);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetVehicleRoofLivery_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0x872CF42, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void GetVehicleDashboardColour_CFX(int _vehicle, int _color)
-		{
-			Function.Call((Hash)0xA0DBD08D, _vehicle, _color);
-		}
-		/// <summary>
-		/// Gets the flags of a wheel.
-		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
-		/// </summary>
-		public static int GetVehicleWheelFlags_CFX(int _vehicle, int _wheelIndex)
-		{
-			return Function.Call<int>((Hash)0xC70FA0C7, _vehicle, _wheelIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleThrottleOffset_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0xD1D07351, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleSteeringAngle_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0x1382FCEA, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void GetVehicleCustomPrimaryColour_CFX(int _vehicle, int _r, int _g, int _b)
-		{
-			Function.Call((Hash)0x1C2B9FEF, _vehicle, _r, _g, _b);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool IsVehicleAlarmSet_CFX(int _vehicle)
-		{
-			return Function.Call<bool>((Hash)0xDC921211, _vehicle);
-		}
-		/// <summary>
-		/// A getter for [SET_PLAYER_WEAPON_DAMAGE_MODIFIER](#\_0xCE07B9F7817AADA3).
-		/// </summary>
-		public static float GetPlayerWeaponDamageModifier_CFX(int _playerId)
-		{
-			return Function.Call<float>((Hash)0x2A3D7CDA, _playerId);
-		}
-		/// <summary>
-		/// **Experimental**: This native may be altered or removed in future versions of CitizenFX without warning.
-		/// 
-		/// Returns whether an asynchronous streaming file registration completed.
-		/// </summary>
-		public static bool IsStreamingFileReady_CFX(string _registerAs)
-		{
-			return Function.Call<bool>((Hash)0xA194934D, _registerAs);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetVehicleNumberPlateTextIndex_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0x499747B6, _vehicle);
-		}
-		/// <summary>
-		/// Gets brake pressure of a wheel.
-		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
-		/// Normal values around 1.0f when braking.
-		/// </summary>
-		public static float GetVehicleWheelBrakePressure_CFX(int _vehicle, int _wheelIndex)
-		{
-			return Function.Call<float>((Hash)0x70FE2EFF, _vehicle, _wheelIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleWheelRimColliderSize_CFX(int _vehicle, int _wheelIndex)
-		{
-			return Function.Call<float>((Hash)0xCEE21AB2, _vehicle, _wheelIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetVehicleLivery_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0xEC82A51D, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void GetVehicleTyreSmokeColor_CFX(int _vehicle, int _r, int _g, int _b)
-		{
-			Function.Call((Hash)0x75280015, _vehicle, _r, _g, _b);
-		}
-		/// <summary>
-		/// A getter for `ReticuleHash` in a weapon scope component.
-		/// </summary>
-		public static int GetWeaponComponentReticuleHash_CFX(uint _componentHash)
-		{
-			return Function.Call<int>((Hash)0xF9AB9297, _componentHash);
-		}
-		/// <summary>
-		/// List of known states:
-		/// 
-		/// ```
-		/// 1: Not wheeling.
-		/// 65: Vehicle is ready to do wheelie (burnouting).
-		/// 129: Vehicle is doing wheelie.
-		/// ```
-		/// </summary>
-		public static int GetVehicleWheelieState_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0x137260D1, _vehicle);
-		}
-		/// <summary>
-		/// Gets power being sent to a wheel.
-		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
-		/// </summary>
-		public static float GetVehicleWheelPower_CFX(int _vehicle, int _wheelIndex)
-		{
-			return Function.Call<float>((Hash)0xD203287, _vehicle, _wheelIndex);
-		}
-		/// <summary>
-		/// A getter for `CWeaponFallOffModifier` range modifier value in a weapon component.
-		/// </summary>
-		public static float GetWeaponComponentRangeModifier_CFX(uint _componentHash)
-		{
-			return Function.Call<float>((Hash)0x2FD0BC1B, _componentHash);
-		}
-		/// <summary>
-		/// Gets speed of a wheel at the tyre.
-		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
-		/// </summary>
-		public static float GetVehicleWheelSpeed_CFX(int _vehicle, int _wheelIndex)
-		{
-			return Function.Call<float>((Hash)0x149C9DA0, _vehicle, _wheelIndex);
-		}
-		/// <summary>
-		/// A getter for `CWeaponDamageModifier` in a weapon component.
-		/// </summary>
-		public static float GetWeaponComponentDamageModifier_CFX(uint _componentHash)
-		{
-			return Function.Call<float>((Hash)0x4A0E3855, _componentHash);
-		}
-		/// <summary>
-		/// A getter for `CWeaponFallOffModifier` damage modifier value in a weapon component.
-		/// </summary>
-		public static float GetWeaponComponentRangeDamageModifier_CFX(uint _componentHash)
-		{
-			return Function.Call<float>((Hash)0xE134FB8D, _componentHash);
-		}
-		/// <summary>
-		/// Gets the rotation speed of a wheel.
-		/// This is used internally to calcuate GET_VEHICLE_WHEEL_SPEED.
-		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
-		/// </summary>
-		public static float GetVehicleWheelRotationSpeed_CFX(int _vehicle, int _wheelIndex)
-		{
-			return Function.Call<float>((Hash)0xEA1859E5, _vehicle, _wheelIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool HasEntityBeenMarkedAsNoLongerNeeded_CFX(int _vehicle)
-		{
-			return Function.Call<bool>((Hash)0x9C9A3BE0, _vehicle);
-		}
-		/// <summary>
-		/// A getter for `CameraHash` in a weapon scope component.
-		/// </summary>
-		public static int GetWeaponComponentCameraHash_CFX(uint _componentHash)
-		{
-			return Function.Call<int>((Hash)0xACB7E68F, _componentHash);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetVehicleNumberOfWheels_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0xEDF4B0FC, _vehicle);
-		}
-		/// <summary>
-		/// Gets the vehicle that is locked on to for the specified vehicle.
-		/// </summary>
-		public static int GetVehicleLockOnTarget_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0x4A557117, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleGravityAmount_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0xB48A1292, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleOilLevel_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0xFC7F8EF4, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void GetVehicleInteriorColour_CFX(int _vehicle, int _color)
-		{
-			Function.Call((Hash)0xCCFF3B6E, _vehicle, _color);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static string GetVehicleNumberPlateText_CFX(int _vehicle)
-		{
-			return Function.Call<string>((Hash)0xE8522D58, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetVehicleNextGear_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0xDDB298AE, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetVehicleCurrentGear_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0xB4F4E566, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleLightMultiplier_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0x7E6E219C, _vehicle);
-		}
-		/// <summary>
-		/// Gets whether the wheel is powered.
-		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
-		/// This is a shortcut to a flag in GET_VEHICLE_WHEEL_FLAGS.
-		/// </summary>
-		public static bool GetVehicleWheelIsPowered_CFX(int _vehicle, int _wheelIndex)
-		{
-			return Function.Call<bool>((Hash)0x3CCF1B49, _vehicle, _wheelIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool IsVehicleEngineStarting_CFX(int _vehicle)
-		{
-			return Function.Call<bool>((Hash)0xBB340D04, _vehicle);
-		}
-		/// <summary>
-		/// Returns the type of the passed vehicle.
-		/// 
-		/// ### Vehicle types
-		/// 
-		/// *   automobile
-		/// *   bike
-		/// *   boat
-		/// *   heli
-		/// *   plane
-		/// *   submarine
-		/// *   trailer
-		/// *   train
-		/// </summary>
-		public static string GetVehicleType_CFX(int _vehicle)
-		{
-			return Function.Call<string>((Hash)0xA273060E, _vehicle);
-		}
-		/// <summary>
-		/// A getter for `ClipSize` in a weapon component.
-		/// </summary>
-		public static int GetWeaponComponentClipSize_CFX(uint _componentHash)
-		{
-			return Function.Call<int>((Hash)0xE14CF665, _componentHash);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool HasVehicleBeenOwnedByPlayer_CFX(int _vehicle)
-		{
-			return Function.Call<bool>((Hash)0xE4E83A5B, _vehicle);
-		}
-		/// <summary>
-		/// A getter for the recoil shake amplitude of a weapon.
-		/// </summary>
-		public static float GetWeaponRecoilShakeAmplitude_CFX(uint _weaponHash)
-		{
-			return Function.Call<float>((Hash)0x5E1AF5F, _weaponHash);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool IsAceAllowed_CFX(string _object)
-		{
-			return Function.Call<bool>((Hash)0x7EBB9929, _object);
-		}
-		/// <summary>
-		/// Gets the vehicle indicator light state. 0 = off, 1 = left, 2 = right, 3 = both
-		/// </summary>
-		public static int GetVehicleIndicatorLights_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0x83070354, _vehicle);
-		}
-		/// <summary>
-		/// Converts a screen coordinate into its relative world coordinate.
-		/// </summary>
-		public static void GetWorldCoordFromScreenCoord_CFX(float _screenX, float _screenY, Vector3 _worldVector, Vector3 _normalVector)
-		{
-			Function.Call((Hash)0xC81D0659, _screenX, _screenY, _worldVector, _normalVector);
-		}
-		/// <summary>
-		/// <!-- Native implemented by Disquse. 0xFFF65C63 -->
-		/// 
-		/// Returns true if the minimap is currently expanded. False if it's the normal minimap state.
-		/// Use [`IsBigmapFull`](#\_0x66EE14B2) to check if the full map is currently revealed on the minimap.
-		/// </summary>
-		public static bool IsBigmapActive_CFX()
-		{
-			return Function.Call<bool>((Hash)0xFFF65C63);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleWheelYRotation_CFX(int _vehicle, int _wheelIndex)
-		{
-			return Function.Call<float>((Hash)0x2EA4AFFE, _vehicle, _wheelIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool GetVehicleLightsState_CFX(int _vehicle, bool _lightsOn, bool _highbeamsOn)
-		{
-			return Function.Call<bool>((Hash)0x7C278621, _vehicle, _lightsOn, _highbeamsOn);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleWheelTireColliderWidth_CFX(int _vehicle, int _wheelIndex)
-		{
-			return Function.Call<float>((Hash)0xEF65929C, _vehicle, _wheelIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool IsVehiclePreviouslyOwnedByPlayer_CFX(int _vehicle)
-		{
-			return Function.Call<bool>((Hash)0xF849ED67, _vehicle);
-		}
-		/// <summary>
-		/// Returns vehicle's wheels' width (width is the same for all the wheels, cannot get/set specific wheel of vehicle).
-		/// Only works on non-default wheels (returns 0 in case of default wheels).
-		/// </summary>
-		public static float GetVehicleWheelWidth_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0x9C7B59F9, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool IsVehicleSirenOn_CFX(int _vehicle)
-		{
-			return Function.Call<bool>((Hash)0x25EB5873, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetVehicleWheelSurfaceMaterial_CFX(int _vehicle, int _wheelIndex)
-		{
-			return Function.Call<int>((Hash)0xA7F04022, _vehicle, _wheelIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool IsVehicleNeedsToBeHotwired_CFX(int _vehicle)
-		{
-			return Function.Call<bool>((Hash)0xF9933BF4, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetVehicleWheelType_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0xDA58D7AE, _vehicle);
-		}
-		/// <summary>
-		/// Gets the traction vector length of a wheel.
-		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
-		/// </summary>
-		public static float GetVehicleWheelTractionVectorLength_CFX(int _vehicle, int _wheelIndex)
-		{
-			return Function.Call<float>((Hash)0x3BCFEE14, _vehicle, _wheelIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool IsVehicleInteriorLightOn_CFX(int _vehicle)
-		{
-			return Function.Call<bool>((Hash)0xA411F72C, _vehicle);
-		}
-		/// <summary>
-		/// Requests the commerce data for the specified player, including the owned SKUs. Use `IS_PLAYER_COMMERCE_INFO_LOADED` to check if it has loaded.
-		/// </summary>
-		public static void LoadPlayerCommerceData_CFX(string _playerSrc)
-		{
-			Function.Call((Hash)0xA8F63EAB, _playerSrc);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool IsVehicleWanted_CFX(int _vehicle)
-		{
-			return Function.Call<bool>((Hash)0xA7DAF7C, _vehicle);
-		}
-		/// <summary>
-		/// Adds the specified player to the target list for the specified Mumble voice target ID.
-		/// </summary>
-		public static void MumbleAddVoiceTargetPlayerByServerId_CFX(int _targetId, int _serverId)
-		{
-			Function.Call((Hash)0x25F2B65F, _targetId, _serverId);
-		}
-		/// <summary>
-		/// Gets whether or not this is the CitizenFX server.
-		/// </summary>
-		public static bool IsDuplicityVersion_CFX()
-		{
-			return Function.Call<bool>((Hash)0xCF24C52E);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleWheelHealth_CFX(int _vehicle, int _wheelIndex)
-		{
-			return Function.Call<float>((Hash)0x54A677F5, _vehicle, _wheelIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool IsVehicleTyreBurst_CFX(int _vehicle, int _wheelID, bool _completely)
-		{
-			return Function.Call<bool>((Hash)0x48C80210, _vehicle, _wheelID, _completely);
-		}
-		/// <summary>
-		/// <!-- Native implemented by Disquse. 0x66EE14B2 -->
-		/// </summary>
-		public static bool IsBigmapFull_CFX()
-		{
-			return Function.Call<bool>((Hash)0x66EE14B2);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetVehicleHighGear_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0xF1D1D689, _vehicle);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float GetVehicleWheelTireColliderSize_CFX(int _vehicle, int _wheelIndex)
-		{
-			return Function.Call<float>((Hash)0xE0BA9FE6, _vehicle, _wheelIndex);
-		}
-		/// <summary>
-		/// A getter for [\_SET_WEAPON_DAMAGE_MODIFIER](#\_0x4757F00BC6323CFE).
-		/// </summary>
-		public static float GetWeaponDamageModifier_CFX(uint _weaponHash)
-		{
-			return Function.Call<float>((Hash)0xD979143, _weaponHash);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int GetVehicleWindowTint_CFX(int _vehicle)
-		{
-			return Function.Call<int>((Hash)0x13D53892, _vehicle);
-		}
-		/// <summary>
-		/// Adds the specified channel to the target list for the specified Mumble voice target ID.
-		/// </summary>
-		public static void MumbleAddVoiceTargetChannel_CFX(int _targetId, int _channel)
-		{
-			Function.Call((Hash)0x4D386C9E, _targetId, _channel);
-		}
-		/// <summary>
-		/// Returns the offset of the specified wheel relative to the wheel's axle center.
-		/// </summary>
-		public static float GetVehicleWheelXOffset_CFX(int _vehicle, int _wheelIndex)
-		{
-			return Function.Call<float>((Hash)0xCC90CBCA, _vehicle, _wheelIndex);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool IsPlayerUsingSuperJump_CFX(string _playerSrc)
-		{
-			return Function.Call<bool>((Hash)0xC7D2C20C, _playerSrc);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void MumbleClearVoiceChannel_CFX()
-		{
-			Function.Call((Hash)0xBF847807);
-		}
-		/// <summary>
-		/// Clears channels from the target list for the specified Mumble voice target ID.
-		/// </summary>
-		public static void MumbleClearVoiceTargetChannels_CFX(int _targetId)
-		{
-			Function.Call((Hash)0x5EA72E76, _targetId);
-		}
-		/// <summary>
-		/// Clears players from the target list for the specified Mumble voice target ID.
-		/// </summary>
-		public static void MumbleClearVoiceTargetPlayers_CFX(int _targetId)
-		{
-			Function.Call((Hash)0x912E21DA, _targetId);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static string InvokeFunctionReference_CFX(string _referenceIdentity, string _argsSerialized, int _argsLength, int _retvalLength)
-		{
-			return Function.Call<string>((Hash)0xE3551879, _referenceIdentity, _argsSerialized, _argsLength, _retvalLength);
-		}
-		/// <summary>
-		/// Checks if the player is currently muted
-		/// </summary>
-		public static bool MumbleIsPlayerMuted_CFX(int _playerSrc)
-		{
-			return Function.Call<bool>((Hash)0x1D5D50C2, _playerSrc);
-		}
-		/// <summary>
-		/// Removes the specified player from the user's voice targets.
-		/// 
-		/// Performs the opposite operation of [MUMBLE_ADD_VOICE_TARGET_PLAYER_BY_SERVER_ID](#\_0x25F2B65F)
-		/// </summary>
-		public static void MumbleRemoveVoiceTargetPlayerByServerId_CFX(int _targetId, int _serverId)
-		{
-			Function.Call((Hash)0x930BD34B, _targetId, _serverId);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool MumbleIsPlayerTalking_CFX(int _player)
-		{
-			return Function.Call<bool>((Hash)0x33EEF97F, _player);
-		}
-		/// <summary>
-		/// This native checks if the given ped is a player.
-		/// </summary>
-		public static bool IsPedAPlayer_CFX(int _ped)
-		{
-			return Function.Call<bool>((Hash)0x404794CA, _ped);
-		}
-		/// <summary>
-		/// Requests the commerce data from Tebex for the specified player, including the owned SKUs. Use `IS_PLAYER_COMMERCE_INFO_LOADED` to check if it has loaded.
-		/// </summary>
-		public static void LoadPlayerCommerceDataExt_CFX(string _playerSrc)
-		{
-			Function.Call((Hash)0x7995539E, _playerSrc);
-		}
-		/// <summary>
-		/// Gets steering angle of a wheel.
-		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
-		/// </summary>
-		public static float GetVehicleWheelSteeringAngle_CFX(int _vehicle, int _wheelIndex)
-		{
-			return Function.Call<float>((Hash)0xA0867448, _vehicle, _wheelIndex);
-		}
-		/// <summary>
-		/// Stops listening to the specified channel.
-		/// </summary>
-		public static void MumbleRemoveVoiceChannelListen_CFX(int _channel)
-		{
-			Function.Call((Hash)0x231523B7, _channel);
-		}
-		/// <summary>
-		/// Gets the current suspension compression of a wheel.
-		/// Returns a positive value. 0 means the suspension is fully extended, the wheel is off the ground.
-		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
-		/// </summary>
-		public static float GetVehicleWheelSuspensionCompression_CFX(int _vehicle, int _wheelIndex)
-		{
-			return Function.Call<float>((Hash)0x2B48175B, _vehicle, _wheelIndex);
-		}
-		/// <summary>
-		/// Requests whether or not the commerce data for the specified player has loaded.
-		/// </summary>
-		public static bool IsPlayerCommerceInfoLoaded_CFX(string _playerSrc)
-		{
-			return Function.Call<bool>((Hash)0xBEFE93F4, _playerSrc);
-		}
-		/// <summary>
-		/// Requests whether or not the commerce data for the specified player has loaded from Tebex.
-		/// </summary>
-		public static bool IsPlayerCommerceInfoLoadedExt_CFX(string _playerSrc)
-		{
-			return Function.Call<bool>((Hash)0x1D14F4FE, _playerSrc);
-		}
-		/// <summary>
-		/// This native checks if the given entity is visible.
-		/// </summary>
-		public static bool IsEntityVisible_CFX(int _entity)
-		{
-			return Function.Call<bool>((Hash)0x120B4ED5, _entity);
-		}
-		/// <summary>
-		/// Returns the mumble voice channel from a player's server id.
-		/// </summary>
-		public static int MumbleGetVoiceChannelFromServerId_CFX(int _serverId)
-		{
-			return Function.Call<int>((Hash)0x221C09F1, _serverId);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool IsPlayerAceAllowed_CFX(string _playerSrc, string _object)
-		{
-			return Function.Call<bool>((Hash)0xDEDAE23D, _playerSrc, _object);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool MumbleIsActive_CFX()
-		{
-			return Function.Call<bool>((Hash)0xE820BC10);
-		}
-		/// <summary>
-		/// Adds the specified player to the target list for the specified Mumble voice target ID.
-		/// </summary>
-		public static void MumbleAddVoiceTargetPlayer_CFX(int _targetId, int _player)
-		{
-			Function.Call((Hash)0x32C5355A, _targetId, _player);
-		}
-		/// <summary>
-		/// Checks if keyboard input is enabled during NUI focus using `SET_NUI_FOCUS_KEEP_INPUT`.
-		/// </summary>
-		public static bool IsNuiFocusKeepingInput_CFX()
-		{
-			return Function.Call<bool>((Hash)0x39C9DC92);
-		}
-		/// <summary>
-		/// Changes the Mumble server address to connect to, and reconnects to the new address.
-		/// </summary>
-		public static void MumbleSetServerAddress_CFX(string _address, int _port)
-		{
-			Function.Call((Hash)0xE6EB2CD8, _address, _port);
-		}
-		/// <summary>
-		/// Returns whether or not the specific minimap overlay has loaded.
-		/// </summary>
-		public static bool HasMinimapOverlayLoaded_CFX(int _id)
-		{
-			return Function.Call<bool>((Hash)0xF7535F32, _id);
-		}
-		/// <summary>
-		/// This native will return true if the user succesfully connected to the voice server.
-		/// If the user disabled the voice-chat setting it will return false.
-		/// </summary>
-		public static bool MumbleIsConnected_CFX()
-		{
-			return Function.Call<bool>((Hash)0xB816370A);
-		}
-		/// <summary>
-		/// Removes the specified voice channel from the user's voice targets.
-		/// 
-		/// Performs the opposite operation of [MUMBLE_ADD_VOICE_TARGET_CHANNEL](#\_0x4D386C9E)
-		/// </summary>
-		public static void MumbleRemoveVoiceTargetChannel_CFX(int _targetId, int _channel)
-		{
-			Function.Call((Hash)0x268DB867, _targetId, _channel);
-		}
-		/// <summary>
-		/// Returns true if the profiler is active.
-		/// </summary>
-		public static bool ProfilerIsRecording_CFX()
-		{
-			return Function.Call<bool>((Hash)0xF8B7D7BB);
-		}
-		/// <summary>
-		/// Registers a specified font name for use with text draw commands.
-		/// </summary>
-		public static int RegisterFontId_CFX(string _fontName)
-		{
-			return Function.Call<int>((Hash)0xACF6D8EE, _fontName);
-		}
-		/// <summary>
-		/// Removes the specified player from the user's voice targets.
-		/// 
-		/// Performs the opposite operation of [MUMBLE_ADD_VOICE_TARGET_PLAYER](#\_0x32C5355A)
-		/// </summary>
-		public static void MumbleRemoveVoiceTargetPlayer_CFX(int _targetId, int _player)
-		{
-			Function.Call((Hash)0x88CD646F, _targetId, _player);
-		}
-		/// <summary>
-		/// Returns vehicle's wheels' size (size is the same for all the wheels, cannot get/set specific wheel of vehicle).
-		/// Only works on non-default wheels (returns 0 in case of default wheels).
-		/// </summary>
-		public static float GetVehicleWheelSize_CFX(int _vehicle)
-		{
-			return Function.Call<float>((Hash)0x4046B66, _vehicle);
-		}
-		/// <summary>
-		/// Returns the first owner ID of the specified entity.
-		/// </summary>
-		public static int NetworkGetFirstEntityOwner_CFX(int _entity)
-		{
-			return Function.Call<int>((Hash)0x1E546224, _entity);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool IsVehicleExtraTurnedOn_CFX(int _vehicle, int _extraId)
-		{
-			return Function.Call<bool>((Hash)0x42098B5, _vehicle, _extraId);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static Vector3 NetworkGetVoiceProximityOverride_CFX(string _playerSrc)
-		{
-			return Function.Call<Vector3>((Hash)0x7A6462F4, _playerSrc);
-		}
-		/// <summary>
-		/// Returns the owner ID of the specified entity.
-		/// </summary>
-		public static int NetworkGetEntityOwner_CFX(int _entity)
-		{
-			return Function.Call<int>((Hash)0x526FEE31, _entity);
-		}
-		/// <summary>
-		/// Reads the contents of a text file in a specified resource.
-		/// If executed on the client, this file has to be included in `files` in the resource manifest.
-		/// Example: `local data = LoadResourceFile("devtools", "data.json")`
-		/// </summary>
-		public static string LoadResourceFile_CFX(string _resourceName, string _fileName)
-		{
-			return Function.Call<string>((Hash)0x76A9EE1F, _resourceName, _fileName);
-		}
-		/// <summary>
-		/// Sets the audio submix ID for a specified player using Mumble 'Native Audio' functionality.
-		/// </summary>
-		public static void MumbleSetSubmixForServerId_CFX(int _serverId, int _submixId)
-		{
-			Function.Call((Hash)0xFE3A3054, _serverId, _submixId);
-		}
-		/// <summary>
-		/// Use this native to disable noise suppression and high pass filters.
-		/// 
-		/// The possible intents for this are as follows (backticks are used to represent hashes):
-		/// 
-		/// | Index | Description |
-		/// |-|-|
-		/// | \`speech\` | Default intent |
-		/// | \`music\` | Disable noise suppression and high pass filter |
-		/// </summary>
-		public static void MumbleSetAudioInputIntent_CFX(uint _intentHash)
-		{
-			Function.Call((Hash)0x6383526B, _intentHash);
-		}
-		/// <summary>
-		/// Replaces the `popgroups` (CPopGroupList) meta file with the file in the specified path.
-		/// </summary>
-		public static void OverridePopGroups_CFX(string _path)
-		{
-			Function.Call((Hash)0xD3BC438F, _path);
-		}
-		/// <summary>
-		/// Scope exit for profiler.
-		/// </summary>
-		public static void ProfilerExitScope_CFX()
-		{
-			Function.Call((Hash)0xB39CA35C);
-		}
-		/// <summary>
-		/// Overrides the output volume for a particular player on Mumble. This will also bypass 3D audio and distance calculations. -1.0 to reset the override.
-		/// 
-		/// Set to -1.0 to reset the Volume override.
-		/// </summary>
-		public static void MumbleSetVolumeOverride_CFX(int _player, float _volume)
-		{
-			Function.Call((Hash)0x61C309E3, _player, _volume);
-		}
-		/// <summary>
-		/// Create a permanent voice channel.
-		/// </summary>
-		public static void MumbleCreateChannel_CFX(int _id)
-		{
-			Function.Call((Hash)0x262663C5, _id);
-		}
-		/// <summary>
-		/// Overrides the output volume for a particular player with the specified server id and player name on Mumble. This will also bypass 3D audio and distance calculations. -1.0 to reset the override.
-		/// </summary>
-		public static void MumbleSetVolumeOverrideByServerId_CFX(int _serverId, float _volume)
-		{
-			Function.Call((Hash)0xCE8E25B4, _serverId, _volume);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool IsPrincipalAceAllowed_CFX(string _principal, string _object)
-		{
-			return Function.Call<bool>((Hash)0x37CF52CE, _principal, _object);
-		}
-		/// <summary>
-		/// **Experimental**: This native may be altered or removed in future versions of CitizenFX without warning.
-		/// 
-		/// Registers a set of entities with the game engine. These should match `CEntityDef` class information from the game.
-		/// At this time, this function **should not be used in a live environment**.
-		/// </summary>
-		public static void RegisterEntities_CFX(InputArgument _factory)
-		{
-			Function.Call((Hash)0x410DA7D3, _factory);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int NetworkGetEntityFromNetworkId_CFX(int _netId)
-		{
-			return Function.Call<int>((Hash)0x5B912C3F, _netId);
-		}
-		/// <summary>
-		/// Overrides whether or not peds can stand on top of the specified vehicle.
-		/// 
-		/// Note this flag is not replicated automatically, you will have to manually do so.
-		/// </summary>
-		public static void OverrideVehiclePedsCanStandOnTopFlag_CFX(int _vehicle, bool _can)
-		{
-			Function.Call((Hash)0x7FA03E76, _vehicle, _can);
-		}
-		/// <summary>
-		/// **Experimental**: This native may be altered or removed in future versions of CitizenFX without warning.
-		/// 
-		/// Registers a file from an URL as a streaming asset in the GTA streaming subsystem. This will asynchronously register the asset, and caching is done based on the URL itself - cache headers are ignored.
-		/// 
-		/// Use `IS_STREAMING_FILE_READY` to check if the asset has been registered successfully.
-		/// </summary>
-		public static void RegisterStreamingFileFromUrl_CFX(string _registerAs, string _url)
-		{
-			Function.Call((Hash)0xF44BFB95, _registerAs, _url);
-		}
-		/// <summary>
-		/// Registers a listener for console output messages.
-		/// </summary>
-		public static void RegisterConsoleListener_CFX(InputArgument _listener)
-		{
-			Function.Call((Hash)0x281B5448, _listener);
-		}
-		/// <summary>
-		/// Sends a message to the specific DUI root page. This is similar to SEND_NUI_MESSAGE.
-		/// </summary>
-		public static void SendDuiMessage_CFX(long _duiObject, string _jsonString)
-		{
-			Function.Call((Hash)0xCD380DA9, _duiObject, _jsonString);
-		}
-		/// <summary>
-		/// An internal function which allows the current resource's HLL script runtimes to receive state for the specified event.
-		/// </summary>
-		public static void RegisterResourceAsEventHandler_CFX(string _eventName)
-		{
-			Function.Call((Hash)0xD233A168, _eventName);
-		}
-		/// <summary>
-		/// Sets the current Mumble voice target ID to broadcast voice to.
-		/// </summary>
-		public static void MumbleSetVoiceTarget_CFX(int _targetId)
-		{
-			Function.Call((Hash)0x960A4A95, _targetId);
-		}
-		/// <summary>
-		/// ```
-		/// This will return true if the player is evading wanted level, meaning that the wanted level stars are blink.
-		/// Otherwise will return false.
-		/// 
-		/// If the player is not wanted, it simply returns false.
-		/// ```
-		/// </summary>
-		public static bool IsPlayerEvadingWantedLevel_CFX(string _playerSrc)
-		{
-			return Function.Call<bool>((Hash)0x89A3881A, _playerSrc);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int PerformHttpRequestInternalEx_CFX(InputArgument _requestData)
-		{
-			return Function.Call<int>((Hash)0x6B171E87, _requestData);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int PerformHttpRequestInternal_CFX(string _requestData, int _requestDataLength)
-		{
-			return Function.Call<int>((Hash)0x8E8CC653, _requestData, _requestDataLength);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static float MumbleGetTalkerProximity_CFX()
-		{
-			return Function.Call<float>((Hash)0x84E02A32);
-		}
-		/// <summary>
-		/// A getter for [FREEZE_ENTITY_POSITION](#\_0x428CA6DBD1094446).
-		/// </summary>
-		public static bool IsEntityPositionFrozen_CFX(int _entity)
-		{
-			return Function.Call<bool>((Hash)0xEDBE6ADD, _entity);
-		}
-		/// <summary>
-		/// Returns the current NUI focus state previously set with `SET_NUI_FOCUS`.
-		/// </summary>
-		public static bool IsNuiFocused_CFX()
-		{
-			return Function.Call<bool>((Hash)0x98545E6D);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int NetworkGetNetworkIdFromEntity_CFX(int _entity)
-		{
-			return Function.Call<int>((Hash)0x9E35DAB6, _entity);
-		}
-		/// <summary>
-		/// Registered commands can be executed by entering them in the client console (this works for client side and server side registered commands). Or by entering them in the server console/through an RCON client (only works for server side registered commands). Or if you use a supported chat resource, like the default one provided in the cfx-server-data repository, then you can enter the command in chat by prefixing it with a `/`.
-		/// 
-		/// Commands registered using this function can also be executed by resources, using the [`ExecuteCommand` native](#\_0x561C060B).
-		/// 
-		/// The restricted bool is not used on the client side. Permissions can only be checked on the server side, so if you want to limit your command with an ace permission automatically, make it a server command (by registering it in a server script).
-		/// 
-		/// **Example result**:
-		/// 
-		/// ![](https://i.imgur.com/TaCnG09.png)
-		/// </summary>
-		public static void RegisterCommand_CFX(string _commandName, InputArgument _handler, bool _restricted)
-		{
-			Function.Call((Hash)0x5FA79B0F, _commandName, _handler, _restricted);
-		}
-		/// <summary>
-		/// Clears the target list for the specified Mumble voice target ID.
-		/// </summary>
-		public static void MumbleClearVoiceTarget_CFX(int _targetId)
-		{
-			Function.Call((Hash)0x8555DCBA, _targetId);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void RegisterRawNuiCallback_CFX(string _callbackType, InputArgument _callback)
-		{
-			Function.Call((Hash)0xA8AE9C2F, _callbackType, _callback);
-		}
-		/// <summary>
-		/// Used to replicate a server variable onto clients.
-		/// </summary>
-		public static void SetConvarReplicated_CFX(string _varName, string _value)
-		{
-			Function.Call((Hash)0xF292858C, _varName, _value);
-		}
-		/// <summary>
-		/// Requests the specified player to buy the passed SKU. This'll pop up a prompt on the client, which upon acceptance
-		/// will open the browser prompting further purchase details.
-		/// </summary>
-		public static void RequestPlayerCommerceSession_CFX(string _playerSrc, int _skuId)
-		{
-			Function.Call((Hash)0x96F93CCE, _playerSrc, _skuId);
-		}
-		/// <summary>
-		/// **Experimental**: This native may be altered or removed in future versions of CitizenFX without warning.
-		/// 
-		/// Removes a handler for changes to a state bag.
-		/// </summary>
-		public static void RemoveStateBagChangeHandler_CFX(int _cookie)
-		{
-			Function.Call((Hash)0xD36BE661, _cookie);
-		}
-		/// <summary>
-		/// Experimental natives, please do not use in a live environment.
-		/// </summary>
-		public static void RemoveReplaceTexture_CFX(string _origTxd, string _origTxn)
-		{
-			Function.Call((Hash)0xA896B20A, _origTxd, _origTxn);
-		}
-		/// <summary>
-		/// Injects a 'mouse move' event for a DUI object. Coordinates are in browser space.
-		/// </summary>
-		public static void SendDuiMouseMove_CFX(long _duiObject, int _x, int _y)
-		{
-			Function.Call((Hash)0xD9D7A0AA, _duiObject, _x, _y);
-		}
-		/// <summary>
-		/// Injects a 'mouse up' event for a DUI object. Coordinates are expected to be set using SEND_DUI_MOUSE_MOVE.
-		/// </summary>
-		public static void SendDuiMouseUp_CFX(long _duiObject, string _button)
-		{
-			Function.Call((Hash)0x1D735B93, _duiObject, _button);
-		}
-		/// <summary>
-		/// Sets an integer parameter for a submix effect.
-		/// </summary>
-		public static void SetAudioSubmixEffectParamInt_CFX(int _submixId, int _effectSlot, int _paramIndex, int _paramValue)
-		{
-			Function.Call((Hash)0x77FAE2B8, _submixId, _effectSlot, _paramIndex, _paramValue);
-		}
-		/// <summary>
-		/// Starts listening to the specified channel, when available.
-		/// </summary>
-		public static void MumbleAddVoiceChannelListen_CFX(int _channel)
-		{
-			Function.Call((Hash)0xC79F44BF, _channel);
-		}
-		/// <summary>
-		/// Registers a build task factory for resources.
-		/// The function should return an object (msgpack map) with the following fields:
-		/// 
-		/// ```
-		/// {
-		/// // returns whether the specific resource should be built
-		/// shouldBuild = func(resourceName: string): bool,
-		/// 
-		/// // asynchronously start building the specific resource.
-		/// // call cb when completed
-		/// build = func(resourceName: string, cb: func(success: bool, status: string): void): void
-		/// }
-		/// ```
-		/// </summary>
-		public static void RegisterResourceBuildTaskFactory_CFX(string _factoryId, InputArgument _factoryFn)
-		{
-			Function.Call((Hash)0x285B43CA, _factoryId, _factoryFn);
-		}
-		/// <summary>
-		/// Registers a specified .gfx file as GFx font library.
-		/// The .gfx file has to be registered with the streamer already.
-		/// </summary>
-		public static void RegisterFontFile_CFX(string _fileName)
-		{
-			Function.Call((Hash)0x1B3A363, _fileName);
-		}
-		/// <summary>
-		/// Writes the specified data to a file in the specified resource.
-		/// Using a length of `-1` will automatically detect the length assuming the data is a C string.
-		/// </summary>
-		public static bool SaveResourceFile_CFX(string _resourceName, string _fileName, string _data, int _dataLength)
-		{
-			return Function.Call<bool>((Hash)0xA09E7E7B, _resourceName, _fileName, _data, _dataLength);
-		}
-		/// <summary>
-		/// This native sets the hover text of the image asset for the discord rich presence implementation.
-		/// </summary>
-		public static void SetDiscordRichPresenceAssetText_CFX(string _text)
-		{
-			Function.Call((Hash)0xB029D2FA, _text);
-		}
-		/// <summary>
-		/// Scope entry for profiler.
-		/// </summary>
-		public static void ProfilerEnterScope_CFX(string _scopeName)
-		{
-			Function.Call((Hash)0xC795A4A9, _scopeName);
-		}
-		/// <summary>
-		/// **Experimental**: This native may be altered or removed in future versions of CitizenFX without warning.
-		/// 
-		/// Registers a cached resource asset with the resource system, similar to the automatic scanning of the `stream/` folder.
-		/// </summary>
-		public static string RegisterResourceAsset_CFX(string _resourceName, string _fileName)
-		{
-			return Function.Call<string>((Hash)0x9862B266, _resourceName, _fileName);
-		}
-		/// <summary>
-		/// Resets parameters which is used by the game for checking is ped needs to fly through windscreen after a crash to default values.
-		/// </summary>
-		public static void ResetFlyThroughWindscreenParams_CFX()
-		{
-			Function.Call((Hash)0x6D712937);
-		}
-		/// <summary>
-		/// Returns whether or not a browser is created for a specified DUI browser object.
-		/// </summary>
-		public static bool IsDuiAvailable_CFX(long _duiObject)
-		{
-			return Function.Call<bool>((Hash)0x7AAC3B4C, _duiObject);
-		}
-		/// <summary>
-		/// Sends a message to the `loadingScreen` NUI frame, which contains the HTML page referenced in `loadscreen` resources.
-		/// </summary>
-		public static bool SendLoadingScreenMessage_CFX(string _jsonString)
-		{
-			return Function.Call<bool>((Hash)0x8BBE6CC0, _jsonString);
-		}
-		/// <summary>
-		/// Injects a 'mouse wheel' event for a DUI object.
-		/// </summary>
-		public static void SendDuiMouseWheel_CFX(long _duiObject, int _deltaY, int _deltaX)
-		{
-			Function.Call((Hash)0x2D62133A, _duiObject, _deltaY, _deltaX);
-		}
-		/// <summary>
-		/// Sets a global handling override for a specific vehicle class. The name is supposed to match the `handlingName` field from handling.meta.
-		/// Example: `SetHandlingField('AIRTUG', 'CHandlingData', 'fSteeringLock', 360.0)`
-		/// </summary>
-		public static void SetHandlingField_CFX(string _vehicle, string _class_, string _fieldName, int _value)
-		{
-			Function.Call((Hash)0xFE8064E3, _vehicle, _class_, _fieldName, _value);
-		}
-		/// <summary>
-		/// Removes a dry volume from the game session.
-		/// See CREATE_DRY_VOLUME for more info
-		/// </summary>
-		public static void RemoveDryVolume_CFX(int _handle)
-		{
-			Function.Call((Hash)0x7BCAA6E7, _handle);
-		}
-		/// <summary>
-		/// **Experimental**: This native may be altered or removed in future versions of CitizenFX without warning.
-		/// 
-		/// Registers a dynamic streaming asset from the server with the GTA streaming module system.
-		/// </summary>
-		public static void RegisterStreamingFileFromCache_CFX(string _resourceName, string _fileName, string _cacheString)
-		{
-			Function.Call((Hash)0xCEAD2D4B, _resourceName, _fileName, _cacheString);
-		}
-		/// <summary>
-		/// Sets whether peds can stand on top of *all* vehicles without falling off.
-		/// 
-		/// Note this flag is not replicated automatically, you will have to manually do so.
-		/// </summary>
-		public static void OverridePedsCanStandOnTopFlag_CFX(bool _flag)
-		{
-			Function.Call((Hash)0x90A9E0B2, _flag);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void MumbleSetActive_CFX(bool _state)
-		{
-			Function.Call((Hash)0xD932A3F3, _state);
-		}
-		/// <summary>
-		/// **Experimental**: This native may be altered or removed in future versions of CitizenFX without warning.
-		/// 
-		/// Registers a set of archetypes with the game engine. These should match `CBaseArchetypeDef` class information from the game.
-		/// </summary>
-		public static void RegisterArchetypes_CFX(InputArgument _factory)
-		{
-			Function.Call((Hash)0x3C2F9037, _factory);
-		}
-		/// <summary>
-		/// Navigates the specified DUI browser to a different URL.
-		/// </summary>
-		public static void SetDuiUrl_CFX(long _duiObject, string _url)
-		{
-			Function.Call((Hash)0xF761D9F3, _duiObject, _url);
-		}
-		/// <summary>
-		/// Adds a cooldown between instances of moving and then aiming.
-		/// Can be optionally used to hinder 'speedboosting'
-		/// To turn off, set value to 0
-		/// </summary>
-		public static void SetAimCooldown_CFX(int _value)
-		{
-			Function.Call((Hash)0xA42A3DBF, _value);
-		}
-		/// <summary>
-		/// Sets the volumes for the sound channels in a submix effect.
-		/// Values can be between 0.0 and 1.0.
-		/// Channel 5 and channel 6 are not used in voice chat but are believed to be center and LFE channels.
-		/// Output slot starts at 0 for the first ADD_AUDIO_SUBMIX_OUTPUT call then incremented by 1 on each subsequent call.
-		/// </summary>
-		public static void SetAudioSubmixOutputVolumes_CFX(int _submixId, int _outputSlot, float _frontLeftVolume, float _frontRightVolume, float _rearLeftVolume, float _rearRightVolume, float _channel5Volume, float _channel6Volume)
-		{
-			Function.Call((Hash)0x825DC0D1, _submixId, _outputSlot, _frontLeftVolume, _frontRightVolume, _rearLeftVolume, _rearRightVolume, _channel5Volume, _channel6Volume);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void MumbleSetTalkerProximity_CFX(float _value)
-		{
-			Function.Call((Hash)0x74E927B0, _value);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetGameType_CFX(string _gametypeName)
-		{
-			Function.Call((Hash)0xF90B7469, _gametypeName);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetConvarServerInfo_CFX(string _varName, string _value)
-		{
-			Function.Call((Hash)0x9338D547, _varName, _value);
-		}
-		/// <summary>
-		/// Injects a 'mouse down' event for a DUI object. Coordinates are expected to be set using SEND_DUI_MOUSE_MOVE.
-		/// </summary>
-		public static void SendDuiMouseDown_CFX(long _duiObject, string _button)
-		{
-			Function.Call((Hash)0x5D01F191, _duiObject, _button);
-		}
-		/// <summary>
-		/// Assigns a RadioFX effect to a submix effect slot.
-		/// 
-		/// The parameter values for this effect are as follows (backticks are used to represent hashes):
-		/// 
-		/// | Index | Type | Description |
-		/// |-|-|-|
-		/// | \`enabled\` | int | Enables or disables RadioFX on this DSP. |
-		/// | \`default\` | int | Sets default parameters for the RadioFX DSP and enables it. |
-		/// | \`freq_low\` | float |  |
-		/// | \`freq_hi\` | float |  |
-		/// | \`fudge\` | float |  |
-		/// | \`rm_mod_freq\` | float |  |
-		/// | \`rm_mix\` | float |  |
-		/// | \`o_freq_lo\` | float |  |
-		/// | \`o_freq_hi\` | float |  |
-		/// </summary>
-		public static void SetAudioSubmixEffectRadioFx_CFX(int _submixId, int _effectSlot)
-		{
-			Function.Call((Hash)0xAAA94D53, _submixId, _effectSlot);
-		}
-		/// <summary>
-		/// Sets the current input distance. The player will be able to talk to other players within this distance.
-		/// </summary>
-		public static void MumbleSetAudioInputDistance_CFX(float _distance)
-		{
-			Function.Call((Hash)0x1B1052E2, _distance);
-		}
-		/// <summary>
-		/// This native sets the image asset for the discord rich presence implementation.
-		/// </summary>
-		public static void SetDiscordRichPresenceAsset_CFX(string _assetName)
-		{
-			Function.Call((Hash)0x53DFD530, _assetName);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetMapName_CFX(string _mapName)
-		{
-			Function.Call((Hash)0xB7BA82DC, _mapName);
-		}
-		/// <summary>
-		/// Sets the default number plate text pattern for vehicles seen on the local client with the specified plate index as their *default* index (`plateProbabilities` from carvariations).
-		/// 
-		/// For consistency, this should be used with the same value on all clients, since vehicles *without* custom text will use a seeded random number generator with this pattern to determine the default plate text.
-		/// 
-		/// The default value is `11AAA111`, and using this or a NULL string will revert to the default game RNG.
-		/// 
-		/// ### Pattern string format
-		/// 
-		/// *   `1` will lead to a random number from 0-9.
-		/// *   `A` will lead to a random letter from A-Z.
-		/// *   `.` will lead to a random letter *or* number, with 50% probability of being either.
-		/// *   `^1` will lead to a literal `1` being emitted.
-		/// *   `^A` will lead to a literal `A` being emitted.
-		/// *   Any other character will lead to said character being emitted.
-		/// *   A string shorter than 8 characters will be padded on the right.
-		/// </summary>
-		public static void SetDefaultVehicleNumberPlateTextPattern_CFX(int _plateIndex, string _pattern)
-		{
-			Function.Call((Hash)0x79780FD2, _plateIndex, _pattern);
-		}
-		/// <summary>
-		/// Sets the current output distance. The player will be able to hear other players talking within this distance.
-		/// </summary>
-		public static void MumbleSetAudioOutputDistance_CFX(float _distance)
-		{
-			Function.Call((Hash)0x74C597D9, _distance);
-		}
-		/// <summary>
-		/// This native sets the hover text of the small image asset for the discord rich presence implementation.
-		/// </summary>
-		public static void SetDiscordRichPresenceAssetSmallText_CFX(string _text)
-		{
-			Function.Call((Hash)0x35E62B6A, _text);
-		}
-		/// <summary>
-		/// Schedules the specified resource to run a tick as soon as possible, bypassing the server's fixed tick rate.
-		/// </summary>
-		public static void ScheduleResourceTick_CFX(string _resourceName)
-		{
-			Function.Call((Hash)0xB88A73AD, _resourceName);
-		}
-		/// <summary>
-		/// Sets the routing bucket for the specified entity.
-		/// 
-		/// Routing buckets are also known as 'dimensions' or 'virtual worlds' in past echoes, however they are population-aware.
-		/// </summary>
-		public static void SetEntityRoutingBucket_CFX(int _entity, int _bucket)
-		{
-			Function.Call((Hash)0x635E5289, _entity, _bucket);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetInteriorRoomExtents_CFX(int _interiorId, int _roomIndex, float _bbMinX, float _bbMinY, float _bbMinZ, float _bbMaxX, float _bbMaxY, float _bbMaxZ)
-		{
-			Function.Call((Hash)0x4FDCF51E, _interiorId, _roomIndex, _bbMinX, _bbMinY, _bbMinZ, _bbMaxX, _bbMaxY, _bbMaxZ);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void MumbleSetVoiceChannel_CFX(int _channel)
-		{
-			Function.Call((Hash)0x8737EEE8, _channel);
-		}
-		/// <summary>
-		/// Mutes or unmutes the specified player
-		/// </summary>
-		public static void MumbleSetPlayerMuted_CFX(int _playerSrc, bool _toggle)
-		{
-			Function.Call((Hash)0xCC6C2EB1, _playerSrc, _toggle);
-		}
-		/// <summary>
-		/// Possible Types:
-		/// 
-		/// ```
-		/// 0 = Off,
-		/// 1 = Regular,
-		/// 2 = Expanded,
-		/// 3 = Simple,
-		/// ```
-		/// </summary>
-		public static void SetMinimapType_CFX(int _type)
-		{
-			Function.Call((Hash)0x5FB53015, _type);
-		}
-		/// <summary>
-		/// Resets whether or not peds can stand on top of the specified vehicle.
-		/// 
-		/// Note this flag is not replicated automatically, you will have to manually do so.
-		/// </summary>
-		public static void ResetVehiclePedsCanStandOnTopFlag_CFX(int _vehicle)
-		{
-			Function.Call((Hash)0xDF62CFE2, _vehicle);
-		}
-		/// <summary>
-		/// Resets values from the zoom level data by index to defaults from mapzoomdata.meta.
-		/// </summary>
-		public static void ResetMapZoomDataLevel_CFX(int _index)
-		{
-			Function.Call((Hash)0x11A5B7ED, _index);
-		}
-		/// <summary>
-		/// Overrides how many real ms are equal to one game minute.
-		/// A setter for [`GetMillisecondsPerGameMinute`](#\_0x2F8B4D1C595B11DB).
-		/// </summary>
-		public static void SetMillisecondsPerGameMinute_CFX(int _value)
-		{
-			Function.Call((Hash)0x36CA2554, _value);
-		}
-		/// <summary>
-		/// It overrides the default distance culling radius of an entity. Set to `0.0` to reset.
-		/// If you want to interact with an entity outside of your players' scopes set the radius to a huge number.
-		/// </summary>
-		public static void SetEntityDistanceCullingRadius_CFX(int _entity, float _radius)
-		{
-			Function.Call((Hash)0xD3A183A3, _entity, _radius);
-		}
-		/// <summary>
-		/// Sets a global handling override for a specific vehicle class. The name is supposed to match the `handlingName` field from handling.meta.
-		/// </summary>
-		public static void SetHandlingInt_CFX(string _vehicle, string _class_, string _fieldName, int _value)
-		{
-			Function.Call((Hash)0x8AB3F46C, _vehicle, _class_, _fieldName, _value);
-		}
-		/// <summary>
-		/// Registers a key mapping for the current resource.
-		/// 
-		/// See the related [cookbook post](https://cookbook.fivem.net/2020/01/06/using-the-new-console-key-bindings/) for more information.
-		/// </summary>
-		public static void RegisterKeyMapping_CFX(string _commandString, string _description, string _defaultMapper, string _defaultParameter)
-		{
-			Function.Call((Hash)0xD7664FD1, _commandString, _description, _defaultMapper, _defaultParameter);
-		}
-		/// <summary>
-		/// Sets the maximum distance at which all tags will be visible and which beyond will not be displayed. Distance is measured from the camera position.
-		/// </summary>
-		public static void SetMpGamerTagsVisibleDistance_CFX(float _distance)
-		{
-			Function.Call((Hash)0xD61676B3, _distance);
-		}
-		/// <summary>
-		/// Sets the culling radius for the specified player.
-		/// Set to `0.0` to reset.
-		/// </summary>
-		public static void SetPlayerCullingRadius_CFX(string _playerSrc, float _radius)
-		{
-			Function.Call((Hash)0x8A2FBAD4, _playerSrc, _radius);
-		}
-		/// <summary>
-		/// Allows Weapon-Flashlight beams to stay visible while moving. Normally it only stays on while aiming.
-		/// </summary>
-		public static void SetFlashLightKeepOnWhileMoving_CFX(bool _state)
-		{
-			Function.Call((Hash)0x7635B349, _state);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool SendNuiMessage_CFX(string _jsonString)
-		{
-			return Function.Call<bool>((Hash)0x78608ACB, _jsonString);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetNuiFocusKeepInput_CFX(bool _keepInput)
-		{
-			Function.Call((Hash)0x3FF5E5F8, _keepInput);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void RegisterNuiCallbackType_CFX(string _callbackType)
-		{
-			Function.Call((Hash)0xCD03CDA9, _callbackType);
-		}
-		/// <summary>
-		/// Sets a floating-point parameter for a submix effect.
-		/// </summary>
-		public static void SetAudioSubmixEffectParamFloat_CFX(int _submixId, int _effectSlot, int _paramIndex, float _paramValue)
-		{
-			Function.Call((Hash)0x9A209B3C, _submixId, _effectSlot, _paramIndex, _paramValue);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool SetCursorLocation_CFX(float _x, float _y)
-		{
-			return Function.Call<bool>((Hash)0x8A7A8DAC, _x, _y);
-		}
-		/// <summary>
-		/// Sets a clickable button to be displayed in a player's Discord rich presence.
-		/// </summary>
-		public static void SetDiscordRichPresenceAction_CFX(int _index, string _label, string _url)
-		{
-			Function.Call((Hash)0xCBBC3FAC, _index, _label, _url);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetInteriorRoomFlag_CFX(int _interiorId, int _roomIndex, int _flag)
-		{
-			Function.Call((Hash)0x5518D60B, _interiorId, _roomIndex, _flag);
-		}
-		/// <summary>
-		/// Set's the ropes length change rate, which is the speed that rope should wind if started.
-		/// </summary>
-		public static void SetRopeLengthChangeRate_CFX(int _rope, float _lengthChangeRate)
-		{
-			Function.Call((Hash)0x69B680A7, _rope, _lengthChangeRate);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetInteriorPortalEntityFlag_CFX(int _interiorId, int _portalIndex, int _entityIndex, int _flag)
-		{
-			Function.Call((Hash)0x8349CD76, _interiorId, _portalIndex, _entityIndex, _flag);
-		}
-		/// <summary>
-		/// This native sets the app id for the discord rich presence implementation.
-		/// </summary>
-		public static void SetDiscordAppId_CFX(string _appId)
-		{
-			Function.Call((Hash)0x6A02254D, _appId);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetInteriorPortalRoomTo_CFX(int _interiorId, int _portalIndex, int _roomTo)
-		{
-			Function.Call((Hash)0x58982680, _interiorId, _portalIndex, _roomTo);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetModelHeadlightConfiguration_CFX(uint _modelHash, float _ratePerSecond, float _headlightRotation, bool _invertRotation)
-		{
-			Function.Call((Hash)0x7F6B8D75, _modelHash, _ratePerSecond, _headlightRotation, _invertRotation);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetInteriorPortalCornerPosition_CFX(int _interiorId, int _portalIndex, int _cornerIndex, float _posX, float _posY, float _posZ)
-		{
-			Function.Call((Hash)0x87F43553, _interiorId, _portalIndex, _cornerIndex, _posX, _posY, _posZ);
-		}
-		/// <summary>
-		/// A setter for [GET_RESOURCE_KVP_STRING](#\_0x5240DA5A).
-		/// </summary>
-		public static void SetResourceKvp_CFX(string _key, string _value)
-		{
-			Function.Call((Hash)0x21C7A35B, _key, _value);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetSnakeoilForEntry_CFX(string _name, string _path, string _data)
-		{
-			Function.Call((Hash)0xA7DD3209, _name, _path, _data);
-		}
-		/// <summary>
-		/// **Experimental**: This native may be altered or removed in future versions of CitizenFX without warning.
-		/// 
-		/// Registers a KVP value as an asset with the GTA streaming module system. This function currently won't work.
-		/// </summary>
-		public static void RegisterStreamingFileFromKvs_CFX(string _kvsKey)
-		{
-			Function.Call((Hash)0x1493DCC1, _kvsKey);
-		}
-		/// <summary>
-		/// This native sets the small image asset for the discord rich presence implementation.
-		/// </summary>
-		public static void SetDiscordRichPresenceAssetSmall_CFX(string _assetName)
-		{
-			Function.Call((Hash)0xF61D04C4, _assetName);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetNetworkWalkMode_CFX(bool _enabled)
-		{
-			Function.Call((Hash)0x55188D2D, _enabled);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetInteriorPortalRoomFrom_CFX(int _interiorId, int _portalIndex, int _roomFrom)
-		{
-			Function.Call((Hash)0x298FC783, _interiorId, _portalIndex, _roomFrom);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetHttpHandler_CFX(InputArgument _handler)
-		{
-			Function.Call((Hash)0xF5C6330C, _handler);
-		}
-		/// <summary>
-		/// Sets values to the zoom level data by index.
-		/// </summary>
-		public static void SetMapZoomDataLevel_CFX(int _index, float _zoomScale, float _zoomSpeed, float _scrollSpeed, float _tilesX, float _tilesY)
-		{
-			Function.Call((Hash)0x447C718E, _index, _zoomScale, _zoomSpeed, _scrollSpeed, _tilesX, _tilesY);
-		}
-		/// <summary>
-		/// Overrides the minimap component data (from `common:/data/ui/frontend.xml`) for a specified component.
-		/// </summary>
-		public static void SetMinimapComponentPosition_CFX(string _name, string _alignX, string _alignY, float _posX, float _posY, float _sizeX, float _sizeY)
-		{
-			Function.Call((Hash)0x3E882B23, _name, _alignX, _alignY, _posX, _posY, _sizeX, _sizeY);
-		}
-		/// <summary>
-		/// Overrides a ped model personality type.
-		/// </summary>
-		public static void SetPedModelPersonality_CFX(uint _modelHash, uint _personalityHash)
-		{
-			Function.Call((Hash)0x46F6B38B, _modelHash, _personalityHash);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetVehicleEngineTemperature_CFX(int _vehicle, float _temperature)
-		{
-			Function.Call((Hash)0x6C93C4A9, _vehicle, _temperature);
-		}
-		/// <summary>
-		/// Sets some in-game parameters which is used for checks is ped needs to fly through windscreen after a crash.
-		/// </summary>
-		public static bool SetFlyThroughWindscreenParams_CFX(float _vehMinSpeed, float _unkMinSpeed, float _unkModifier, float _minDamage)
-		{
-			return Function.Call<bool>((Hash)0x4D3118ED, _vehMinSpeed, _unkMinSpeed, _unkModifier, _minDamage);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetInteriorPortalFlag_CFX(int _interiorId, int _portalIndex, int _flag)
-		{
-			Function.Call((Hash)0x88B2355E, _interiorId, _portalIndex, _flag);
-		}
-		/// <summary>
-		/// Sets a global handling override for a specific vehicle class. The name is supposed to match the `handlingName` field from handling.meta.
-		/// Example: `SetHandlingVector('AIRTUG', 'CHandlingData', 'vecCentreOfMassOffset', vector3(0.0, 0.0, -5.0))`
-		/// </summary>
-		public static void SetHandlingVector_CFX(string _vehicle, string _class_, string _fieldName, Vector3 _value)
-		{
-			Function.Call((Hash)0x7F9D543, _vehicle, _class_, _fieldName, _value);
-		}
-		/// <summary>
-		/// the status of default voip system. It affects on `NETWORK_IS_PLAYER_TALKING` and `mp_facial` animation.
-		/// This function doesn't need to be called every frame, it works like a switcher.
-		/// </summary>
-		public static void SetPlayerTalkingOverride_CFX(int _player, bool _state)
-		{
-			Function.Call((Hash)0xFC02CAF6, _player, _state);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool SetPlayerMaxStamina_CFX(int _playerId, float _maxStamina)
-		{
-			return Function.Call<bool>((Hash)0x35594F67, _playerId, _maxStamina);
-		}
-		/// <summary>
-		/// Sets a global handling override for a specific vehicle class. The name is supposed to match the `handlingName` field from handling.meta.
-		/// Example: `SetHandlingFloat('AIRTUG', 'CHandlingData', 'fSteeringLock', 360.0)`
-		/// </summary>
-		public static void SetHandlingFloat_CFX(string _vehicle, string _class_, string _fieldName, float _value)
-		{
-			Function.Call((Hash)0x90DD01C, _vehicle, _class_, _fieldName, _value);
-		}
-		/// <summary>
-		/// Sets whether or not `SHUTDOWN_LOADING_SCREEN` automatically shuts down the NUI frame for the loading screen. If this is enabled,
-		/// you will have to manually invoke `SHUTDOWN_LOADING_SCREEN_NUI` whenever you want to hide the NUI loading screen.
-		/// </summary>
-		public static void SetManualShutdownLoadingScreenNui_CFX(bool _manualShutdown)
-		{
-			Function.Call((Hash)0x1722C938, _manualShutdown);
-		}
-		/// <summary>
-		/// Sets the display info for a minimap overlay.
-		/// </summary>
-		public static void SetMinimapOverlayDisplay_CFX(int _miniMap, float _x, float _y, float _xScale, float _yScale, float _alpha)
-		{
-			Function.Call((Hash)0x6A48B3CA, _miniMap, _x, _y, _xScale, _yScale, _alpha);
-		}
-		/// <summary>
-		/// Internal function for setting a state bag value.
-		/// </summary>
-		public static void SetStateBagValue_CFX(string _bagName, string _keyName, string _valueData, int _valueLength, bool _replicated)
-		{
-			Function.Call((Hash)0x8D50E33A, _bagName, _keyName, _valueData, _valueLength, _replicated);
-		}
-		/// <summary>
-		/// Sets the entity lockdown mode for a specific routing bucket.
-		/// 
-		/// Lockdown modes are:
-		/// 
-		/// | Mode       | Meaning                                                    |
-		/// | ---------- | ---------------------------------------------------------- |
-		/// | `strict`   | No entities can be created by clients at all.              |
-		/// | `relaxed`  | Only script-owned entities created by clients are blocked. |
-		/// | `inactive` | Clients can create any entity they want.                   |
-		/// </summary>
-		public static void SetRoutingBucketEntityLockdownMode_CFX(int _bucketId, string _mode)
-		{
-			Function.Call((Hash)0xA0F2201F, _bucketId, _mode);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetVehicleTurboPressure_CFX(int _vehicle, float _pressure)
-		{
-			Function.Call((Hash)0x6485615E, _vehicle, _pressure);
-		}
-		/// <summary>
-		/// Sets the type for the minimap blip clipping object to be either rectangular or rounded.
-		/// </summary>
-		public static void SetMinimapClipType_CFX(int _type)
-		{
-			Function.Call((Hash)0xB8B4490C, _type);
-		}
-		/// <summary>
-		/// Sets the rotation speed of a wheel.
-		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
-		/// </summary>
-		public static void SetVehicleWheelRotationSpeed_CFX(int _vehicle, int _wheelIndex, float _speed)
-		{
-			Function.Call((Hash)0x35ED100D, _vehicle, _wheelIndex, _speed);
-		}
-		/// <summary>
-		/// Nonsynchronous [SET_RESOURCE_KVP_INT](#\_0x6A2B1E8) operation; see [FLUSH_RESOURCE_KVP](#\_0x5240DA5A).
-		/// </summary>
-		public static void SetResourceKvpIntNoSync_CFX(string _key, int _value)
-		{
-			Function.Call((Hash)0x26AEB707, _key, _value);
-		}
-		/// <summary>
-		/// Sets the routing bucket for the specified player.
-		/// 
-		/// Routing buckets are also known as 'dimensions' or 'virtual worlds' in past echoes, however they are population-aware.
-		/// </summary>
-		public static void SetPlayerRoutingBucket_CFX(string _playerSrc, int _bucket)
-		{
-			Function.Call((Hash)0x6504EB38, _playerSrc, _bucket);
-		}
-		/// <summary>
-		/// Sets whether or not the specified routing bucket has automatically-created population enabled.
-		/// </summary>
-		public static void SetRoutingBucketPopulationEnabled_CFX(int _bucketId, bool _mode)
-		{
-			Function.Call((Hash)0xCE51AC2C, _bucketId, _mode);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetConvar_CFX(string _varName, string _value)
-		{
-			Function.Call((Hash)0x341B16D2, _varName, _value);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetNuiFocus_CFX(bool _hasFocus, bool _hasCursor)
-		{
-			Function.Call((Hash)0x5B98AE30, _hasFocus, _hasCursor);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetInteriorRoomTimecycle_CFX(int _interiorId, int _roomIndex, int _timecycleHash)
-		{
-			Function.Call((Hash)0x31C9A848, _interiorId, _roomIndex, _timecycleHash);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetVehicleWheelHealth_CFX(int _vehicle, int _wheelIndex, float _health)
-		{
-			Function.Call((Hash)0xB22ECEFD, _vehicle, _wheelIndex, _health);
-		}
-		/// <summary>
-		/// Disables the vehicle from being repaired when a vehicle extra is enabled.
-		/// </summary>
-		public static void SetVehicleAutoRepairDisabled_CFX(int _vehicle, bool _value)
-		{
-			Function.Call((Hash)0x5F3A3574, _vehicle, _value);
-		}
-		/// <summary>
-		/// Sets a pixel in the specified runtime texture. This will have to be committed using `COMMIT_RUNTIME_TEXTURE` to have any effect.
-		/// </summary>
-		public static void SetRuntimeTexturePixel_CFX(long _tex, int _x, int _y, int _r, int _g, int _b, int _a)
-		{
-			Function.Call((Hash)0xAB65ACEE, _tex, _x, _y, _r, _g, _b, _a);
-		}
-		/// <summary>
-		/// Nonsynchronous [SET_RESOURCE_KVP](#\_0x21C7A35B) operation; see [FLUSH_RESOURCE_KVP](#\_0x5240DA5A).
-		/// </summary>
-		public static void SetResourceKvpNoSync_CFX(string _key, string _value)
-		{
-			Function.Call((Hash)0xCF9A2FF, _key, _value);
-		}
-		/// <summary>
-		/// Sets the ratio that a door is open for on a train.
-		/// </summary>
-		public static void SetTrainDoorOpenRatio_CFX(int _train, int _doorIndex, float _ratio)
-		{
-			Function.Call((Hash)0x2468DBE8, _train, _doorIndex, _ratio);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetVehicleCurrentRpm_CFX(int _vehicle, float _rpm)
-		{
-			Function.Call((Hash)0x2A01A8FC, _vehicle, _rpm);
-		}
-		/// <summary>
-		/// Sets the player's rich presence detail state for social platform providers to a specified string.
-		/// </summary>
-		public static void SetRichPresence_CFX(string _presenceState)
-		{
-			Function.Call((Hash)0x7BDCBD45, _presenceState);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool SetRuntimeTextureArgbData_CFX(long _tex, string _buffer, int _length)
-		{
-			return Function.Call<bool>((Hash)0x3963D527, _tex, _buffer, _length);
-		}
-		/// <summary>
-		/// Sets whether the wheel is powered.
-		/// On all wheel drive cars this works to change which wheels receive power, but if a car's fDriveBiasFront doesn't send power to that wheel, it won't get power anyway. This can be fixed by changing the fDriveBiasFront with SET_VEHICLE_HANDLING_FLOAT.
-		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
-		/// This is a shortcut to a flag in SET_VEHICLE_WHEEL_FLAGS.
-		/// </summary>
-		public static void SetVehicleWheelIsPowered_CFX(int _vehicle, int _wheelIndex, bool _powered)
-		{
-			Function.Call((Hash)0xBD5291A0, _vehicle, _wheelIndex, _powered);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetVehicleSteeringScale_CFX(int _vehicle, float _scale)
-		{
-			Function.Call((Hash)0xEB46596F, _vehicle, _scale);
-		}
-		/// <summary>
-		/// A setter for [GET_RESOURCE_KVP_FLOAT](#\_0x35BDCEEA).
-		/// </summary>
-		public static void SetResourceKvpFloat_CFX(string _key, float _value)
-		{
-			Function.Call((Hash)0x9ADD2938, _key, _value);
-		}
-		/// <summary>
-		/// Nonsynchronous [SET_RESOURCE_KVP_FLOAT](#\_0x9ADD2938) operation; see [FLUSH_RESOURCE_KVP](#\_0x5240DA5A).
-		/// </summary>
-		public static void SetResourceKvpFloatNoSync_CFX(string _key, float _value)
-		{
-			Function.Call((Hash)0x3517BFBE, _key, _value);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetVehicleFuelLevel_CFX(int _vehicle, float _level)
-		{
-			Function.Call((Hash)0xBA970511, _vehicle, _level);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool SetPlayerStamina_CFX(int _playerId, float _stamina)
-		{
-			return Function.Call<bool>((Hash)0xA9EC16C7, _playerId, _stamina);
-		}
-		/// <summary>
-		/// Enables or disables whether train doors should be forced open whilst a player is inside the train. This is enabled by default in multiplayer.
-		/// </summary>
-		public static void SetTrainsForceDoorsOpen_CFX(bool _forceOpen)
-		{
-			Function.Call((Hash)0xD4D1BA63, _forceOpen);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool SetTextChatEnabled_CFX(bool _enabled)
-		{
-			return Function.Call<bool>((Hash)0x97B2F9F8, _enabled);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool VerifyPasswordHash_CFX(string _password, string _hash)
-		{
-			return Function.Call<bool>((Hash)0x2E310ACD, _password, _hash);
-		}
-		/// <summary>
-		/// Sets a handling override for a specific vehicle. Certain handling flags can only be set globally using `SET_HANDLING_FIELD`, this might require some experimentation.
-		/// Example: `SetVehicleHandlingField(vehicle, 'CHandlingData', 'fSteeringLock', 360.0)`
-		/// </summary>
-		public static void SetVehicleHandlingField_CFX(int _vehicle, string _class_, string _fieldName, int _value)
-		{
-			Function.Call((Hash)0x2BA40795, _vehicle, _class_, _fieldName, _value);
-		}
-		/// <summary>
-		/// Sets the flags of a wheel.
-		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
-		/// </summary>
-		public static void SetVehicleWheelFlags_CFX(int _vehicle, int _wheelIndex, int _flags)
-		{
-			Function.Call((Hash)0xD2B9E90D, _vehicle, _wheelIndex, _flags);
-		}
-		/// <summary>
-		/// Sets whether all tags should group (normal game behavior) or should remain independent and above each ped's respective head when in a vehicle.
-		/// </summary>
-		public static void SetMpGamerTagsUseVehicleBehavior_CFX(bool _enabled)
-		{
-			Function.Call((Hash)0x7A27BC93, _enabled);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetVehicleAlarmTimeLeft_CFX(int _vehicle, int _time)
-		{
-			Function.Call((Hash)0xC108EE6F, _vehicle, _time);
-		}
-		/// <summary>
-		/// Sets the height of the vehicle's suspension.
-		/// This changes the same value set by Suspension in the mod shop.
-		/// Negatives values raise the car. Positive values lower the car.
-		/// 
-		/// This is change is visual only. The collision of the vehicle will not move.
-		/// </summary>
-		public static void SetVehicleSuspensionHeight_CFX(int _vehicle, float _newHeight)
-		{
-			Function.Call((Hash)0xB3439A01, _vehicle, _newHeight);
-		}
-		/// <summary>
-		/// A setter for [GET_RESOURCE_KVP_INT](#\_0x557B586A).
-		/// </summary>
-		public static void SetResourceKvpInt_CFX(string _key, int _value)
-		{
-			Function.Call((Hash)0x6A2B1E8, _key, _value);
-		}
-		/// <summary>
-		/// Disables the editor runtime mode, changing game behavior to not track entity metadata.
-		/// This function supports SDK infrastructure and is not intended to be used directly from your code.
-		/// </summary>
-		public static void DisableEditorRuntime_CFX()
-		{
-			Function.Call((Hash)0xB1622B17);
-		}
-		/// <summary>
-		/// Adjusts the offset of the specified wheel relative to the wheel's axle center.
-		/// Needs to be called every frame in order to function properly, as GTA will reset the offset otherwise.
-		/// This function can be especially useful to set the track width of a vehicle, for example:
-		/// 
-		/// ```
-		/// function SetVehicleFrontTrackWidth(vehicle, width)
-		/// SetVehicleWheelXOffset(vehicle, 0, -width/2)
-		/// SetVehicleWheelXOffset(vehicle, 1, width/2)
-		/// end
-		/// ```
-		/// </summary>
-		public static void SetVehicleWheelXOffset_CFX(int _vehicle, int _wheelIndex, float _offset)
-		{
-			Function.Call((Hash)0xBD6357D, _vehicle, _wheelIndex, _offset);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetVehicleSteeringAngle_CFX(int _vehicle, float _angle)
-		{
-			Function.Call((Hash)0xFFCCC2EA, _vehicle, _angle);
-		}
-		/// <summary>
-		/// Draws a gizmo. This function supports SDK infrastructure and is not intended to be used directly from your code.
-		/// 
-		/// This should be used from JavaScript or another language supporting mutable buffers like ArrayBuffer.
-		/// 
-		/// Matrix layout is as follows:
-		/// 
-		/// *   Element \[0], \[1] and \[2] should represent the right vector.
-		/// *   Element \[4], \[5] and \[6] should represent the forward vector.
-		/// *   Element \[8], \[9] and \[10] should represent the up vector.
-		/// *   Element \[12], \[13] and \[14] should represent X, Y and Z translation coordinates.
-		/// *   All other elements should be \[0, 0, 0, 1].
-		/// </summary>
-		public static bool DrawGizmo_CFX(long _matrixPtr, string _id)
-		{
-			return Function.Call<bool>((Hash)0xEB2EDCA2, _matrixPtr, _id);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetVehicleClutch_CFX(int _vehicle, float _clutch)
-		{
-			Function.Call((Hash)0x2F70ACED, _vehicle, _clutch);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetVehicleWheelYRotation_CFX(int _vehicle, int _wheelIndex, float _value)
-		{
-			Function.Call((Hash)0xC6C2171F, _vehicle, _wheelIndex, _value);
-		}
-		/// <summary>
-		/// Use along with SetVehicleWheelWidth to resize the wheels (this native sets the collider width affecting physics while SetVehicleWheelWidth will change visual width).
-		/// </summary>
-		public static void SetVehicleWheelTireColliderWidth_CFX(int _vehicle, int _wheelIndex, float _value)
-		{
-			Function.Call((Hash)0x47BD0270, _vehicle, _wheelIndex, _value);
-		}
-		/// <summary>
-		/// Sets whether or not the weather should be owned by the network subsystem.
-		/// 
-		/// To be able to use [\_SET_WEATHER_TYPE_TRANSITION](#\_0x578C752848ECFA0C), this has to be set to false.
-		/// </summary>
-		public static void SetWeatherOwnedByNetwork_CFX(bool _network)
-		{
-			Function.Call((Hash)0x2703D582, _network);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetVehicleGravityAmount_CFX(int _vehicle, float _gravity)
-		{
-			Function.Call((Hash)0x1A963E58, _vehicle, _gravity);
-		}
-		/// <summary>
-		/// Returns mapdata's entity matrix. This function supports SDK infrastructure and is not intended to be used directly from your code.
-		/// 
-		/// This should be used from JavaScript or another language supporting mutable buffers like ArrayBuffer.
-		/// 
-		/// Matrix layout is as follows:
-		/// 
-		/// *   Element \[0], \[1] and \[2] should represent the right vector.
-		/// *   Element \[4], \[5] and \[6] should represent the forward vector.
-		/// *   Element \[8], \[9] and \[10] should represent the up vector.
-		/// *   Element \[12], \[13] and \[14] should represent X, Y and Z translation coordinates.
-		/// *   All other elements should be \[0, 0, 0, 1].
-		/// </summary>
-		public static bool GetMapdataEntityMatrix_CFX(int _mapDataHash, int _entityInternalIdx, long _matrixPtr)
-		{
-			return Function.Call<bool>((Hash)0x2C3CDA93, _mapDataHash, _entityInternalIdx, _matrixPtr);
-		}
-		/// <summary>
-		/// Sets a handling override for a specific vehicle. Certain handling flags can only be set globally using `SET_HANDLING_FLOAT`, this might require some experimentation.
-		/// Example: `SetVehicleHandlingFloat(vehicle, 'CHandlingData', 'fSteeringLock', 360.0)`
-		/// </summary>
-		public static void SetVehicleHandlingFloat_CFX(int _vehicle, string _class_, string _fieldName, float _value)
-		{
-			Function.Call((Hash)0x488C86D2, _vehicle, _class_, _fieldName, _value);
-		}
-		/// <summary>
-		/// The backing function for TriggerEvent.
-		/// </summary>
-		public static void TriggerEventInternal_CFX(string _eventName, string _eventPayload, int _payloadLength)
-		{
-			Function.Call((Hash)0x91310870, _eventName, _eventPayload, _payloadLength);
-		}
-		/// <summary>
-		/// Sets power being sent to a wheel.
-		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
-		/// </summary>
-		public static void SetVehicleWheelPower_CFX(int _vehicle, int _wheelIndex, float _power)
-		{
-			Function.Call((Hash)0xC6146043, _vehicle, _wheelIndex, _power);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetVehicleOilLevel_CFX(int _vehicle, float _level)
-		{
-			Function.Call((Hash)0x90D1CAD1, _vehicle, _level);
-		}
-		/// <summary>
-		/// Sets vehicle's wheels' width (width is the same for all the wheels, cannot get/set specific wheel of vehicle).
-		/// Only works on non-default wheels.
-		/// Returns whether change was successful (can be false if trying to set width for non-default wheels).
-		/// </summary>
-		public static bool SetVehicleWheelWidth_CFX(int _vehicle, float _width)
-		{
-			return Function.Call<bool>((Hash)0x64C3F1C0, _vehicle, _width);
-		}
-		/// <summary>
-		/// The backing function for TriggerClientEvent.
-		/// </summary>
-		public static void TriggerClientEventInternal_CFX(string _eventName, string _eventTarget, string _eventPayload, int _payloadLength)
-		{
-			Function.Call((Hash)0x2F7A49E6, _eventName, _eventTarget, _eventPayload, _payloadLength);
-		}
-		/// <summary>
-		/// Sets custom vehicle xenon lights color, allowing to use RGB palette. The game will ignore lights color set by [\_SET_VEHICLE_XENON_LIGHTS_COLOR](#\_0xE41033B25D003A07) when custom color is active. This native is not synced between players. Requires xenon lights mod to be set on vehicle.
-		/// </summary>
-		public static void SetVehicleXenonLightsCustomColor_CFX(int _vehicle, int _red, int _green, int _blue)
-		{
-			Function.Call((Hash)0x1683E7F0, _vehicle, _red, _green, _blue);
-		}
-		/// <summary>
-		/// Overrides a floating point value from `visualsettings.dat` temporarily.
-		/// </summary>
-		public static void SetVisualSettingFloat_CFX(string _name, float _value)
-		{
-			Function.Call((Hash)0xD1D31681, _name, _value);
-		}
-		/// <summary>
-		/// A setter for the recoil shake amplitude of a weapon.
-		/// </summary>
-		public static void SetWeaponRecoilShakeAmplitude_CFX(uint _weaponHash, float _amplitude)
-		{
-			Function.Call((Hash)0x9864312F, _weaponHash, _amplitude);
-		}
-		/// <summary>
-		/// Toggles whether the usage of [ADD_ROPE](#\_0xE832D760399EB220) should create an underlying CNetworkRopeWorldStateData. By default this is set to false.
-		/// </summary>
-		public static void SetRopesCreateNetworkWorldState_CFX(bool _shouldCreate)
-		{
-			Function.Call((Hash)0xE62FC73, _shouldCreate);
-		}
-		/// <summary>
-		/// Shuts down the `loadingScreen` NUI frame, similarly to `SHUTDOWN_LOADING_SCREEN`.
-		/// </summary>
-		public static void ShutdownLoadingScreenNui_CFX()
-		{
-			Function.Call((Hash)0xB9234AFB);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void SetVehicleHighGear_CFX(int _vehicle, int _gear)
-		{
-			Function.Call((Hash)0x20B1B3E6, _vehicle, _gear);
-		}
-		/// <summary>
-		/// Sets vehicle's wheels' size (size is the same for all the wheels, cannot get/set specific wheel of vehicle).
-		/// Only works on non-default wheels.
-		/// Returns whether change was successful (can be false if trying to set size for non-default wheels).
-		/// </summary>
-		public static bool SetVehicleWheelSize_CFX(int _vehicle, float _size)
-		{
-			return Function.Call<bool>((Hash)0x53AB5C35, _vehicle, _size);
-		}
-		/// <summary>
-		/// Example script: https://pastebin.com/J6XGbkCW
-		/// 
-		/// List of known states:
-		/// 
-		/// ```
-		/// 1: Not wheeling.
-		/// 65: Vehicle is ready to do wheelie (burnouting).
-		/// 129: Vehicle is doing wheelie.
-		/// ```
-		/// </summary>
-		public static void SetVehicleWheelieState_CFX(int _vehicle, int _state)
-		{
-			Function.Call((Hash)0xEAB8DB65, _vehicle, _state);
-		}
-		/// <summary>
-		/// Clear a ped's tasks. Stop animations and other tasks created by scripts.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [CLEAR_PED_TASKS](?\_0xE1EF3C1216AFF2CD).**
-		/// </summary>
-		public static void ClearPedTasks_CFX(int _ped)
-		{
-			Function.Call((Hash)0xDE3316AB, _ped);
-		}
-		/// <summary>
-		/// Sets a handling override for a specific vehicle. Certain handling flags can only be set globally using `SET_HANDLING_VECTOR`, this might require some experimentation.
-		/// </summary>
-		public static void SetVehicleHandlingVector_CFX(int _vehicle, string _class_, string _fieldName, Vector3 _value)
-		{
-			Function.Call((Hash)0x12497890, _vehicle, _class_, _fieldName, _value);
-		}
-		/// <summary>
-		/// Sets brake pressure of a wheel.
-		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
-		/// Normal values around 1.0f
-		/// </summary>
-		public static void SetVehicleWheelBrakePressure_CFX(int _vehicle, int _wheelIndex, float _pressure)
-		{
-			Function.Call((Hash)0xE80F4E31, _vehicle, _wheelIndex, _pressure);
-		}
-		/// <summary>
-		/// Sets a handling override for a specific vehicle. Certain handling flags can only be set globally using `SET_HANDLING_INT`, this might require some experimentation.
-		/// </summary>
-		public static void SetVehicleHandlingInt_CFX(int _vehicle, string _class_, string _fieldName, int _value)
-		{
-			Function.Call((Hash)0xC37F4CF9, _vehicle, _class_, _fieldName, _value);
-		}
-		/// <summary>
-		/// Gets the selected entity at the current mouse cursor position, and changes the current selection depth. This function supports SDK infrastructure and is not intended to be used directly from your code.
-		/// </summary>
-		public static int SelectEntityAtCursor_CFX(int _hitFlags, bool _precise)
-		{
-			return Function.Call<int>((Hash)0x3DD8130F, _hitFlags, _precise);
-		}
-		/// <summary>
-		/// The backing function for TriggerServerEvent.
-		/// </summary>
-		public static void TriggerServerEventInternal_CFX(string _eventName, string _eventPayload, int _payloadLength)
-		{
-			Function.Call((Hash)0x7FDD1128, _eventName, _eventPayload, _payloadLength);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static void TempBanPlayer_CFX(string _playerSrc, string _reason)
-		{
-			Function.Call((Hash)0x1E35DBBA, _playerSrc, _reason);
-		}
-		/// <summary>
-		/// Disables the game's built-in auto-reloading.
-		/// </summary>
-		public static void SetWeaponsNoAutoreload_CFX(bool _state)
-		{
-			Function.Call((Hash)0x311150E5, _state);
-		}
-		/// <summary>
-		/// Returns whether or not the currently executing event was canceled.
-		/// </summary>
-		public static bool WasEventCanceled_CFX()
-		{
-			return Function.Call<bool>((Hash)0x58382A19);
-		}
-		/// <summary>
-		/// Sets color for entity outline. `255, 0, 255, 255` by default.
-		/// </summary>
-		public static void SetEntityDrawOutlineColor_CFX(int _red, int _green, int _blue, int _alpha)
-		{
-			Function.Call((Hash)0xB41A56C2, _red, _green, _blue, _alpha);
-		}
-		/// <summary>
-		/// Applies an Item from a PedDecorationCollection to a ped. These include tattoos and shirt decals.
-		/// collection - PedDecorationCollection filename hash
-		/// overlay - Item name hash
-		/// Example:
-		/// Entry inside "mpbeach_overlays.xml" -
-		/// <Item>
-		/// <uvPos x="0.500000" y="0.500000" />
-		/// <scale x="0.600000" y="0.500000" />
-		/// <rotation value="0.000000" />
-		/// <nameHash>FM_Hair_Fuzz</nameHash>
-		/// <txdHash>mp_hair_fuzz</txdHash>
-		/// <txtHash>mp_hair_fuzz</txtHash>
-		/// <zone>ZONE_HEAD</zone>
-		/// <type>TYPE_TATTOO</type>
-		/// <faction>FM</faction>
-		/// <garment>All</garment>
-		/// <gender>GENDER_DONTCARE</gender>
-		/// <award />
-		/// <awardLevel />
-		/// </Item>
-		/// Code:
-		/// PED::\_0x5F5D1665E352A839(PLAYER::PLAYER_PED_ID(), MISC::GET_HASH_KEY("mpbeach_overlays"), MISC::GET_HASH_KEY("fm_hair_fuzz"))
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [ADD_PED_DECORATION_FROM_HASHES](?\_0x5F5D1665E352A839).**
-		/// </summary>
-		public static void AddPedDecorationFromHashes_CFX(int _ped, uint _collection, uint _overlay)
-		{
-			Function.Call((Hash)0x70559AC7, _ped, _collection, _overlay);
-		}
-		/// <summary>
-		/// The backing function for TriggerLatentClientEvent.
-		/// </summary>
-		public static void TriggerLatentClientEventInternal_CFX(string _eventName, string _eventTarget, string _eventPayload, int _payloadLength, int _bps)
-		{
-			Function.Call((Hash)0x70B35890, _eventName, _eventTarget, _eventPayload, _payloadLength, _bps);
-		}
-		/// <summary>
-		/// Gets the selected entity at the specified mouse cursor position, and changes the current selection depth. This function supports SDK infrastructure and is not intended to be used directly from your code.
-		/// </summary>
-		public static int SelectEntityAtPos_CFX(float _fracX, float _fracY, int _hitFlags, bool _precise)
-		{
-			return Function.Call<int>((Hash)0xAFE8D405, _fracX, _fracY, _hitFlags, _precise);
-		}
-		/// <summary>
-		/// Leaves cursor mode. This function supports SDK infrastructure and is not intended to be used directly from your code.
-		/// </summary>
-		public static void LeaveCursorMode_CFX()
-		{
-			Function.Call((Hash)0xADECF19E);
-		}
-		/// <summary>
-		/// A getter for [SET_RESOURCE_KVP_FLOAT](#\_0x9ADD2938), but for a specified resource.
-		/// </summary>
-		public static float GetExternalKvpFloat_CFX(string _resource, string _key)
-		{
-			return Function.Call<float>((Hash)0x3CC98B25, _resource, _key);
-		}
-		/// <summary>
-		/// Disables autoswapping to another weapon when the current weapon runs out of ammo.
-		/// </summary>
-		public static void SetWeaponsNoAutoswap_CFX(bool _state)
-		{
-			Function.Call((Hash)0x2A7B50E, _state);
-		}
-		/// <summary>
-		/// Sets the traction vector length of a wheel.
-		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
-		/// </summary>
-		public static void SetVehicleWheelTractionVectorLength_CFX(int _vehicle, int _wheelIndex, float _length)
-		{
-			Function.Call((Hash)0x85C85A3A, _vehicle, _wheelIndex, _length);
-		}
-		/// <summary>
-		/// Transiently updates the entity with the specified mapdata index and entity index.
-		/// This function supports SDK infrastructure and is not intended to be used directly from your code.
-		/// </summary>
-		public static void UpdateMapdataEntity_CFX(int _mapdata, int _entity, InputArgument _entityDef)
-		{
-			Function.Call((Hash)0xFC52CB91, _mapdata, _entity, _entityDef);
-		}
-		/// <summary>
-		/// The backing function for TriggerLatentServerEvent.
-		/// </summary>
-		public static void TriggerLatentServerEventInternal_CFX(string _eventName, string _eventPayload, int _payloadLength, int _bps)
-		{
-			Function.Call((Hash)0x128737EA, _eventName, _eventPayload, _payloadLength, _bps);
-		}
-		/// <summary>
-		/// **This is the server-side RPC native equivalent of the client native [CLEAR_PED_SECONDARY_TASK](?\_0x176CECF6F920D707).**
-		/// </summary>
-		public static void ClearPedSecondaryTask_CFX(int _ped)
-		{
-			Function.Call((Hash)0xA635F451, _ped);
-		}
-		/// <summary>
-		/// Enters cursor mode, suppressing mouse movement to the game and displaying a mouse cursor instead. This function supports
-		/// SDK infrastructure and is not intended to be used directly from your code.
-		/// </summary>
-		public static void EnterCursorMode_CFX()
-		{
-			Function.Call((Hash)0x780DA86);
-		}
-		/// <summary>
-		/// Creates an object (prop) with the specified model centered at the specified position.
-		/// This object will initially be owned by the creating script as a mission entity, and the model should be loaded already (e.g. using REQUEST_MODEL).
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [CREATE_OBJECT_NO_OFFSET](?\_0x9A294B2138ABB884).**
-		/// </summary>
-		public static int CreateObjectNoOffset_CFX(uint _modelHash, float _x, float _y, float _z, bool _isNetwork, bool _netMissionEntity, bool _doorFlag)
-		{
-			return Function.Call<int>((Hash)0x58040420, _modelHash, _x, _y, _z, _isNetwork, _netMissionEntity, _doorFlag);
-		}
-		/// <summary>
-		/// Draws an outline around a given entity. This function supports SDK infrastructure and is not intended to be used directly from your code.
-		/// </summary>
-		public static void SetEntityDrawOutline_CFX(int _entity, bool _enabled)
-		{
-			Function.Call((Hash)0x76180407, _entity, _enabled);
-		}
-		/// <summary>
-		/// Not sure what this changes, probably determines physical rim size in case the tire is blown.
-		/// </summary>
-		public static void SetVehicleWheelRimColliderSize_CFX(int _vehicle, int _wheelIndex, float _value)
-		{
-			Function.Call((Hash)0xF380E184, _vehicle, _wheelIndex, _value);
-		}
-		/// <summary>
-		/// Resets mapdata entity transform matrix to its original state.
-		/// This function supports SDK infrastructure and is not intended to be used directly from your code.
-		/// </summary>
-		public static bool ResetMapdataEntityMatrix_CFX(int _mapDataHash, int _entityInternalIdx)
-		{
-			return Function.Call<bool>((Hash)0x8143FA4F, _mapDataHash, _entityInternalIdx);
-		}
-		/// <summary>
-		/// Will unregister and cleanup a registered NUI callback handler.
-		/// 
-		/// Use along side the REGISTER_RAW_NUI_CALLBACK native.
-		/// </summary>
-		public static void UnregisterRawNuiCallback_CFX(string _callbackType)
-		{
-			Function.Call((Hash)0x7FB46432, _callbackType);
-		}
-		/// <summary>
-		/// Sets the armor of the specified ped.
-		/// ped: The Ped to set the armor of.
-		/// amount: A value between 0 and 100 indicating the value to set the Ped's armor to.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_PED_ARMOUR](?\_0xCEA04D83135264CC).**
-		/// </summary>
-		public static void SetPedArmour_CFX(int _ped, int _amount)
-		{
-			Function.Call((Hash)0x4E3A0CC4, _ped, _amount);
-		}
-		/// <summary>
-		/// Prints 'structured trace' data to the server `file descriptor 3` channel. This is not generally useful outside of
-		/// server monitoring utilities.
-		/// </summary>
-		public static void PrintStructuredTrace_CFX(string _jsonString)
-		{
-			Function.Call((Hash)0x90892DED, _jsonString);
-		}
-		/// <summary>
-		/// Use along with SetVehicleWheelSize to resize the wheels (this native sets the collider size affecting physics while SetVehicleWheelSize will change visual size).
-		/// </summary>
-		public static void SetVehicleWheelTireColliderSize_CFX(int _vehicle, int _wheelIndex, float _value)
-		{
-			Function.Call((Hash)0xB962D05C, _vehicle, _wheelIndex, _value);
-		}
-		/// <summary>
-		/// Returns the transient entity index for a specified mapdata/entity pair.
-		/// This function supports SDK infrastructure and is not intended to be used directly from your code.
-		/// </summary>
-		public static int GetEntityIndexFromMapdata_CFX(int _mapdata, int _entity)
-		{
-			return Function.Call<int>((Hash)0xEE43540D, _mapdata, _entity);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool StartResource_CFX(string _resourceName)
-		{
-			return Function.Call<bool>((Hash)0x29B440DC, _resourceName);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static bool StopResource_CFX(string _resourceName)
-		{
-			return Function.Call<bool>((Hash)0x21783161, _resourceName);
-		}
-		/// <summary>
-		/// Equivalent to CREATE_VEHICLE, but it uses 'server setter' logic (like the former CREATE_AUTOMOBILE) as a workaround for
-		/// reliability concerns regarding entity creation RPC.
-		/// 
-		/// Unlike CREATE_AUTOMOBILE, this supports other vehicle types as well.
-		/// </summary>
-		public static int CreateVehicleServerSetter_CFX(uint _modelHash, string _type, float _x, float _y, float _z, float _heading)
-		{
-			return Function.Call<int>((Hash)0x6AE51D4B, _modelHash, _type, _x, _y, _z, _heading);
-		}
-		/// <summary>
-		/// This native removes a specified weapon from your selected ped.
-		/// Weapon Hashes: pastebin.com/0wwDZgkF
-		/// Example:
-		/// C#:
-		/// Function.Call(Hash.REMOVE_WEAPON_FROM_PED, Game.Player.Character, 0x99B507EA);
-		/// C++:
-		/// WEAPON::REMOVE_WEAPON_FROM_PED(PLAYER::PLAYER_PED_ID(), 0x99B507EA);
-		/// The code above removes the knife from the player.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [REMOVE_WEAPON_FROM_PED](?\_0x4899CB088EDF59B8).**
-		/// </summary>
-		public static void RemoveWeaponFromPed_CFX(int _ped, uint _weaponHash)
-		{
-			Function.Call((Hash)0x9C37F220, _ped, _weaponHash);
-		}
-		/// <summary>
-		/// **This is the server-side RPC native equivalent of the client native [GIVE_WEAPON_COMPONENT_TO_PED](?\_0xD966D51AA5B28BB9).**
-		/// </summary>
-		public static void GiveWeaponComponentToPed_CFX(int _ped, uint _weaponHash, uint _componentHash)
-		{
-			Function.Call((Hash)0x3E1E286D, _ped, _weaponHash, _componentHash);
-		}
-		/// <summary>
-		/// <!--
-		/// _loc1_.map((name, idx) => `| ${idx} | ${name} | ![${name}](https://runtime.fivem.net/blips/${name}.svg) |`).join('\n')
-		/// -->
-		/// 
-		/// Sets the displayed sprite for a specific blip.
-		/// There's a [list of sprites](https://docs.fivem.net/game-references/blips/) on the FiveM documentation site.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_BLIP_SPRITE](?\_0xDF735600A4696DAF).**
-		/// </summary>
-		public static void SetBlipSprite_CFX(int _blip, int _spriteId)
-		{
-			Function.Call((Hash)0x8DBBB0B9, _blip, _spriteId);
-		}
-		/// <summary>
-		/// **This is the server-side RPC native equivalent of the client native [CREATE_PED_INSIDE_VEHICLE](?\_0x7DD959874C1FD534).**
-		/// </summary>
-		public static int CreatePedInsideVehicle_CFX(int _vehicle, int _pedType, uint _modelHash, int _seat, bool _isNetwork, bool _bScriptHostPed)
-		{
-			return Function.Call<int>((Hash)0x3000F092, _vehicle, _pedType, _modelHash, _seat, _isNetwork, _bScriptHostPed);
-		}
-		/// <summary>
-		/// Equivalent of [START_FIND_KVP](#\_0xDD379006), but for another resource than the current one.
-		/// </summary>
-		public static int StartFindExternalKvp_CFX(string _resourceName, string _prefix)
-		{
-			return Function.Call<int>((Hash)0x8F2EECC3, _resourceName, _prefix);
-		}
-		/// <summary>
-		/// Create a blip with a radius for the specified coordinates (it doesnt create the blip sprite, so you need to use [AddBlipCoords](#\_0xC6F43D0E))
-		/// Example image:
-		/// ![example](https://i.imgur.com/9hQl3DB.png)
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [ADD_BLIP_FOR_RADIUS](?\_0x46818D79B1F7499A).**
-		/// </summary>
-		public static int AddBlipForRadius_CFX(float _posX, float _posY, float _posZ, float _radius)
-		{
-			return Function.Call<int>((Hash)0x4626756C, _posX, _posY, _posZ, _radius);
-		}
-		/// <summary>
-		/// Creates an object (prop) with the specified model at the specified position, offset on the Z axis by the radius of the object's model.
-		/// This object will initially be owned by the creating script as a mission entity, and the model should be loaded already (e.g. using REQUEST_MODEL).
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [CREATE_OBJECT](?\_0x509D5878EB39E842).**
-		/// </summary>
-		public static int CreateObject_CFX(uint _modelHash, float _x, float _y, float _z, bool _isNetwork, bool _netMissionEntity, bool _doorFlag)
-		{
-			return Function.Call<int>((Hash)0x2F7AA05C, _modelHash, _x, _y, _z, _isNetwork, _netMissionEntity, _doorFlag);
-		}
-		/// <summary>
-		/// **This is the server-side RPC native equivalent of the client native [REMOVE_WEAPON_COMPONENT_FROM_PED](?\_0x1E8BE90C74FB4C09).**
-		/// </summary>
-		public static void RemoveWeaponComponentFromPed_CFX(int _ped, uint _weaponHash, uint _componentHash)
-		{
-			Function.Call((Hash)0x412AA00D, _ped, _weaponHash, _componentHash);
-		}
-		/// <summary>
-		/// Create a blip that by default is red (enemy), you can use [SET_BLIP_AS_FRIENDLY](#\_0xC6F43D0E) to make it blue (friend).\
-		/// Can be used for objects, vehicles and peds.
-		/// Example of enemy:
-		/// ![enemy](https://i.imgur.com/fl78svv.png)
-		/// Example of friend:
-		/// ![friend](https://i.imgur.com/Q16ho5d.png)
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [ADD_BLIP_FOR_ENTITY](?\_0x5CDE92C702A8FCE7).**
-		/// </summary>
-		public static int AddBlipForEntity_CFX(int _entity)
-		{
-			return Function.Call<int>((Hash)0x30822554, _entity);
-		}
-		/// <summary>
-		/// Applies a force to the specified entity.
-		/// **List of force types (p1)**:
-		/// 
-		/// ```
-		/// public enum ForceType
-		/// {
-		/// MinForce = 0,
-		/// MaxForceRot = 1,
-		/// MinForce2 = 2,
-		/// MaxForceRot2 = 3,
-		/// ForceNoRot = 4,
-		/// ForceRotPlusForce = 5
-		/// }
-		/// ```
-		/// 
-		/// Research/documentation on the gtaforums can be found [here](https://gtaforums.com/topic/885669-precisely-define-object-physics/) and [here](https://gtaforums.com/topic/887362-apply-forces-and-momentums-to-entityobject/).
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [APPLY_FORCE_TO_ENTITY](?\_0xC5F68BE9613E2D18).**
-		/// </summary>
-		public static void ApplyForceToEntity_CFX(int _entity, int _forceType, float _x, float _y, float _z, float _offX, float _offY, float _offZ, int _boneIndex, bool _isDirectionRel, bool _ignoreUpVec, bool _isForceRel, bool _p12, bool _p13)
-		{
-			Function.Call((Hash)0xC1C0855A, _entity, _forceType, _x, _y, _z, _offX, _offY, _offZ, _boneIndex, _isDirectionRel, _ignoreUpVec, _isForceRel, _p12, _p13);
-		}
-		/// <summary>
-		/// ...
-		/// </summary>
-		public static int StartFindKvp_CFX(string _prefix)
-		{
-			return Function.Call<int>((Hash)0xDD379006, _prefix);
-		}
-		/// <summary>
-		/// Sets variant of shader that will be used to draw entity outline.
-		/// 
-		/// Variants are:
-		/// 
-		/// *   **0**: Default value, gauss shader.
-		/// *   **1**: 2px wide solid color outline.
-		/// *   **2**: Fullscreen solid color except for entity.
-		/// </summary>
-		public static void SetEntityDrawOutlineShader_CFX(int _shader)
-		{
-			Function.Call((Hash)0x5261A01A, _shader);
-		}
-		/// <summary>
-		/// List of component/props ID
-		/// gtaxscripting.blogspot.com/2016/04/gta-v-peds-component-and-props.html
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [CLEAR_PED_PROP](?\_0x0943E5B8E078E76E).**
-		/// </summary>
-		public static void ClearPedProp_CFX(int _ped, int _propId)
-		{
-			Function.Call((Hash)0x2D23D743, _ped, _propId);
-		}
-		/// <summary>
-		/// Retrieves the map data entity handle.
-		/// This function supports SDK infrastructure and is not intended to be used directly from your code.
-		/// </summary>
-		public static bool GetMapdataEntityHandle_CFX(int _mapDataHash, int _entityInternalIdx, int _entityHandle)
-		{
-			return Function.Call<bool>((Hash)0x30AA6911, _mapDataHash, _entityInternalIdx, _entityHandle);
-		}
-		/// <summary>
-		/// **This is the server-side RPC native equivalent of the client native [SET_PED_CAN_RAGDOLL](?\_0xB128377056A54E2A).**
-		/// </summary>
-		public static void SetPedCanRagdoll_CFX(int _ped, bool _toggle)
-		{
-			Function.Call((Hash)0xCF1384C4, _ped, _toggle);
-		}
-		/// <summary>
-		/// This native is used to set prop variation on a ped. Components, drawables and textures IDs are related to the ped model.
-		/// 
-		/// ### MP Freemode list of props
-		/// 
-		/// **0**: Hat\
-		/// **1**: Glass\
-		/// **2**: Ear\
-		/// **6**: Watch\
-		/// **7**: Bracelet
-		/// 
-		/// ### Related and useful natives
-		/// 
-		/// [GET_NUMBER_OF_PED_PROP_DRAWABLE_VARIATIONS](#\_0x5FAF9754E789FB47)\
-		/// [GET_NUMBER_OF_PED_PROP_TEXTURE_VARIATIONS](#\_0xA6E7F1CEB523E171)
-		/// [List of component/props ID](https://gtaxscripting.blogspot.com/2016/04/gta-v-peds-component-and-props.html) of player_two with examples
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_PED_PROP_INDEX](?\_0x93376B65A266EB5F).**
-		/// </summary>
-		public static void SetPedPropIndex_CFX(int _ped, int _componentId, int _drawableId, int _textureId, bool _attach)
-		{
-			Function.Call((Hash)0x829F2E2, _ped, _componentId, _drawableId, _textureId, _attach);
-		}
-		/// <summary>
-		/// A getter for [SET_RESOURCE_KVP](#\_0x21C7A35B), but for a specified resource.
-		/// </summary>
-		public static string GetExternalKvpString_CFX(string _resource, string _key)
-		{
-			return Function.Call<string>((Hash)0x9080363A, _resource, _key);
-		}
-		/// <summary>
-		/// Returns the transient map data index for a specified hash.
-		/// This function supports SDK infrastructure and is not intended to be used directly from your code.
-		/// </summary>
-		public static int GetMapdataFromHashKey_CFX(uint _mapdataHandle)
-		{
-			return Function.Call<int>((Hash)0xD29D8EDD, _mapdataHandle);
-		}
-		/// <summary>
-		/// Sets the coordinates (world position) for a specified entity, offset by the radius of the entity on the Z axis.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_ENTITY_COORDS](?\_0x06843DA7060A026B).**
-		/// </summary>
-		public static void SetEntityCoords_CFX(int _entity, float _xPos, float _yPos, float _zPos, bool _alive, bool _deadFlag, bool _ragdollFlag, bool _clearArea)
-		{
-			Function.Call((Hash)0xDF70B41B, _entity, _xPos, _yPos, _zPos, _alive, _deadFlag, _ragdollFlag, _clearArea);
-		}
-		/// <summary>
-		/// Enables the editor runtime mode, changing game behavior to track entity metadata.
-		/// This function supports SDK infrastructure and is not intended to be used directly from your code.
-		/// </summary>
-		public static void EnableEditorRuntime_CFX()
-		{
-			Function.Call((Hash)0xC383871D);
-		}
-		/// <summary>
-		/// Sets an entity's matrix. Arguments are in the same order as with GET_ENTITY_MATRIX.
-		/// </summary>
-		public static void SetEntityMatrix_CFX(int _entity, float _forwardX, float _forwardY, float _forwardZ, float _rightX, float _rightY, float _rightZ, float _upX, float _upY, float _upZ, float _atX, float _atY, float _atZ)
-		{
-			Function.Call((Hash)0xFB0639B, _entity, _forwardX, _forwardY, _forwardZ, _rightX, _rightY, _rightZ, _upX, _upY, _upZ, _atX, _atY, _atZ);
-		}
-		/// <summary>
-		/// Sets the selected vehicle's colors to their default value (specific variant specified using the colorCombination parameter).
-		/// Range of possible values for colorCombination is currently unknown, I couldn't find where these values are stored either (Disquse's guess was vehicles.meta but I haven't seen it in there.)
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_COLOUR_COMBINATION](?\_0x33E8CD3322E2FE31).**
-		/// </summary>
-		public static void SetVehicleColourCombination_CFX(int _vehicle, int _colorCombination)
-		{
-			Function.Call((Hash)0xA557AEAD, _vehicle, _colorCombination);
-		}
-		/// <summary>
-		/// Sets Ped Default Clothes
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_PED_DEFAULT_COMPONENT_VARIATION](?\_0x45EEE61580806D63).**
-		/// </summary>
-		public static void SetPedDefaultComponentVariation_CFX(int _ped)
-		{
-			Function.Call((Hash)0xC866A984, _ped);
-		}
-		/// <summary>
-		/// Retrieves the map data and entity handles from a specific entity.
-		/// This function supports SDK infrastructure and is not intended to be used directly from your code.
-		/// </summary>
-		public static bool GetEntityMapdataOwner_CFX(int _entity, int _mapdataHandle, int _entityHandle)
-		{
-			return Function.Call<bool>((Hash)0xF6B815C5, _entity, _mapdataHandle, _entityHandle);
-		}
-		/// <summary>
-		/// Note that the third parameter(denoted as z) is "up and down" with positive numbers encouraging upwards movement.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_ENTITY_VELOCITY](?\_0x1C99BB7B6E96D16F).**
-		/// </summary>
-		public static void SetEntityVelocity_CFX(int _entity, float _x, float _y, float _z)
-		{
-			Function.Call((Hash)0xFF5A1988, _entity, _x, _y, _z);
-		}
-		/// <summary>
-		/// This executes at the same as speed as PLAYER::SET_PLAYER_WANTED_LEVEL(player, 0, false);
-		/// PLAYER::GET_PLAYER_WANTED_LEVEL(player); executes in less than half the time. Which means that it's worth first checking if the wanted level needs to be cleared before clearing. However, this is mostly about good code practice and can important in other situations. The difference in time in this example is negligible.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [CLEAR_PLAYER_WANTED_LEVEL](?\_0xB302540597885499).**
-		/// </summary>
-		public static void ClearPlayerWantedLevel_CFX(int _player)
-		{
-			Function.Call((Hash)0x54EA5BCC, _player);
-		}
-		/// <summary>
-		/// **This is the server-side RPC native equivalent of the client native [SET_ENTITY_ROTATION](?\_0x8524A8B0171D5E07).**
-		/// </summary>
-		public static void SetEntityRotation_CFX(int _entity, float _pitch, float _roll, float _yaw, int _rotationOrder, bool _p5)
-		{
-			Function.Call((Hash)0xA345EFE, _entity, _pitch, _roll, _yaw, _rotationOrder, _p5);
-		}
-		/// <summary>
-		/// Creates a blip for the specified coordinates. You can use `SET_BLIP_` natives to change the blip.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [ADD_BLIP_FOR_COORD](?\_0x5A039BB0BCA604B6).**
-		/// </summary>
-		public static int AddBlipForCoord_CFX(float _x, float _y, float _z)
-		{
-			return Function.Call<int>((Hash)0xC6F43D0E, _x, _y, _z);
-		}
-		/// <summary>
-		/// Adds a rectangular blip for the specified coordinates/area.
-		/// It is recommended to use [SET_BLIP_ROTATION](#\_0xF87683CDF73C3F6E) and [SET_BLIP_COLOUR](#\_0x03D7FB09E75D6B7E) to make the blip not rotate along with the camera.
-		/// By default, the blip will show as a *regular* blip with the specified color/sprite if it is outside of the minimap view.
-		/// Example image:
-		/// ![minimap](https://w.wew.wtf/pdcjig.png)
-		/// ![big map](https://w.wew.wtf/zgcjcm.png)
-		/// (Native name is *likely* to actually be ADD_BLIP_FOR_AREA, but due to the usual reasons this can't be confirmed)
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [\_ADD_BLIP_FOR_AREA](?\_0xCE5D0E5E315DB238).**
-		/// </summary>
-		public static int AddBlipForArea_CFX(float _x, float _y, float _z, float _width, float _height)
-		{
-			return Function.Call<int>((Hash)0x6228F159, _x, _y, _z, _width, _height);
-		}
-		/// <summary>
-		/// In the scripts, p3 was always -1.
-		/// p3 seems to be duration or timeout of turn animation.
-		/// Also facingPed can be 0 or -1 so ped will just raise hands up.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [TASK_HANDS_UP](?\_0xF2EAB31979A7F910).**
-		/// </summary>
-		public static void TaskHandsUp_CFX(int _ped, int _duration, int _facingPed, int _p3, bool _p4)
-		{
-			Function.Call((Hash)0x8DCC19C5, _ped, _duration, _facingPed, _p3, _p4);
-		}
-		/// <summary>
-		/// A getter for [SET_RESOURCE_KVP_INT](#\_0x6A2B1E8), but for a specified resource.
-		/// </summary>
-		public static int GetExternalKvpInt_CFX(string _resource, string _key)
-		{
-			return Function.Call<int>((Hash)0x12B8D689, _resource, _key);
-		}
-		/// <summary>
-		/// Used for freemode (online) characters.
-		/// Indices:
-		/// 
-		/// 1.  black
-		/// 2.  very light blue/green
-		/// 3.  dark blue
-		/// 4.  brown
-		/// 5.  darker brown
-		/// 6.  light brown
-		/// 7.  blue
-		/// 8.  light blue
-		/// 9.  pink
-		/// 10. yellow
-		/// 11. purple
-		/// 12. black
-		/// 13. dark green
-		/// 14. light brown
-		/// 15. yellow/black pattern
-		/// 16. light colored spiral pattern
-		/// 17. shiny red
-		/// 18. shiny half blue/half red
-		/// 19. half black/half light blue
-		/// 20. white/red perimter
-		/// 21. green snake
-		/// 22. red snake
-		/// 23. dark blue snake
-		/// 24. dark yellow
-		/// 25. bright yellow
-		/// 26. all black
-		/// 27. red small pupil
-		/// 28. devil blue/black
-		/// 29. white small pupil
-		/// 30. glossed over
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [\_SET_PED_EYE_COLOR](?\_0x50B56988B170AFDF).**
-		/// </summary>
-		public static void SetPedEyeColor_CFX(int _ped, int _index)
-		{
-			Function.Call((Hash)0xEC09DB1B, _ped, _index);
-		}
-		/// <summary>
-		/// colorPrimary & colorSecondary are the paint indexes for the vehicle.
-		/// For a list of valid paint indexes, view: pastebin.com/pwHci0xK
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_COLOURS](?\_0x4F1D4BE3A7F24601).**
-		/// </summary>
-		public static void SetVehicleColours_CFX(int _vehicle, int _colorPrimary, int _colorSecondary)
-		{
-			Function.Call((Hash)0x57F24253, _vehicle, _colorPrimary, _colorSecondary);
-		}
-		/// <summary>
-		/// PED::SET_PED_RESET_FLAG(PLAYER::PLAYER_PED_ID(), 240, 1);
-		/// Known values:
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_PED_RESET_FLAG](?\_0xC1E8A365BF3B29F2).**
-		/// </summary>
-		public static void SetPedResetFlag_CFX(int _ped, int _flagId, bool _doReset)
-		{
-			Function.Call((Hash)0xCFF6FF66, _ped, _flagId, _doReset);
-		}
-		/// <summary>
-		/// Immediately stops the pedestrian from whatever it's doing. The difference between this and [CLEAR_PED_TASKS](#\_0xE1EF3C1216AFF2CD) is that this one teleports the ped but does not change the position of the ped.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [CLEAR_PED_TASKS_IMMEDIATELY](?\_0xAAA34F8A7CB32098).**
-		/// </summary>
-		public static void ClearPedTasksImmediately_CFX(int _ped)
-		{
-			Function.Call((Hash)0xBC045625, _ped);
-		}
-		/// <summary>
-		/// **This is the server-side RPC native equivalent of the client native [TASK_EVERYONE_LEAVE_VEHICLE](?\_0x7F93691AB4B92272).**
-		/// </summary>
-		public static void TaskEveryoneLeaveVehicle_CFX(int _vehicle)
-		{
-			Function.Call((Hash)0xC1971F30, _vehicle);
-		}
-		/// <summary>
-		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_ALARM](?\_0xCDE5E70C1DDB954C).**
-		/// </summary>
-		public static void SetVehicleAlarm_CFX(int _vehicle, bool _state)
-		{
-			Function.Call((Hash)0x24877D84, _vehicle, _state);
-		}
-		/// <summary>
-		/// Parameter `p1` does not seem to be used or referenced in game binaries.\
-		/// **Note:** When called for networked entities, a `CRemoveAllWeaponsEvent` will be created per request.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [REMOVE_ALL_PED_WEAPONS](?\_0xF25DF915FA38C5F3).**
-		/// </summary>
-		public static void RemoveAllPedWeapons_CFX(int _ped, bool _p1)
-		{
-			Function.Call((Hash)0xA44CE817, _ped, _p1);
-		}
-		/// <summary>
-		/// p2 often set to 1000.0 in the decompiled scripts.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_BODY_HEALTH](?\_0xB77D05AC8C78AADB).**
-		/// </summary>
-		public static void SetVehicleBodyHealth_CFX(int _vehicle, float _value)
-		{
-			Function.Call((Hash)0x920C2517, _vehicle, _value);
-		}
-		/// <summary>
-		/// p4/p5: Unusued in TU27
-		/// 
-		/// ### Ragdoll Types
-		/// 
-		/// **0**: CTaskNMRelax
-		/// **1**: CTaskNMScriptControl: Hardcoded not to work in networked environments.
-		/// **Else**: CTaskNMBalance
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_PED_TO_RAGDOLL](?\_0xAE99FB955581844A).**
-		/// </summary>
-		public static void SetPedToRagdoll_CFX(int _ped, int _time1, int _time2, int _ragdollType, bool _p4, bool _p5, bool _p6)
-		{
-			Function.Call((Hash)0x83CB5052, _ped, _time1, _time2, _ragdollType, _p4, _p5, _p6);
-		}
-		/// <summary>
-		/// Creates a ped (biped character, pedestrian, actor) with the specified model at the specified position and heading.
-		/// This ped will initially be owned by the creating script as a mission entity, and the model should be loaded already
-		/// (e.g. using REQUEST_MODEL).
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [CREATE_PED](?\_0xD49F9B0955C367DE).**
-		/// </summary>
-		public static int CreatePed_CFX(int _pedType, uint _modelHash, float _x, float _y, float _z, float _heading, bool _isNetwork, bool _bScriptHostPed)
-		{
-			return Function.Call<int>((Hash)0x389EF71, _pedType, _modelHash, _x, _y, _z, _heading, _isNetwork, _bScriptHostPed);
-		}
-		/// <summary>
-		/// ```
-		/// OverlayID ranges from 0 to 12, index from 0 to _GET_NUM_OVERLAY_VALUES(overlayID)-1, and opacity from 0.0 to 1.0.
-		/// overlayID       Part                  Index, to disable
-		/// 0               Blemishes             0 - 23, 255
-		/// 1               Facial Hair           0 - 28, 255
-		/// 2               Eyebrows              0 - 33, 255
-		/// 3               Ageing                0 - 14, 255
-		/// 4               Makeup                0 - 74, 255
-		/// 5               Blush                 0 - 6, 255
-		/// 6               Complexion            0 - 11, 255
-		/// 7               Sun Damage            0 - 10, 255
-		/// 8               Lipstick              0 - 9, 255
-		/// 9               Moles/Freckles        0 - 17, 255
-		/// 10              Chest Hair            0 - 16, 255
-		/// 11              Body Blemishes        0 - 11, 255
-		/// 12              Add Body Blemishes    0 - 1, 255
-		/// ```
-		/// 
-		/// **Note:**
-		/// You may need to call [`SetPedHeadBlendData`](#0x9414E18B9434C2FE) prior to calling this native in order for it to work.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_PED_HEAD_OVERLAY](?\_0x48F44967FA05CC1E).**
-		/// </summary>
-		public static void SetPedHeadOverlay_CFX(int _ped, int _overlayID, int _index, float _opacity)
-		{
-			Function.Call((Hash)0xD28DBA90, _ped, _overlayID, _index, _opacity);
-		}
-		/// <summary>
-		/// NativeDB Added Parameter 4: BOOL p3
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_PED_AMMO](?\_0x14E56BC5B5DB6A19).**
-		/// </summary>
-		public static void SetPedAmmo_CFX(int _ped, uint _weaponHash, int _ammo)
-		{
-			Function.Call((Hash)0xBF90DF1A, _ped, _weaponHash, _ammo);
-		}
-		/// <summary>
-		/// Sets the various freemode face features, e.g. nose length, chin shape.
-		/// **Indexes (From 0 to 19):**
-		/// Parentheses indicate morph scale/direction as in (-1.0 to 1.0)
-		/// 
-		/// *   **0**: Nose Width (Thin/Wide)
-		/// *   **1**: Nose Peak (Up/Down)
-		/// *   **2**: Nose Length (Long/Short)
-		/// *   **3**: Nose Bone Curveness (Crooked/Curved)
-		/// *   **4**: Nose Tip (Up/Down)
-		/// *   **5**: Nose Bone Twist (Left/Right)
-		/// *   **6**: Eyebrow (Up/Down)
-		/// *   **7**: Eyebrow (In/Out)
-		/// *   **8**: Cheek Bones (Up/Down)
-		/// *   **9**: Cheek Sideways Bone Size (In/Out)
-		/// *   **10**: Cheek Bones Width (Puffed/Gaunt)
-		/// *   **11**: Eye Opening (Both) (Wide/Squinted)
-		/// *   **12**: Lip Thickness (Both) (Fat/Thin)
-		/// *   **13**: Jaw Bone Width (Narrow/Wide)
-		/// *   **14**: Jaw Bone Shape (Round/Square)
-		/// *   **15**: Chin Bone (Up/Down)
-		/// *   **16**: Chin Bone Length (In/Out or Backward/Forward)
-		/// *   **17**: Chin Bone Shape (Pointed/Square)
-		/// *   **18**: Chin Hole (Chin Bum)
-		/// *   **19**: Neck Thickness (Thin/Thick)
-		///     **Note:**
-		///     You may need to call [`SetPedHeadBlendData`](#0x9414E18B9434C2FE) prior to calling this native in order for it to work.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [\_SET_PED_FACE_FEATURE](?\_0x71A5C1DBA060049E).**
-		/// </summary>
-		public static void SetPedFaceFeature_CFX(int _ped, int _index, float _scale)
-		{
-			Function.Call((Hash)0x6C8D4458, _ped, _index, _scale);
-		}
-		/// <summary>
-		/// **This is the server-side RPC native equivalent of the client native [SET_CURRENT_PED_WEAPON](?\_0xADF692B254977C0C).**
-		/// </summary>
-		public static void SetCurrentPedWeapon_CFX(int _ped, uint _weaponHash, bool _bForceInHand)
-		{
-			Function.Call((Hash)0xB8278882, _ped, _weaponHash, _bForceInHand);
-		}
-		/// <summary>
-		/// Example:
-		/// TASK::TASK_DRIVE_BY(l\_467\[1/*22*/], PLAYER::PLAYER_PED_ID(), 0, 0.0, 0.0, 2.0, 300.0, 100, 0, ${firing_pattern_burst_fire_driveby});
-		/// Needs working example. Doesn't seem to do anything.
-		/// I marked p2 as targetVehicle as all these shooting related tasks seem to have that in common.
-		/// I marked p6 as distanceToShoot as if you think of GTA's Logic with the native SET_VEHICLE_SHOOT natives, it won't shoot till it gets within a certain distance of the target.
-		/// I marked p7 as pedAccuracy as it seems it's mostly 100 (Completely Accurate), 75, 90, etc. Although this could be the ammo count within the gun, but I highly doubt it. I will change this comment once I find out if it's ammo count or not.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [TASK_DRIVE_BY](?\_0x2F8AF0E82773A171).**
-		/// </summary>
-		public static void TaskDriveBy_CFX(int _driverPed, int _targetPed, int _targetVehicle, float _targetX, float _targetY, float _targetZ, float _distanceToShoot, int _pedAccuracy, bool _p8, uint _firingPattern)
-		{
-			Function.Call((Hash)0x2B84D1C4, _driverPed, _targetPed, _targetVehicle, _targetX, _targetY, _targetZ, _distanceToShoot, _pedAccuracy, _p8, _firingPattern);
-		}
-		/// <summary>
-		/// Creates a vehicle with the specified model at the specified position. This vehicle will initially be owned by the creating
-		/// script as a mission entity, and the model should be loaded already (e.g. using REQUEST_MODEL).
-		/// 
-		/// ```
-		/// NativeDB Added Parameter 8: BOOL p7
-		/// ```
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [CREATE_VEHICLE](?\_0xAF35D0D2583051B0).**
-		/// </summary>
-		public static int CreateVehicle_CFX(uint _modelHash, float _x, float _y, float _z, float _heading, bool _isNetwork, bool _netMissionEntity)
-		{
-			return Function.Call<int>((Hash)0xDD75460A, _modelHash, _x, _y, _z, _heading, _isNetwork, _netMissionEntity);
-		}
-		/// <summary>
-		/// Return variable is never used in R\*'s scripts.
-		/// Not sure what p2 does. It seems like it would be a time judging by it's usage in R\*'s scripts, but didn't seem to affect anything in my testings.
-		/// x, y, and z are coordinates, most likely to where the ped will fall.
-		/// p7 is probably the force of the fall, but untested, so I left the variable name the same.
-		/// p8 to p13 are always 0f in R\*'s scripts.
-		/// (Simplified) Example of the usage of the function from R\*'s scripts:
-		/// ped::set_ped_to_ragdoll_with_fall(ped, 1500, 2000, 1, -entity::get_entity_forward_vector(ped), 1f, 0f, 0f, 0f, 0f, 0f, 0f);
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_PED_TO_RAGDOLL_WITH_FALL](?\_0xD76632D99E4966C8).**
-		/// </summary>
-		public static void SetPedToRagdollWithFall_CFX(int _ped, int _time, int _p2, int _ragdollType, float _x, float _y, float _z, float _p7, float _p8, float _p9, float _p10, float _p11, float _p12, float _p13)
-		{
-			Function.Call((Hash)0xFA12E286, _ped, _time, _p2, _ragdollType, _x, _y, _z, _p7, _p8, _p9, _p10, _p11, _p12, _p13);
-		}
-		/// <summary>
-		/// List of component/props ID
-		/// gtaxscripting.blogspot.com/2016/04/gta-v-peds-component-and-props.html
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_PED_RANDOM_PROPS](?\_0xC44AA05345C992C6).**
-		/// </summary>
-		public static void SetPedRandomProps_CFX(int _ped)
-		{
-			Function.Call((Hash)0xE3318E0E, _ped);
-		}
-		/// <summary>
-		/// Freezes or unfreezes an entity preventing its coordinates to change by the player if set to `true`. You can still change the entity position using SET_ENTITY_COORDS.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [FREEZE_ENTITY_POSITION](?\_0x428CA6DBD1094446).**
-		/// </summary>
-		public static void FreezeEntityPosition_CFX(int _entity, bool _toggle)
-		{
-			Function.Call((Hash)0x65C16D57, _entity, _toggle);
-		}
-		/// <summary>
-		/// p1 is always 0 in R\* scripts; and a quick disassembly seems to indicate that p1 is unused.
-		/// List of component/props ID:
-		/// gtaxscripting.blogspot.com/2016/04/gta-v-peds-component-and-props.html
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_PED_RANDOM_COMPONENT_VARIATION](?\_0xC8A9481A01E63C28).**
-		/// </summary>
-		public static void SetPedRandomComponentVariation_CFX(int _ped, int _p1)
-		{
-			Function.Call((Hash)0x4111BA46, _ped, _p1);
-		}
-		/// <summary>
-		/// Removes the blip from your map.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [REMOVE_BLIP](?\_0x86A652570E5F25DD).**
-		/// </summary>
-		public static void RemoveBlip_CFX(int _blip)
-		{
-			Function.Call((Hash)0xD8C3C1CD, _blip);
-		}
-		/// <summary>
-		/// For more info please refer to [this](https://gtaforums.com/topic/858970-all-gtao-face-ids-pedset-ped-head-blend-data-explained) topic.
-		/// **Other information:**
-		/// IDs start at zero and go Male Non-DLC, Female Non-DLC, Male DLC, and Female DLC.</br>
-		/// This native function is often called prior to calling natives such as:
-		/// 
-		/// *   [`SetPedHairColor`](#0xBB43F090)
-		/// *   [`SetPedHeadOverlayColor`](#0x78935A27)
-		/// *   [`SetPedHeadOverlay`](#0xD28DBA90)
-		/// *   [`SetPedFaceFeature`](#0x6C8D4458)
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_PED_HEAD_BLEND_DATA](?\_0x9414E18B9434C2FE).**
-		/// </summary>
-		public static void SetPedHeadBlendData_CFX(int _ped, int _shapeFirstID, int _shapeSecondID, int _shapeThirdID, int _skinFirstID, int _skinSecondID, int _skinThirdID, float _shapeMix, float _skinMix, float _thirdMix, bool _isParent)
-		{
-			Function.Call((Hash)0x60746B88, _ped, _shapeFirstID, _shapeSecondID, _shapeThirdID, _skinFirstID, _skinSecondID, _skinThirdID, _shapeMix, _skinMix, _thirdMix, _isParent);
-		}
-		/// <summary>
-		/// The entity will move towards the target until time is over (duration) or get in target's range (distance). p5 and p6 are unknown, but you could leave p5 = 1073741824 or 100 or even 0 (didn't see any difference but on the decompiled scripts, they use 1073741824 mostly) and p6 = 0
-		/// Note: I've only tested it on entity -> ped and target -> vehicle. It could work differently on other entities, didn't try it yet.
-		/// Example: TASK::TASK_GO_TO_ENTITY(pedHandle, vehicleHandle, 5000, 4.0, 100, 1073741824, 0)
-		/// Ped will run towards the vehicle for 5 seconds and stop when time is over or when he gets 4 meters(?) around the vehicle (with duration = -1, the task duration will be ignored).
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [TASK_GO_TO_ENTITY](?\_0x6A071245EB0D1882).**
-		/// </summary>
-		public static void TaskGoToEntity_CFX(int _entity, int _target, int _duration, float _distance, float _speed, float _p5, int _p6)
-		{
-			Function.Call((Hash)0x374827C2, _entity, _target, _duration, _distance, _speed, _p5, _p6);
-		}
-		/// <summary>
-		/// Used for freemode (online) characters.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [\_SET_PED_HAIR_COLOR](?\_0x4CFFC65454C93A49).**
-		/// </summary>
-		public static void SetPedHairColor_CFX(int _ped, int _colorID, int _highlightColorID)
-		{
-			Function.Call((Hash)0xBB43F090, _ped, _colorID, _highlightColorID);
-		}
-		/// <summary>
-		/// Set the model for a specific Player. Be aware that this will destroy the current Ped for the Player and create a new one, any reference to the old ped should be reset
-		/// Make sure to request the model first and wait until it has loaded.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_PLAYER_MODEL](?\_0x00A1CADD00108836).**
-		/// </summary>
-		public static void SetPlayerModel_CFX(int _player, uint _model)
-		{
-			Function.Call((Hash)0x774A4C54, _player, _model);
-		}
-		/// <summary>
-		/// Simply sets you as invincible (Health will not deplete).
-		/// Use 0x733A643B5B0C53C1 instead if you want Ragdoll enabled, which is equal to:
-		/// \*(DWORD \*)(playerPedAddress + 0x188) |= (1 << 9);
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_PLAYER_INVINCIBLE](?\_0x239528EACDC3E7DE).**
-		/// </summary>
-		public static void SetPlayerInvincible_CFX(int _player, bool _toggle)
-		{
-			Function.Call((Hash)0xDFB9A2A2, _player, _toggle);
-		}
-		/// <summary>
-		/// **This is the server-side RPC native equivalent of the client native [SET_PED_INTO_VEHICLE](?\_0xF75B0D629E1C063D).**
-		/// </summary>
-		public static void SetPedIntoVehicle_CFX(int _ped, int _vehicle, int _seatIndex)
-		{
-			Function.Call((Hash)0x7500C79, _ped, _vehicle, _seatIndex);
-		}
-		/// <summary>
-		/// Call SET_PLAYER_WANTED_LEVEL_NOW for immediate effect
-		/// wantedLevel is an integer value representing 0 to 5 stars even though the game supports the 6th wanted level but no police will appear since no definitions are present for it in the game files
-		/// disableNoMission-  Disables When Off Mission- appears to always be false
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_PLAYER_WANTED_LEVEL](?\_0x39FF19C64EF7DA5B).**
-		/// </summary>
-		public static void SetPlayerWantedLevel_CFX(int _player, int _wantedLevel, bool _disableNoMission)
-		{
-			Function.Call((Hash)0xB7A0914B, _player, _wantedLevel, _disableNoMission);
-		}
-		/// <summary>
-		/// //this part of the code is to determine at which entity the player is aiming, for example if you want to create a mod where you give orders to peds
-		/// Entity aimedentity;
-		/// Player player = PLAYER::PLAYER_ID();
-		/// PLAYER::\_GET_AIMED_ENTITY(player, \&aimedentity);
-		/// //bg is an array of peds
-		/// TASK::TASK_SHOOT_AT_ENTITY(bg\[i], aimedentity, 5000, MISC::GET_HASH_KEY("FIRING_PATTERN_FULL_AUTO"));
-		/// in practical usage, getting the entity the player is aiming at and then task the peds to shoot at the entity, at a button press event would be better.
-		/// Firing Pattern Hash Information: https://pastebin.com/Px036isB
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [TASK_SHOOT_AT_ENTITY](?\_0x08DA95E8298AE772).**
-		/// </summary>
-		public static void TaskShootAtEntity_CFX(int _entity, int _target, int _duration, uint _firingPattern)
-		{
-			Function.Call((Hash)0xAC0631C9, _entity, _target, _duration, _firingPattern);
-		}
-		/// <summary>
-		/// Set the heading of an entity in degrees also known as "Yaw".
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_ENTITY_HEADING](?\_0x8E2530AA8ADA980E).**
-		/// </summary>
-		public static void SetEntityHeading_CFX(int _entity, float _heading)
-		{
-			Function.Call((Hash)0xE0FF064D, _entity, _heading);
-		}
-		/// <summary>
-		/// **This is the server-side RPC native equivalent of the client native [TASK_GO_STRAIGHT_TO_COORD](?\_0xD76B57B44F1E6F8B).**
-		/// </summary>
-		public static void TaskGoStraightToCoord_CFX(int _ped, float _x, float _y, float _z, float _speed, int _timeout, float _targetHeading, float _distanceToSlide)
-		{
-			Function.Call((Hash)0x80A9E7A7, _ped, _x, _y, _z, _speed, _timeout, _targetHeading, _distanceToSlide);
-		}
-		/// <summary>
-		/// Makes the specified ped attack the target ped.
-		/// p2 should be 0
-		/// p3 should be 16
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [TASK_COMBAT_PED](?\_0xF166E48407BAC484).**
-		/// </summary>
-		public static void TaskCombatPed_CFX(int _ped, int _targetPed, int _p2, int _p3)
-		{
-			Function.Call((Hash)0xCB0D8932, _ped, _targetPed, _p2, _p3);
-		}
-		/// <summary>
-		/// See eDoorId declared in [`SET_VEHICLE_DOOR_SHUT`](#\_0x93D9BD300D7789E5)
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_DOOR_BROKEN](?\_0xD4D4F6A4AB575A33).**
-		/// </summary>
-		public static void SetVehicleDoorBroken_CFX(int _vehicle, int _doorIndex, bool _deleteDoor)
-		{
-			Function.Call((Hash)0x8147FEA7, _vehicle, _doorIndex, _deleteDoor);
-		}
-		/// <summary>
-		/// p1, p2, p3 are RGB values for color (255,0,0 for Red, ect)
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_CUSTOM_SECONDARY_COLOUR](?\_0x36CED73BFED89754).**
-		/// </summary>
-		public static void SetVehicleCustomSecondaryColour_CFX(int _vehicle, int _r, int _g, int _b)
-		{
-			Function.Call((Hash)0x9D77259E, _vehicle, _r, _g, _b);
-		}
-		/// <summary>
-		/// **This is the server-side RPC native equivalent of the client native [GIVE_WEAPON_TO_PED](?\_0xBF0FD6E56C964FCB).**
-		/// </summary>
-		public static void GiveWeaponToPed_CFX(int _ped, uint _weaponHash, int _ammoCount, bool _isHidden, bool _bForceInHand)
-		{
-			Function.Call((Hash)0xC4D88A85, _ped, _weaponHash, _ammoCount, _isHidden, _bForceInHand);
-		}
-		/// <summary>
-		/// ```
-		/// Used for freemode (online) characters.
-		/// Called after SET_PED_HEAD_OVERLAY().
-		/// ```
-		/// 
-		/// **Note:**
-		/// You may need to call [`SetPedHeadBlendData`](#0x9414E18B9434C2FE) prior to calling this native in order for it to work.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [\_SET_PED_HEAD_OVERLAY_COLOR](?\_0x497BF74A7B9CB952).**
-		/// </summary>
-		public static void SetPedHeadOverlayColor_CFX(int _ped, int _overlayID, int _colorType, int _colorID, int _secondColorID)
-		{
-			Function.Call((Hash)0x78935A27, _ped, _overlayID, _colorType, _colorID, _secondColorID);
-		}
-		/// <summary>
-		/// p1, p2, p3 are RGB values for color (255,0,0 for Red, ect)
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_CUSTOM_PRIMARY_COLOUR](?\_0x7141766F91D15BEA).**
-		/// </summary>
-		public static void SetVehicleCustomPrimaryColour_CFX(int _vehicle, int _r, int _g, int _b)
-		{
-			Function.Call((Hash)0x8DF9F9BC, _vehicle, _r, _g, _b);
-		}
-		/// <summary>
-		/// cpp
-		/// // Potential names and hash collisions included as comments
-		/// enum ePedConfigFlags {
-		/// \_0x67D1A445 = 0,
-		/// \_0xC63DE95E = 1,
-		/// CPED_CONFIG_FLAG_NoCriticalHits = 2,
-		/// CPED_CONFIG_FLAG_DrownsInWater = 3,
-		/// CPED_CONFIG_FLAG_DisableReticuleFixedLockon = 4,
-		/// \_0x37D196F4 = 5,
-		/// \_0xE2462399 = 6,
-		/// CPED_CONFIG_FLAG_UpperBodyDamageAnimsOnly = 7,
-		/// \_0xEDDEB838 = 8,
-		/// \_0xB398B6FD = 9,
-		/// \_0xF6664E68 = 10,
-		/// \_0xA05E7CA3 = 11,
-		/// \_0xCE394045 = 12,
-		/// CPED_CONFIG_FLAG_NeverLeavesGroup = 13,
-		/// \_0xCD8D1411 = 14,
-		/// \_0xB031F1A9 = 15,
-		/// \_0xFE65BEE3 = 16,
-		/// CPED_CONFIG_FLAG_BlockNonTemporaryEvents = 17,
-		/// \_0x380165BD = 18,
-		/// \_0x07C045C7 = 19,
-		/// \_0x583B5E2D = 20,
-		/// \_0x475EDA58 = 21,
-		/// \_0x8629D05B = 22,
-		/// \_0x1522968B = 23,
-		/// CPED_CONFIG_FLAG_IgnoreSeenMelee = 24,
-		/// \_0x4CC09C4B = 25,
-		/// \_0x034F3053 = 26,
-		/// \_0xD91BA7CC = 27,
-		/// \_0x5C8DC66E = 28,
-		/// \_0x8902EAA0 = 29,
-		/// \_0x6580B9D2 = 30,
-		/// \_0x0EF7A297 = 31,
-		/// \_0x6BF86E5B = 32,
-		/// CPED_CONFIG_FLAG_DieWhenRagdoll = 33,
-		/// CPED_CONFIG_FLAG_HasHelmet = 34,
-		/// CPED_CONFIG_FLAG_UseHelmet = 35,
-		/// \_0xEEB3D630 = 36,
-		/// \_0xB130D17B = 37,
-		/// \_0x5F071200 = 38,
-		/// CPED_CONFIG_FLAG_DisableEvasiveDives = 39,
-		/// \_0xC287AAFF = 40,
-		/// \_0x203328CC = 41,
-		/// CPED_CONFIG_FLAG_DontInfluenceWantedLevel = 42,
-		/// CPED_CONFIG_FLAG_DisablePlayerLockon = 43,
-		/// CPED_CONFIG_FLAG_DisableLockonToRandomPeds = 44,
-		/// \_0xEC4A8ACF = 45,
-		/// \_0xDB115BFA = 46,
-		/// CPED_CONFIG_FLAG_PedBeingDeleted = 47,
-		/// CPED_CONFIG_FLAG_BlockWeaponSwitching = 48,
-		/// \_0xF8E99565 = 49,
-		/// \_0xDD17FEE6 = 50,
-		/// \_0x7ED9B2C9 = 51,
-		/// \_0x655E8618 = 52,
-		/// \_0x5A6C1F6E = 53,
-		/// \_0xD749FC41 = 54,
-		/// \_0x357F63F3 = 55,
-		/// \_0xC5E60961 = 56,
-		/// \_0x29275C3E = 57,
-		/// CPED_CONFIG_FLAG_IsFiring = 58,
-		/// CPED_CONFIG_FLAG_WasFiring = 59,
-		/// CPED_CONFIG_FLAG_IsStanding = 60,
-		/// CPED_CONFIG_FLAG_WasStanding = 61,
-		/// CPED_CONFIG_FLAG_InVehicle = 62,
-		/// CPED_CONFIG_FLAG_OnMount = 63,
-		/// CPED_CONFIG_FLAG_AttachedToVehicle = 64,
-		/// CPED_CONFIG_FLAG_IsSwimming = 65,
-		/// CPED_CONFIG_FLAG_WasSwimming = 66,
-		/// CPED_CONFIG_FLAG_IsSkiing = 67,
-		/// CPED_CONFIG_FLAG_IsSitting = 68,
-		/// CPED_CONFIG_FLAG_KilledByStealth = 69,
-		/// CPED_CONFIG_FLAG_KilledByTakedown = 70,
-		/// CPED_CONFIG_FLAG_Knockedout = 71,
-		/// \_0x3E3C4560 = 72,
-		/// \_0x2994C7B7 = 73,
-		/// \_0x6D59D275 = 74,
-		/// CPED_CONFIG_FLAG_UsingCoverPoint = 75,
-		/// CPED_CONFIG_FLAG_IsInTheAir = 76,
-		/// \_0x2D493FB7 = 77,
-		/// CPED_CONFIG_FLAG_IsAimingGun = 78,
-		/// \_0x14D69875 = 79,
-		/// \_0x40B05311 = 80,
-		/// \_0x8B230BC5 = 81,
-		/// \_0xC74E5842 = 82,
-		/// \_0x9EA86147 = 83,
-		/// \_0x674C746C = 84,
-		/// \_0x3E56A8C2 = 85,
-		/// \_0xC144A1EF = 86,
-		/// \_0x0548512D = 87,
-		/// \_0x31C93909 = 88,
-		/// \_0xA0269315 = 89,
-		/// \_0xD4D59D4D = 90,
-		/// \_0x411D4420 = 91,
-		/// \_0xDF4AEF0D = 92,
-		/// CPED_CONFIG_FLAG_ForcePedLoadCover = 93,
-		/// \_0x300E4CD3 = 94,
-		/// \_0xF1C5BF04 = 95,
-		/// \_0x89C2EF13 = 96,
-		/// CPED_CONFIG_FLAG_VaultFromCover = 97,
-		/// \_0x02A852C8 = 98,
-		/// \_0x3D9407F1 = 99,
-		/// \_0x319B4558 = 100,
-		/// CPED_CONFIG_FLAG_ForcedAim = 101,
-		/// \_0xB942D71A = 102,
-		/// \_0xD26C55A8 = 103,
-		/// \_0xB89E703B = 104,
-		/// CPED_CONFIG_FLAG_ForceReload = 105,
-		/// \_0xD9E73DA2 = 106,
-		/// \_0xFF71DC2C = 107,
-		/// \_0x1E27E8D8 = 108,
-		/// \_0xF2C53966 = 109,
-		/// \_0xC4DBE247 = 110,
-		/// \_0x83C0A4BF = 111,
-		/// \_0x0E0FAF8C = 112,
-		/// \_0x26616660 = 113,
-		/// \_0x43B80B79 = 114,
-		/// \_0x0D2A9309 = 115,
-		/// \_0x12C1C983 = 116,
-		/// CPED_CONFIG_FLAG_BumpedByPlayer = 117,
-		/// \_0xE586D504 = 118,
-		/// \_0x52374204 = 119,
-		/// CPED_CONFIG_FLAG_IsHandCuffed = 120,
-		/// CPED_CONFIG_FLAG_IsAnkleCuffed = 121,
-		/// CPED_CONFIG_FLAG_DisableMelee = 122,
-		/// \_0xFE714397 = 123,
-		/// \_0xB3E660BD = 124,
-		/// \_0x5FED6BFD = 125,
-		/// \_0xC9D6F66F = 126,
-		/// \_0x519BC986 = 127,
-		/// CPED_CONFIG_FLAG_CanBeAgitated = 128,
-		/// \_0x9A4B617C = 129, // CPED_CONFIG_FLAG_FaceDirInsult
-		/// \_0xDAB70E9F = 130,
-		/// \_0xE569438A = 131,
-		/// \_0xBBC77D6D = 132,
-		/// \_0xCB59EF0F = 133,
-		/// \_0x8C5EA971 = 134,
-		/// CPED_CONFIG_FLAG_IsScuba = 135,
-		/// CPED_CONFIG_FLAG_WillArrestRatherThanJack = 136,
-		/// \_0xDCE59B58 = 137,
-		/// CPED_CONFIG_FLAG_RidingTrain = 138,
-		/// CPED_CONFIG_FLAG_ArrestResult = 139,
-		/// CPED_CONFIG_FLAG_CanAttackFriendly = 140,
-		/// \_0x98A4BE43 = 141,
-		/// \_0x6901E731 = 142,
-		/// \_0x9EC9BF6C = 143,
-		/// \_0x42841A8F = 144,
-		/// CPED_CONFIG_FLAG_ShootingAnimFlag = 145,
-		/// CPED_CONFIG_FLAG_DisableLadderClimbing = 146,
-		/// CPED_CONFIG_FLAG_StairsDetected = 147,
-		/// CPED_CONFIG_FLAG_SlopeDetected = 148,
-		/// \_0x1A15670B = 149,
-		/// \_0x61786EE5 = 150,
-		/// \_0xCB9186BD = 151,
-		/// \_0xF0710152 = 152,
-		/// \_0x43DFE310 = 153,
-		/// \_0xC43C624E = 154,
-		/// CPED_CONFIG_FLAG_CanPerformArrest = 155,
-		/// CPED_CONFIG_FLAG_CanPerformUncuff = 156,
-		/// CPED_CONFIG_FLAG_CanBeArrested = 157,
-		/// \_0xF7960FF5 = 158,
-		/// \_0x59564113 = 159,
-		/// \_0x0C6C3099 = 160,
-		/// \_0x645F927A = 161,
-		/// \_0xA86549B9 = 162,
-		/// \_0x8AAF337A = 163,
-		/// \_0x13BAA6E7 = 164,
-		/// \_0x5FB9D1F5 = 165,
-		/// CPED_CONFIG_FLAG_IsInjured = 166,
-		/// \_0x6398A20B = 167,
-		/// \_0xD8072639 = 168,
-		/// \_0xA05B1845 = 169,
-		/// \_0x83F6D220 = 170,
-		/// \_0xD8430331 = 171,
-		/// \_0x4B547520 = 172,
-		/// \_0xE66E1406 = 173,
-		/// \_0x1C4BFE0C = 174,
-		/// \_0x90008BFA = 175,
-		/// \_0x07C7A910 = 176,
-		/// \_0xF15F8191 = 177,
-		/// \_0xCE4E8BE2 = 178,
-		/// \_0x1D46E4F2 = 179,
-		/// CPED_CONFIG_FLAG_IsInCustody = 180,
-		/// \_0xE4FD9B3A = 181,
-		/// \_0x67AE0812 = 182,
-		/// CPED_CONFIG_FLAG_IsAgitated = 183,
-		/// CPED_CONFIG_FLAG_PreventAutoShuffleToDriversSeat = 184,
-		/// \_0x7B2D325E = 185,
-		/// CPED_CONFIG_FLAG_EnableWeaponBlocking = 186,
-		/// CPED_CONFIG_FLAG_HasHurtStarted = 187,
-		/// CPED_CONFIG_FLAG_DisableHurt = 188,
-		/// CPED_CONFIG_FLAG_PlayerIsWeird = 189,
-		/// \_0x32FC208B = 190,
-		/// \_0x0C296E5A = 191,
-		/// \_0xE63B73EC = 192,
-		/// \_0x04E9CC80 = 193,
-		/// CPED_CONFIG_FLAG_UsingScenario = 194,
-		/// CPED_CONFIG_FLAG_VisibleOnScreen = 195,
-		/// \_0xD88C58A1 = 196,
-		/// \_0x5A3DCF43 = 197, // CPED_CONFIG_FLAG_AvoidUnderSide
-		/// \_0xEA02B420 = 198,
-		/// \_0x3F559CFF = 199,
-		/// \_0x8C55D029 = 200,
-		/// \_0x5E6466F6 = 201,
-		/// \_0xEB5AD706 = 202,
-		/// \_0x0EDDDDE7 = 203,
-		/// \_0xA64F7B1D = 204,
-		/// \_0x48532CBA = 205,
-		/// \_0xAA25A9E7 = 206,
-		/// \_0x415B26B9 = 207,
-		/// CPED_CONFIG_FLAG_DisableExplosionReactions = 208,
-		/// CPED_CONFIG_FLAG_DodgedPlayer = 209,
-		/// \_0x67405504 = 210,
-		/// \_0x75DDD68C = 211,
-		/// \_0x2AD879B4 = 212,
-		/// \_0x51486F91 = 213,
-		/// \_0x32F79E21 = 214,
-		/// \_0xBF099213 = 215,
-		/// \_0x054AC8E2 = 216,
-		/// \_0x14E495CC = 217,
-		/// \_0x3C7DF9DF = 218,
-		/// \_0x848FFEF2 = 219,
-		/// CPED_CONFIG_FLAG_DontEnterLeadersVehicle = 220,
-		/// \_0x2618E1CF = 221,
-		/// \_0x84F722FA = 222,
-		/// \_0xD1B87B1F = 223,
-		/// \_0x728AA918 = 224,
-		/// CPED_CONFIG_FLAG_DisablePotentialToBeWalkedIntoResponse = 225,
-		/// CPED_CONFIG_FLAG_DisablePedAvoidance = 226,
-		/// \_0x59E91185 = 227,
-		/// \_0x1EA7225F = 228,
-		/// CPED_CONFIG_FLAG_DisablePanicInVehicle = 229,
-		/// \_0x6DCA7D88 = 230,
-		/// \_0xFC3E572D = 231,
-		/// \_0x08E9F9CF = 232,
-		/// \_0x2D3BA52D = 233,
-		/// \_0xFD2F53EA = 234,
-		/// \_0x31A1B03B = 235,
-		/// CPED_CONFIG_FLAG_IsHoldingProp = 236,
-		/// \_0x82ED0A66 = 237, // CPED_CONFIG_FLAG_BlocksPathingWhenDead
-		/// \_0xCE57C9A3 = 238,
-		/// \_0x26149198 = 239,
-		/// \_0x1B33B598 = 240,
-		/// \_0x719B6E87 = 241,
-		/// \_0x13E8E8E8 = 242,
-		/// \_0xF29739AE = 243,
-		/// \_0xABEA8A74 = 244,
-		/// \_0xB60EA2BA = 245,
-		/// \_0x536B0950 = 246,
-		/// \_0x0C754ACA = 247,
-		/// CPED_CONFIG_FLAG_DisableVehicleSeatRandomAnimations = 248,
-		/// \_0x12659168 = 249,
-		/// \_0x1BDF2F04 = 250,
-		/// \_0x7728FAA3 = 251,
-		/// \_0x6A807ED8 = 252,
-		/// CPED_CONFIG_FLAG_OnStairs = 253,
-		/// \_0xE1A2F73F = 254,
-		/// \_0x5B3697C8 = 255,
-		/// \_0xF1EB20A9 = 256,
-		/// \_0x8B7DF407 = 257,
-		/// \_0x329DCF1A = 258,
-		/// \_0x8D90DD1B = 259,
-		/// \_0xB8A292B7 = 260,
-		/// \_0x8374B087 = 261,
-		/// \_0x2AF558F0 = 262,
-		/// \_0x82251455 = 263,
-		/// \_0x30CF498B = 264,
-		/// \_0xE1CD50AF = 265,
-		/// \_0x72E4AE48 = 266,
-		/// \_0xC2657EA1 = 267,
-		/// \_0x29FF6030 = 268,
-		/// \_0x8248A5EC = 269,
-		/// CPED_CONFIG_FLAG_OnStairSlope = 270,
-		/// \_0xA0897933 = 271,
-		/// CPED_CONFIG_FLAG_DontBlipCop = 272,
-		/// CPED_CONFIG_FLAG_ClimbedShiftedFence = 273,
-		/// \_0xF7823618 = 274,
-		/// \_0xDC305CCE = 275, // CPED_CONFIG_FLAG_KillWhenTrapped
-		/// CPED_CONFIG_FLAG_EdgeDetected = 276,
-		/// \_0x92B67896 = 277,
-		/// \_0xCAD677C9 = 278,
-		/// CPED_CONFIG_FLAG_AvoidTearGas = 279,
-		/// \_0x5276AC7B = 280,
-		/// \_0x1032692A = 281,
-		/// \_0xDA23E7F1 = 282,
-		/// \_0x9139724D = 283,
-		/// \_0xA1457461 = 284,
-		/// \_0x4186E095 = 285,
-		/// \_0xAC68E2EB = 286,
-		/// CPED_CONFIG_FLAG_RagdollingOnBoat = 287,
-		/// CPED_CONFIG_FLAG_HasBrandishedWeapon = 288,
-		/// \_0x1B9EE8A1 = 289,
-		/// \_0xF3F5758C = 290,
-		/// \_0x2A9307F1 = 291,
-		/// \_0x7403D216 = 292,
-		/// \_0xA06A3C6C = 293,
-		/// CPED_CONFIG_FLAG_DisableShockingEvents = 294,
-		/// \_0xF8DA25A5 = 295,
-		/// \_0x7EF55802 = 296,
-		/// \_0xB31F1187 = 297,
-		/// \_0x84315402 = 298,
-		/// \_0x0FD69867 = 299,
-		/// \_0xC7829B67 = 300,
-		/// CPED_CONFIG_FLAG_DisablePedConstraints = 301,
-		/// \_0x6D23CF25 = 302,
-		/// \_0x2ADA871B = 303,
-		/// \_0x47BC8A58 = 304,
-		/// \_0xEB692FA5 = 305,
-		/// \_0x4A133C50 = 306,
-		/// \_0xC58099C3 = 307,
-		/// \_0xF3D76D41 = 308,
-		/// \_0xB0EEE9F2 = 309,
-		/// CPED_CONFIG_FLAG_IsInCluster = 310,
-		/// \_0x0FA153EF = 311,
-		/// \_0xD73F5CD3 = 312,
-		/// \_0xD4136C22 = 313,
-		/// \_0xE404CA6B = 314,
-		/// \_0xB9597446 = 315,
-		/// \_0xD5C98277 = 316,
-		/// \_0xD5060A9C = 317,
-		/// \_0x3E5F1CBB = 318,
-		/// \_0xD8BE1D54 = 319,
-		/// \_0x0B1F191F = 320,
-		/// \_0xC995167A = 321,
-		/// CPED_CONFIG_FLAG_HasHighHeels = 322,
-		/// \_0x86B01E54 = 323,
-		/// \_0x3A56FE15 = 324,
-		/// \_0xC03B736C = 325, // CPED_CONFIG_FLAG_SpawnedAtScenario
-		/// \_0xBBF47729 = 326,
-		/// \_0x22B668A8 = 327,
-		/// \_0x2624D4D4 = 328,
-		/// CPED_CONFIG_FLAG_DisableTalkTo = 329,
-		/// CPED_CONFIG_FLAG_DontBlip = 330,
-		/// CPED_CONFIG_FLAG_IsSwitchingWeapon = 331,
-		/// \_0x630F55F3 = 332,
-		/// \_0x150468FD = 333,
-		/// \_0x914EBD6B = 334,
-		/// \_0x79AF3B6D = 335,
-		/// \_0x75C7A632 = 336,
-		/// \_0x52D530E2 = 337,
-		/// \_0xDB2A90E0 = 338,
-		/// \_0x5922763D = 339,
-		/// \_0x12ADB567 = 340,
-		/// \_0x105C8518 = 341,
-		/// \_0x106F703D = 342,
-		/// \_0xED152C3E = 343,
-		/// \_0xA0EFE6A8 = 344,
-		/// \_0xBF348C82 = 345,
-		/// \_0xCDDFE830 = 346,
-		/// \_0x7B59BD9B = 347,
-		/// \_0x0124C788 = 348,
-		/// CPED_CONFIG_FLAG_EquipJetpack = 349,
-		/// \_0x08D361A5 = 350,
-		/// \_0xE13D1F7C = 351,
-		/// \_0x40E25FB9 = 352,
-		/// \_0x930629D9 = 353,
-		/// \_0xECCF0C7F = 354,
-		/// \_0xB6E9613B = 355,
-		/// \_0x490C0478 = 356,
-		/// \_0xE8865BEA = 357,
-		/// \_0xF3C34A29 = 358,
-		/// CPED_CONFIG_FLAG_IsDuckingInVehicle = 359,
-		/// \_0xF660E115 = 360,
-		/// \_0xAB0E6DED = 361,
-		/// CPED_CONFIG_FLAG_HasReserveParachute = 362,
-		/// CPED_CONFIG_FLAG_UseReserveParachute = 363,
-		/// \_0x5C5D9CD3 = 364,
-		/// \_0x8F7701F3 = 365,
-		/// \_0xBC4436AD = 366,
-		/// \_0xD7E07D37 = 367,
-		/// \_0x03C4FD24 = 368,
-		/// \_0x7675789A = 369,
-		/// \_0xB7288A88 = 370,
-		/// \_0xC06B6291 = 371,
-		/// \_0x95A4A805 = 372,
-		/// \_0xA8E9A042 = 373,
-		/// CPED_CONFIG_FLAG_NeverLeaveTrain = 374,
-		/// \_0xBAC674B3 = 375,
-		/// \_0x147F1FFB = 376,
-		/// \_0x4376DD79 = 377,
-		/// \_0xCD3DB518 = 378,
-		/// \_0xFE4BA4B6 = 379,
-		/// \_0x5DF03A55 = 380,
-		/// \_0xBCD816CD = 381,
-		/// \_0xCF02DD69 = 382,
-		/// \_0xF73AFA2E = 383,
-		/// \_0x80B9A9D0 = 384,
-		/// \_0xF601F7EE = 385,
-		/// \_0xA91350FC = 386,
-		/// \_0x3AB23B96 = 387,
-		/// CPED_CONFIG_FLAG_IsClimbingLadder = 388,
-		/// CPED_CONFIG_FLAG_HasBareFeet = 389,
-		/// \_0xB4B1CD4C = 390,
-		/// \_0x5459AFB8 = 391,
-		/// \_0x54F27667 = 392,
-		/// \_0xC11D3E8F = 393,
-		/// \_0x5419EB3E = 394,
-		/// \_0x82D8DBB4 = 395,
-		/// \_0x33B02D2F = 396,
-		/// \_0xAE66176D = 397,
-		/// \_0xA2692593 = 398,
-		/// \_0x714C7E31 = 399,
-		/// \_0xEC488AC7 = 400,
-		/// \_0xAE398504 = 401,
-		/// \_0xABC58D72 = 402,
-		/// \_0x5E5B9591 = 403,
-		/// \_0x6BA1091E = 404,
-		/// \_0x77840177 = 405,
-		/// \_0x1C7ACAC4 = 406,
-		/// \_0x124420E9 = 407,
-		/// \_0x75A65587 = 408,
-		/// \_0xDFD2D55B = 409,
-		/// \_0xBDD39919 = 410,
-		/// \_0x43DEC267 = 411,
-		/// \_0xE42B7797 = 412,
-		/// CPED_CONFIG_FLAG_IsHolsteringWeapon = 413,
-		/// \_0x4F8149F5 = 414,
-		/// \_0xDD9ECA7A = 415,
-		/// \_0x9E7EF9D2 = 416,
-		/// \_0x2C6ED942 = 417,
-		/// CPED_CONFIG_FLAG_IsSwitchingHelmetVisor = 418,
-		/// \_0xA488727D = 419,
-		/// \_0xCFF5F6DE = 420,
-		/// \_0x6D614599 = 421,
-		/// CPED_CONFIG_FLAG_DisableVehicleCombat = 422,
-		/// \_0xFE401D26 = 423,
-		/// CPED_CONFIG_FLAG_FallsLikeAircraft = 424,
-		/// \_0x2B42AE82 = 425,
-		/// \_0x7A95734F = 426,
-		/// \_0xDF4D8617 = 427,
-		/// \_0x578F1F14 = 428,
-		/// CPED_CONFIG_FLAG_DisableStartEngine = 429,
-		/// CPED_CONFIG_FLAG_IgnoreBeingOnFire = 430,
-		/// \_0x153C9500 = 431,
-		/// \_0xCB7A632E = 432,
-		/// \_0xDE727981 = 433,
-		/// CPED_CONFIG_FLAG_DisableHomingMissileLockon = 434,
-		/// \_0x12BBB935 = 435,
-		/// \_0xAD0A1277 = 436,
-		/// \_0xEA6AA46A = 437,
-		/// CPED_CONFIG_FLAG_DisableHelmetArmor = 438,
-		/// \_0xCB7F3A1E = 439,
-		/// \_0x50178878 = 440,
-		/// \_0x051B4F0D = 441,
-		/// \_0x2FC3DECC = 442,
-		/// \_0xC0030B0B = 443,
-		/// \_0xBBDAF1E9 = 444,
-		/// \_0x944FE59C = 445,
-		/// \_0x506FBA39 = 446,
-		/// \_0xDD45FE84 = 447,
-		/// \_0xE698AE75 = 448,
-		/// \_0x199633F8 = 449,
-		/// CPED_CONFIG_FLAG_PedIsArresting = 450,
-		/// CPED_CONFIG_FLAG_IsDecoyPed = 451,
-		/// \_0x3A251D83 = 452,
-		/// \_0xA56F6986 = 453,
-		/// \_0x1D19C622 = 454,
-		/// \_0xB68D3EAB = 455,
-		/// CPED_CONFIG_FLAG_CanBeIncapacitated = 456,
-		/// \_0x4BD5EBAD = 457,
-		/// }
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_PED_CONFIG_FLAG](?\_0x1913FE4CBF41C463).**
-		/// </summary>
-		public static void SetPedConfigFlag_CFX(int _ped, int _flagId, bool _value)
-		{
-			Function.Call((Hash)0x9CFBE10D, _ped, _flagId, _value);
-		}
-		/// <summary>
-		/// // Source GTA VC miss2 leak, matching constants for 0/2/4, testing
-		/// // They use 10 in am_mp_property_int, don't know what it does atm.
-		/// enum eCarLock {
-		/// CARLOCK_NONE = 0,
-		/// CARLOCK_UNLOCKED = 1,
-		/// CARLOCK_LOCKED = 2,
-		/// CARLOCK_LOCKOUT_PLAYER_ONLY = 3,
-		/// CARLOCK_LOCKED_PLAYER_INSIDE = 4,
-		/// CARLOCK_LOCKED_INITIALLY = 5,
-		/// CARLOCK_FORCE_SHUT_DOORS = 6,
-		/// CARLOCK_LOCKED_BUT_CAN_BE_DAMAGED = 7
-		/// };
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_DOORS_LOCKED](?\_0xB664292EAECF7FA6).**
-		/// </summary>
-		public static void SetVehicleDoorsLocked_CFX(int _vehicle, int _doorLockStatus)
-		{
-			Function.Call((Hash)0x4CDD35D0, _vehicle, _doorLockStatus);
-		}
-		/// <summary>
-		/// Firing Pattern Hash Information: https://pastebin.com/Px036isB
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [TASK_SHOOT_AT_COORD](?\_0x46A6CC01E0826106).**
-		/// </summary>
-		public static void TaskShootAtCoord_CFX(int _ped, float _x, float _y, float _z, int _duration, uint _firingPattern)
-		{
-			Function.Call((Hash)0x601C22E3, _ped, _x, _y, _z, _duration, _firingPattern);
-		}
-		/// <summary>
-		/// Flags are the same flags used in [`TASK_LEAVE_VEHICLE`](#\_0xD3DBCE61A490BE02)
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [TASK_LEAVE_ANY_VEHICLE](?\_0x504D54DF3F6F2247).**
-		/// </summary>
-		public static void TaskLeaveAnyVehicle_CFX(int _ped, int _p1, int _flags)
-		{
-			Function.Call((Hash)0xDBDD79FA, _ped, _p1, _flags);
-		}
-		/// <summary>
-		/// Flags:
-		/// SPC_AMBIENT_SCRIPT = (1 << 1),
-		/// SPC_CLEAR_TASKS = (1 << 2),
-		/// SPC_REMOVE_FIRES = (1 << 3),
-		/// SPC_REMOVE_EXPLOSIONS = (1 << 4),
-		/// SPC_REMOVE_PROJECTILES = (1 << 5),
-		/// SPC_DEACTIVATE_GADGETS = (1 << 6),
-		/// SPC_REENABLE_CONTROL_ON_DEATH = (1 << 7),
-		/// SPC_LEAVE_CAMERA_CONTROL_ON = (1 << 8),
-		/// SPC_ALLOW_PLAYER_DAMAGE = (1 << 9),
-		/// SPC_DONT_STOP_OTHER_CARS_AROUND_PLAYER = (1 << 10),
-		/// SPC_PREVENT_EVERYBODY_BACKOFF = (1 << 11),
-		/// SPC_ALLOW_PAD_SHAKE = (1 << 12)
-		/// See: https://alloc8or.re/gta5/doc/enums/eSetPlayerControlFlag.txt
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_PLAYER_CONTROL](?\_0x8D32347D6D4C40A2).**
-		/// </summary>
-		public static void SetPlayerControl_CFX(int _player, bool _bHasControl, int _flags)
-		{
-			Function.Call((Hash)0xD17AFCD8, _player, _bHasControl, _flags);
-		}
-		/// <summary>
-		/// This native is used to set component variation on a ped. Components, drawables and textures IDs are related to the ped model.
-		/// 
-		/// ### MP Freemode list of components
-		/// 
-		/// **0**: Face\
-		/// **1**: Mask\
-		/// **2**: Hair\
-		/// **3**: Torso\
-		/// **4**: Leg\
-		/// **5**: Parachute / bag\
-		/// **6**: Shoes\
-		/// **7**: Accessory\
-		/// **8**: Undershirt\
-		/// **9**: Kevlar\
-		/// **10**: Badge\
-		/// **11**: Torso 2
-		/// 
-		/// ### Related and useful natives
-		/// 
-		/// [GET_NUMBER_OF_PED_DRAWABLE_VARIATIONS](#\_0x27561561732A7842)\
-		/// [GET_NUMBER_OF_PED_TEXTURE_VARIATIONS](#\_0x8F7156A3142A6BAD)
-		/// [List of component/props ID](gtaxscripting.blogspot.com/2016/04/gta-v-peds-component-and-props.html) of player_two with examples
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_PED_COMPONENT_VARIATION](?\_0x262B14F48D29DE80).**
-		/// </summary>
-		public static void SetPedComponentVariation_CFX(int _ped, int _componentId, int _drawableId, int _textureId, int _paletteId)
-		{
-			Function.Call((Hash)0xD4F7B05C, _ped, _componentId, _drawableId, _textureId, _paletteId);
-		}
-		/// <summary>
-		/// **This is the server-side RPC native equivalent of the client native [TASK_WARP_PED_INTO_VEHICLE](?\_0x9A7D091411C5F684).**
-		/// </summary>
-		public static void TaskWarpPedIntoVehicle_CFX(int _ped, int _vehicle, int _seatIndex)
-		{
-			Function.Call((Hash)0x65D4A35D, _ped, _vehicle, _seatIndex);
-		}
-		/// <summary>
-		/// speed 1.0 = walk, 2.0 = run
-		/// p5 1 = normal, 3 = teleport to vehicle, 8 = normal/carjack ped from seat, 16 = teleport directly into vehicle
-		/// p6 is always 0
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [TASK_ENTER_VEHICLE](?\_0xC20E50AA46D09CA8).**
-		/// </summary>
-		public static void TaskEnterVehicle_CFX(int _ped, int _vehicle, int _timeout, int _seatIndex, float _speed, int _flag, int _p6)
-		{
-			Function.Call((Hash)0xB8689B4E, _ped, _vehicle, _timeout, _seatIndex, _speed, _flag, _p6);
-		}
-		/// <summary>
-		/// Flags from decompiled scripts:
-		/// 0 = normal exit and closes door.
-		/// 1 = normal exit and closes door.
-		/// 16 = teleports outside, door kept closed.  (This flag does not seem to work for the front seats in buses, NPCs continue to exit normally)
-		/// 64 = normal exit and closes door, maybe a bit slower animation than 0.
-		/// 256 = normal exit but does not close the door.
-		/// 4160 = ped is throwing himself out, even when the vehicle is still.
-		/// 262144 = ped moves to passenger seat first, then exits normally
-		/// Others to be tried out: 320, 512, 131072.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [TASK_LEAVE_VEHICLE](?\_0xD3DBCE61A490BE02).**
-		/// </summary>
-		public static void TaskLeaveVehicle_CFX(int _ped, int _vehicle, int _flags)
-		{
-			Function.Call((Hash)0x7B1141C6, _ped, _vehicle, _flags);
-		}
-		/// <summary>
-		/// It's similar to the one above, except the first 6 floats let you specify the initial position and rotation of the task. (Ped gets teleported to the position).
-		/// [Animations list](https://alexguirre.github.io/animations-list/)
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [TASK_PLAY_ANIM_ADVANCED](?\_0x83CDB10EA29B370B).**
-		/// </summary>
-		public static void TaskPlayAnimAdvanced_CFX(int _ped, string _animDict, string _animName, float _posX, float _posY, float _posZ, float _rotX, float _rotY, float _rotZ, float _animEnterSpeed, float _animExitSpeed, int _duration, int _flag, float _animTime, int _p14, int _p15)
-		{
-			Function.Call((Hash)0x3DDEB0E6, _ped, _animDict, _animName, _posX, _posY, _posZ, _rotX, _rotY, _rotZ, _animEnterSpeed, _animExitSpeed, _duration, _flag, _animTime, _p14, _p15);
-		}
-		/// <summary>
-		/// Sets the dirt level of the passed vehicle.
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_DIRT_LEVEL](?\_0x79D3B596FE44EE8B).**
-		/// </summary>
-		public static void SetVehicleDirtLevel_CFX(int _vehicle, float _dirtLevel)
-		{
-			Function.Call((Hash)0x2B39128B, _vehicle, _dirtLevel);
-		}
-		/// <summary>
-		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_NUMBER_PLATE_TEXT](?\_0x95A88F0B409CDA47).**
-		/// </summary>
-		public static void SetVehicleNumberPlateText_CFX(int _vehicle, string _plateText)
-		{
-			Function.Call((Hash)0x400F9556, _vehicle, _plateText);
-		}
-		/// <summary>
-		/// **This is the server-side RPC native equivalent of the client native [TASK_REACT_AND_FLEE_PED](?\_0x72C896464915D1B1).**
-		/// </summary>
-		public static void TaskReactAndFleePed_CFX(int _ped, int _fleeTarget)
-		{
-			Function.Call((Hash)0x8A632BD8, _ped, _fleeTarget);
-		}
-		/// <summary>
-		/// example from fm_mission_controller
-		/// TASK::TASK_GO_TO_COORD_ANY_MEANS(l\_649, sub_f7e86(-1, 0), 1.0, 0, 0, 786603, 0xbf800000);
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [TASK_GO_TO_COORD_ANY_MEANS](?\_0x5BC448CB78FA3E88).**
-		/// </summary>
-		public static void TaskGoToCoordAnyMeans_CFX(int _ped, float _x, float _y, float _z, float _speed, int _p5, bool _p6, int _walkingStyle, float _p8)
-		{
-			Function.Call((Hash)0xF91DF93B, _ped, _x, _y, _z, _speed, _p5, _p6, _walkingStyle, _p8);
-		}
-		/// <summary>
-		/// [Animations list](https://alexguirre.github.io/animations-list/)
-		/// 
-		/// ```
-		/// float blendInSpeed > normal speed is 8.0f
-		/// ----------------------
-		/// float blendOutSpeed > normal speed is 8.0f
-		/// ----------------------
-		/// int duration: time in millisecond
-		/// ----------------------
-		/// -1 _ _ _ _ _ _ _> Default (see flag)
-		/// 0 _ _ _ _ _ _ _ > Not play at all
-		/// Small value _ _ > Slow down animation speed
-		/// Other _ _ _ _ _ > freeze player control until specific time (ms) has
-		/// _ _ _ _ _ _ _ _ _ passed. (No effect if flag is set to be
-		/// _ _ _ _ _ _ _ _ _ controllable.)
-		/// int flag:
-		/// ----------------------
-		/// enum eAnimationFlags
-		/// {
-		/// ANIM_FLAG_NORMAL = 0,
-		/// ANIM_FLAG_REPEAT = 1,
-		/// ANIM_FLAG_STOP_LAST_FRAME = 2,
-		/// ANIM_FLAG_UPPERBODY = 16,
-		/// ANIM_FLAG_ENABLE_PLAYER_CONTROL = 32,
-		/// ANIM_FLAG_CANCELABLE = 120,
-		/// };
-		/// Odd number : loop infinitely
-		/// Even number : Freeze at last frame
-		/// Multiple of 4: Freeze at last frame but controllable
-		/// 01 to 15 > Full body
-		/// 10 to 31 > Upper body
-		/// 32 to 47 > Full body > Controllable
-		/// 48 to 63 > Upper body > Controllable
-		/// ...
-		/// 001 to 255 > Normal
-		/// 256 to 511 > Garbled
-		/// ...
-		/// playbackRate:
-		/// values are between 0.0 and 1.0
-		/// lockX:
-		/// 0 in most cases 1 for rcmepsilonism8 and rcmpaparazzo_3
-		/// > 1 for mini@sprunk
-		/// lockY:
-		/// 0 in most cases
-		/// 1 for missfam5_yoga, missfra1mcs_2_crew_react
-		/// lockZ:
-		/// 0 for single player
-		/// Can be 1 but only for MP
-		/// ```
-		/// 
-		/// **This is the server-side RPC native equivalent of the client native [TASK_PLAY_ANIM](?\_0xEA47FE3719165B94).**
-		/// </summary>
-		public static void TaskPlayAnim_CFX(int _ped, string _animDictionary, string _animationName, float _blendInSpeed, float _blendOutSpeed, int _duration, int _flag, float _playbackRate, bool _lockX, bool _lockY, bool _lockZ)
-		{
-			Function.Call((Hash)0x5AB552C6, _ped, _animDictionary, _animationName, _blendInSpeed, _blendOutSpeed, _duration, _flag, _playbackRate, _lockX, _lockY, _lockZ);
-		}
 		// :####################: //
 		// : namespace: BUILTIN : //
 		// :####################: //
@@ -58090,6 +52278,5818 @@ namespace RedLib
 		public static void Hash_0xccb4635a071fb62d()
 		{
 			Function.Call((Hash)0xCCB4635A071FB62D);
+		}
+		// :################: //
+		// : namespace: CFX : //
+		// :################: //
+		/// <summary>
+		/// Adds an output for the specified audio submix.
+		/// </summary>
+		public static void AddAudioSubmixOutput(int _submixId, int _outputSubmixId)
+		{
+			Function.Call((Hash)0xAC6E290D, _submixId, _outputSubmixId);
+		}
+		/// <summary>
+		/// Loads a minimap overlay from a GFx file in the current resource.
+		/// </summary>
+		public static int AddMinimapOverlay(string _name)
+		{
+			return Function.Call<int>((Hash)0x4AFD2499, _name);
+		}
+		/// <summary>
+		/// Experimental natives, please do not use in a live environment.
+		/// </summary>
+		public static void AddReplaceTexture(string _origTxd, string _origTxn, string _newTxd, string _newTxn)
+		{
+			Function.Call((Hash)0xA66F8F75, _origTxd, _origTxn, _newTxd, _newTxn);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void AddTextEntry(string _entryKey, string _entryText)
+		{
+			Function.Call((Hash)0x32CA01C3, _entryKey, _entryText);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void AddTextEntryByHash(uint _entryKey, string _entryText)
+		{
+			Function.Call((Hash)0x289DA860, _entryKey, _entryText);
+		}
+		/// <summary>
+		/// Cancels the currently executing event.
+		/// </summary>
+		public static void CancelEvent()
+		{
+			Function.Call((Hash)0xFA29D35D);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void EndFindObject(int _findHandle)
+		{
+			Function.Call((Hash)0xDEDA4E50, _findHandle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void EndFindKvp(int _handle)
+		{
+			Function.Call((Hash)0xB3210203, _handle);
+		}
+		/// <summary>
+		/// Returns whether or not the specified player has enough information to start a commerce session for.
+		/// </summary>
+		public static bool CanPlayerStartCommerceSession(string _playerSrc)
+		{
+			return Function.Call<bool>((Hash)0x429461C3, _playerSrc);
+		}
+		/// <summary>
+		/// This is similar to the PushScaleformMovieFunction natives, except it calls in the `TIMELINE` of a minimap overlay.
+		/// </summary>
+		public static bool CallMinimapScaleformFunction(int _miniMap, string _fnName)
+		{
+			return Function.Call<bool>((Hash)0x4C89C0ED, _miniMap, _fnName);
+		}
+		/// <summary>
+		/// Adds a handler for changes to a state bag.
+		/// 
+		/// The function called expects to match the following signature:
+		/// 
+		/// ```ts
+		/// function StateBagChangeHandler(bagName: string, key: string, value: any, reserved: number, replicated: boolean);
+		/// ```
+		/// 
+		/// *   **bagName**: The internal bag ID for the state bag which changed. This is usually `player:Source`, `entity:NetID`
+		///     or `localEntity:Handle`.
+		/// *   **key**: The changed key.
+		/// *   **value**: The new value stored at key. The old value is still stored in the state bag at the time this callback executes.
+		/// *   **reserved**: Currently unused.
+		/// *   **replicated**: Whether the set is meant to be replicated.
+		/// 
+		/// At this time, the change handler can't opt to reject changes.
+		/// 
+		/// If bagName refers to an entity, use [GET_ENTITY_FROM_STATE_BAG_NAME](?\_0x4BDF1868) to get the entity handle
+		/// If bagName refers to a player, use [GET_PLAYER_FROM_STATE_BAG_NAME](?\_0xA56135E0) to get the player handle
+		/// </summary>
+		public static int AddStateBagChangeHandler(string _keyFilter, string _bagFilter, InputArgument _handler)
+		{
+			return Function.Call<int>((Hash)0x5BA35AAF, _keyFilter, _bagFilter, _handler);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void EndFindPed(int _findHandle)
+		{
+			Function.Call((Hash)0x9615C2AD, _findHandle);
+		}
+		/// <summary>
+		/// Removes vehicle xenon lights custom RGB color.
+		/// </summary>
+		public static void ClearVehicleXenonLightsCustomColor(int _vehicle)
+		{
+			Function.Call((Hash)0x2867ED8C, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void EndFindVehicle(int _findHandle)
+		{
+			Function.Call((Hash)0x9227415A, _findHandle);
+		}
+		/// <summary>
+		/// Commits the backing pixels to the specified runtime texture.
+		/// </summary>
+		public static void CommitRuntimeTexture(long _tex)
+		{
+			Function.Call((Hash)0x19D81F4E, _tex);
+		}
+		/// <summary>
+		/// Internal function for ensuring an entity has a state bag.
+		/// </summary>
+		public static void EnsureEntityStateBag(int _entity)
+		{
+			Function.Call((Hash)0x3BB78F05, _entity);
+		}
+		/// <summary>
+		/// Creates a volume where water effects do not apply.
+		/// Useful for preventing water collisions from flooding areas underneath them.
+		/// This has no effect on waterquads, only water created from drawables and collisions.
+		/// Don't create volumes when your local ped is swimming (e.g. use IS_PED_SWIMMING in your scripts before you call this)
+		/// </summary>
+		public static int CreateDryVolume(float _xMin, float _yMin, float _zMin, float _xMax, float _yMax, float _zMax)
+		{
+			return Function.Call<int>((Hash)0xEB1C6DD, _xMin, _yMin, _zMin, _xMax, _yMax, _zMax);
+		}
+		/// <summary>
+		/// Creates an audio submix with the specified name, or gets the existing audio submix by that name.
+		/// </summary>
+		public static int CreateAudioSubmix(string _name)
+		{
+			return Function.Call<int>((Hash)0x658D2BC8, _name);
+		}
+		/// <summary>
+		/// Creates a DUI browser. This can be used to draw on a runtime texture using CREATE_RUNTIME_TEXTURE_FROM_DUI_HANDLE.
+		/// </summary>
+		public static long CreateDui(string _url, int _width, int _height)
+		{
+			return Function.Call<long>((Hash)0x23EAF899, _url, _width, _height);
+		}
+		/// <summary>
+		/// Returns the current console output buffer.
+		/// </summary>
+		public static string GetConsoleBuffer()
+		{
+			return Function.Call<string>((Hash)0xE57429FA);
+		}
+		/// <summary>
+		/// Creates a runtime texture dictionary with the specified name.
+		/// Example:
+		/// 
+		/// ```lua
+		/// local txd = CreateRuntimeTxd('meow')
+		/// ```
+		/// </summary>
+		public static long CreateRuntimeTxd(string _name)
+		{
+			return Function.Call<long>((Hash)0x1F3AC778, _name);
+		}
+		/// <summary>
+		/// Creates a runtime texture from a DUI handle.
+		/// </summary>
+		public static long CreateRuntimeTextureFromDuiHandle(long _txd, string _txn, string _duiHandle)
+		{
+			return Function.Call<long>((Hash)0xB135472B, _txd, _txn, _duiHandle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void ExecuteCommand(string _commandString)
+		{
+			Function.Call((Hash)0x561C060B, _commandString);
+		}
+		/// <summary>
+		/// This native is not implemented.
+		/// </summary>
+		public static int ExperimentalLoadCloneCreate(string _data, int _objectId, string _tree)
+		{
+			return Function.Call<int>((Hash)0xD2CB95A3, _data, _objectId, _tree);
+		}
+		/// <summary>
+		/// Deletes the specified entity.
+		/// </summary>
+		public static void DeleteEntity_CFX(int _entity)
+		{
+			Function.Call((Hash)0xFAA3D236, _entity);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void EndFindPickup(int _findHandle)
+		{
+			Function.Call((Hash)0x3C407D53, _findHandle);
+		}
+		/// <summary>
+		/// Creates a runtime texture from the specified file in the current resource or a base64 data URL.
+		/// </summary>
+		public static long CreateRuntimeTextureFromImage(long _txd, string _txn, string _fileName)
+		{
+			return Function.Call<long>((Hash)0x786D8BC3, _txd, _txn, _fileName);
+		}
+		/// <summary>
+		/// Returns the world matrix of the specified camera. To turn this into a view matrix, calculate the inverse.
+		/// </summary>
+		public static void GetCamMatrix(int _camera, Vector3 _rightVector, Vector3 _forwardVector, Vector3 _upVector, Vector3 _position)
+		{
+			Function.Call((Hash)0x8F57A89D, _camera, _rightVector, _forwardVector, _upVector, _position);
+		}
+		/// <summary>
+		/// Creates a blank runtime texture.
+		/// </summary>
+		public static long CreateRuntimeTexture(long _txd, string _txn, int _width, int _height)
+		{
+			return Function.Call<long>((Hash)0xFEC3766D, _txd, _txn, _width, _height);
+		}
+		/// <summary>
+		/// This native is not implemented.
+		/// </summary>
+		public static void ExperimentalLoadCloneSync(int _entity, string _data)
+		{
+			Function.Call((Hash)0x6BC189AC, _entity, _data);
+		}
+		/// <summary>
+		/// Can be used to get a console variable of type `char*`, for example a string.
+		/// </summary>
+		public static string GetConvar(string _varName, string _default_)
+		{
+			return Function.Call<string>((Hash)0x6CCD2564, _varName, _default_);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void DeleteResourceKvp(string _key)
+		{
+			Function.Call((Hash)0x7389B5DF, _key);
+		}
+		/// <summary>
+		/// This native is not implemented.
+		/// </summary>
+		public static string ExperimentalSaveCloneCreate(int _entity)
+		{
+			return Function.Call<string>((Hash)0x9D65CAD2, _entity);
+		}
+		/// <summary>
+		/// Nonsynchronous [DELETE_RESOURCE_KVP](#\_0x7389B5DF) operation; see [FLUSH_RESOURCE_KVP](#\_0x5240DA5A).
+		/// </summary>
+		public static void DeleteResourceKvpNoSync(string _key)
+		{
+			Function.Call((Hash)0x4152C90, _key);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int FindFirstObject(int _outEntity)
+		{
+			return Function.Call<int>((Hash)0xFAA6CB5D, _outEntity);
+		}
+		/// <summary>
+		/// This native returns the currently used game's name.
+		/// </summary>
+		public static string GetCurrentGameName()
+		{
+			return Function.Call<string>((Hash)0xACA18ECD);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void DeleteFunctionReference(string _referenceIdentity)
+		{
+			Function.Call((Hash)0x1E86F206, _referenceIdentity);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int FindFirstPed(int _outEntity)
+		{
+			return Function.Call<int>((Hash)0xFB012961, _outEntity);
+		}
+		/// <summary>
+		/// This native is not implemented.
+		/// </summary>
+		public static string ExperimentalSaveCloneSync(int _entity)
+		{
+			return Function.Call<string>((Hash)0x38D19210, _entity);
+		}
+		/// <summary>
+		/// Disables the game's afk camera that starts panning around after 30 seconds of inactivity.
+		/// </summary>
+		public static void DisableIdleCamera(bool _state)
+		{
+			Function.Call((Hash)0x3D5AB7F0, _state);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int FindFirstPickup(int _outEntity)
+		{
+			return Function.Call<int>((Hash)0x3FF9D340, _outEntity);
+		}
+		/// <summary>
+		/// Destroys a DUI browser.
+		/// </summary>
+		public static void DestroyDui(long _duiObject)
+		{
+			Function.Call((Hash)0xA085CB10, _duiObject);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool FindNextPickup(int _findHandle, int _outEntity)
+		{
+			return Function.Call<bool>((Hash)0x4107EF0F, _findHandle, _outEntity);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int DoorSystemGetSize()
+		{
+			return Function.Call<int>((Hash)0x237613B3);
+		}
+		/// <summary>
+		/// Returns the name of the currently executing resource.
+		/// </summary>
+		public static string GetCurrentResourceName()
+		{
+			return Function.Call<string>((Hash)0xE5E9EBBB);
+		}
+		/// <summary>
+		/// Requests whether or not the player owns the specified SKU.
+		/// </summary>
+		public static bool DoesPlayerOwnSku(string _playerSrc, int _skuId)
+		{
+			return Function.Call<bool>((Hash)0x167ABA27, _playerSrc, _skuId);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void GetInteriorEntitiesExtents(int _interiorId, float _bbMinX, float _bbMinY, float _bbMinZ, float _bbMaxX, float _bbMaxY, float _bbMaxZ)
+		{
+			Function.Call((Hash)0x322B1192, _interiorId, _bbMinX, _bbMinY, _bbMinZ, _bbMaxX, _bbMaxY, _bbMaxZ);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool FindNextObject(int _findHandle, int _outEntity)
+		{
+			return Function.Call<bool>((Hash)0x4E129DBF, _findHandle, _outEntity);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetInstanceId()
+		{
+			return Function.Call<int>((Hash)0x9F1C4383);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static string FindKvp(int _handle)
+		{
+			return Function.Call<string>((Hash)0xBD7BEBC5, _handle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool FindNextPed(int _findHandle, int _outEntity)
+		{
+			return Function.Call<bool>((Hash)0xAB09B548, _findHandle, _outEntity);
+		}
+		/// <summary>
+		/// Can be used to get a console variable casted back to `int` (an integer value).
+		/// </summary>
+		public static int GetConvarInt(string _varName, int _default_)
+		{
+			return Function.Call<int>((Hash)0x935C0AB2, _varName, _default_);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int FindFirstVehicle(int _outEntity)
+		{
+			return Function.Call<int>((Hash)0x15E55694, _outEntity);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool DoesEntityExist_CFX(int _entity)
+		{
+			return Function.Call<bool>((Hash)0x3AC90869, _entity);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void EnableEnhancedHostSupport(bool _enabled)
+		{
+			Function.Call((Hash)0xF97B1C93, _enabled);
+		}
+		/// <summary>
+		/// Returns a list of door system entries: a door system hash (see [ADD_DOOR_TO_SYSTEM](#\_0x6F8838D03D1DC226)) and its object handle.
+		/// 
+		/// The data returned adheres to the following layout:
+		/// 
+		/// ```
+		/// [{doorHash1, doorHandle1}, ..., {doorHashN, doorHandleN}]
+		/// ```
+		/// </summary>
+		public static InputArgument DoorSystemGetActive()
+		{
+			return Function.Call<InputArgument>((Hash)0xF65BBA4B);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static string DuplicateFunctionReference(string _referenceIdentity)
+		{
+			return Function.Call<string>((Hash)0xF4E2079D, _referenceIdentity);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void DropPlayer(string _playerSrc, string _reason)
+		{
+			Function.Call((Hash)0xBA0613E1, _playerSrc, _reason);
+		}
+		/// <summary>
+		/// Returns entity's archetype name, if available.
+		/// </summary>
+		public static string GetEntityArchetypeName(int _entity)
+		{
+			return Function.Call<string>((Hash)0x47B870F5, _entity);
+		}
+		/// <summary>
+		/// Returns the NUI window handle for a specified DUI browser object.
+		/// </summary>
+		public static string GetDuiHandle(long _duiObject)
+		{
+			return Function.Call<string>((Hash)0x1655D41D, _duiObject);
+		}
+		/// <summary>
+		/// Requests whether or not the player owns the specified package.
+		/// </summary>
+		public static bool DoesPlayerOwnSkuExt(string _playerSrc, int _skuId)
+		{
+			return Function.Call<bool>((Hash)0xDEF0480B, _playerSrc, _skuId);
+		}
+		/// <summary>
+		/// Returns the peer address of the remote game server that the user is currently connected to.
+		/// </summary>
+		public static string GetCurrentServerEndpoint()
+		{
+			return Function.Call<string>((Hash)0xEA11BFBA);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void FlagServerAsPrivate(bool _private_)
+		{
+			Function.Call((Hash)0x13B6855D, _private_);
+		}
+		/// <summary>
+		/// Gets the entity that this entity is attached to.
+		/// </summary>
+		public static int GetEntityAttachedTo_CFX(int _entity)
+		{
+			return Function.Call<int>((Hash)0xFE1589F9, _entity);
+		}
+		/// <summary>
+		/// Returns all player indices for 'active' physical players known to the client.
+		/// The data returned adheres to the following layout:
+		/// 
+		/// ```
+		/// [127, 42, 13, 37]
+		/// ```
+		/// </summary>
+		public static InputArgument GetActivePlayers()
+		{
+			return Function.Call<InputArgument>((Hash)0xCF143FB9);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetNumResources()
+		{
+			return Function.Call<int>((Hash)0x863F27B);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void GetInteriorPortalCornerPosition(int _interiorId, int _portalIndex, int _cornerIndex, float _posX, float _posY, float _posZ)
+		{
+			Function.Call((Hash)0xF772BB2C, _interiorId, _portalIndex, _cornerIndex, _posX, _posY, _posZ);
+		}
+		/// <summary>
+		/// Returns all object handles known to the server.
+		/// The data returned adheres to the following layout:
+		/// 
+		/// ```
+		/// [127, 42, 13, 37]
+		/// ```
+		/// </summary>
+		public static InputArgument GetAllObjects()
+		{
+			return Function.Call<InputArgument>((Hash)0x6886C3FE);
+		}
+		/// <summary>
+		/// Gets the current coordinates for a specified entity. This native is used server side when using OneSync.
+		/// 
+		/// See [GET_ENTITY_COORDS](#\_0x3FEF770D40960D5A) for client side.
+		/// </summary>
+		public static Vector3 GetEntityCoords_CFX(int _entity)
+		{
+			return Function.Call<Vector3>((Hash)0x1647F1CB, _entity);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static Vector3 GetEntityRotationVelocity(int _entity)
+		{
+			return Function.Call<Vector3>((Hash)0x9BF8A73F, _entity);
+		}
+		/// <summary>
+		/// Currently it only works with peds.
+		/// </summary>
+		public static int GetEntityHealth_CFX(int _entity)
+		{
+			return Function.Call<int>((Hash)0x8E3222B7, _entity);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetEntityHeading_CFX(int _entity)
+		{
+			return Function.Call<float>((Hash)0x972CC383, _entity);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetAirDragMultiplierForPlayersVehicle(string _playerSrc)
+		{
+			return Function.Call<float>((Hash)0x62FC38D0, _playerSrc);
+		}
+		/// <summary>
+		/// Returns all rope handles. The data returned adheres to the following layout:
+		/// 
+		/// ```
+		/// [ 770, 1026, 1282, 1538, 1794, 2050, 2306, 2562, 2818, 3074, 3330, 3586, 3842, 4098, 4354, 4610, ...]
+		/// ```
+		/// </summary>
+		public static InputArgument GetAllRopes()
+		{
+			return Function.Call<InputArgument>((Hash)0x760A2D67);
+		}
+		/// <summary>
+		/// Gets the amount of metadata values with the specified key existing in the specified resource's manifest.
+		/// See also: [Resource manifest](https://docs.fivem.net/resources/manifest/)
+		/// </summary>
+		public static int GetNumResourceMetadata(string _resourceName, string _metadataKey)
+		{
+			return Function.Call<int>((Hash)0x776E864, _resourceName, _metadataKey);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static Vector3 GetEntityRotation_CFX(int _entity)
+		{
+			return Function.Call<Vector3>((Hash)0x8FF45B04, _entity);
+		}
+		/// <summary>
+		/// Currently it only works with peds.
+		/// </summary>
+		public static int GetEntityMaxHealth_CFX(int _entity)
+		{
+			return Function.Call<int>((Hash)0xC7AE6AA1, _entity);
+		}
+		/// <summary>
+		/// Returns all vehicle handles known to the server.
+		/// The data returned adheres to the following layout:
+		/// 
+		/// ```
+		/// [127, 42, 13, 37]
+		/// ```
+		/// </summary>
+		public static InputArgument GetAllVehicles()
+		{
+			return Function.Call<InputArgument>((Hash)0x332169F5);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static uint GetEntityModel_CFX(int _entity)
+		{
+			return Function.Call<uint>((Hash)0xDAFCB3EC, _entity);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetInteriorPortalEntityCount(int _interiorId, int _portalIndex)
+		{
+			return Function.Call<int>((Hash)0xC68021B, _interiorId, _portalIndex);
+		}
+		/// <summary>
+		/// A getter for [SET_AMBIENT_VEHICLE_RANGE_MULTIPLIER_THIS_FRAME](#\_0x90B6DA738A9A25DA).
+		/// </summary>
+		public static float GetAmbientVehicleRangeMultiplier()
+		{
+			return Function.Call<float>((Hash)0x667EC929);
+		}
+		/// <summary>
+		/// A getter for [SET_AMBIENT_PED_RANGE_MULTIPLIER_THIS_FRAME](#\_0x0B919E1FB47CC4E0).
+		/// </summary>
+		public static float GetAmbientPedRangeMultiplier()
+		{
+			return Function.Call<float>((Hash)0xB550232D);
+		}
+		/// <summary>
+		/// This native gets an entity's population type.
+		/// </summary>
+		public static int GetEntityPopulationType_CFX(int _entity)
+		{
+			return Function.Call<int>((Hash)0xFC30DDFF, _entity);
+		}
+		/// <summary>
+		/// Returns the entity handle for the specified state bag name. For use with [ADD_STATE_BAG_CHANGE_HANDLER](?\_0x5BA35AAF).
+		/// </summary>
+		public static int GetEntityFromStateBagName(string _bagName)
+		{
+			return Function.Call<int>((Hash)0x4BDF1867, _bagName);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetInteriorPortalCount(int _interiorId)
+		{
+			return Function.Call<int>((Hash)0xD05BB8B1, _interiorId);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void GetInteriorPortalEntityPosition(int _interiorId, int _portalIndex, int _entityIndex, float _posX, float _posY, float _posZ)
+		{
+			Function.Call((Hash)0x9B7AB83C, _interiorId, _portalIndex, _entityIndex, _posX, _posY, _posZ);
+		}
+		/// <summary>
+		/// Returns all peds handles known to the server.
+		/// The data returned adheres to the following layout:
+		/// 
+		/// ```
+		/// [127, 42, 13, 37]
+		/// ```
+		/// </summary>
+		public static InputArgument GetAllPeds()
+		{
+			return Function.Call<InputArgument>((Hash)0xB8584FEF);
+		}
+		/// <summary>
+		/// Nonsynchronous operations will not wait for a disk/filesystem flush before returning from a write or delete call. They will be much faster than their synchronous counterparts (e.g., bulk operations), however, a system crash may lose the data to some recent operations.
+		/// 
+		/// This native ensures all `_NO_SYNC` operations are synchronized with the disk/filesystem.
+		/// </summary>
+		public static void FlushResourceKvp()
+		{
+			Function.Call((Hash)0xE27C97A0);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void GetInteriorPortalEntityRotation(int _interiorId, int _portalIndex, int _entityIndex, float _rotX, float _rotY, float _rotZ, float _rotW)
+		{
+			Function.Call((Hash)0x9F9CEB63, _interiorId, _portalIndex, _entityIndex, _rotX, _rotY, _rotZ, _rotW);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetInteriorPortalEntityArchetype(int _interiorId, int _portalIndex, int _entityIndex)
+		{
+			return Function.Call<int>((Hash)0x9A0E1700, _interiorId, _portalIndex, _entityIndex);
+		}
+		/// <summary>
+		/// Returns all registered vehicle model names, including non-dlc vehicles and custom vehicles in no particular order.
+		/// 
+		/// **Example output**
+		/// 
+		/// ```
+		/// 	["dubsta", "dubsta2", "dubsta3", "myverycoolcar", "sultan", "sultanrs", ...]
+		/// ```
+		/// 
+		/// This native will not return vehicles that are unregistered (i.e from a resource being stopped) during runtime.
+		/// </summary>
+		public static InputArgument GetAllVehicleModels()
+		{
+			return Function.Call<InputArgument>((Hash)0xD7531645);
+		}
+		/// <summary>
+		/// Forces the game snow pass to render.
+		/// </summary>
+		public static void ForceSnowPass(bool _enabled)
+		{
+			Function.Call((Hash)0xE6E16170, _enabled);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetPlayerMaxArmour(string _playerSrc)
+		{
+			return Function.Call<int>((Hash)0x2A50657, _playerSrc);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static Vector3 GetEntityVelocity_CFX(int _entity)
+		{
+			return Function.Call<Vector3>((Hash)0xC14C9B6B, _entity);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static string GetEntityScript_CFX(int _entity)
+		{
+			return Function.Call<string>((Hash)0xB7F70784, _entity);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetPlayerLastMsg(string _playerSrc)
+		{
+			return Function.Call<int>((Hash)0x427E8E6A, _playerSrc);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static uint GetPedCauseOfDeath_CFX(int _ped)
+		{
+			return Function.Call<uint>((Hash)0x63458C27, _ped);
+		}
+		/// <summary>
+		/// A getter for [SET_PARKED_VEHICLE_DENSITY_MULTIPLIER_THIS_FRAME](#\_0xEAE6DCC7EEE3DB1D).
+		/// </summary>
+		public static float GetParkedVehicleDensityMultiplier()
+		{
+			return Function.Call<float>((Hash)0xFF72DF84);
+		}
+		/// <summary>
+		/// Returns the current game being executed.
+		/// 
+		/// Possible values:
+		/// 
+		/// | Return value | Meaning                        |
+		/// | ------------ | ------------------------------ |
+		/// | `fxserver`   | Server-side code ('Duplicity') |
+		/// | `fivem`      | FiveM for GTA V                |
+		/// | `libertym`   | LibertyM for GTA IV            |
+		/// | `redm`       | RedM for Red Dead Redemption 2 |
+		/// </summary>
+		public static string GetGameName()
+		{
+			return Function.Call<string>((Hash)0xE8EAA18B);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetInteriorPortalEntityFlag(int _interiorId, int _portalIndex, int _entityIndex)
+		{
+			return Function.Call<int>((Hash)0x9DA2E811, _interiorId, _portalIndex, _entityIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static string GetPasswordHash(string _password)
+		{
+			return Function.Call<string>((Hash)0x23473EA4, _password);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool FindNextVehicle(int _findHandle, int _outEntity)
+		{
+			return Function.Call<bool>((Hash)0x8839120D, _findHandle, _outEntity);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetInteriorPortalRoomFrom(int _interiorId, int _portalIndex)
+		{
+			return Function.Call<int>((Hash)0xAA9C141D, _interiorId, _portalIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void GetInteriorPosition_CFX(int _interiorId, float _posX, float _posY, float _posZ)
+		{
+			Function.Call((Hash)0x77A435B0, _interiorId, _posX, _posY, _posZ);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static string GetInteriorRoomName(int _interiorId, int _roomIndex)
+		{
+			return Function.Call<string>((Hash)0x11755DF2, _interiorId, _roomIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void GetInteriorRoomExtents(int _interiorId, int _roomIndex, float _bbMinX, float _bbMinY, float _bbMinZ, float _bbMaxX, float _bbMaxY, float _bbMaxZ)
+		{
+			Function.Call((Hash)0xF9E795DD, _interiorId, _roomIndex, _bbMinX, _bbMinY, _bbMinZ, _bbMaxX, _bbMaxY, _bbMaxZ);
+		}
+		/// <summary>
+		/// Gets the current game timer in milliseconds.
+		/// </summary>
+		public static long GetGameTimer_CFX()
+		{
+			return Function.Call<long>((Hash)0xA4EA0691);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetInteriorRoomIndexByHash(int _interiorId, int _roomHash)
+		{
+			return Function.Call<int>((Hash)0xE0EE05F8, _interiorId, _roomHash);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetInteriorRoomFlag(int _interiorId, int _roomIndex)
+		{
+			return Function.Call<int>((Hash)0x6B7AF743, _interiorId, _roomIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetInteriorPortalRoomTo(int _interiorId, int _portalIndex)
+		{
+			return Function.Call<int>((Hash)0x3F47F0E8, _interiorId, _portalIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetHeliTailRotorHealth(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0xA41BC13D, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetHeliMainRotorHealth(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0xF01E2AAB, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetInteriorRoomTimecycle(int _interiorId, int _roomIndex)
+		{
+			return Function.Call<int>((Hash)0x82BA3F88, _interiorId, _roomIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static string GetHostId()
+		{
+			return Function.Call<string>((Hash)0x5F70F5A3);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetInteriorPortalFlag(int _interiorId, int _portalIndex)
+		{
+			return Function.Call<int>((Hash)0xC74DA47C, _interiorId, _portalIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetRopeLengthChangeRate(int _rope)
+		{
+			return Function.Call<float>((Hash)0x66D70EA3, _rope);
+		}
+		/// <summary>
+		/// Returns a list of entity handles (script GUID) for all entities in the specified pool - the data returned is an array as
+		/// follows:
+		/// 
+		/// ```json
+		/// [ 770, 1026, 1282, 1538, 1794, 2050, 2306, 2562, 2818, 3074, 3330, 3586, 3842, 4098, 4354, 4610, ...]
+		/// ```
+		/// 
+		/// ### Supported pools
+		/// 
+		/// *   `CPed`: Peds (including animals) and players.
+		/// *   `CObject`: Objects (props), doors, and projectiles.
+		/// *   `CVehicle`: Vehicles.
+		/// *   `CPickup`: Pickups.
+		/// </summary>
+		public static InputArgument GetGamePool(string _poolName)
+		{
+			return Function.Call<InputArgument>((Hash)0x2B9D4F50, _poolName);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetPedDesiredHeading(int _ped)
+		{
+			return Function.Call<float>((Hash)0xC182F76E, _ped);
+		}
+		/// <summary>
+		/// Gets the entity type (as an integer), which can be one of the following defined down below:
+		/// 
+		/// **The following entities will return type `2`:**
+		/// 
+		/// *   Automobile
+		/// *   Bike
+		/// *   Boat
+		/// *   Heli
+		/// *   Plane
+		/// *   Submarine
+		/// *   Trailer
+		/// *   Train
+		/// *   DraftVeh (Red Dead Redemption 2)
+		/// 
+		/// **The following entities will return type `1`:**
+		/// 
+		/// *   Ped
+		/// *   Player
+		/// *   Animal (Red Dead Redemption 2)
+		/// *   Horse (Red Dead Redemption 2)
+		/// 
+		/// **The following entities will return type `3`:**
+		/// 
+		/// *   Object
+		/// *   Door
+		/// *   Pickup
+		/// 
+		/// Otherwise, a value of `0` will be returned.
+		/// </summary>
+		public static int GetEntityType_CFX(int _entity)
+		{
+			return Function.Call<int>((Hash)0xB1BD08D, _entity);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetPlayerMaxHealth(string _playerSrc)
+		{
+			return Function.Call<int>((Hash)0x8154E470, _playerSrc);
+		}
+		/// <summary>
+		/// This native converts the passed string to a hash.
+		/// </summary>
+		public static uint GetHashKey_CFX(string _model)
+		{
+			return Function.Call<uint>((Hash)0x98EFF6F1, _model);
+		}
+		/// <summary>
+		/// Returns the internal build number of the current game being executed.
+		/// 
+		/// Possible values:
+		/// 
+		/// *   FiveM
+		///     *   1604
+		///     *   2060
+		///     *   2189
+		///     *   2372
+		///     *   2545
+		///     *   2612
+		///     *   2699
+		/// *   RedM
+		///     *   1311
+		///     *   1355
+		///     *   1436
+		///     *   1491
+		/// *   LibertyM
+		///     *   43
+		/// *   FXServer
+		///     *   0
+		/// </summary>
+		public static int GetGameBuildNumber()
+		{
+			return Function.Call<int>((Hash)0x804B9F7B);
+		}
+		/// <summary>
+		/// Returns a list of decorations applied to a ped.
+		/// 
+		/// The data returned adheres to the following layout:
+		/// 
+		/// ```
+		/// [ [ collectionHash1, overlayHash1 ], ..., [c ollectionHashN, overlayHashN ] ]
+		/// ```
+		/// 
+		/// This command will return undefined data if invoked on a remote player ped.
+		/// </summary>
+		public static InputArgument GetPedDecorations(int _ped)
+		{
+			return Function.Call<InputArgument>((Hash)0x7CCE1163, _ped);
+		}
+		/// <summary>
+		/// Gets the current speed of the entity in meters per second.
+		/// 
+		/// ```
+		/// To convert to MPH: speed * 2.236936
+		/// To convert to KPH: speed * 3.6
+		/// ```
+		/// </summary>
+		public static float GetEntitySpeed_CFX(int _entity)
+		{
+			return Function.Call<float>((Hash)0x9E1E4798, _entity);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static string GetInvokingResource()
+		{
+			return Function.Call<string>((Hash)0x4D52FE5B);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetPedMovementClipset(int _ped)
+		{
+			return Function.Call<int>((Hash)0x69E81E3D, _ped);
+		}
+		/// <summary>
+		/// A getter for [\_SET_PED_HAIR_COLOR](#\_0x4CFFC65454C93A49). Returns -1 if fails to get.
+		/// </summary>
+		public static int GetPedHairHighlightColor(int _ped)
+		{
+			return Function.Call<int>((Hash)0x4B087305, _ped);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetInteriorRoomCount(int _interiorId)
+		{
+			return Function.Call<int>((Hash)0xA2737C2C, _interiorId);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetRopeTimeMultiplier(int _rope)
+		{
+			return Function.Call<float>((Hash)0xF341E6CA, _rope);
+		}
+		/// <summary>
+		/// A getter for [SET_PLAYER_MELEE_WEAPON_DEFENSE_MODIFIER](#\_0xAE540335B4ABC4E2).
+		/// </summary>
+		public static float GetPlayerMeleeWeaponDefenseModifier(int _playerId)
+		{
+			return Function.Call<float>((Hash)0x27E94EF8, _playerId);
+		}
+		/// <summary>
+		/// A getter for [SET_PED_DENSITY_MULTIPLIER_THIS_FRAME](#\_0x95E3D6257B166CF2).
+		/// </summary>
+		public static float GetPedDensityMultiplier()
+		{
+			return Function.Call<float>((Hash)0xF5A904F9);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetPlayerMaxStamina(int _playerId)
+		{
+			return Function.Call<float>((Hash)0xD014AB79, _playerId);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool GetIsVehicleSecondaryColourCustom(int _vehicle)
+		{
+			return Function.Call<bool>((Hash)0x288AD228, _vehicle);
+		}
+		/// <summary>
+		/// Gets the script task command currently assigned to the ped.
+		/// </summary>
+		public static uint GetPedScriptTaskCommand(int _ped)
+		{
+			return Function.Call<uint>((Hash)0x84FE084, _ped);
+		}
+		/// <summary>
+		/// A getter for [\_SET_PED_FACE_FEATURE](#\_0x71A5C1DBA060049E). Returns 0.0 if fails to get.
+		/// </summary>
+		public static float GetPedFaceFeature_CFX(int _ped, int _index)
+		{
+			return Function.Call<float>((Hash)0xBA352ADD, _ped, _index);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetPedMaxHealth_CFX(int _ped)
+		{
+			return Function.Call<int>((Hash)0xA45B6C8D, _ped);
+		}
+		/// <summary>
+		/// A getter for [\_SET_PED_HAIR_COLOR](#\_0x4CFFC65454C93A49). Returns -1 if fails to get.
+		/// </summary>
+		public static int GetPedHairColor(int _ped)
+		{
+			return Function.Call<int>((Hash)0xA3EA2893, _ped);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetPedInVehicleSeat_CFX(int _vehicle, int _seatIndex)
+		{
+			return Function.Call<int>((Hash)0x388FDE9A, _vehicle, _seatIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetNumPlayerIndices()
+		{
+			return Function.Call<int>((Hash)0x63D13184);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetPedArmour(int _ped)
+		{
+			return Function.Call<int>((Hash)0x2CE311A7, _ped);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetLastPedInVehicleSeat_CFX(int _vehicle, int _seatIndex)
+		{
+			return Function.Call<int>((Hash)0xF7C6792D, _vehicle, _seatIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetPlayerPing(string _playerSrc)
+		{
+			return Function.Call<int>((Hash)0xFF1290D4, _playerSrc);
+		}
+		/// <summary>
+		/// Gets the stage of the peds scripted task.
+		/// </summary>
+		public static int GetPedScriptTaskStage(int _ped)
+		{
+			return Function.Call<int>((Hash)0x44B0E5E2, _ped);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool GetNetworkWalkMode()
+		{
+			return Function.Call<bool>((Hash)0x2CAFD5E9);
+		}
+		/// <summary>
+		/// Gets the routing bucket for the specified entity.
+		/// 
+		/// Routing buckets are also known as 'dimensions' or 'virtual worlds' in past echoes, however they are population-aware.
+		/// </summary>
+		public static int GetEntityRoutingBucket(int _entity)
+		{
+			return Function.Call<int>((Hash)0xED4B0486, _entity);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetNumPlayerIdentifiers(string _playerSrc)
+		{
+			return Function.Call<int>((Hash)0xFF7F66AB, _playerSrc);
+		}
+		/// <summary>
+		/// A getter for [\_SET_PED_EYE_COLOR](#\_0x50B56988B170AFDF). Returns -1 if fails to get.
+		/// </summary>
+		public static int GetPedEyeColor(int _ped)
+		{
+			return Function.Call<int>((Hash)0xA47B860F, _ped);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleDashboardWaterTemp()
+		{
+			return Function.Call<float>((Hash)0x8E3B3E42);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetPlayerPed_CFX(string _playerSrc)
+		{
+			return Function.Call<int>((Hash)0x6E31E993, _playerSrc);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetRopeUpdateOrder(int _rope)
+		{
+			return Function.Call<int>((Hash)0x2AB2E0F6, _rope);
+		}
+		/// <summary>
+		/// Get the entity that killed the ped. This native is used server side when using OneSync.
+		/// </summary>
+		public static int GetPedSourceOfDeath_CFX(int _ped)
+		{
+			return Function.Call<int>((Hash)0x84ADF9EB, _ped);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static string GetPlayerName_CFX(string _playerSrc)
+		{
+			return Function.Call<string>((Hash)0x406B4B20, _playerSrc);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetPlayerTeam_CFX(string _playerSrc)
+		{
+			return Function.Call<int>((Hash)0x9873E404, _playerSrc);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleDashboardVacuum()
+		{
+			return Function.Call<float>((Hash)0xFABE67A9);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetNumPlayerTokens(string _playerSrc)
+		{
+			return Function.Call<int>((Hash)0x619E4A3D, _playerSrc);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool GetIsVehiclePrimaryColourCustom(int _vehicle)
+		{
+			return Function.Call<bool>((Hash)0xD7EC8760, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void GetNuiCursorPosition(int _x, int _y)
+		{
+			Function.Call((Hash)0xBDBA226F, _x, _y);
+		}
+		/// <summary>
+		/// Returns the zoom level data by index from mapzoomdata.meta file.
+		/// </summary>
+		public static bool GetMapZoomDataLevel(int _index, float _zoomScale, float _zoomSpeed, float _scrollSpeed, float _tilesX, float _tilesY)
+		{
+			return Function.Call<bool>((Hash)0x1363A998, _index, _zoomScale, _zoomSpeed, _scrollSpeed, _tilesX, _tilesY);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetPlayerServerId(int _player)
+		{
+			return Function.Call<int>((Hash)0x4D97BCC7, _player);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetPlayerStamina_CFX(int _playerId)
+		{
+			return Function.Call<float>((Hash)0xE415EC5C, _playerId);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool GetIsVehicleEngineRunning(int _vehicle)
+		{
+			return Function.Call<bool>((Hash)0x7DC6D022, _vehicle);
+		}
+		/// <summary>
+		/// Gets the width of the specified runtime texture.
+		/// </summary>
+		public static int GetRuntimeTextureWidth(long _tex)
+		{
+			return Function.Call<int>((Hash)0xC9F55558, _tex);
+		}
+		/// <summary>
+		/// See the client-side [GET_LANDING_GEAR_STATE](#\_0x9B0F3DCA3DB0F4CD) native for a description of landing gear states.
+		/// </summary>
+		public static int GetLandingGearState(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0xA6F02670, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static string GetPlayerFromIndex(int _index)
+		{
+			return Function.Call<string>((Hash)0xC8A9CE08, _index);
+		}
+		/// <summary>
+		/// Gets the current known coordinates for the specified player from cops perspective. This native is used server side when using OneSync.
+		/// </summary>
+		public static Vector3 GetPlayerWantedCentrePosition(string _playerSrc)
+		{
+			return Function.Call<Vector3>((Hash)0x821F2D2C, _playerSrc);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool GetPlayerInvincible_CFX(string _playerSrc)
+		{
+			return Function.Call<bool>((Hash)0x680C90EE, _playerSrc);
+		}
+		/// <summary>
+		/// Gets a player's token. Tokens can be used to enhance banning logic, however are specific to a server.
+		/// </summary>
+		public static string GetPlayerToken(string _playerSrc, int _index)
+		{
+			return Function.Call<string>((Hash)0x54C06897, _playerSrc, _index);
+		}
+		/// <summary>
+		/// A getter for [SET_PLAYER_MELEE_WEAPON_DAMAGE_MODIFIER](#\_0x4A3DC7ECCC321032).
+		/// </summary>
+		public static float GetPlayerMeleeWeaponDamageModifier(int _playerId)
+		{
+			return Function.Call<float>((Hash)0x8689A825, _playerId);
+		}
+		/// <summary>
+		/// A getter for [SET_PLAYER_VEHICLE_DEFENSE_MODIFIER](#\_0x4C60E6EFDAFF2462).
+		/// </summary>
+		public static float GetPlayerVehicleDefenseModifier(int _playerId)
+		{
+			return Function.Call<float>((Hash)0x8326E7CD, _playerId);
+		}
+		/// <summary>
+		/// A getter for [SET_VEHICLE_DENSITY_MULTIPLIER_THIS_FRAME](#\_0x245A6883D966D537).
+		/// </summary>
+		public static float GetVehicleDensityMultiplier()
+		{
+			return Function.Call<float>((Hash)0xEF7C6538);
+		}
+		/// <summary>
+		/// Returns the value of a state bag key.
+		/// </summary>
+		public static InputArgument GetStateBagValue(string _bagName, string _key)
+		{
+			return Function.Call<InputArgument>((Hash)0x637F4C75, _bagName, _key);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static string GetPlayerIdentifier(string _playerSrc, int _identifier)
+		{
+			return Function.Call<string>((Hash)0x7302DBCF, _playerSrc, _identifier);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static string GetPlayerEndpoint(string _playerSrc)
+		{
+			return Function.Call<string>((Hash)0xFEE404F9, _playerSrc);
+		}
+		/// <summary>
+		/// A getter for [SET_PLAYER_VEHICLE_DAMAGE_MODIFIER](#\_0xA50E117CDDF82F0C).
+		/// </summary>
+		public static float GetPlayerVehicleDamageModifier(int _playerId)
+		{
+			return Function.Call<float>((Hash)0x78F27B1F, _playerId);
+		}
+		/// <summary>
+		/// Returns a hash of selected ped weapon.
+		/// </summary>
+		public static uint GetSelectedPedWeapon(int _ped)
+		{
+			return Function.Call<uint>((Hash)0xD240123E, _ped);
+		}
+		/// <summary>
+		/// ```
+		/// Returns given players wanted level server-side.
+		/// ```
+		/// </summary>
+		public static int GetPlayerWantedLevel_CFX(string _playerSrc)
+		{
+			return Function.Call<int>((Hash)0xBDCDD163, _playerSrc);
+		}
+		/// <summary>
+		/// Gets the door count for the specified train.
+		/// </summary>
+		public static int GetTrainDoorCount(int _train)
+		{
+			return Function.Call<int>((Hash)0x99974721, _train);
+		}
+		/// <summary>
+		/// Gets the height of the specified runtime texture.
+		/// </summary>
+		public static int GetRuntimeTextureHeight(long _tex)
+		{
+			return Function.Call<int>((Hash)0x3574AACE, _tex);
+		}
+		/// <summary>
+		/// Gets the routing bucket for the specified player.
+		/// 
+		/// Routing buckets are also known as 'dimensions' or 'virtual worlds' in past echoes, however they are population-aware.
+		/// </summary>
+		public static int GetPlayerRoutingBucket(string _playerSrc)
+		{
+			return Function.Call<int>((Hash)0x52441C34, _playerSrc);
+		}
+		/// <summary>
+		/// A getter for [SET_PED_HEAD_OVERLAY](#\_0x48F44967FA05CC1E) and [\_SET_PED_HEAD_OVERLAY_COLOR](#\_0x497BF74A7B9CB952) natives.
+		/// </summary>
+		public static bool GetPedHeadOverlayData(int _ped, int _index, int _overlayValue, int _colourType, int _firstColour, int _secondColour, float _overlayOpacity)
+		{
+			return Function.Call<bool>((Hash)0xC46EE605, _ped, _index, _overlayValue, _colourType, _firstColour, _secondColour, _overlayOpacity);
+		}
+		/// <summary>
+		/// A getter for [SET_PLAYER_WEAPON_DEFENSE_MODIFIER](#\_0x2D83BC011CA14A3C).
+		/// </summary>
+		public static float GetPlayerWeaponDefenseModifier(int _playerId)
+		{
+			return Function.Call<float>((Hash)0xF1543251, _playerId);
+		}
+		/// <summary>
+		/// Gets the current camera rotation for a specified player. This native is used server side when using OneSync.
+		/// </summary>
+		public static Vector3 GetPlayerCameraRotation(string _playerSrc)
+		{
+			return Function.Call<Vector3>((Hash)0x433C765D, _playerSrc);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static string GetPlayerGuid(string _playerSrc)
+		{
+			return Function.Call<string>((Hash)0xE52D9680, _playerSrc);
+		}
+		/// <summary>
+		/// Unlike [GET_PLAYER_INVINCIBLE](#\_0xB721981B2B939E07) this native gets both [SET_PLAYER_INVINCIBLE_KEEP_RAGDOLL_ENABLED](#\_0x6BC97F4F4BB3C04B) and [SET_PLAYER_INVINCIBLE](#\_0x239528EACDC3E7DE) invincibility state.
+		/// </summary>
+		public static bool GetPlayerInvincible2(int _player)
+		{
+			return Function.Call<bool>((Hash)0xF2E3912B, _player);
+		}
+		/// <summary>
+		/// A getter for [SET_SCENARIO_PED_DENSITY_MULTIPLIER_THIS_FRAME](#\_0x7A556143A1C03898).
+		/// </summary>
+		public static float GetScenarioPedDensityMultiplier()
+		{
+			return Function.Call<float>((Hash)0x77C598B2);
+		}
+		/// <summary>
+		/// On the server this will return the players source, on the client it will return the player handle.
+		/// </summary>
+		public static int GetPlayerFromStateBagName(string _bagName)
+		{
+			return Function.Call<int>((Hash)0xA56135E0, _bagName);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void GetInteriorRotation(int _interiorId, float _rotx, float _rotY, float _rotZ, float _rotW)
+		{
+			Function.Call((Hash)0x5A039998, _interiorId, _rotx, _rotY, _rotZ, _rotW);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehiclePetrolTankHealth_CFX(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0xE41595CE, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetPlayerFromServerId(int _serverId)
+		{
+			return Function.Call<int>((Hash)0x344EA166, _serverId);
+		}
+		/// <summary>
+		/// Gets the vehicle the specified Ped is/was in depending on bool value. This native is used server side when using OneSync.
+		/// </summary>
+		public static int GetVehiclePedIsIn_CFX(int _ped, bool _lastVehicle)
+		{
+			return Function.Call<int>((Hash)0xAFE92319, _ped, _lastVehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetTrainCarriageIndex(int _train)
+		{
+			return Function.Call<int>((Hash)0x4B8285CF, _train);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleClutch(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0x1DAD4583, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetTrainCurrentTrackNode(int _train)
+		{
+			return Function.Call<int>((Hash)0xE015E854, _train);
+		}
+		/// <summary>
+		/// Gets the type of a ped's specific task given an index of the CPedTaskSpecificDataNode nodes.
+		/// A ped will typically have a task at index 0, if a ped has multiple tasks at once they will be in the order 0, 1, 2, etc.
+		/// </summary>
+		public static int GetPedSpecificTaskType(int _ped, int _index)
+		{
+			return Function.Call<int>((Hash)0x7F4563D3, _ped, _index);
+		}
+		/// <summary>
+		/// Currently it only works when set to "all players".
+		/// </summary>
+		public static int GetVehicleDoorsLockedForPlayer_CFX(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0x1DC50247, _vehicle);
+		}
+		/// <summary>
+		/// Gets the current fake wanted level for a specified player. This native is used server side when using OneSync.
+		/// </summary>
+		public static int GetPlayerFakeWantedLevel(string _playerSrc)
+		{
+			return Function.Call<int>((Hash)0x98D244, _playerSrc);
+		}
+		/// <summary>
+		/// Gets the row pitch of the specified runtime texture, for use when creating data for `SET_RUNTIME_TEXTURE_ARGB_DATA`.
+		/// </summary>
+		public static int GetRuntimeTexturePitch(long _tex)
+		{
+			return Function.Call<int>((Hash)0xCA0A085F, _tex);
+		}
+		/// <summary>
+		/// A getter for [SET_RESOURCE_KVP_FLOAT](#\_0x9ADD2938).
+		/// </summary>
+		public static float GetResourceKvpFloat(string _key)
+		{
+			return Function.Call<float>((Hash)0x35BDCEEA, _key);
+		}
+		/// <summary>
+		/// Returns the current state of the specified resource.
+		/// </summary>
+		public static string GetResourceState(string _resourceName)
+		{
+			return Function.Call<string>((Hash)0x4039B485, _resourceName);
+		}
+		/// <summary>
+		/// A getter for [SET_VEHICLE_CHEAT_POWER_INCREASE](#\_0xB59E4BD37AE292DB).
+		/// </summary>
+		public static float GetVehicleCheatPowerIncrease(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0xC3C93F28, _vehicle);
+		}
+		/// <summary>
+		/// Returns the physical on-disk path of the specified resource.
+		/// </summary>
+		public static string GetResourcePath(string _resourceName)
+		{
+			return Function.Call<string>((Hash)0x61DCF017, _resourceName);
+		}
+		/// <summary>
+		/// Returns all commands that are registered in the command system.
+		/// The data returned adheres to the following layout:
+		/// 
+		/// ```
+		/// [
+		/// {
+		/// "name": "cmdlist"
+		/// },
+		/// {
+		/// "name": "command1"
+		/// }
+		/// ]
+		/// ```
+		/// </summary>
+		public static InputArgument GetRegisteredCommands()
+		{
+			return Function.Call<InputArgument>((Hash)0xD4BEF069);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleEngineHealth_CFX(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0x8880038A, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleFuelLevel(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0x5F739BB8, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetVehicleAlarmTimeLeft(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0xC62AAC98, _vehicle);
+		}
+		/// <summary>
+		/// Gets a vehicle's multiplier used with a wheel's GET_VEHICLE_WHEEL_STEERING_ANGLE to determine the angle the wheel is rendered.
+		/// </summary>
+		public static float GetVehicleDrawnWheelAngleMult(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0x21C1DA8E, _vehicle);
+		}
+		/// <summary>
+		/// ```
+		/// Gets the amount of time player has spent evading the cops.
+		/// Counter starts and increments only when cops are chasing the player.
+		/// If the player is evading, the timer will pause.
+		/// ```
+		/// </summary>
+		public static int GetPlayerTimeInPursuit(string _playerSrc, bool _lastPursuit)
+		{
+			return Function.Call<int>((Hash)0x7ADE63E1, _playerSrc, _lastPursuit);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleBodyHealth_CFX(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0x2B2FCC28, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetTrainCarriageEngine(int _train)
+		{
+			return Function.Call<int>((Hash)0x95070FA, _train);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void GetVehicleColours(int _vehicle, int _colorPrimary, int _colorSecondary)
+		{
+			Function.Call((Hash)0x40D82D88, _vehicle, _colorPrimary, _colorSecondary);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleCurrentRpm(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0xE7B12B54, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetVehicleRadioStationIndex(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0x57037960, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleDirtLevel(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0xFD15C065, _vehicle);
+		}
+		/// <summary>
+		/// A getter for [SET_RESOURCE_KVP](#\_0x21C7A35B).
+		/// </summary>
+		public static string GetResourceKvpString(string _key)
+		{
+			return Function.Call<string>((Hash)0x5240DA5A, _key);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetVehicleDoorStatus(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0x6E35C49C, _vehicle);
+		}
+		/// <summary>
+		/// ```cpp
+		/// enum eRopeFlags
+		/// {
+		///     DrawShadowEnabled = 2,
+		/// 	Breakable = 4,
+		/// 	RopeUnwindingFront = 8,
+		/// 	RopeWinding = 32
+		/// }
+		/// ```
+		/// </summary>
+		public static int GetRopeFlags(int _rope)
+		{
+			return Function.Call<int>((Hash)0xA80FFE99, _rope);
+		}
+		/// <summary>
+		/// A getter for [SET_RANDOM_VEHICLE_DENSITY_MULTIPLIER_THIS_FRAME](#\_0xB3B3359379FE77D3).
+		/// Same as vehicle density multiplier.
+		/// </summary>
+		public static float GetRandomVehicleDensityMultiplier()
+		{
+			return Function.Call<float>((Hash)0x7B0D00C5);
+		}
+		/// <summary>
+		/// A getter for [SET_WEAPON_ANIMATION_OVERRIDE](\_0x1055AC3A667F09D9).
+		/// </summary>
+		public static uint GetWeaponAnimationOverride(int _ped)
+		{
+			return Function.Call<uint>((Hash)0x63ED2E7, _ped);
+		}
+		/// <summary>
+		/// Get the last entity that damaged the ped. This native is used server side when using OneSync.
+		/// </summary>
+		public static int GetPedSourceOfDamage(int _ped)
+		{
+			return Function.Call<int>((Hash)0x535DB43F, _ped);
+		}
+		/// <summary>
+		/// Gets the metadata value at a specified key/index from a resource's manifest.
+		/// See also: [Resource manifest](https://docs.fivem.net/resources/manifest/)
+		/// </summary>
+		public static string GetResourceMetadata(string _resourceName, string _metadataKey, int _index)
+		{
+			return Function.Call<string>((Hash)0x964BAB1D, _resourceName, _metadataKey, _index);
+		}
+		/// <summary>
+		/// Returns vehicle xenon lights custom RGB color values. Do note this native doesn't return non-RGB colors that was set with [\_SET_VEHICLE_XENON_LIGHTS_COLOR](#\_0xE41033B25D003A07).
+		/// </summary>
+		public static bool GetVehicleXenonLightsCustomColor(int _vehicle, int _red, int _green, int _blue)
+		{
+			return Function.Call<bool>((Hash)0xC715F730, _vehicle, _red, _green, _blue);
+		}
+		/// <summary>
+		/// Returns the effective handling data of a vehicle as a vector value.
+		/// Example: `local inertiaMultiplier = GetVehicleHandlingVector(vehicle, 'CHandlingData', 'vecInertiaMultiplier')`
+		/// </summary>
+		public static Vector3 GetVehicleHandlingVector(int _vehicle, string _class_, string _fieldName)
+		{
+			return Function.Call<Vector3>((Hash)0xFB341304, _vehicle, _class_, _fieldName);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void GetVehicleExtraColours(int _vehicle, int _pearlescentColor, int _wheelColor)
+		{
+			Function.Call((Hash)0x80E4659B, _vehicle, _pearlescentColor, _wheelColor);
+		}
+		/// <summary>
+		/// A getter for [SET_RESOURCE_KVP_INT](#\_0x6A2B1E8).
+		/// </summary>
+		public static int GetResourceKvpInt(string _key)
+		{
+			return Function.Call<int>((Hash)0x557B586A, _key);
+		}
+		/// <summary>
+		/// Gets the flight nozzel position for the specified vehicle. See the client-side [\_GET_VEHICLE_FLIGHT_NOZZLE_POSITION](#\_0xDA62027C8BDB326E) native for usage examples.
+		/// </summary>
+		public static float GetVehicleFlightNozzlePosition(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0xAD40AD55, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static string GetResourceByFindIndex(int _findIndex)
+		{
+			return Function.Call<string>((Hash)0x387246B7, _findIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleDashboardSpeed(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0x9AAD420E, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleDashboardFuel()
+		{
+			return Function.Call<float>((Hash)0x19B0B2CE);
+		}
+		/// <summary>
+		/// ```lua
+		/// enum_VehicleLockStatus = {
+		///     None = 0,
+		///     Locked = 2,
+		///     LockedForPlayer = 3,
+		///     StickPlayerInside = 4, -- Doesn't allow players to exit the vehicle with the exit vehicle key.
+		///     CanBeBrokenInto = 7, -- Can be broken into the car. If the glass is broken, the value will be set to 1
+		///     CanBeBrokenIntoPersist = 8, -- Can be broken into persist
+		///     CannotBeTriedToEnter = 10, -- Cannot be tried to enter (Nothing happens when you press the vehicle enter key).
+		/// }
+		/// ```
+		/// 
+		/// It should be [noted](https://forum.cfx.re/t/4863241) that while the [client-side command](#\_0x25BC98A59C2EA962) and its
+		/// setter distinguish between states 0 (unset) and 1 (unlocked), the game will synchronize both as state 0, so the server-side
+		/// command will return only '0' if unlocked.
+		/// </summary>
+		public static int GetVehicleDoorLockStatus_CFX(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0xD72CEF2, _vehicle);
+		}
+		/// <summary>
+		/// A getter for [\_SET_PLAYER_WEAPON_DEFENSE_MODIFIER\_2](#\_0xBCFDE9EDE4CF27DC).
+		/// </summary>
+		public static float GetPlayerWeaponDefenseModifier2(int _playerId)
+		{
+			return Function.Call<float>((Hash)0x986B65FF, _playerId);
+		}
+		/// <summary>
+		/// Returns the effective handling data of a vehicle as an integer value.
+		/// Example: `local modelFlags = GetVehicleHandlingInt(vehicle, 'CHandlingData', 'strModelFlags')`
+		/// </summary>
+		public static int GetVehicleHandlingInt(int _vehicle, string _class_, string _fieldName)
+		{
+			return Function.Call<int>((Hash)0x27396C75, _vehicle, _class_, _fieldName);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool GetVehicleHandbrake(int _vehicle)
+		{
+			return Function.Call<bool>((Hash)0x483B013C, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleSteeringScale(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0x954465DE, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleDashboardRpm()
+		{
+			return Function.Call<float>((Hash)0xF9716A11);
+		}
+		/// <summary>
+		/// Gets the ratio that a door is open for on a train.
+		/// </summary>
+		public static float GetTrainDoorOpenRatio(int _train, int _doorIndex)
+		{
+			return Function.Call<float>((Hash)0x40B16551, _train, _doorIndex);
+		}
+		/// <summary>
+		/// Returns the effective handling data of a vehicle as a floating-point value.
+		/// Example: `local fSteeringLock = GetVehicleHandlingFloat(vehicle, 'CHandlingData', 'fSteeringLock')`
+		/// </summary>
+		public static float GetVehicleHandlingFloat(int _vehicle, string _class_, string _fieldName)
+		{
+			return Function.Call<float>((Hash)0x642FC12F, _vehicle, _class_, _fieldName);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleTurboPressure(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0xE02B51D7, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleEngineTemperature(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0xF4F495CB, _vehicle);
+		}
+		/// <summary>
+		/// A getter for `CWeaponAccuracyModifier` in a weapon component.
+		/// </summary>
+		public static float GetWeaponComponentAccuracyModifier(uint _componentHash)
+		{
+			return Function.Call<float>((Hash)0xC693E278, _componentHash);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleDashboardTemp()
+		{
+			return Function.Call<float>((Hash)0x6B6ADAFA);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleDashboardOilPressure()
+		{
+			return Function.Call<float>((Hash)0x3856D767);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleDashboardOilTemp()
+		{
+			return Function.Call<float>((Hash)0x1F5996AA);
+		}
+		/// <summary>
+		/// A getter for [MODIFY_VEHICLE_TOP_SPEED](#\_0x93A3996368C94158). Returns -1.0 if a modifier is not set.
+		/// </summary>
+		public static float GetVehicleTopSpeedModifier(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0x998B7FEE, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetVehicleHeadlightsColour(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0xD7147656, _vehicle);
+		}
+		/// <summary>
+		/// Gets the lock on state for the specified vehicle. See the client-side [GET_VEHICLE_HOMING_LOCKON_STATE](#\_0xE6B0E8CFC3633BF0) native for a description of lock on states.
+		/// </summary>
+		public static int GetVehicleHomingLockonState(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0xFBDE9FD8, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void GetVehicleCustomSecondaryColour(int _vehicle, int _r, int _g, int _b)
+		{
+			Function.Call((Hash)0x3FF247A2, _vehicle, _r, _g, _b);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleDashboardBoost()
+		{
+			return Function.Call<float>((Hash)0xDFFABA2A);
+		}
+		/// <summary>
+		/// Gets the state of the player vehicle's dashboard lights as a bit set
+		/// indicator_left = 1
+		/// indicator_right = 2
+		/// handbrakeLight = 4
+		/// engineLight = 8
+		/// ABSLight = 16
+		/// gasLight = 32
+		/// oilLight = 64
+		/// headlights = 128
+		/// highBeam = 256
+		/// batteryLight = 512
+		/// </summary>
+		public static int GetVehicleDashboardLights()
+		{
+			return Function.Call<int>((Hash)0x500FFE9D);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetVehicleRoofLivery(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0x872CF42, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void GetVehicleDashboardColour(int _vehicle, int _color)
+		{
+			Function.Call((Hash)0xA0DBD08D, _vehicle, _color);
+		}
+		/// <summary>
+		/// Gets the flags of a wheel.
+		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
+		/// </summary>
+		public static int GetVehicleWheelFlags(int _vehicle, int _wheelIndex)
+		{
+			return Function.Call<int>((Hash)0xC70FA0C7, _vehicle, _wheelIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleThrottleOffset(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0xD1D07351, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleSteeringAngle(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0x1382FCEA, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void GetVehicleCustomPrimaryColour(int _vehicle, int _r, int _g, int _b)
+		{
+			Function.Call((Hash)0x1C2B9FEF, _vehicle, _r, _g, _b);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool IsVehicleAlarmSet(int _vehicle)
+		{
+			return Function.Call<bool>((Hash)0xDC921211, _vehicle);
+		}
+		/// <summary>
+		/// A getter for [SET_PLAYER_WEAPON_DAMAGE_MODIFIER](#\_0xCE07B9F7817AADA3).
+		/// </summary>
+		public static float GetPlayerWeaponDamageModifier(int _playerId)
+		{
+			return Function.Call<float>((Hash)0x2A3D7CDA, _playerId);
+		}
+		/// <summary>
+		/// **Experimental**: This native may be altered or removed in future versions of CitizenFX without warning.
+		/// 
+		/// Returns whether an asynchronous streaming file registration completed.
+		/// </summary>
+		public static bool IsStreamingFileReady(string _registerAs)
+		{
+			return Function.Call<bool>((Hash)0xA194934D, _registerAs);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetVehicleNumberPlateTextIndex(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0x499747B6, _vehicle);
+		}
+		/// <summary>
+		/// Gets brake pressure of a wheel.
+		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
+		/// Normal values around 1.0f when braking.
+		/// </summary>
+		public static float GetVehicleWheelBrakePressure(int _vehicle, int _wheelIndex)
+		{
+			return Function.Call<float>((Hash)0x70FE2EFF, _vehicle, _wheelIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleWheelRimColliderSize(int _vehicle, int _wheelIndex)
+		{
+			return Function.Call<float>((Hash)0xCEE21AB2, _vehicle, _wheelIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetVehicleLivery_CFX(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0xEC82A51D, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void GetVehicleTyreSmokeColor(int _vehicle, int _r, int _g, int _b)
+		{
+			Function.Call((Hash)0x75280015, _vehicle, _r, _g, _b);
+		}
+		/// <summary>
+		/// A getter for `ReticuleHash` in a weapon scope component.
+		/// </summary>
+		public static int GetWeaponComponentReticuleHash(uint _componentHash)
+		{
+			return Function.Call<int>((Hash)0xF9AB9297, _componentHash);
+		}
+		/// <summary>
+		/// List of known states:
+		/// 
+		/// ```
+		/// 1: Not wheeling.
+		/// 65: Vehicle is ready to do wheelie (burnouting).
+		/// 129: Vehicle is doing wheelie.
+		/// ```
+		/// </summary>
+		public static int GetVehicleWheelieState(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0x137260D1, _vehicle);
+		}
+		/// <summary>
+		/// Gets power being sent to a wheel.
+		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
+		/// </summary>
+		public static float GetVehicleWheelPower(int _vehicle, int _wheelIndex)
+		{
+			return Function.Call<float>((Hash)0xD203287, _vehicle, _wheelIndex);
+		}
+		/// <summary>
+		/// A getter for `CWeaponFallOffModifier` range modifier value in a weapon component.
+		/// </summary>
+		public static float GetWeaponComponentRangeModifier(uint _componentHash)
+		{
+			return Function.Call<float>((Hash)0x2FD0BC1B, _componentHash);
+		}
+		/// <summary>
+		/// Gets speed of a wheel at the tyre.
+		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
+		/// </summary>
+		public static float GetVehicleWheelSpeed(int _vehicle, int _wheelIndex)
+		{
+			return Function.Call<float>((Hash)0x149C9DA0, _vehicle, _wheelIndex);
+		}
+		/// <summary>
+		/// A getter for `CWeaponDamageModifier` in a weapon component.
+		/// </summary>
+		public static float GetWeaponComponentDamageModifier(uint _componentHash)
+		{
+			return Function.Call<float>((Hash)0x4A0E3855, _componentHash);
+		}
+		/// <summary>
+		/// A getter for `CWeaponFallOffModifier` damage modifier value in a weapon component.
+		/// </summary>
+		public static float GetWeaponComponentRangeDamageModifier(uint _componentHash)
+		{
+			return Function.Call<float>((Hash)0xE134FB8D, _componentHash);
+		}
+		/// <summary>
+		/// Gets the rotation speed of a wheel.
+		/// This is used internally to calcuate GET_VEHICLE_WHEEL_SPEED.
+		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
+		/// </summary>
+		public static float GetVehicleWheelRotationSpeed(int _vehicle, int _wheelIndex)
+		{
+			return Function.Call<float>((Hash)0xEA1859E5, _vehicle, _wheelIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool HasEntityBeenMarkedAsNoLongerNeeded(int _vehicle)
+		{
+			return Function.Call<bool>((Hash)0x9C9A3BE0, _vehicle);
+		}
+		/// <summary>
+		/// A getter for `CameraHash` in a weapon scope component.
+		/// </summary>
+		public static int GetWeaponComponentCameraHash(uint _componentHash)
+		{
+			return Function.Call<int>((Hash)0xACB7E68F, _componentHash);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetVehicleNumberOfWheels(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0xEDF4B0FC, _vehicle);
+		}
+		/// <summary>
+		/// Gets the vehicle that is locked on to for the specified vehicle.
+		/// </summary>
+		public static int GetVehicleLockOnTarget(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0x4A557117, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleGravityAmount(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0xB48A1292, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleOilLevel(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0xFC7F8EF4, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void GetVehicleInteriorColour(int _vehicle, int _color)
+		{
+			Function.Call((Hash)0xCCFF3B6E, _vehicle, _color);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static string GetVehicleNumberPlateText(int _vehicle)
+		{
+			return Function.Call<string>((Hash)0xE8522D58, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetVehicleNextGear(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0xDDB298AE, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetVehicleCurrentGear(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0xB4F4E566, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleLightMultiplier(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0x7E6E219C, _vehicle);
+		}
+		/// <summary>
+		/// Gets whether the wheel is powered.
+		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
+		/// This is a shortcut to a flag in GET_VEHICLE_WHEEL_FLAGS.
+		/// </summary>
+		public static bool GetVehicleWheelIsPowered(int _vehicle, int _wheelIndex)
+		{
+			return Function.Call<bool>((Hash)0x3CCF1B49, _vehicle, _wheelIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool IsVehicleEngineStarting(int _vehicle)
+		{
+			return Function.Call<bool>((Hash)0xBB340D04, _vehicle);
+		}
+		/// <summary>
+		/// Returns the type of the passed vehicle.
+		/// 
+		/// ### Vehicle types
+		/// 
+		/// *   automobile
+		/// *   bike
+		/// *   boat
+		/// *   heli
+		/// *   plane
+		/// *   submarine
+		/// *   trailer
+		/// *   train
+		/// </summary>
+		public static string GetVehicleType(int _vehicle)
+		{
+			return Function.Call<string>((Hash)0xA273060E, _vehicle);
+		}
+		/// <summary>
+		/// A getter for `ClipSize` in a weapon component.
+		/// </summary>
+		public static int GetWeaponComponentClipSize(uint _componentHash)
+		{
+			return Function.Call<int>((Hash)0xE14CF665, _componentHash);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool HasVehicleBeenOwnedByPlayer(int _vehicle)
+		{
+			return Function.Call<bool>((Hash)0xE4E83A5B, _vehicle);
+		}
+		/// <summary>
+		/// A getter for the recoil shake amplitude of a weapon.
+		/// </summary>
+		public static float GetWeaponRecoilShakeAmplitude(uint _weaponHash)
+		{
+			return Function.Call<float>((Hash)0x5E1AF5F, _weaponHash);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool IsAceAllowed(string _object)
+		{
+			return Function.Call<bool>((Hash)0x7EBB9929, _object);
+		}
+		/// <summary>
+		/// Gets the vehicle indicator light state. 0 = off, 1 = left, 2 = right, 3 = both
+		/// </summary>
+		public static int GetVehicleIndicatorLights(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0x83070354, _vehicle);
+		}
+		/// <summary>
+		/// Converts a screen coordinate into its relative world coordinate.
+		/// </summary>
+		public static void GetWorldCoordFromScreenCoord(float _screenX, float _screenY, Vector3 _worldVector, Vector3 _normalVector)
+		{
+			Function.Call((Hash)0xC81D0659, _screenX, _screenY, _worldVector, _normalVector);
+		}
+		/// <summary>
+		/// <!-- Native implemented by Disquse. 0xFFF65C63 -->
+		/// 
+		/// Returns true if the minimap is currently expanded. False if it's the normal minimap state.
+		/// Use [`IsBigmapFull`](#\_0x66EE14B2) to check if the full map is currently revealed on the minimap.
+		/// </summary>
+		public static bool IsBigmapActive()
+		{
+			return Function.Call<bool>((Hash)0xFFF65C63);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleWheelYRotation(int _vehicle, int _wheelIndex)
+		{
+			return Function.Call<float>((Hash)0x2EA4AFFE, _vehicle, _wheelIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool GetVehicleLightsState(int _vehicle, bool _lightsOn, bool _highbeamsOn)
+		{
+			return Function.Call<bool>((Hash)0x7C278621, _vehicle, _lightsOn, _highbeamsOn);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleWheelTireColliderWidth(int _vehicle, int _wheelIndex)
+		{
+			return Function.Call<float>((Hash)0xEF65929C, _vehicle, _wheelIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool IsVehiclePreviouslyOwnedByPlayer(int _vehicle)
+		{
+			return Function.Call<bool>((Hash)0xF849ED67, _vehicle);
+		}
+		/// <summary>
+		/// Returns vehicle's wheels' width (width is the same for all the wheels, cannot get/set specific wheel of vehicle).
+		/// Only works on non-default wheels (returns 0 in case of default wheels).
+		/// </summary>
+		public static float GetVehicleWheelWidth(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0x9C7B59F9, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool IsVehicleSirenOn(int _vehicle)
+		{
+			return Function.Call<bool>((Hash)0x25EB5873, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetVehicleWheelSurfaceMaterial(int _vehicle, int _wheelIndex)
+		{
+			return Function.Call<int>((Hash)0xA7F04022, _vehicle, _wheelIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool IsVehicleNeedsToBeHotwired(int _vehicle)
+		{
+			return Function.Call<bool>((Hash)0xF9933BF4, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetVehicleWheelType(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0xDA58D7AE, _vehicle);
+		}
+		/// <summary>
+		/// Gets the traction vector length of a wheel.
+		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
+		/// </summary>
+		public static float GetVehicleWheelTractionVectorLength(int _vehicle, int _wheelIndex)
+		{
+			return Function.Call<float>((Hash)0x3BCFEE14, _vehicle, _wheelIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool IsVehicleInteriorLightOn(int _vehicle)
+		{
+			return Function.Call<bool>((Hash)0xA411F72C, _vehicle);
+		}
+		/// <summary>
+		/// Requests the commerce data for the specified player, including the owned SKUs. Use `IS_PLAYER_COMMERCE_INFO_LOADED` to check if it has loaded.
+		/// </summary>
+		public static void LoadPlayerCommerceData(string _playerSrc)
+		{
+			Function.Call((Hash)0xA8F63EAB, _playerSrc);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool IsVehicleWanted(int _vehicle)
+		{
+			return Function.Call<bool>((Hash)0xA7DAF7C, _vehicle);
+		}
+		/// <summary>
+		/// Adds the specified player to the target list for the specified Mumble voice target ID.
+		/// </summary>
+		public static void MumbleAddVoiceTargetPlayerByServerId(int _targetId, int _serverId)
+		{
+			Function.Call((Hash)0x25F2B65F, _targetId, _serverId);
+		}
+		/// <summary>
+		/// Gets whether or not this is the CitizenFX server.
+		/// </summary>
+		public static bool IsDuplicityVersion()
+		{
+			return Function.Call<bool>((Hash)0xCF24C52E);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleWheelHealth(int _vehicle, int _wheelIndex)
+		{
+			return Function.Call<float>((Hash)0x54A677F5, _vehicle, _wheelIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool IsVehicleTyreBurst(int _vehicle, int _wheelID, bool _completely)
+		{
+			return Function.Call<bool>((Hash)0x48C80210, _vehicle, _wheelID, _completely);
+		}
+		/// <summary>
+		/// <!-- Native implemented by Disquse. 0x66EE14B2 -->
+		/// </summary>
+		public static bool IsBigmapFull()
+		{
+			return Function.Call<bool>((Hash)0x66EE14B2);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetVehicleHighGear(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0xF1D1D689, _vehicle);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float GetVehicleWheelTireColliderSize(int _vehicle, int _wheelIndex)
+		{
+			return Function.Call<float>((Hash)0xE0BA9FE6, _vehicle, _wheelIndex);
+		}
+		/// <summary>
+		/// A getter for [\_SET_WEAPON_DAMAGE_MODIFIER](#\_0x4757F00BC6323CFE).
+		/// </summary>
+		public static float GetWeaponDamageModifier(uint _weaponHash)
+		{
+			return Function.Call<float>((Hash)0xD979143, _weaponHash);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int GetVehicleWindowTint(int _vehicle)
+		{
+			return Function.Call<int>((Hash)0x13D53892, _vehicle);
+		}
+		/// <summary>
+		/// Adds the specified channel to the target list for the specified Mumble voice target ID.
+		/// </summary>
+		public static void MumbleAddVoiceTargetChannel(int _targetId, int _channel)
+		{
+			Function.Call((Hash)0x4D386C9E, _targetId, _channel);
+		}
+		/// <summary>
+		/// Returns the offset of the specified wheel relative to the wheel's axle center.
+		/// </summary>
+		public static float GetVehicleWheelXOffset(int _vehicle, int _wheelIndex)
+		{
+			return Function.Call<float>((Hash)0xCC90CBCA, _vehicle, _wheelIndex);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool IsPlayerUsingSuperJump(string _playerSrc)
+		{
+			return Function.Call<bool>((Hash)0xC7D2C20C, _playerSrc);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void MumbleClearVoiceChannel()
+		{
+			Function.Call((Hash)0xBF847807);
+		}
+		/// <summary>
+		/// Clears channels from the target list for the specified Mumble voice target ID.
+		/// </summary>
+		public static void MumbleClearVoiceTargetChannels(int _targetId)
+		{
+			Function.Call((Hash)0x5EA72E76, _targetId);
+		}
+		/// <summary>
+		/// Clears players from the target list for the specified Mumble voice target ID.
+		/// </summary>
+		public static void MumbleClearVoiceTargetPlayers(int _targetId)
+		{
+			Function.Call((Hash)0x912E21DA, _targetId);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static string InvokeFunctionReference(string _referenceIdentity, string _argsSerialized, int _argsLength, int _retvalLength)
+		{
+			return Function.Call<string>((Hash)0xE3551879, _referenceIdentity, _argsSerialized, _argsLength, _retvalLength);
+		}
+		/// <summary>
+		/// Checks if the player is currently muted
+		/// </summary>
+		public static bool MumbleIsPlayerMuted(int _playerSrc)
+		{
+			return Function.Call<bool>((Hash)0x1D5D50C2, _playerSrc);
+		}
+		/// <summary>
+		/// Removes the specified player from the user's voice targets.
+		/// 
+		/// Performs the opposite operation of [MUMBLE_ADD_VOICE_TARGET_PLAYER_BY_SERVER_ID](#\_0x25F2B65F)
+		/// </summary>
+		public static void MumbleRemoveVoiceTargetPlayerByServerId(int _targetId, int _serverId)
+		{
+			Function.Call((Hash)0x930BD34B, _targetId, _serverId);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool MumbleIsPlayerTalking(int _player)
+		{
+			return Function.Call<bool>((Hash)0x33EEF97F, _player);
+		}
+		/// <summary>
+		/// This native checks if the given ped is a player.
+		/// </summary>
+		public static bool IsPedAPlayer_CFX(int _ped)
+		{
+			return Function.Call<bool>((Hash)0x404794CA, _ped);
+		}
+		/// <summary>
+		/// Requests the commerce data from Tebex for the specified player, including the owned SKUs. Use `IS_PLAYER_COMMERCE_INFO_LOADED` to check if it has loaded.
+		/// </summary>
+		public static void LoadPlayerCommerceDataExt(string _playerSrc)
+		{
+			Function.Call((Hash)0x7995539E, _playerSrc);
+		}
+		/// <summary>
+		/// Gets steering angle of a wheel.
+		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
+		/// </summary>
+		public static float GetVehicleWheelSteeringAngle(int _vehicle, int _wheelIndex)
+		{
+			return Function.Call<float>((Hash)0xA0867448, _vehicle, _wheelIndex);
+		}
+		/// <summary>
+		/// Stops listening to the specified channel.
+		/// </summary>
+		public static void MumbleRemoveVoiceChannelListen(int _channel)
+		{
+			Function.Call((Hash)0x231523B7, _channel);
+		}
+		/// <summary>
+		/// Gets the current suspension compression of a wheel.
+		/// Returns a positive value. 0 means the suspension is fully extended, the wheel is off the ground.
+		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
+		/// </summary>
+		public static float GetVehicleWheelSuspensionCompression(int _vehicle, int _wheelIndex)
+		{
+			return Function.Call<float>((Hash)0x2B48175B, _vehicle, _wheelIndex);
+		}
+		/// <summary>
+		/// Requests whether or not the commerce data for the specified player has loaded.
+		/// </summary>
+		public static bool IsPlayerCommerceInfoLoaded(string _playerSrc)
+		{
+			return Function.Call<bool>((Hash)0xBEFE93F4, _playerSrc);
+		}
+		/// <summary>
+		/// Requests whether or not the commerce data for the specified player has loaded from Tebex.
+		/// </summary>
+		public static bool IsPlayerCommerceInfoLoadedExt(string _playerSrc)
+		{
+			return Function.Call<bool>((Hash)0x1D14F4FE, _playerSrc);
+		}
+		/// <summary>
+		/// This native checks if the given entity is visible.
+		/// </summary>
+		public static bool IsEntityVisible_CFX(int _entity)
+		{
+			return Function.Call<bool>((Hash)0x120B4ED5, _entity);
+		}
+		/// <summary>
+		/// Returns the mumble voice channel from a player's server id.
+		/// </summary>
+		public static int MumbleGetVoiceChannelFromServerId(int _serverId)
+		{
+			return Function.Call<int>((Hash)0x221C09F1, _serverId);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool IsPlayerAceAllowed(string _playerSrc, string _object)
+		{
+			return Function.Call<bool>((Hash)0xDEDAE23D, _playerSrc, _object);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool MumbleIsActive()
+		{
+			return Function.Call<bool>((Hash)0xE820BC10);
+		}
+		/// <summary>
+		/// Adds the specified player to the target list for the specified Mumble voice target ID.
+		/// </summary>
+		public static void MumbleAddVoiceTargetPlayer(int _targetId, int _player)
+		{
+			Function.Call((Hash)0x32C5355A, _targetId, _player);
+		}
+		/// <summary>
+		/// Checks if keyboard input is enabled during NUI focus using `SET_NUI_FOCUS_KEEP_INPUT`.
+		/// </summary>
+		public static bool IsNuiFocusKeepingInput()
+		{
+			return Function.Call<bool>((Hash)0x39C9DC92);
+		}
+		/// <summary>
+		/// Changes the Mumble server address to connect to, and reconnects to the new address.
+		/// </summary>
+		public static void MumbleSetServerAddress(string _address, int _port)
+		{
+			Function.Call((Hash)0xE6EB2CD8, _address, _port);
+		}
+		/// <summary>
+		/// Returns whether or not the specific minimap overlay has loaded.
+		/// </summary>
+		public static bool HasMinimapOverlayLoaded(int _id)
+		{
+			return Function.Call<bool>((Hash)0xF7535F32, _id);
+		}
+		/// <summary>
+		/// This native will return true if the user succesfully connected to the voice server.
+		/// If the user disabled the voice-chat setting it will return false.
+		/// </summary>
+		public static bool MumbleIsConnected()
+		{
+			return Function.Call<bool>((Hash)0xB816370A);
+		}
+		/// <summary>
+		/// Removes the specified voice channel from the user's voice targets.
+		/// 
+		/// Performs the opposite operation of [MUMBLE_ADD_VOICE_TARGET_CHANNEL](#\_0x4D386C9E)
+		/// </summary>
+		public static void MumbleRemoveVoiceTargetChannel(int _targetId, int _channel)
+		{
+			Function.Call((Hash)0x268DB867, _targetId, _channel);
+		}
+		/// <summary>
+		/// Returns true if the profiler is active.
+		/// </summary>
+		public static bool ProfilerIsRecording()
+		{
+			return Function.Call<bool>((Hash)0xF8B7D7BB);
+		}
+		/// <summary>
+		/// Registers a specified font name for use with text draw commands.
+		/// </summary>
+		public static int RegisterFontId(string _fontName)
+		{
+			return Function.Call<int>((Hash)0xACF6D8EE, _fontName);
+		}
+		/// <summary>
+		/// Removes the specified player from the user's voice targets.
+		/// 
+		/// Performs the opposite operation of [MUMBLE_ADD_VOICE_TARGET_PLAYER](#\_0x32C5355A)
+		/// </summary>
+		public static void MumbleRemoveVoiceTargetPlayer(int _targetId, int _player)
+		{
+			Function.Call((Hash)0x88CD646F, _targetId, _player);
+		}
+		/// <summary>
+		/// Returns vehicle's wheels' size (size is the same for all the wheels, cannot get/set specific wheel of vehicle).
+		/// Only works on non-default wheels (returns 0 in case of default wheels).
+		/// </summary>
+		public static float GetVehicleWheelSize(int _vehicle)
+		{
+			return Function.Call<float>((Hash)0x4046B66, _vehicle);
+		}
+		/// <summary>
+		/// Returns the first owner ID of the specified entity.
+		/// </summary>
+		public static int NetworkGetFirstEntityOwner(int _entity)
+		{
+			return Function.Call<int>((Hash)0x1E546224, _entity);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool IsVehicleExtraTurnedOn_CFX(int _vehicle, int _extraId)
+		{
+			return Function.Call<bool>((Hash)0x42098B5, _vehicle, _extraId);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static Vector3 NetworkGetVoiceProximityOverride(string _playerSrc)
+		{
+			return Function.Call<Vector3>((Hash)0x7A6462F4, _playerSrc);
+		}
+		/// <summary>
+		/// Returns the owner ID of the specified entity.
+		/// </summary>
+		public static int NetworkGetEntityOwner(int _entity)
+		{
+			return Function.Call<int>((Hash)0x526FEE31, _entity);
+		}
+		/// <summary>
+		/// Reads the contents of a text file in a specified resource.
+		/// If executed on the client, this file has to be included in `files` in the resource manifest.
+		/// Example: `local data = LoadResourceFile("devtools", "data.json")`
+		/// </summary>
+		public static string LoadResourceFile(string _resourceName, string _fileName)
+		{
+			return Function.Call<string>((Hash)0x76A9EE1F, _resourceName, _fileName);
+		}
+		/// <summary>
+		/// Sets the audio submix ID for a specified player using Mumble 'Native Audio' functionality.
+		/// </summary>
+		public static void MumbleSetSubmixForServerId(int _serverId, int _submixId)
+		{
+			Function.Call((Hash)0xFE3A3054, _serverId, _submixId);
+		}
+		/// <summary>
+		/// Use this native to disable noise suppression and high pass filters.
+		/// 
+		/// The possible intents for this are as follows (backticks are used to represent hashes):
+		/// 
+		/// | Index | Description |
+		/// |-|-|
+		/// | \`speech\` | Default intent |
+		/// | \`music\` | Disable noise suppression and high pass filter |
+		/// </summary>
+		public static void MumbleSetAudioInputIntent(uint _intentHash)
+		{
+			Function.Call((Hash)0x6383526B, _intentHash);
+		}
+		/// <summary>
+		/// Replaces the `popgroups` (CPopGroupList) meta file with the file in the specified path.
+		/// </summary>
+		public static void OverridePopGroups(string _path)
+		{
+			Function.Call((Hash)0xD3BC438F, _path);
+		}
+		/// <summary>
+		/// Scope exit for profiler.
+		/// </summary>
+		public static void ProfilerExitScope()
+		{
+			Function.Call((Hash)0xB39CA35C);
+		}
+		/// <summary>
+		/// Overrides the output volume for a particular player on Mumble. This will also bypass 3D audio and distance calculations. -1.0 to reset the override.
+		/// 
+		/// Set to -1.0 to reset the Volume override.
+		/// </summary>
+		public static void MumbleSetVolumeOverride(int _player, float _volume)
+		{
+			Function.Call((Hash)0x61C309E3, _player, _volume);
+		}
+		/// <summary>
+		/// Create a permanent voice channel.
+		/// </summary>
+		public static void MumbleCreateChannel(int _id)
+		{
+			Function.Call((Hash)0x262663C5, _id);
+		}
+		/// <summary>
+		/// Overrides the output volume for a particular player with the specified server id and player name on Mumble. This will also bypass 3D audio and distance calculations. -1.0 to reset the override.
+		/// </summary>
+		public static void MumbleSetVolumeOverrideByServerId(int _serverId, float _volume)
+		{
+			Function.Call((Hash)0xCE8E25B4, _serverId, _volume);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool IsPrincipalAceAllowed(string _principal, string _object)
+		{
+			return Function.Call<bool>((Hash)0x37CF52CE, _principal, _object);
+		}
+		/// <summary>
+		/// **Experimental**: This native may be altered or removed in future versions of CitizenFX without warning.
+		/// 
+		/// Registers a set of entities with the game engine. These should match `CEntityDef` class information from the game.
+		/// At this time, this function **should not be used in a live environment**.
+		/// </summary>
+		public static void RegisterEntities(InputArgument _factory)
+		{
+			Function.Call((Hash)0x410DA7D3, _factory);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int NetworkGetEntityFromNetworkId_CFX(int _netId)
+		{
+			return Function.Call<int>((Hash)0x5B912C3F, _netId);
+		}
+		/// <summary>
+		/// Overrides whether or not peds can stand on top of the specified vehicle.
+		/// 
+		/// Note this flag is not replicated automatically, you will have to manually do so.
+		/// </summary>
+		public static void OverrideVehiclePedsCanStandOnTopFlag(int _vehicle, bool _can)
+		{
+			Function.Call((Hash)0x7FA03E76, _vehicle, _can);
+		}
+		/// <summary>
+		/// **Experimental**: This native may be altered or removed in future versions of CitizenFX without warning.
+		/// 
+		/// Registers a file from an URL as a streaming asset in the GTA streaming subsystem. This will asynchronously register the asset, and caching is done based on the URL itself - cache headers are ignored.
+		/// 
+		/// Use `IS_STREAMING_FILE_READY` to check if the asset has been registered successfully.
+		/// </summary>
+		public static void RegisterStreamingFileFromUrl(string _registerAs, string _url)
+		{
+			Function.Call((Hash)0xF44BFB95, _registerAs, _url);
+		}
+		/// <summary>
+		/// Registers a listener for console output messages.
+		/// </summary>
+		public static void RegisterConsoleListener(InputArgument _listener)
+		{
+			Function.Call((Hash)0x281B5448, _listener);
+		}
+		/// <summary>
+		/// Sends a message to the specific DUI root page. This is similar to SEND_NUI_MESSAGE.
+		/// </summary>
+		public static void SendDuiMessage(long _duiObject, string _jsonString)
+		{
+			Function.Call((Hash)0xCD380DA9, _duiObject, _jsonString);
+		}
+		/// <summary>
+		/// An internal function which allows the current resource's HLL script runtimes to receive state for the specified event.
+		/// </summary>
+		public static void RegisterResourceAsEventHandler(string _eventName)
+		{
+			Function.Call((Hash)0xD233A168, _eventName);
+		}
+		/// <summary>
+		/// Sets the current Mumble voice target ID to broadcast voice to.
+		/// </summary>
+		public static void MumbleSetVoiceTarget(int _targetId)
+		{
+			Function.Call((Hash)0x960A4A95, _targetId);
+		}
+		/// <summary>
+		/// ```
+		/// This will return true if the player is evading wanted level, meaning that the wanted level stars are blink.
+		/// Otherwise will return false.
+		/// 
+		/// If the player is not wanted, it simply returns false.
+		/// ```
+		/// </summary>
+		public static bool IsPlayerEvadingWantedLevel(string _playerSrc)
+		{
+			return Function.Call<bool>((Hash)0x89A3881A, _playerSrc);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int PerformHttpRequestInternalEx(InputArgument _requestData)
+		{
+			return Function.Call<int>((Hash)0x6B171E87, _requestData);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int PerformHttpRequestInternal(string _requestData, int _requestDataLength)
+		{
+			return Function.Call<int>((Hash)0x8E8CC653, _requestData, _requestDataLength);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static float MumbleGetTalkerProximity()
+		{
+			return Function.Call<float>((Hash)0x84E02A32);
+		}
+		/// <summary>
+		/// A getter for [FREEZE_ENTITY_POSITION](#\_0x428CA6DBD1094446).
+		/// </summary>
+		public static bool IsEntityPositionFrozen(int _entity)
+		{
+			return Function.Call<bool>((Hash)0xEDBE6ADD, _entity);
+		}
+		/// <summary>
+		/// Returns the current NUI focus state previously set with `SET_NUI_FOCUS`.
+		/// </summary>
+		public static bool IsNuiFocused()
+		{
+			return Function.Call<bool>((Hash)0x98545E6D);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int NetworkGetNetworkIdFromEntity_CFX(int _entity)
+		{
+			return Function.Call<int>((Hash)0x9E35DAB6, _entity);
+		}
+		/// <summary>
+		/// Registered commands can be executed by entering them in the client console (this works for client side and server side registered commands). Or by entering them in the server console/through an RCON client (only works for server side registered commands). Or if you use a supported chat resource, like the default one provided in the cfx-server-data repository, then you can enter the command in chat by prefixing it with a `/`.
+		/// 
+		/// Commands registered using this function can also be executed by resources, using the [`ExecuteCommand` native](#\_0x561C060B).
+		/// 
+		/// The restricted bool is not used on the client side. Permissions can only be checked on the server side, so if you want to limit your command with an ace permission automatically, make it a server command (by registering it in a server script).
+		/// 
+		/// **Example result**:
+		/// 
+		/// ![](https://i.imgur.com/TaCnG09.png)
+		/// </summary>
+		public static void RegisterCommand(string _commandName, InputArgument _handler, bool _restricted)
+		{
+			Function.Call((Hash)0x5FA79B0F, _commandName, _handler, _restricted);
+		}
+		/// <summary>
+		/// Clears the target list for the specified Mumble voice target ID.
+		/// </summary>
+		public static void MumbleClearVoiceTarget(int _targetId)
+		{
+			Function.Call((Hash)0x8555DCBA, _targetId);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void RegisterRawNuiCallback(string _callbackType, InputArgument _callback)
+		{
+			Function.Call((Hash)0xA8AE9C2F, _callbackType, _callback);
+		}
+		/// <summary>
+		/// Used to replicate a server variable onto clients.
+		/// </summary>
+		public static void SetConvarReplicated(string _varName, string _value)
+		{
+			Function.Call((Hash)0xF292858C, _varName, _value);
+		}
+		/// <summary>
+		/// Requests the specified player to buy the passed SKU. This'll pop up a prompt on the client, which upon acceptance
+		/// will open the browser prompting further purchase details.
+		/// </summary>
+		public static void RequestPlayerCommerceSession(string _playerSrc, int _skuId)
+		{
+			Function.Call((Hash)0x96F93CCE, _playerSrc, _skuId);
+		}
+		/// <summary>
+		/// **Experimental**: This native may be altered or removed in future versions of CitizenFX without warning.
+		/// 
+		/// Removes a handler for changes to a state bag.
+		/// </summary>
+		public static void RemoveStateBagChangeHandler(int _cookie)
+		{
+			Function.Call((Hash)0xD36BE661, _cookie);
+		}
+		/// <summary>
+		/// Experimental natives, please do not use in a live environment.
+		/// </summary>
+		public static void RemoveReplaceTexture(string _origTxd, string _origTxn)
+		{
+			Function.Call((Hash)0xA896B20A, _origTxd, _origTxn);
+		}
+		/// <summary>
+		/// Injects a 'mouse move' event for a DUI object. Coordinates are in browser space.
+		/// </summary>
+		public static void SendDuiMouseMove(long _duiObject, int _x, int _y)
+		{
+			Function.Call((Hash)0xD9D7A0AA, _duiObject, _x, _y);
+		}
+		/// <summary>
+		/// Injects a 'mouse up' event for a DUI object. Coordinates are expected to be set using SEND_DUI_MOUSE_MOVE.
+		/// </summary>
+		public static void SendDuiMouseUp(long _duiObject, string _button)
+		{
+			Function.Call((Hash)0x1D735B93, _duiObject, _button);
+		}
+		/// <summary>
+		/// Sets an integer parameter for a submix effect.
+		/// </summary>
+		public static void SetAudioSubmixEffectParamInt(int _submixId, int _effectSlot, int _paramIndex, int _paramValue)
+		{
+			Function.Call((Hash)0x77FAE2B8, _submixId, _effectSlot, _paramIndex, _paramValue);
+		}
+		/// <summary>
+		/// Starts listening to the specified channel, when available.
+		/// </summary>
+		public static void MumbleAddVoiceChannelListen(int _channel)
+		{
+			Function.Call((Hash)0xC79F44BF, _channel);
+		}
+		/// <summary>
+		/// Registers a build task factory for resources.
+		/// The function should return an object (msgpack map) with the following fields:
+		/// 
+		/// ```
+		/// {
+		/// // returns whether the specific resource should be built
+		/// shouldBuild = func(resourceName: string): bool,
+		/// 
+		/// // asynchronously start building the specific resource.
+		/// // call cb when completed
+		/// build = func(resourceName: string, cb: func(success: bool, status: string): void): void
+		/// }
+		/// ```
+		/// </summary>
+		public static void RegisterResourceBuildTaskFactory(string _factoryId, InputArgument _factoryFn)
+		{
+			Function.Call((Hash)0x285B43CA, _factoryId, _factoryFn);
+		}
+		/// <summary>
+		/// Registers a specified .gfx file as GFx font library.
+		/// The .gfx file has to be registered with the streamer already.
+		/// </summary>
+		public static void RegisterFontFile(string _fileName)
+		{
+			Function.Call((Hash)0x1B3A363, _fileName);
+		}
+		/// <summary>
+		/// Writes the specified data to a file in the specified resource.
+		/// Using a length of `-1` will automatically detect the length assuming the data is a C string.
+		/// </summary>
+		public static bool SaveResourceFile(string _resourceName, string _fileName, string _data, int _dataLength)
+		{
+			return Function.Call<bool>((Hash)0xA09E7E7B, _resourceName, _fileName, _data, _dataLength);
+		}
+		/// <summary>
+		/// This native sets the hover text of the image asset for the discord rich presence implementation.
+		/// </summary>
+		public static void SetDiscordRichPresenceAssetText(string _text)
+		{
+			Function.Call((Hash)0xB029D2FA, _text);
+		}
+		/// <summary>
+		/// Scope entry for profiler.
+		/// </summary>
+		public static void ProfilerEnterScope(string _scopeName)
+		{
+			Function.Call((Hash)0xC795A4A9, _scopeName);
+		}
+		/// <summary>
+		/// **Experimental**: This native may be altered or removed in future versions of CitizenFX without warning.
+		/// 
+		/// Registers a cached resource asset with the resource system, similar to the automatic scanning of the `stream/` folder.
+		/// </summary>
+		public static string RegisterResourceAsset(string _resourceName, string _fileName)
+		{
+			return Function.Call<string>((Hash)0x9862B266, _resourceName, _fileName);
+		}
+		/// <summary>
+		/// Resets parameters which is used by the game for checking is ped needs to fly through windscreen after a crash to default values.
+		/// </summary>
+		public static void ResetFlyThroughWindscreenParams()
+		{
+			Function.Call((Hash)0x6D712937);
+		}
+		/// <summary>
+		/// Returns whether or not a browser is created for a specified DUI browser object.
+		/// </summary>
+		public static bool IsDuiAvailable(long _duiObject)
+		{
+			return Function.Call<bool>((Hash)0x7AAC3B4C, _duiObject);
+		}
+		/// <summary>
+		/// Sends a message to the `loadingScreen` NUI frame, which contains the HTML page referenced in `loadscreen` resources.
+		/// </summary>
+		public static bool SendLoadingScreenMessage(string _jsonString)
+		{
+			return Function.Call<bool>((Hash)0x8BBE6CC0, _jsonString);
+		}
+		/// <summary>
+		/// Injects a 'mouse wheel' event for a DUI object.
+		/// </summary>
+		public static void SendDuiMouseWheel(long _duiObject, int _deltaY, int _deltaX)
+		{
+			Function.Call((Hash)0x2D62133A, _duiObject, _deltaY, _deltaX);
+		}
+		/// <summary>
+		/// Sets a global handling override for a specific vehicle class. The name is supposed to match the `handlingName` field from handling.meta.
+		/// Example: `SetHandlingField('AIRTUG', 'CHandlingData', 'fSteeringLock', 360.0)`
+		/// </summary>
+		public static void SetHandlingField(string _vehicle, string _class_, string _fieldName, int _value)
+		{
+			Function.Call((Hash)0xFE8064E3, _vehicle, _class_, _fieldName, _value);
+		}
+		/// <summary>
+		/// Removes a dry volume from the game session.
+		/// See CREATE_DRY_VOLUME for more info
+		/// </summary>
+		public static void RemoveDryVolume(int _handle)
+		{
+			Function.Call((Hash)0x7BCAA6E7, _handle);
+		}
+		/// <summary>
+		/// **Experimental**: This native may be altered or removed in future versions of CitizenFX without warning.
+		/// 
+		/// Registers a dynamic streaming asset from the server with the GTA streaming module system.
+		/// </summary>
+		public static void RegisterStreamingFileFromCache(string _resourceName, string _fileName, string _cacheString)
+		{
+			Function.Call((Hash)0xCEAD2D4B, _resourceName, _fileName, _cacheString);
+		}
+		/// <summary>
+		/// Sets whether peds can stand on top of *all* vehicles without falling off.
+		/// 
+		/// Note this flag is not replicated automatically, you will have to manually do so.
+		/// </summary>
+		public static void OverridePedsCanStandOnTopFlag(bool _flag)
+		{
+			Function.Call((Hash)0x90A9E0B2, _flag);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void MumbleSetActive(bool _state)
+		{
+			Function.Call((Hash)0xD932A3F3, _state);
+		}
+		/// <summary>
+		/// **Experimental**: This native may be altered or removed in future versions of CitizenFX without warning.
+		/// 
+		/// Registers a set of archetypes with the game engine. These should match `CBaseArchetypeDef` class information from the game.
+		/// </summary>
+		public static void RegisterArchetypes(InputArgument _factory)
+		{
+			Function.Call((Hash)0x3C2F9037, _factory);
+		}
+		/// <summary>
+		/// Navigates the specified DUI browser to a different URL.
+		/// </summary>
+		public static void SetDuiUrl(long _duiObject, string _url)
+		{
+			Function.Call((Hash)0xF761D9F3, _duiObject, _url);
+		}
+		/// <summary>
+		/// Adds a cooldown between instances of moving and then aiming.
+		/// Can be optionally used to hinder 'speedboosting'
+		/// To turn off, set value to 0
+		/// </summary>
+		public static void SetAimCooldown(int _value)
+		{
+			Function.Call((Hash)0xA42A3DBF, _value);
+		}
+		/// <summary>
+		/// Sets the volumes for the sound channels in a submix effect.
+		/// Values can be between 0.0 and 1.0.
+		/// Channel 5 and channel 6 are not used in voice chat but are believed to be center and LFE channels.
+		/// Output slot starts at 0 for the first ADD_AUDIO_SUBMIX_OUTPUT call then incremented by 1 on each subsequent call.
+		/// </summary>
+		public static void SetAudioSubmixOutputVolumes(int _submixId, int _outputSlot, float _frontLeftVolume, float _frontRightVolume, float _rearLeftVolume, float _rearRightVolume, float _channel5Volume, float _channel6Volume)
+		{
+			Function.Call((Hash)0x825DC0D1, _submixId, _outputSlot, _frontLeftVolume, _frontRightVolume, _rearLeftVolume, _rearRightVolume, _channel5Volume, _channel6Volume);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void MumbleSetTalkerProximity(float _value)
+		{
+			Function.Call((Hash)0x74E927B0, _value);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetGameType(string _gametypeName)
+		{
+			Function.Call((Hash)0xF90B7469, _gametypeName);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetConvarServerInfo(string _varName, string _value)
+		{
+			Function.Call((Hash)0x9338D547, _varName, _value);
+		}
+		/// <summary>
+		/// Injects a 'mouse down' event for a DUI object. Coordinates are expected to be set using SEND_DUI_MOUSE_MOVE.
+		/// </summary>
+		public static void SendDuiMouseDown(long _duiObject, string _button)
+		{
+			Function.Call((Hash)0x5D01F191, _duiObject, _button);
+		}
+		/// <summary>
+		/// Assigns a RadioFX effect to a submix effect slot.
+		/// 
+		/// The parameter values for this effect are as follows (backticks are used to represent hashes):
+		/// 
+		/// | Index | Type | Description |
+		/// |-|-|-|
+		/// | \`enabled\` | int | Enables or disables RadioFX on this DSP. |
+		/// | \`default\` | int | Sets default parameters for the RadioFX DSP and enables it. |
+		/// | \`freq_low\` | float |  |
+		/// | \`freq_hi\` | float |  |
+		/// | \`fudge\` | float |  |
+		/// | \`rm_mod_freq\` | float |  |
+		/// | \`rm_mix\` | float |  |
+		/// | \`o_freq_lo\` | float |  |
+		/// | \`o_freq_hi\` | float |  |
+		/// </summary>
+		public static void SetAudioSubmixEffectRadioFx(int _submixId, int _effectSlot)
+		{
+			Function.Call((Hash)0xAAA94D53, _submixId, _effectSlot);
+		}
+		/// <summary>
+		/// Sets the current input distance. The player will be able to talk to other players within this distance.
+		/// </summary>
+		public static void MumbleSetAudioInputDistance(float _distance)
+		{
+			Function.Call((Hash)0x1B1052E2, _distance);
+		}
+		/// <summary>
+		/// This native sets the image asset for the discord rich presence implementation.
+		/// </summary>
+		public static void SetDiscordRichPresenceAsset(string _assetName)
+		{
+			Function.Call((Hash)0x53DFD530, _assetName);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetMapName(string _mapName)
+		{
+			Function.Call((Hash)0xB7BA82DC, _mapName);
+		}
+		/// <summary>
+		/// Sets the default number plate text pattern for vehicles seen on the local client with the specified plate index as their *default* index (`plateProbabilities` from carvariations).
+		/// 
+		/// For consistency, this should be used with the same value on all clients, since vehicles *without* custom text will use a seeded random number generator with this pattern to determine the default plate text.
+		/// 
+		/// The default value is `11AAA111`, and using this or a NULL string will revert to the default game RNG.
+		/// 
+		/// ### Pattern string format
+		/// 
+		/// *   `1` will lead to a random number from 0-9.
+		/// *   `A` will lead to a random letter from A-Z.
+		/// *   `.` will lead to a random letter *or* number, with 50% probability of being either.
+		/// *   `^1` will lead to a literal `1` being emitted.
+		/// *   `^A` will lead to a literal `A` being emitted.
+		/// *   Any other character will lead to said character being emitted.
+		/// *   A string shorter than 8 characters will be padded on the right.
+		/// </summary>
+		public static void SetDefaultVehicleNumberPlateTextPattern(int _plateIndex, string _pattern)
+		{
+			Function.Call((Hash)0x79780FD2, _plateIndex, _pattern);
+		}
+		/// <summary>
+		/// Sets the current output distance. The player will be able to hear other players talking within this distance.
+		/// </summary>
+		public static void MumbleSetAudioOutputDistance(float _distance)
+		{
+			Function.Call((Hash)0x74C597D9, _distance);
+		}
+		/// <summary>
+		/// This native sets the hover text of the small image asset for the discord rich presence implementation.
+		/// </summary>
+		public static void SetDiscordRichPresenceAssetSmallText(string _text)
+		{
+			Function.Call((Hash)0x35E62B6A, _text);
+		}
+		/// <summary>
+		/// Schedules the specified resource to run a tick as soon as possible, bypassing the server's fixed tick rate.
+		/// </summary>
+		public static void ScheduleResourceTick(string _resourceName)
+		{
+			Function.Call((Hash)0xB88A73AD, _resourceName);
+		}
+		/// <summary>
+		/// Sets the routing bucket for the specified entity.
+		/// 
+		/// Routing buckets are also known as 'dimensions' or 'virtual worlds' in past echoes, however they are population-aware.
+		/// </summary>
+		public static void SetEntityRoutingBucket(int _entity, int _bucket)
+		{
+			Function.Call((Hash)0x635E5289, _entity, _bucket);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetInteriorRoomExtents(int _interiorId, int _roomIndex, float _bbMinX, float _bbMinY, float _bbMinZ, float _bbMaxX, float _bbMaxY, float _bbMaxZ)
+		{
+			Function.Call((Hash)0x4FDCF51E, _interiorId, _roomIndex, _bbMinX, _bbMinY, _bbMinZ, _bbMaxX, _bbMaxY, _bbMaxZ);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void MumbleSetVoiceChannel(int _channel)
+		{
+			Function.Call((Hash)0x8737EEE8, _channel);
+		}
+		/// <summary>
+		/// Mutes or unmutes the specified player
+		/// </summary>
+		public static void MumbleSetPlayerMuted(int _playerSrc, bool _toggle)
+		{
+			Function.Call((Hash)0xCC6C2EB1, _playerSrc, _toggle);
+		}
+		/// <summary>
+		/// Possible Types:
+		/// 
+		/// ```
+		/// 0 = Off,
+		/// 1 = Regular,
+		/// 2 = Expanded,
+		/// 3 = Simple,
+		/// ```
+		/// </summary>
+		public static void SetMinimapType(int _type)
+		{
+			Function.Call((Hash)0x5FB53015, _type);
+		}
+		/// <summary>
+		/// Resets whether or not peds can stand on top of the specified vehicle.
+		/// 
+		/// Note this flag is not replicated automatically, you will have to manually do so.
+		/// </summary>
+		public static void ResetVehiclePedsCanStandOnTopFlag(int _vehicle)
+		{
+			Function.Call((Hash)0xDF62CFE2, _vehicle);
+		}
+		/// <summary>
+		/// Resets values from the zoom level data by index to defaults from mapzoomdata.meta.
+		/// </summary>
+		public static void ResetMapZoomDataLevel(int _index)
+		{
+			Function.Call((Hash)0x11A5B7ED, _index);
+		}
+		/// <summary>
+		/// Overrides how many real ms are equal to one game minute.
+		/// A setter for [`GetMillisecondsPerGameMinute`](#\_0x2F8B4D1C595B11DB).
+		/// </summary>
+		public static void SetMillisecondsPerGameMinute_CFX(int _value)
+		{
+			Function.Call((Hash)0x36CA2554, _value);
+		}
+		/// <summary>
+		/// It overrides the default distance culling radius of an entity. Set to `0.0` to reset.
+		/// If you want to interact with an entity outside of your players' scopes set the radius to a huge number.
+		/// </summary>
+		public static void SetEntityDistanceCullingRadius(int _entity, float _radius)
+		{
+			Function.Call((Hash)0xD3A183A3, _entity, _radius);
+		}
+		/// <summary>
+		/// Sets a global handling override for a specific vehicle class. The name is supposed to match the `handlingName` field from handling.meta.
+		/// </summary>
+		public static void SetHandlingInt(string _vehicle, string _class_, string _fieldName, int _value)
+		{
+			Function.Call((Hash)0x8AB3F46C, _vehicle, _class_, _fieldName, _value);
+		}
+		/// <summary>
+		/// Registers a key mapping for the current resource.
+		/// 
+		/// See the related [cookbook post](https://cookbook.fivem.net/2020/01/06/using-the-new-console-key-bindings/) for more information.
+		/// </summary>
+		public static void RegisterKeyMapping(string _commandString, string _description, string _defaultMapper, string _defaultParameter)
+		{
+			Function.Call((Hash)0xD7664FD1, _commandString, _description, _defaultMapper, _defaultParameter);
+		}
+		/// <summary>
+		/// Sets the maximum distance at which all tags will be visible and which beyond will not be displayed. Distance is measured from the camera position.
+		/// </summary>
+		public static void SetMpGamerTagsVisibleDistance(float _distance)
+		{
+			Function.Call((Hash)0xD61676B3, _distance);
+		}
+		/// <summary>
+		/// Sets the culling radius for the specified player.
+		/// Set to `0.0` to reset.
+		/// </summary>
+		public static void SetPlayerCullingRadius(string _playerSrc, float _radius)
+		{
+			Function.Call((Hash)0x8A2FBAD4, _playerSrc, _radius);
+		}
+		/// <summary>
+		/// Allows Weapon-Flashlight beams to stay visible while moving. Normally it only stays on while aiming.
+		/// </summary>
+		public static void SetFlashLightKeepOnWhileMoving(bool _state)
+		{
+			Function.Call((Hash)0x7635B349, _state);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool SendNuiMessage(string _jsonString)
+		{
+			return Function.Call<bool>((Hash)0x78608ACB, _jsonString);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetNuiFocusKeepInput(bool _keepInput)
+		{
+			Function.Call((Hash)0x3FF5E5F8, _keepInput);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void RegisterNuiCallbackType(string _callbackType)
+		{
+			Function.Call((Hash)0xCD03CDA9, _callbackType);
+		}
+		/// <summary>
+		/// Sets a floating-point parameter for a submix effect.
+		/// </summary>
+		public static void SetAudioSubmixEffectParamFloat(int _submixId, int _effectSlot, int _paramIndex, float _paramValue)
+		{
+			Function.Call((Hash)0x9A209B3C, _submixId, _effectSlot, _paramIndex, _paramValue);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool SetCursorLocation(float _x, float _y)
+		{
+			return Function.Call<bool>((Hash)0x8A7A8DAC, _x, _y);
+		}
+		/// <summary>
+		/// Sets a clickable button to be displayed in a player's Discord rich presence.
+		/// </summary>
+		public static void SetDiscordRichPresenceAction(int _index, string _label, string _url)
+		{
+			Function.Call((Hash)0xCBBC3FAC, _index, _label, _url);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetInteriorRoomFlag(int _interiorId, int _roomIndex, int _flag)
+		{
+			Function.Call((Hash)0x5518D60B, _interiorId, _roomIndex, _flag);
+		}
+		/// <summary>
+		/// Set's the ropes length change rate, which is the speed that rope should wind if started.
+		/// </summary>
+		public static void SetRopeLengthChangeRate(int _rope, float _lengthChangeRate)
+		{
+			Function.Call((Hash)0x69B680A7, _rope, _lengthChangeRate);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetInteriorPortalEntityFlag(int _interiorId, int _portalIndex, int _entityIndex, int _flag)
+		{
+			Function.Call((Hash)0x8349CD76, _interiorId, _portalIndex, _entityIndex, _flag);
+		}
+		/// <summary>
+		/// This native sets the app id for the discord rich presence implementation.
+		/// </summary>
+		public static void SetDiscordAppId(string _appId)
+		{
+			Function.Call((Hash)0x6A02254D, _appId);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetInteriorPortalRoomTo(int _interiorId, int _portalIndex, int _roomTo)
+		{
+			Function.Call((Hash)0x58982680, _interiorId, _portalIndex, _roomTo);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetModelHeadlightConfiguration(uint _modelHash, float _ratePerSecond, float _headlightRotation, bool _invertRotation)
+		{
+			Function.Call((Hash)0x7F6B8D75, _modelHash, _ratePerSecond, _headlightRotation, _invertRotation);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetInteriorPortalCornerPosition(int _interiorId, int _portalIndex, int _cornerIndex, float _posX, float _posY, float _posZ)
+		{
+			Function.Call((Hash)0x87F43553, _interiorId, _portalIndex, _cornerIndex, _posX, _posY, _posZ);
+		}
+		/// <summary>
+		/// A setter for [GET_RESOURCE_KVP_STRING](#\_0x5240DA5A).
+		/// </summary>
+		public static void SetResourceKvp(string _key, string _value)
+		{
+			Function.Call((Hash)0x21C7A35B, _key, _value);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetSnakeoilForEntry(string _name, string _path, string _data)
+		{
+			Function.Call((Hash)0xA7DD3209, _name, _path, _data);
+		}
+		/// <summary>
+		/// **Experimental**: This native may be altered or removed in future versions of CitizenFX without warning.
+		/// 
+		/// Registers a KVP value as an asset with the GTA streaming module system. This function currently won't work.
+		/// </summary>
+		public static void RegisterStreamingFileFromKvs(string _kvsKey)
+		{
+			Function.Call((Hash)0x1493DCC1, _kvsKey);
+		}
+		/// <summary>
+		/// This native sets the small image asset for the discord rich presence implementation.
+		/// </summary>
+		public static void SetDiscordRichPresenceAssetSmall(string _assetName)
+		{
+			Function.Call((Hash)0xF61D04C4, _assetName);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetNetworkWalkMode(bool _enabled)
+		{
+			Function.Call((Hash)0x55188D2D, _enabled);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetInteriorPortalRoomFrom(int _interiorId, int _portalIndex, int _roomFrom)
+		{
+			Function.Call((Hash)0x298FC783, _interiorId, _portalIndex, _roomFrom);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetHttpHandler(InputArgument _handler)
+		{
+			Function.Call((Hash)0xF5C6330C, _handler);
+		}
+		/// <summary>
+		/// Sets values to the zoom level data by index.
+		/// </summary>
+		public static void SetMapZoomDataLevel(int _index, float _zoomScale, float _zoomSpeed, float _scrollSpeed, float _tilesX, float _tilesY)
+		{
+			Function.Call((Hash)0x447C718E, _index, _zoomScale, _zoomSpeed, _scrollSpeed, _tilesX, _tilesY);
+		}
+		/// <summary>
+		/// Overrides the minimap component data (from `common:/data/ui/frontend.xml`) for a specified component.
+		/// </summary>
+		public static void SetMinimapComponentPosition(string _name, string _alignX, string _alignY, float _posX, float _posY, float _sizeX, float _sizeY)
+		{
+			Function.Call((Hash)0x3E882B23, _name, _alignX, _alignY, _posX, _posY, _sizeX, _sizeY);
+		}
+		/// <summary>
+		/// Overrides a ped model personality type.
+		/// </summary>
+		public static void SetPedModelPersonality(uint _modelHash, uint _personalityHash)
+		{
+			Function.Call((Hash)0x46F6B38B, _modelHash, _personalityHash);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetVehicleEngineTemperature(int _vehicle, float _temperature)
+		{
+			Function.Call((Hash)0x6C93C4A9, _vehicle, _temperature);
+		}
+		/// <summary>
+		/// Sets some in-game parameters which is used for checks is ped needs to fly through windscreen after a crash.
+		/// </summary>
+		public static bool SetFlyThroughWindscreenParams(float _vehMinSpeed, float _unkMinSpeed, float _unkModifier, float _minDamage)
+		{
+			return Function.Call<bool>((Hash)0x4D3118ED, _vehMinSpeed, _unkMinSpeed, _unkModifier, _minDamage);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetInteriorPortalFlag(int _interiorId, int _portalIndex, int _flag)
+		{
+			Function.Call((Hash)0x88B2355E, _interiorId, _portalIndex, _flag);
+		}
+		/// <summary>
+		/// Sets a global handling override for a specific vehicle class. The name is supposed to match the `handlingName` field from handling.meta.
+		/// Example: `SetHandlingVector('AIRTUG', 'CHandlingData', 'vecCentreOfMassOffset', vector3(0.0, 0.0, -5.0))`
+		/// </summary>
+		public static void SetHandlingVector(string _vehicle, string _class_, string _fieldName, Vector3 _value)
+		{
+			Function.Call((Hash)0x7F9D543, _vehicle, _class_, _fieldName, _value);
+		}
+		/// <summary>
+		/// the status of default voip system. It affects on `NETWORK_IS_PLAYER_TALKING` and `mp_facial` animation.
+		/// This function doesn't need to be called every frame, it works like a switcher.
+		/// </summary>
+		public static void SetPlayerTalkingOverride(int _player, bool _state)
+		{
+			Function.Call((Hash)0xFC02CAF6, _player, _state);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool SetPlayerMaxStamina(int _playerId, float _maxStamina)
+		{
+			return Function.Call<bool>((Hash)0x35594F67, _playerId, _maxStamina);
+		}
+		/// <summary>
+		/// Sets a global handling override for a specific vehicle class. The name is supposed to match the `handlingName` field from handling.meta.
+		/// Example: `SetHandlingFloat('AIRTUG', 'CHandlingData', 'fSteeringLock', 360.0)`
+		/// </summary>
+		public static void SetHandlingFloat(string _vehicle, string _class_, string _fieldName, float _value)
+		{
+			Function.Call((Hash)0x90DD01C, _vehicle, _class_, _fieldName, _value);
+		}
+		/// <summary>
+		/// Sets whether or not `SHUTDOWN_LOADING_SCREEN` automatically shuts down the NUI frame for the loading screen. If this is enabled,
+		/// you will have to manually invoke `SHUTDOWN_LOADING_SCREEN_NUI` whenever you want to hide the NUI loading screen.
+		/// </summary>
+		public static void SetManualShutdownLoadingScreenNui(bool _manualShutdown)
+		{
+			Function.Call((Hash)0x1722C938, _manualShutdown);
+		}
+		/// <summary>
+		/// Sets the display info for a minimap overlay.
+		/// </summary>
+		public static void SetMinimapOverlayDisplay(int _miniMap, float _x, float _y, float _xScale, float _yScale, float _alpha)
+		{
+			Function.Call((Hash)0x6A48B3CA, _miniMap, _x, _y, _xScale, _yScale, _alpha);
+		}
+		/// <summary>
+		/// Internal function for setting a state bag value.
+		/// </summary>
+		public static void SetStateBagValue(string _bagName, string _keyName, string _valueData, int _valueLength, bool _replicated)
+		{
+			Function.Call((Hash)0x8D50E33A, _bagName, _keyName, _valueData, _valueLength, _replicated);
+		}
+		/// <summary>
+		/// Sets the entity lockdown mode for a specific routing bucket.
+		/// 
+		/// Lockdown modes are:
+		/// 
+		/// | Mode       | Meaning                                                    |
+		/// | ---------- | ---------------------------------------------------------- |
+		/// | `strict`   | No entities can be created by clients at all.              |
+		/// | `relaxed`  | Only script-owned entities created by clients are blocked. |
+		/// | `inactive` | Clients can create any entity they want.                   |
+		/// </summary>
+		public static void SetRoutingBucketEntityLockdownMode(int _bucketId, string _mode)
+		{
+			Function.Call((Hash)0xA0F2201F, _bucketId, _mode);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetVehicleTurboPressure(int _vehicle, float _pressure)
+		{
+			Function.Call((Hash)0x6485615E, _vehicle, _pressure);
+		}
+		/// <summary>
+		/// Sets the type for the minimap blip clipping object to be either rectangular or rounded.
+		/// </summary>
+		public static void SetMinimapClipType(int _type)
+		{
+			Function.Call((Hash)0xB8B4490C, _type);
+		}
+		/// <summary>
+		/// Sets the rotation speed of a wheel.
+		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
+		/// </summary>
+		public static void SetVehicleWheelRotationSpeed(int _vehicle, int _wheelIndex, float _speed)
+		{
+			Function.Call((Hash)0x35ED100D, _vehicle, _wheelIndex, _speed);
+		}
+		/// <summary>
+		/// Nonsynchronous [SET_RESOURCE_KVP_INT](#\_0x6A2B1E8) operation; see [FLUSH_RESOURCE_KVP](#\_0x5240DA5A).
+		/// </summary>
+		public static void SetResourceKvpIntNoSync(string _key, int _value)
+		{
+			Function.Call((Hash)0x26AEB707, _key, _value);
+		}
+		/// <summary>
+		/// Sets the routing bucket for the specified player.
+		/// 
+		/// Routing buckets are also known as 'dimensions' or 'virtual worlds' in past echoes, however they are population-aware.
+		/// </summary>
+		public static void SetPlayerRoutingBucket(string _playerSrc, int _bucket)
+		{
+			Function.Call((Hash)0x6504EB38, _playerSrc, _bucket);
+		}
+		/// <summary>
+		/// Sets whether or not the specified routing bucket has automatically-created population enabled.
+		/// </summary>
+		public static void SetRoutingBucketPopulationEnabled(int _bucketId, bool _mode)
+		{
+			Function.Call((Hash)0xCE51AC2C, _bucketId, _mode);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetConvar(string _varName, string _value)
+		{
+			Function.Call((Hash)0x341B16D2, _varName, _value);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetNuiFocus(bool _hasFocus, bool _hasCursor)
+		{
+			Function.Call((Hash)0x5B98AE30, _hasFocus, _hasCursor);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetInteriorRoomTimecycle(int _interiorId, int _roomIndex, int _timecycleHash)
+		{
+			Function.Call((Hash)0x31C9A848, _interiorId, _roomIndex, _timecycleHash);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetVehicleWheelHealth(int _vehicle, int _wheelIndex, float _health)
+		{
+			Function.Call((Hash)0xB22ECEFD, _vehicle, _wheelIndex, _health);
+		}
+		/// <summary>
+		/// Disables the vehicle from being repaired when a vehicle extra is enabled.
+		/// </summary>
+		public static void SetVehicleAutoRepairDisabled(int _vehicle, bool _value)
+		{
+			Function.Call((Hash)0x5F3A3574, _vehicle, _value);
+		}
+		/// <summary>
+		/// Sets a pixel in the specified runtime texture. This will have to be committed using `COMMIT_RUNTIME_TEXTURE` to have any effect.
+		/// </summary>
+		public static void SetRuntimeTexturePixel(long _tex, int _x, int _y, int _r, int _g, int _b, int _a)
+		{
+			Function.Call((Hash)0xAB65ACEE, _tex, _x, _y, _r, _g, _b, _a);
+		}
+		/// <summary>
+		/// Nonsynchronous [SET_RESOURCE_KVP](#\_0x21C7A35B) operation; see [FLUSH_RESOURCE_KVP](#\_0x5240DA5A).
+		/// </summary>
+		public static void SetResourceKvpNoSync(string _key, string _value)
+		{
+			Function.Call((Hash)0xCF9A2FF, _key, _value);
+		}
+		/// <summary>
+		/// Sets the ratio that a door is open for on a train.
+		/// </summary>
+		public static void SetTrainDoorOpenRatio(int _train, int _doorIndex, float _ratio)
+		{
+			Function.Call((Hash)0x2468DBE8, _train, _doorIndex, _ratio);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetVehicleCurrentRpm(int _vehicle, float _rpm)
+		{
+			Function.Call((Hash)0x2A01A8FC, _vehicle, _rpm);
+		}
+		/// <summary>
+		/// Sets the player's rich presence detail state for social platform providers to a specified string.
+		/// </summary>
+		public static void SetRichPresence(string _presenceState)
+		{
+			Function.Call((Hash)0x7BDCBD45, _presenceState);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool SetRuntimeTextureArgbData(long _tex, string _buffer, int _length)
+		{
+			return Function.Call<bool>((Hash)0x3963D527, _tex, _buffer, _length);
+		}
+		/// <summary>
+		/// Sets whether the wheel is powered.
+		/// On all wheel drive cars this works to change which wheels receive power, but if a car's fDriveBiasFront doesn't send power to that wheel, it won't get power anyway. This can be fixed by changing the fDriveBiasFront with SET_VEHICLE_HANDLING_FLOAT.
+		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
+		/// This is a shortcut to a flag in SET_VEHICLE_WHEEL_FLAGS.
+		/// </summary>
+		public static void SetVehicleWheelIsPowered(int _vehicle, int _wheelIndex, bool _powered)
+		{
+			Function.Call((Hash)0xBD5291A0, _vehicle, _wheelIndex, _powered);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetVehicleSteeringScale(int _vehicle, float _scale)
+		{
+			Function.Call((Hash)0xEB46596F, _vehicle, _scale);
+		}
+		/// <summary>
+		/// A setter for [GET_RESOURCE_KVP_FLOAT](#\_0x35BDCEEA).
+		/// </summary>
+		public static void SetResourceKvpFloat(string _key, float _value)
+		{
+			Function.Call((Hash)0x9ADD2938, _key, _value);
+		}
+		/// <summary>
+		/// Nonsynchronous [SET_RESOURCE_KVP_FLOAT](#\_0x9ADD2938) operation; see [FLUSH_RESOURCE_KVP](#\_0x5240DA5A).
+		/// </summary>
+		public static void SetResourceKvpFloatNoSync(string _key, float _value)
+		{
+			Function.Call((Hash)0x3517BFBE, _key, _value);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetVehicleFuelLevel(int _vehicle, float _level)
+		{
+			Function.Call((Hash)0xBA970511, _vehicle, _level);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool SetPlayerStamina(int _playerId, float _stamina)
+		{
+			return Function.Call<bool>((Hash)0xA9EC16C7, _playerId, _stamina);
+		}
+		/// <summary>
+		/// Enables or disables whether train doors should be forced open whilst a player is inside the train. This is enabled by default in multiplayer.
+		/// </summary>
+		public static void SetTrainsForceDoorsOpen(bool _forceOpen)
+		{
+			Function.Call((Hash)0xD4D1BA63, _forceOpen);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool SetTextChatEnabled(bool _enabled)
+		{
+			return Function.Call<bool>((Hash)0x97B2F9F8, _enabled);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool VerifyPasswordHash(string _password, string _hash)
+		{
+			return Function.Call<bool>((Hash)0x2E310ACD, _password, _hash);
+		}
+		/// <summary>
+		/// Sets a handling override for a specific vehicle. Certain handling flags can only be set globally using `SET_HANDLING_FIELD`, this might require some experimentation.
+		/// Example: `SetVehicleHandlingField(vehicle, 'CHandlingData', 'fSteeringLock', 360.0)`
+		/// </summary>
+		public static void SetVehicleHandlingField(int _vehicle, string _class_, string _fieldName, int _value)
+		{
+			Function.Call((Hash)0x2BA40795, _vehicle, _class_, _fieldName, _value);
+		}
+		/// <summary>
+		/// Sets the flags of a wheel.
+		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
+		/// </summary>
+		public static void SetVehicleWheelFlags(int _vehicle, int _wheelIndex, int _flags)
+		{
+			Function.Call((Hash)0xD2B9E90D, _vehicle, _wheelIndex, _flags);
+		}
+		/// <summary>
+		/// Sets whether all tags should group (normal game behavior) or should remain independent and above each ped's respective head when in a vehicle.
+		/// </summary>
+		public static void SetMpGamerTagsUseVehicleBehavior(bool _enabled)
+		{
+			Function.Call((Hash)0x7A27BC93, _enabled);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetVehicleAlarmTimeLeft(int _vehicle, int _time)
+		{
+			Function.Call((Hash)0xC108EE6F, _vehicle, _time);
+		}
+		/// <summary>
+		/// Sets the height of the vehicle's suspension.
+		/// This changes the same value set by Suspension in the mod shop.
+		/// Negatives values raise the car. Positive values lower the car.
+		/// 
+		/// This is change is visual only. The collision of the vehicle will not move.
+		/// </summary>
+		public static void SetVehicleSuspensionHeight(int _vehicle, float _newHeight)
+		{
+			Function.Call((Hash)0xB3439A01, _vehicle, _newHeight);
+		}
+		/// <summary>
+		/// A setter for [GET_RESOURCE_KVP_INT](#\_0x557B586A).
+		/// </summary>
+		public static void SetResourceKvpInt(string _key, int _value)
+		{
+			Function.Call((Hash)0x6A2B1E8, _key, _value);
+		}
+		/// <summary>
+		/// Disables the editor runtime mode, changing game behavior to not track entity metadata.
+		/// This function supports SDK infrastructure and is not intended to be used directly from your code.
+		/// </summary>
+		public static void DisableEditorRuntime()
+		{
+			Function.Call((Hash)0xB1622B17);
+		}
+		/// <summary>
+		/// Adjusts the offset of the specified wheel relative to the wheel's axle center.
+		/// Needs to be called every frame in order to function properly, as GTA will reset the offset otherwise.
+		/// This function can be especially useful to set the track width of a vehicle, for example:
+		/// 
+		/// ```
+		/// function SetVehicleFrontTrackWidth(vehicle, width)
+		/// SetVehicleWheelXOffset(vehicle, 0, -width/2)
+		/// SetVehicleWheelXOffset(vehicle, 1, width/2)
+		/// end
+		/// ```
+		/// </summary>
+		public static void SetVehicleWheelXOffset(int _vehicle, int _wheelIndex, float _offset)
+		{
+			Function.Call((Hash)0xBD6357D, _vehicle, _wheelIndex, _offset);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetVehicleSteeringAngle(int _vehicle, float _angle)
+		{
+			Function.Call((Hash)0xFFCCC2EA, _vehicle, _angle);
+		}
+		/// <summary>
+		/// Draws a gizmo. This function supports SDK infrastructure and is not intended to be used directly from your code.
+		/// 
+		/// This should be used from JavaScript or another language supporting mutable buffers like ArrayBuffer.
+		/// 
+		/// Matrix layout is as follows:
+		/// 
+		/// *   Element \[0], \[1] and \[2] should represent the right vector.
+		/// *   Element \[4], \[5] and \[6] should represent the forward vector.
+		/// *   Element \[8], \[9] and \[10] should represent the up vector.
+		/// *   Element \[12], \[13] and \[14] should represent X, Y and Z translation coordinates.
+		/// *   All other elements should be \[0, 0, 0, 1].
+		/// </summary>
+		public static bool DrawGizmo(long _matrixPtr, string _id)
+		{
+			return Function.Call<bool>((Hash)0xEB2EDCA2, _matrixPtr, _id);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetVehicleClutch(int _vehicle, float _clutch)
+		{
+			Function.Call((Hash)0x2F70ACED, _vehicle, _clutch);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetVehicleWheelYRotation(int _vehicle, int _wheelIndex, float _value)
+		{
+			Function.Call((Hash)0xC6C2171F, _vehicle, _wheelIndex, _value);
+		}
+		/// <summary>
+		/// Use along with SetVehicleWheelWidth to resize the wheels (this native sets the collider width affecting physics while SetVehicleWheelWidth will change visual width).
+		/// </summary>
+		public static void SetVehicleWheelTireColliderWidth(int _vehicle, int _wheelIndex, float _value)
+		{
+			Function.Call((Hash)0x47BD0270, _vehicle, _wheelIndex, _value);
+		}
+		/// <summary>
+		/// Sets whether or not the weather should be owned by the network subsystem.
+		/// 
+		/// To be able to use [\_SET_WEATHER_TYPE_TRANSITION](#\_0x578C752848ECFA0C), this has to be set to false.
+		/// </summary>
+		public static void SetWeatherOwnedByNetwork(bool _network)
+		{
+			Function.Call((Hash)0x2703D582, _network);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetVehicleGravityAmount(int _vehicle, float _gravity)
+		{
+			Function.Call((Hash)0x1A963E58, _vehicle, _gravity);
+		}
+		/// <summary>
+		/// Returns mapdata's entity matrix. This function supports SDK infrastructure and is not intended to be used directly from your code.
+		/// 
+		/// This should be used from JavaScript or another language supporting mutable buffers like ArrayBuffer.
+		/// 
+		/// Matrix layout is as follows:
+		/// 
+		/// *   Element \[0], \[1] and \[2] should represent the right vector.
+		/// *   Element \[4], \[5] and \[6] should represent the forward vector.
+		/// *   Element \[8], \[9] and \[10] should represent the up vector.
+		/// *   Element \[12], \[13] and \[14] should represent X, Y and Z translation coordinates.
+		/// *   All other elements should be \[0, 0, 0, 1].
+		/// </summary>
+		public static bool GetMapdataEntityMatrix(int _mapDataHash, int _entityInternalIdx, long _matrixPtr)
+		{
+			return Function.Call<bool>((Hash)0x2C3CDA93, _mapDataHash, _entityInternalIdx, _matrixPtr);
+		}
+		/// <summary>
+		/// Sets a handling override for a specific vehicle. Certain handling flags can only be set globally using `SET_HANDLING_FLOAT`, this might require some experimentation.
+		/// Example: `SetVehicleHandlingFloat(vehicle, 'CHandlingData', 'fSteeringLock', 360.0)`
+		/// </summary>
+		public static void SetVehicleHandlingFloat(int _vehicle, string _class_, string _fieldName, float _value)
+		{
+			Function.Call((Hash)0x488C86D2, _vehicle, _class_, _fieldName, _value);
+		}
+		/// <summary>
+		/// The backing function for TriggerEvent.
+		/// </summary>
+		public static void TriggerEventInternal(string _eventName, string _eventPayload, int _payloadLength)
+		{
+			Function.Call((Hash)0x91310870, _eventName, _eventPayload, _payloadLength);
+		}
+		/// <summary>
+		/// Sets power being sent to a wheel.
+		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
+		/// </summary>
+		public static void SetVehicleWheelPower(int _vehicle, int _wheelIndex, float _power)
+		{
+			Function.Call((Hash)0xC6146043, _vehicle, _wheelIndex, _power);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetVehicleOilLevel(int _vehicle, float _level)
+		{
+			Function.Call((Hash)0x90D1CAD1, _vehicle, _level);
+		}
+		/// <summary>
+		/// Sets vehicle's wheels' width (width is the same for all the wheels, cannot get/set specific wheel of vehicle).
+		/// Only works on non-default wheels.
+		/// Returns whether change was successful (can be false if trying to set width for non-default wheels).
+		/// </summary>
+		public static bool SetVehicleWheelWidth(int _vehicle, float _width)
+		{
+			return Function.Call<bool>((Hash)0x64C3F1C0, _vehicle, _width);
+		}
+		/// <summary>
+		/// The backing function for TriggerClientEvent.
+		/// </summary>
+		public static void TriggerClientEventInternal(string _eventName, string _eventTarget, string _eventPayload, int _payloadLength)
+		{
+			Function.Call((Hash)0x2F7A49E6, _eventName, _eventTarget, _eventPayload, _payloadLength);
+		}
+		/// <summary>
+		/// Sets custom vehicle xenon lights color, allowing to use RGB palette. The game will ignore lights color set by [\_SET_VEHICLE_XENON_LIGHTS_COLOR](#\_0xE41033B25D003A07) when custom color is active. This native is not synced between players. Requires xenon lights mod to be set on vehicle.
+		/// </summary>
+		public static void SetVehicleXenonLightsCustomColor(int _vehicle, int _red, int _green, int _blue)
+		{
+			Function.Call((Hash)0x1683E7F0, _vehicle, _red, _green, _blue);
+		}
+		/// <summary>
+		/// Overrides a floating point value from `visualsettings.dat` temporarily.
+		/// </summary>
+		public static void SetVisualSettingFloat(string _name, float _value)
+		{
+			Function.Call((Hash)0xD1D31681, _name, _value);
+		}
+		/// <summary>
+		/// A setter for the recoil shake amplitude of a weapon.
+		/// </summary>
+		public static void SetWeaponRecoilShakeAmplitude(uint _weaponHash, float _amplitude)
+		{
+			Function.Call((Hash)0x9864312F, _weaponHash, _amplitude);
+		}
+		/// <summary>
+		/// Toggles whether the usage of [ADD_ROPE](#\_0xE832D760399EB220) should create an underlying CNetworkRopeWorldStateData. By default this is set to false.
+		/// </summary>
+		public static void SetRopesCreateNetworkWorldState(bool _shouldCreate)
+		{
+			Function.Call((Hash)0xE62FC73, _shouldCreate);
+		}
+		/// <summary>
+		/// Shuts down the `loadingScreen` NUI frame, similarly to `SHUTDOWN_LOADING_SCREEN`.
+		/// </summary>
+		public static void ShutdownLoadingScreenNui()
+		{
+			Function.Call((Hash)0xB9234AFB);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void SetVehicleHighGear(int _vehicle, int _gear)
+		{
+			Function.Call((Hash)0x20B1B3E6, _vehicle, _gear);
+		}
+		/// <summary>
+		/// Sets vehicle's wheels' size (size is the same for all the wheels, cannot get/set specific wheel of vehicle).
+		/// Only works on non-default wheels.
+		/// Returns whether change was successful (can be false if trying to set size for non-default wheels).
+		/// </summary>
+		public static bool SetVehicleWheelSize(int _vehicle, float _size)
+		{
+			return Function.Call<bool>((Hash)0x53AB5C35, _vehicle, _size);
+		}
+		/// <summary>
+		/// Example script: https://pastebin.com/J6XGbkCW
+		/// 
+		/// List of known states:
+		/// 
+		/// ```
+		/// 1: Not wheeling.
+		/// 65: Vehicle is ready to do wheelie (burnouting).
+		/// 129: Vehicle is doing wheelie.
+		/// ```
+		/// </summary>
+		public static void SetVehicleWheelieState(int _vehicle, int _state)
+		{
+			Function.Call((Hash)0xEAB8DB65, _vehicle, _state);
+		}
+		/// <summary>
+		/// Clear a ped's tasks. Stop animations and other tasks created by scripts.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [CLEAR_PED_TASKS](?\_0xE1EF3C1216AFF2CD).**
+		/// </summary>
+		public static void ClearPedTasks_CFX(int _ped)
+		{
+			Function.Call((Hash)0xDE3316AB, _ped);
+		}
+		/// <summary>
+		/// Sets a handling override for a specific vehicle. Certain handling flags can only be set globally using `SET_HANDLING_VECTOR`, this might require some experimentation.
+		/// </summary>
+		public static void SetVehicleHandlingVector(int _vehicle, string _class_, string _fieldName, Vector3 _value)
+		{
+			Function.Call((Hash)0x12497890, _vehicle, _class_, _fieldName, _value);
+		}
+		/// <summary>
+		/// Sets brake pressure of a wheel.
+		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
+		/// Normal values around 1.0f
+		/// </summary>
+		public static void SetVehicleWheelBrakePressure(int _vehicle, int _wheelIndex, float _pressure)
+		{
+			Function.Call((Hash)0xE80F4E31, _vehicle, _wheelIndex, _pressure);
+		}
+		/// <summary>
+		/// Sets a handling override for a specific vehicle. Certain handling flags can only be set globally using `SET_HANDLING_INT`, this might require some experimentation.
+		/// </summary>
+		public static void SetVehicleHandlingInt(int _vehicle, string _class_, string _fieldName, int _value)
+		{
+			Function.Call((Hash)0xC37F4CF9, _vehicle, _class_, _fieldName, _value);
+		}
+		/// <summary>
+		/// Gets the selected entity at the current mouse cursor position, and changes the current selection depth. This function supports SDK infrastructure and is not intended to be used directly from your code.
+		/// </summary>
+		public static int SelectEntityAtCursor(int _hitFlags, bool _precise)
+		{
+			return Function.Call<int>((Hash)0x3DD8130F, _hitFlags, _precise);
+		}
+		/// <summary>
+		/// The backing function for TriggerServerEvent.
+		/// </summary>
+		public static void TriggerServerEventInternal(string _eventName, string _eventPayload, int _payloadLength)
+		{
+			Function.Call((Hash)0x7FDD1128, _eventName, _eventPayload, _payloadLength);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static void TempBanPlayer(string _playerSrc, string _reason)
+		{
+			Function.Call((Hash)0x1E35DBBA, _playerSrc, _reason);
+		}
+		/// <summary>
+		/// Disables the game's built-in auto-reloading.
+		/// </summary>
+		public static void SetWeaponsNoAutoreload(bool _state)
+		{
+			Function.Call((Hash)0x311150E5, _state);
+		}
+		/// <summary>
+		/// Returns whether or not the currently executing event was canceled.
+		/// </summary>
+		public static bool WasEventCanceled()
+		{
+			return Function.Call<bool>((Hash)0x58382A19);
+		}
+		/// <summary>
+		/// Sets color for entity outline. `255, 0, 255, 255` by default.
+		/// </summary>
+		public static void SetEntityDrawOutlineColor(int _red, int _green, int _blue, int _alpha)
+		{
+			Function.Call((Hash)0xB41A56C2, _red, _green, _blue, _alpha);
+		}
+		/// <summary>
+		/// Applies an Item from a PedDecorationCollection to a ped. These include tattoos and shirt decals.
+		/// collection - PedDecorationCollection filename hash
+		/// overlay - Item name hash
+		/// Example:
+		/// Entry inside "mpbeach_overlays.xml" -
+		/// <Item>
+		/// <uvPos x="0.500000" y="0.500000" />
+		/// <scale x="0.600000" y="0.500000" />
+		/// <rotation value="0.000000" />
+		/// <nameHash>FM_Hair_Fuzz</nameHash>
+		/// <txdHash>mp_hair_fuzz</txdHash>
+		/// <txtHash>mp_hair_fuzz</txtHash>
+		/// <zone>ZONE_HEAD</zone>
+		/// <type>TYPE_TATTOO</type>
+		/// <faction>FM</faction>
+		/// <garment>All</garment>
+		/// <gender>GENDER_DONTCARE</gender>
+		/// <award />
+		/// <awardLevel />
+		/// </Item>
+		/// Code:
+		/// PED::\_0x5F5D1665E352A839(PLAYER::PLAYER_PED_ID(), MISC::GET_HASH_KEY("mpbeach_overlays"), MISC::GET_HASH_KEY("fm_hair_fuzz"))
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [ADD_PED_DECORATION_FROM_HASHES](?\_0x5F5D1665E352A839).**
+		/// </summary>
+		public static void AddPedDecorationFromHashes(int _ped, uint _collection, uint _overlay)
+		{
+			Function.Call((Hash)0x70559AC7, _ped, _collection, _overlay);
+		}
+		/// <summary>
+		/// The backing function for TriggerLatentClientEvent.
+		/// </summary>
+		public static void TriggerLatentClientEventInternal(string _eventName, string _eventTarget, string _eventPayload, int _payloadLength, int _bps)
+		{
+			Function.Call((Hash)0x70B35890, _eventName, _eventTarget, _eventPayload, _payloadLength, _bps);
+		}
+		/// <summary>
+		/// Gets the selected entity at the specified mouse cursor position, and changes the current selection depth. This function supports SDK infrastructure and is not intended to be used directly from your code.
+		/// </summary>
+		public static int SelectEntityAtPos(float _fracX, float _fracY, int _hitFlags, bool _precise)
+		{
+			return Function.Call<int>((Hash)0xAFE8D405, _fracX, _fracY, _hitFlags, _precise);
+		}
+		/// <summary>
+		/// Leaves cursor mode. This function supports SDK infrastructure and is not intended to be used directly from your code.
+		/// </summary>
+		public static void LeaveCursorMode()
+		{
+			Function.Call((Hash)0xADECF19E);
+		}
+		/// <summary>
+		/// A getter for [SET_RESOURCE_KVP_FLOAT](#\_0x9ADD2938), but for a specified resource.
+		/// </summary>
+		public static float GetExternalKvpFloat(string _resource, string _key)
+		{
+			return Function.Call<float>((Hash)0x3CC98B25, _resource, _key);
+		}
+		/// <summary>
+		/// Disables autoswapping to another weapon when the current weapon runs out of ammo.
+		/// </summary>
+		public static void SetWeaponsNoAutoswap(bool _state)
+		{
+			Function.Call((Hash)0x2A7B50E, _state);
+		}
+		/// <summary>
+		/// Sets the traction vector length of a wheel.
+		/// Max number of wheels can be retrieved with the native GET_VEHICLE_NUMBER_OF_WHEELS.
+		/// </summary>
+		public static void SetVehicleWheelTractionVectorLength(int _vehicle, int _wheelIndex, float _length)
+		{
+			Function.Call((Hash)0x85C85A3A, _vehicle, _wheelIndex, _length);
+		}
+		/// <summary>
+		/// Transiently updates the entity with the specified mapdata index and entity index.
+		/// This function supports SDK infrastructure and is not intended to be used directly from your code.
+		/// </summary>
+		public static void UpdateMapdataEntity(int _mapdata, int _entity, InputArgument _entityDef)
+		{
+			Function.Call((Hash)0xFC52CB91, _mapdata, _entity, _entityDef);
+		}
+		/// <summary>
+		/// The backing function for TriggerLatentServerEvent.
+		/// </summary>
+		public static void TriggerLatentServerEventInternal(string _eventName, string _eventPayload, int _payloadLength, int _bps)
+		{
+			Function.Call((Hash)0x128737EA, _eventName, _eventPayload, _payloadLength, _bps);
+		}
+		/// <summary>
+		/// **This is the server-side RPC native equivalent of the client native [CLEAR_PED_SECONDARY_TASK](?\_0x176CECF6F920D707).**
+		/// </summary>
+		public static void ClearPedSecondaryTask_CFX(int _ped)
+		{
+			Function.Call((Hash)0xA635F451, _ped);
+		}
+		/// <summary>
+		/// Enters cursor mode, suppressing mouse movement to the game and displaying a mouse cursor instead. This function supports
+		/// SDK infrastructure and is not intended to be used directly from your code.
+		/// </summary>
+		public static void EnterCursorMode()
+		{
+			Function.Call((Hash)0x780DA86);
+		}
+		/// <summary>
+		/// Creates an object (prop) with the specified model centered at the specified position.
+		/// This object will initially be owned by the creating script as a mission entity, and the model should be loaded already (e.g. using REQUEST_MODEL).
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [CREATE_OBJECT_NO_OFFSET](?\_0x9A294B2138ABB884).**
+		/// </summary>
+		public static int CreateObjectNoOffset_CFX(uint _modelHash, float _x, float _y, float _z, bool _isNetwork, bool _netMissionEntity, bool _doorFlag)
+		{
+			return Function.Call<int>((Hash)0x58040420, _modelHash, _x, _y, _z, _isNetwork, _netMissionEntity, _doorFlag);
+		}
+		/// <summary>
+		/// Draws an outline around a given entity. This function supports SDK infrastructure and is not intended to be used directly from your code.
+		/// </summary>
+		public static void SetEntityDrawOutline(int _entity, bool _enabled)
+		{
+			Function.Call((Hash)0x76180407, _entity, _enabled);
+		}
+		/// <summary>
+		/// Not sure what this changes, probably determines physical rim size in case the tire is blown.
+		/// </summary>
+		public static void SetVehicleWheelRimColliderSize(int _vehicle, int _wheelIndex, float _value)
+		{
+			Function.Call((Hash)0xF380E184, _vehicle, _wheelIndex, _value);
+		}
+		/// <summary>
+		/// Resets mapdata entity transform matrix to its original state.
+		/// This function supports SDK infrastructure and is not intended to be used directly from your code.
+		/// </summary>
+		public static bool ResetMapdataEntityMatrix(int _mapDataHash, int _entityInternalIdx)
+		{
+			return Function.Call<bool>((Hash)0x8143FA4F, _mapDataHash, _entityInternalIdx);
+		}
+		/// <summary>
+		/// Will unregister and cleanup a registered NUI callback handler.
+		/// 
+		/// Use along side the REGISTER_RAW_NUI_CALLBACK native.
+		/// </summary>
+		public static void UnregisterRawNuiCallback(string _callbackType)
+		{
+			Function.Call((Hash)0x7FB46432, _callbackType);
+		}
+		/// <summary>
+		/// Sets the armor of the specified ped.
+		/// ped: The Ped to set the armor of.
+		/// amount: A value between 0 and 100 indicating the value to set the Ped's armor to.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_PED_ARMOUR](?\_0xCEA04D83135264CC).**
+		/// </summary>
+		public static void SetPedArmour(int _ped, int _amount)
+		{
+			Function.Call((Hash)0x4E3A0CC4, _ped, _amount);
+		}
+		/// <summary>
+		/// Prints 'structured trace' data to the server `file descriptor 3` channel. This is not generally useful outside of
+		/// server monitoring utilities.
+		/// </summary>
+		public static void PrintStructuredTrace(string _jsonString)
+		{
+			Function.Call((Hash)0x90892DED, _jsonString);
+		}
+		/// <summary>
+		/// Use along with SetVehicleWheelSize to resize the wheels (this native sets the collider size affecting physics while SetVehicleWheelSize will change visual size).
+		/// </summary>
+		public static void SetVehicleWheelTireColliderSize(int _vehicle, int _wheelIndex, float _value)
+		{
+			Function.Call((Hash)0xB962D05C, _vehicle, _wheelIndex, _value);
+		}
+		/// <summary>
+		/// Returns the transient entity index for a specified mapdata/entity pair.
+		/// This function supports SDK infrastructure and is not intended to be used directly from your code.
+		/// </summary>
+		public static int GetEntityIndexFromMapdata(int _mapdata, int _entity)
+		{
+			return Function.Call<int>((Hash)0xEE43540D, _mapdata, _entity);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool StartResource(string _resourceName)
+		{
+			return Function.Call<bool>((Hash)0x29B440DC, _resourceName);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static bool StopResource(string _resourceName)
+		{
+			return Function.Call<bool>((Hash)0x21783161, _resourceName);
+		}
+		/// <summary>
+		/// Equivalent to CREATE_VEHICLE, but it uses 'server setter' logic (like the former CREATE_AUTOMOBILE) as a workaround for
+		/// reliability concerns regarding entity creation RPC.
+		/// 
+		/// Unlike CREATE_AUTOMOBILE, this supports other vehicle types as well.
+		/// </summary>
+		public static int CreateVehicleServerSetter(uint _modelHash, string _type, float _x, float _y, float _z, float _heading)
+		{
+			return Function.Call<int>((Hash)0x6AE51D4B, _modelHash, _type, _x, _y, _z, _heading);
+		}
+		/// <summary>
+		/// This native removes a specified weapon from your selected ped.
+		/// Weapon Hashes: pastebin.com/0wwDZgkF
+		/// Example:
+		/// C#:
+		/// Function.Call(Hash.REMOVE_WEAPON_FROM_PED, Game.Player.Character, 0x99B507EA);
+		/// C++:
+		/// WEAPON::REMOVE_WEAPON_FROM_PED(PLAYER::PLAYER_PED_ID(), 0x99B507EA);
+		/// The code above removes the knife from the player.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [REMOVE_WEAPON_FROM_PED](?\_0x4899CB088EDF59B8).**
+		/// </summary>
+		public static void RemoveWeaponFromPed_CFX(int _ped, uint _weaponHash)
+		{
+			Function.Call((Hash)0x9C37F220, _ped, _weaponHash);
+		}
+		/// <summary>
+		/// **This is the server-side RPC native equivalent of the client native [GIVE_WEAPON_COMPONENT_TO_PED](?\_0xD966D51AA5B28BB9).**
+		/// </summary>
+		public static void GiveWeaponComponentToPed(int _ped, uint _weaponHash, uint _componentHash)
+		{
+			Function.Call((Hash)0x3E1E286D, _ped, _weaponHash, _componentHash);
+		}
+		/// <summary>
+		/// <!--
+		/// _loc1_.map((name, idx) => `| ${idx} | ${name} | ![${name}](https://runtime.fivem.net/blips/${name}.svg) |`).join('\n')
+		/// -->
+		/// 
+		/// Sets the displayed sprite for a specific blip.
+		/// There's a [list of sprites](https://docs.fivem.net/game-references/blips/) on the FiveM documentation site.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_BLIP_SPRITE](?\_0xDF735600A4696DAF).**
+		/// </summary>
+		public static void SetBlipSprite_CFX(int _blip, int _spriteId)
+		{
+			Function.Call((Hash)0x8DBBB0B9, _blip, _spriteId);
+		}
+		/// <summary>
+		/// **This is the server-side RPC native equivalent of the client native [CREATE_PED_INSIDE_VEHICLE](?\_0x7DD959874C1FD534).**
+		/// </summary>
+		public static int CreatePedInsideVehicle_CFX(int _vehicle, int _pedType, uint _modelHash, int _seat, bool _isNetwork, bool _bScriptHostPed)
+		{
+			return Function.Call<int>((Hash)0x3000F092, _vehicle, _pedType, _modelHash, _seat, _isNetwork, _bScriptHostPed);
+		}
+		/// <summary>
+		/// Equivalent of [START_FIND_KVP](#\_0xDD379006), but for another resource than the current one.
+		/// </summary>
+		public static int StartFindExternalKvp(string _resourceName, string _prefix)
+		{
+			return Function.Call<int>((Hash)0x8F2EECC3, _resourceName, _prefix);
+		}
+		/// <summary>
+		/// Create a blip with a radius for the specified coordinates (it doesnt create the blip sprite, so you need to use [AddBlipCoords](#\_0xC6F43D0E))
+		/// Example image:
+		/// ![example](https://i.imgur.com/9hQl3DB.png)
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [ADD_BLIP_FOR_RADIUS](?\_0x46818D79B1F7499A).**
+		/// </summary>
+		public static int AddBlipForRadius(float _posX, float _posY, float _posZ, float _radius)
+		{
+			return Function.Call<int>((Hash)0x4626756C, _posX, _posY, _posZ, _radius);
+		}
+		/// <summary>
+		/// Creates an object (prop) with the specified model at the specified position, offset on the Z axis by the radius of the object's model.
+		/// This object will initially be owned by the creating script as a mission entity, and the model should be loaded already (e.g. using REQUEST_MODEL).
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [CREATE_OBJECT](?\_0x509D5878EB39E842).**
+		/// </summary>
+		public static int CreateObject_CFX(uint _modelHash, float _x, float _y, float _z, bool _isNetwork, bool _netMissionEntity, bool _doorFlag)
+		{
+			return Function.Call<int>((Hash)0x2F7AA05C, _modelHash, _x, _y, _z, _isNetwork, _netMissionEntity, _doorFlag);
+		}
+		/// <summary>
+		/// **This is the server-side RPC native equivalent of the client native [REMOVE_WEAPON_COMPONENT_FROM_PED](?\_0x1E8BE90C74FB4C09).**
+		/// </summary>
+		public static void RemoveWeaponComponentFromPed_CFX(int _ped, uint _weaponHash, uint _componentHash)
+		{
+			Function.Call((Hash)0x412AA00D, _ped, _weaponHash, _componentHash);
+		}
+		/// <summary>
+		/// Create a blip that by default is red (enemy), you can use [SET_BLIP_AS_FRIENDLY](#\_0xC6F43D0E) to make it blue (friend).\
+		/// Can be used for objects, vehicles and peds.
+		/// Example of enemy:
+		/// ![enemy](https://i.imgur.com/fl78svv.png)
+		/// Example of friend:
+		/// ![friend](https://i.imgur.com/Q16ho5d.png)
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [ADD_BLIP_FOR_ENTITY](?\_0x5CDE92C702A8FCE7).**
+		/// </summary>
+		public static int AddBlipForEntity(int _entity)
+		{
+			return Function.Call<int>((Hash)0x30822554, _entity);
+		}
+		/// <summary>
+		/// Applies a force to the specified entity.
+		/// **List of force types (p1)**:
+		/// 
+		/// ```
+		/// public enum ForceType
+		/// {
+		/// MinForce = 0,
+		/// MaxForceRot = 1,
+		/// MinForce2 = 2,
+		/// MaxForceRot2 = 3,
+		/// ForceNoRot = 4,
+		/// ForceRotPlusForce = 5
+		/// }
+		/// ```
+		/// 
+		/// Research/documentation on the gtaforums can be found [here](https://gtaforums.com/topic/885669-precisely-define-object-physics/) and [here](https://gtaforums.com/topic/887362-apply-forces-and-momentums-to-entityobject/).
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [APPLY_FORCE_TO_ENTITY](?\_0xC5F68BE9613E2D18).**
+		/// </summary>
+		public static void ApplyForceToEntity_CFX(int _entity, int _forceType, float _x, float _y, float _z, float _offX, float _offY, float _offZ, int _boneIndex, bool _isDirectionRel, bool _ignoreUpVec, bool _isForceRel, bool _p12, bool _p13)
+		{
+			Function.Call((Hash)0xC1C0855A, _entity, _forceType, _x, _y, _z, _offX, _offY, _offZ, _boneIndex, _isDirectionRel, _ignoreUpVec, _isForceRel, _p12, _p13);
+		}
+		/// <summary>
+		/// ...
+		/// </summary>
+		public static int StartFindKvp(string _prefix)
+		{
+			return Function.Call<int>((Hash)0xDD379006, _prefix);
+		}
+		/// <summary>
+		/// Sets variant of shader that will be used to draw entity outline.
+		/// 
+		/// Variants are:
+		/// 
+		/// *   **0**: Default value, gauss shader.
+		/// *   **1**: 2px wide solid color outline.
+		/// *   **2**: Fullscreen solid color except for entity.
+		/// </summary>
+		public static void SetEntityDrawOutlineShader(int _shader)
+		{
+			Function.Call((Hash)0x5261A01A, _shader);
+		}
+		/// <summary>
+		/// List of component/props ID
+		/// gtaxscripting.blogspot.com/2016/04/gta-v-peds-component-and-props.html
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [CLEAR_PED_PROP](?\_0x0943E5B8E078E76E).**
+		/// </summary>
+		public static void ClearPedProp(int _ped, int _propId)
+		{
+			Function.Call((Hash)0x2D23D743, _ped, _propId);
+		}
+		/// <summary>
+		/// Retrieves the map data entity handle.
+		/// This function supports SDK infrastructure and is not intended to be used directly from your code.
+		/// </summary>
+		public static bool GetMapdataEntityHandle(int _mapDataHash, int _entityInternalIdx, int _entityHandle)
+		{
+			return Function.Call<bool>((Hash)0x30AA6911, _mapDataHash, _entityInternalIdx, _entityHandle);
+		}
+		/// <summary>
+		/// **This is the server-side RPC native equivalent of the client native [SET_PED_CAN_RAGDOLL](?\_0xB128377056A54E2A).**
+		/// </summary>
+		public static void SetPedCanRagdoll_CFX(int _ped, bool _toggle)
+		{
+			Function.Call((Hash)0xCF1384C4, _ped, _toggle);
+		}
+		/// <summary>
+		/// This native is used to set prop variation on a ped. Components, drawables and textures IDs are related to the ped model.
+		/// 
+		/// ### MP Freemode list of props
+		/// 
+		/// **0**: Hat\
+		/// **1**: Glass\
+		/// **2**: Ear\
+		/// **6**: Watch\
+		/// **7**: Bracelet
+		/// 
+		/// ### Related and useful natives
+		/// 
+		/// [GET_NUMBER_OF_PED_PROP_DRAWABLE_VARIATIONS](#\_0x5FAF9754E789FB47)\
+		/// [GET_NUMBER_OF_PED_PROP_TEXTURE_VARIATIONS](#\_0xA6E7F1CEB523E171)
+		/// [List of component/props ID](https://gtaxscripting.blogspot.com/2016/04/gta-v-peds-component-and-props.html) of player_two with examples
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_PED_PROP_INDEX](?\_0x93376B65A266EB5F).**
+		/// </summary>
+		public static void SetPedPropIndex(int _ped, int _componentId, int _drawableId, int _textureId, bool _attach)
+		{
+			Function.Call((Hash)0x829F2E2, _ped, _componentId, _drawableId, _textureId, _attach);
+		}
+		/// <summary>
+		/// A getter for [SET_RESOURCE_KVP](#\_0x21C7A35B), but for a specified resource.
+		/// </summary>
+		public static string GetExternalKvpString(string _resource, string _key)
+		{
+			return Function.Call<string>((Hash)0x9080363A, _resource, _key);
+		}
+		/// <summary>
+		/// Returns the transient map data index for a specified hash.
+		/// This function supports SDK infrastructure and is not intended to be used directly from your code.
+		/// </summary>
+		public static int GetMapdataFromHashKey(uint _mapdataHandle)
+		{
+			return Function.Call<int>((Hash)0xD29D8EDD, _mapdataHandle);
+		}
+		/// <summary>
+		/// Sets the coordinates (world position) for a specified entity, offset by the radius of the entity on the Z axis.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_ENTITY_COORDS](?\_0x06843DA7060A026B).**
+		/// </summary>
+		public static void SetEntityCoords_CFX(int _entity, float _xPos, float _yPos, float _zPos, bool _alive, bool _deadFlag, bool _ragdollFlag, bool _clearArea)
+		{
+			Function.Call((Hash)0xDF70B41B, _entity, _xPos, _yPos, _zPos, _alive, _deadFlag, _ragdollFlag, _clearArea);
+		}
+		/// <summary>
+		/// Enables the editor runtime mode, changing game behavior to track entity metadata.
+		/// This function supports SDK infrastructure and is not intended to be used directly from your code.
+		/// </summary>
+		public static void EnableEditorRuntime()
+		{
+			Function.Call((Hash)0xC383871D);
+		}
+		/// <summary>
+		/// Sets an entity's matrix. Arguments are in the same order as with GET_ENTITY_MATRIX.
+		/// </summary>
+		public static void SetEntityMatrix(int _entity, float _forwardX, float _forwardY, float _forwardZ, float _rightX, float _rightY, float _rightZ, float _upX, float _upY, float _upZ, float _atX, float _atY, float _atZ)
+		{
+			Function.Call((Hash)0xFB0639B, _entity, _forwardX, _forwardY, _forwardZ, _rightX, _rightY, _rightZ, _upX, _upY, _upZ, _atX, _atY, _atZ);
+		}
+		/// <summary>
+		/// Sets the selected vehicle's colors to their default value (specific variant specified using the colorCombination parameter).
+		/// Range of possible values for colorCombination is currently unknown, I couldn't find where these values are stored either (Disquse's guess was vehicles.meta but I haven't seen it in there.)
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_COLOUR_COMBINATION](?\_0x33E8CD3322E2FE31).**
+		/// </summary>
+		public static void SetVehicleColourCombination(int _vehicle, int _colorCombination)
+		{
+			Function.Call((Hash)0xA557AEAD, _vehicle, _colorCombination);
+		}
+		/// <summary>
+		/// Sets Ped Default Clothes
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_PED_DEFAULT_COMPONENT_VARIATION](?\_0x45EEE61580806D63).**
+		/// </summary>
+		public static void SetPedDefaultComponentVariation(int _ped)
+		{
+			Function.Call((Hash)0xC866A984, _ped);
+		}
+		/// <summary>
+		/// Retrieves the map data and entity handles from a specific entity.
+		/// This function supports SDK infrastructure and is not intended to be used directly from your code.
+		/// </summary>
+		public static bool GetEntityMapdataOwner(int _entity, int _mapdataHandle, int _entityHandle)
+		{
+			return Function.Call<bool>((Hash)0xF6B815C5, _entity, _mapdataHandle, _entityHandle);
+		}
+		/// <summary>
+		/// Note that the third parameter(denoted as z) is "up and down" with positive numbers encouraging upwards movement.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_ENTITY_VELOCITY](?\_0x1C99BB7B6E96D16F).**
+		/// </summary>
+		public static void SetEntityVelocity_CFX(int _entity, float _x, float _y, float _z)
+		{
+			Function.Call((Hash)0xFF5A1988, _entity, _x, _y, _z);
+		}
+		/// <summary>
+		/// This executes at the same as speed as PLAYER::SET_PLAYER_WANTED_LEVEL(player, 0, false);
+		/// PLAYER::GET_PLAYER_WANTED_LEVEL(player); executes in less than half the time. Which means that it's worth first checking if the wanted level needs to be cleared before clearing. However, this is mostly about good code practice and can important in other situations. The difference in time in this example is negligible.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [CLEAR_PLAYER_WANTED_LEVEL](?\_0xB302540597885499).**
+		/// </summary>
+		public static void ClearPlayerWantedLevel_CFX(int _player)
+		{
+			Function.Call((Hash)0x54EA5BCC, _player);
+		}
+		/// <summary>
+		/// **This is the server-side RPC native equivalent of the client native [SET_ENTITY_ROTATION](?\_0x8524A8B0171D5E07).**
+		/// </summary>
+		public static void SetEntityRotation_CFX(int _entity, float _pitch, float _roll, float _yaw, int _rotationOrder, bool _p5)
+		{
+			Function.Call((Hash)0xA345EFE, _entity, _pitch, _roll, _yaw, _rotationOrder, _p5);
+		}
+		/// <summary>
+		/// Creates a blip for the specified coordinates. You can use `SET_BLIP_` natives to change the blip.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [ADD_BLIP_FOR_COORD](?\_0x5A039BB0BCA604B6).**
+		/// </summary>
+		public static int AddBlipForCoord(float _x, float _y, float _z)
+		{
+			return Function.Call<int>((Hash)0xC6F43D0E, _x, _y, _z);
+		}
+		/// <summary>
+		/// Adds a rectangular blip for the specified coordinates/area.
+		/// It is recommended to use [SET_BLIP_ROTATION](#\_0xF87683CDF73C3F6E) and [SET_BLIP_COLOUR](#\_0x03D7FB09E75D6B7E) to make the blip not rotate along with the camera.
+		/// By default, the blip will show as a *regular* blip with the specified color/sprite if it is outside of the minimap view.
+		/// Example image:
+		/// ![minimap](https://w.wew.wtf/pdcjig.png)
+		/// ![big map](https://w.wew.wtf/zgcjcm.png)
+		/// (Native name is *likely* to actually be ADD_BLIP_FOR_AREA, but due to the usual reasons this can't be confirmed)
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [\_ADD_BLIP_FOR_AREA](?\_0xCE5D0E5E315DB238).**
+		/// </summary>
+		public static int AddBlipForArea(float _x, float _y, float _z, float _width, float _height)
+		{
+			return Function.Call<int>((Hash)0x6228F159, _x, _y, _z, _width, _height);
+		}
+		/// <summary>
+		/// In the scripts, p3 was always -1.
+		/// p3 seems to be duration or timeout of turn animation.
+		/// Also facingPed can be 0 or -1 so ped will just raise hands up.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [TASK_HANDS_UP](?\_0xF2EAB31979A7F910).**
+		/// </summary>
+		public static void TaskHandsUp_CFX(int _ped, int _duration, int _facingPed, int _p3, bool _p4)
+		{
+			Function.Call((Hash)0x8DCC19C5, _ped, _duration, _facingPed, _p3, _p4);
+		}
+		/// <summary>
+		/// A getter for [SET_RESOURCE_KVP_INT](#\_0x6A2B1E8), but for a specified resource.
+		/// </summary>
+		public static int GetExternalKvpInt(string _resource, string _key)
+		{
+			return Function.Call<int>((Hash)0x12B8D689, _resource, _key);
+		}
+		/// <summary>
+		/// Used for freemode (online) characters.
+		/// Indices:
+		/// 
+		/// 1.  black
+		/// 2.  very light blue/green
+		/// 3.  dark blue
+		/// 4.  brown
+		/// 5.  darker brown
+		/// 6.  light brown
+		/// 7.  blue
+		/// 8.  light blue
+		/// 9.  pink
+		/// 10. yellow
+		/// 11. purple
+		/// 12. black
+		/// 13. dark green
+		/// 14. light brown
+		/// 15. yellow/black pattern
+		/// 16. light colored spiral pattern
+		/// 17. shiny red
+		/// 18. shiny half blue/half red
+		/// 19. half black/half light blue
+		/// 20. white/red perimter
+		/// 21. green snake
+		/// 22. red snake
+		/// 23. dark blue snake
+		/// 24. dark yellow
+		/// 25. bright yellow
+		/// 26. all black
+		/// 27. red small pupil
+		/// 28. devil blue/black
+		/// 29. white small pupil
+		/// 30. glossed over
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [\_SET_PED_EYE_COLOR](?\_0x50B56988B170AFDF).**
+		/// </summary>
+		public static void SetPedEyeColor(int _ped, int _index)
+		{
+			Function.Call((Hash)0xEC09DB1B, _ped, _index);
+		}
+		/// <summary>
+		/// colorPrimary & colorSecondary are the paint indexes for the vehicle.
+		/// For a list of valid paint indexes, view: pastebin.com/pwHci0xK
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_COLOURS](?\_0x4F1D4BE3A7F24601).**
+		/// </summary>
+		public static void SetVehicleColours(int _vehicle, int _colorPrimary, int _colorSecondary)
+		{
+			Function.Call((Hash)0x57F24253, _vehicle, _colorPrimary, _colorSecondary);
+		}
+		/// <summary>
+		/// PED::SET_PED_RESET_FLAG(PLAYER::PLAYER_PED_ID(), 240, 1);
+		/// Known values:
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_PED_RESET_FLAG](?\_0xC1E8A365BF3B29F2).**
+		/// </summary>
+		public static void SetPedResetFlag_CFX(int _ped, int _flagId, bool _doReset)
+		{
+			Function.Call((Hash)0xCFF6FF66, _ped, _flagId, _doReset);
+		}
+		/// <summary>
+		/// Immediately stops the pedestrian from whatever it's doing. The difference between this and [CLEAR_PED_TASKS](#\_0xE1EF3C1216AFF2CD) is that this one teleports the ped but does not change the position of the ped.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [CLEAR_PED_TASKS_IMMEDIATELY](?\_0xAAA34F8A7CB32098).**
+		/// </summary>
+		public static void ClearPedTasksImmediately_CFX(int _ped)
+		{
+			Function.Call((Hash)0xBC045625, _ped);
+		}
+		/// <summary>
+		/// **This is the server-side RPC native equivalent of the client native [TASK_EVERYONE_LEAVE_VEHICLE](?\_0x7F93691AB4B92272).**
+		/// </summary>
+		public static void TaskEveryoneLeaveVehicle(int _vehicle)
+		{
+			Function.Call((Hash)0xC1971F30, _vehicle);
+		}
+		/// <summary>
+		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_ALARM](?\_0xCDE5E70C1DDB954C).**
+		/// </summary>
+		public static void SetVehicleAlarm(int _vehicle, bool _state)
+		{
+			Function.Call((Hash)0x24877D84, _vehicle, _state);
+		}
+		/// <summary>
+		/// Parameter `p1` does not seem to be used or referenced in game binaries.\
+		/// **Note:** When called for networked entities, a `CRemoveAllWeaponsEvent` will be created per request.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [REMOVE_ALL_PED_WEAPONS](?\_0xF25DF915FA38C5F3).**
+		/// </summary>
+		public static void RemoveAllPedWeapons_CFX(int _ped, bool _p1)
+		{
+			Function.Call((Hash)0xA44CE817, _ped, _p1);
+		}
+		/// <summary>
+		/// p2 often set to 1000.0 in the decompiled scripts.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_BODY_HEALTH](?\_0xB77D05AC8C78AADB).**
+		/// </summary>
+		public static void SetVehicleBodyHealth_CFX(int _vehicle, float _value)
+		{
+			Function.Call((Hash)0x920C2517, _vehicle, _value);
+		}
+		/// <summary>
+		/// p4/p5: Unusued in TU27
+		/// 
+		/// ### Ragdoll Types
+		/// 
+		/// **0**: CTaskNMRelax
+		/// **1**: CTaskNMScriptControl: Hardcoded not to work in networked environments.
+		/// **Else**: CTaskNMBalance
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_PED_TO_RAGDOLL](?\_0xAE99FB955581844A).**
+		/// </summary>
+		public static void SetPedToRagdoll_CFX(int _ped, int _time1, int _time2, int _ragdollType, bool _p4, bool _p5, bool _p6)
+		{
+			Function.Call((Hash)0x83CB5052, _ped, _time1, _time2, _ragdollType, _p4, _p5, _p6);
+		}
+		/// <summary>
+		/// Creates a ped (biped character, pedestrian, actor) with the specified model at the specified position and heading.
+		/// This ped will initially be owned by the creating script as a mission entity, and the model should be loaded already
+		/// (e.g. using REQUEST_MODEL).
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [CREATE_PED](?\_0xD49F9B0955C367DE).**
+		/// </summary>
+		public static int CreatePed_CFX(int _pedType, uint _modelHash, float _x, float _y, float _z, float _heading, bool _isNetwork, bool _bScriptHostPed)
+		{
+			return Function.Call<int>((Hash)0x389EF71, _pedType, _modelHash, _x, _y, _z, _heading, _isNetwork, _bScriptHostPed);
+		}
+		/// <summary>
+		/// ```
+		/// OverlayID ranges from 0 to 12, index from 0 to _GET_NUM_OVERLAY_VALUES(overlayID)-1, and opacity from 0.0 to 1.0.
+		/// overlayID       Part                  Index, to disable
+		/// 0               Blemishes             0 - 23, 255
+		/// 1               Facial Hair           0 - 28, 255
+		/// 2               Eyebrows              0 - 33, 255
+		/// 3               Ageing                0 - 14, 255
+		/// 4               Makeup                0 - 74, 255
+		/// 5               Blush                 0 - 6, 255
+		/// 6               Complexion            0 - 11, 255
+		/// 7               Sun Damage            0 - 10, 255
+		/// 8               Lipstick              0 - 9, 255
+		/// 9               Moles/Freckles        0 - 17, 255
+		/// 10              Chest Hair            0 - 16, 255
+		/// 11              Body Blemishes        0 - 11, 255
+		/// 12              Add Body Blemishes    0 - 1, 255
+		/// ```
+		/// 
+		/// **Note:**
+		/// You may need to call [`SetPedHeadBlendData`](#0x9414E18B9434C2FE) prior to calling this native in order for it to work.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_PED_HEAD_OVERLAY](?\_0x48F44967FA05CC1E).**
+		/// </summary>
+		public static void SetPedHeadOverlay(int _ped, int _overlayID, int _index, float _opacity)
+		{
+			Function.Call((Hash)0xD28DBA90, _ped, _overlayID, _index, _opacity);
+		}
+		/// <summary>
+		/// NativeDB Added Parameter 4: BOOL p3
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_PED_AMMO](?\_0x14E56BC5B5DB6A19).**
+		/// </summary>
+		public static void SetPedAmmo_CFX(int _ped, uint _weaponHash, int _ammo)
+		{
+			Function.Call((Hash)0xBF90DF1A, _ped, _weaponHash, _ammo);
+		}
+		/// <summary>
+		/// Sets the various freemode face features, e.g. nose length, chin shape.
+		/// **Indexes (From 0 to 19):**
+		/// Parentheses indicate morph scale/direction as in (-1.0 to 1.0)
+		/// 
+		/// *   **0**: Nose Width (Thin/Wide)
+		/// *   **1**: Nose Peak (Up/Down)
+		/// *   **2**: Nose Length (Long/Short)
+		/// *   **3**: Nose Bone Curveness (Crooked/Curved)
+		/// *   **4**: Nose Tip (Up/Down)
+		/// *   **5**: Nose Bone Twist (Left/Right)
+		/// *   **6**: Eyebrow (Up/Down)
+		/// *   **7**: Eyebrow (In/Out)
+		/// *   **8**: Cheek Bones (Up/Down)
+		/// *   **9**: Cheek Sideways Bone Size (In/Out)
+		/// *   **10**: Cheek Bones Width (Puffed/Gaunt)
+		/// *   **11**: Eye Opening (Both) (Wide/Squinted)
+		/// *   **12**: Lip Thickness (Both) (Fat/Thin)
+		/// *   **13**: Jaw Bone Width (Narrow/Wide)
+		/// *   **14**: Jaw Bone Shape (Round/Square)
+		/// *   **15**: Chin Bone (Up/Down)
+		/// *   **16**: Chin Bone Length (In/Out or Backward/Forward)
+		/// *   **17**: Chin Bone Shape (Pointed/Square)
+		/// *   **18**: Chin Hole (Chin Bum)
+		/// *   **19**: Neck Thickness (Thin/Thick)
+		///     **Note:**
+		///     You may need to call [`SetPedHeadBlendData`](#0x9414E18B9434C2FE) prior to calling this native in order for it to work.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [\_SET_PED_FACE_FEATURE](?\_0x71A5C1DBA060049E).**
+		/// </summary>
+		public static void SetPedFaceFeature_CFX(int _ped, int _index, float _scale)
+		{
+			Function.Call((Hash)0x6C8D4458, _ped, _index, _scale);
+		}
+		/// <summary>
+		/// **This is the server-side RPC native equivalent of the client native [SET_CURRENT_PED_WEAPON](?\_0xADF692B254977C0C).**
+		/// </summary>
+		public static void SetCurrentPedWeapon_CFX(int _ped, uint _weaponHash, bool _bForceInHand)
+		{
+			Function.Call((Hash)0xB8278882, _ped, _weaponHash, _bForceInHand);
+		}
+		/// <summary>
+		/// Example:
+		/// TASK::TASK_DRIVE_BY(l\_467\[1/*22*/], PLAYER::PLAYER_PED_ID(), 0, 0.0, 0.0, 2.0, 300.0, 100, 0, ${firing_pattern_burst_fire_driveby});
+		/// Needs working example. Doesn't seem to do anything.
+		/// I marked p2 as targetVehicle as all these shooting related tasks seem to have that in common.
+		/// I marked p6 as distanceToShoot as if you think of GTA's Logic with the native SET_VEHICLE_SHOOT natives, it won't shoot till it gets within a certain distance of the target.
+		/// I marked p7 as pedAccuracy as it seems it's mostly 100 (Completely Accurate), 75, 90, etc. Although this could be the ammo count within the gun, but I highly doubt it. I will change this comment once I find out if it's ammo count or not.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [TASK_DRIVE_BY](?\_0x2F8AF0E82773A171).**
+		/// </summary>
+		public static void TaskDriveBy_CFX(int _driverPed, int _targetPed, int _targetVehicle, float _targetX, float _targetY, float _targetZ, float _distanceToShoot, int _pedAccuracy, bool _p8, uint _firingPattern)
+		{
+			Function.Call((Hash)0x2B84D1C4, _driverPed, _targetPed, _targetVehicle, _targetX, _targetY, _targetZ, _distanceToShoot, _pedAccuracy, _p8, _firingPattern);
+		}
+		/// <summary>
+		/// Creates a vehicle with the specified model at the specified position. This vehicle will initially be owned by the creating
+		/// script as a mission entity, and the model should be loaded already (e.g. using REQUEST_MODEL).
+		/// 
+		/// ```
+		/// NativeDB Added Parameter 8: BOOL p7
+		/// ```
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [CREATE_VEHICLE](?\_0xAF35D0D2583051B0).**
+		/// </summary>
+		public static int CreateVehicle_CFX(uint _modelHash, float _x, float _y, float _z, float _heading, bool _isNetwork, bool _netMissionEntity)
+		{
+			return Function.Call<int>((Hash)0xDD75460A, _modelHash, _x, _y, _z, _heading, _isNetwork, _netMissionEntity);
+		}
+		/// <summary>
+		/// Return variable is never used in R\*'s scripts.
+		/// Not sure what p2 does. It seems like it would be a time judging by it's usage in R\*'s scripts, but didn't seem to affect anything in my testings.
+		/// x, y, and z are coordinates, most likely to where the ped will fall.
+		/// p7 is probably the force of the fall, but untested, so I left the variable name the same.
+		/// p8 to p13 are always 0f in R\*'s scripts.
+		/// (Simplified) Example of the usage of the function from R\*'s scripts:
+		/// ped::set_ped_to_ragdoll_with_fall(ped, 1500, 2000, 1, -entity::get_entity_forward_vector(ped), 1f, 0f, 0f, 0f, 0f, 0f, 0f);
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_PED_TO_RAGDOLL_WITH_FALL](?\_0xD76632D99E4966C8).**
+		/// </summary>
+		public static void SetPedToRagdollWithFall_CFX(int _ped, int _time, int _p2, int _ragdollType, float _x, float _y, float _z, float _p7, float _p8, float _p9, float _p10, float _p11, float _p12, float _p13)
+		{
+			Function.Call((Hash)0xFA12E286, _ped, _time, _p2, _ragdollType, _x, _y, _z, _p7, _p8, _p9, _p10, _p11, _p12, _p13);
+		}
+		/// <summary>
+		/// List of component/props ID
+		/// gtaxscripting.blogspot.com/2016/04/gta-v-peds-component-and-props.html
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_PED_RANDOM_PROPS](?\_0xC44AA05345C992C6).**
+		/// </summary>
+		public static void SetPedRandomProps(int _ped)
+		{
+			Function.Call((Hash)0xE3318E0E, _ped);
+		}
+		/// <summary>
+		/// Freezes or unfreezes an entity preventing its coordinates to change by the player if set to `true`. You can still change the entity position using SET_ENTITY_COORDS.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [FREEZE_ENTITY_POSITION](?\_0x428CA6DBD1094446).**
+		/// </summary>
+		public static void FreezeEntityPosition_CFX(int _entity, bool _toggle)
+		{
+			Function.Call((Hash)0x65C16D57, _entity, _toggle);
+		}
+		/// <summary>
+		/// p1 is always 0 in R\* scripts; and a quick disassembly seems to indicate that p1 is unused.
+		/// List of component/props ID:
+		/// gtaxscripting.blogspot.com/2016/04/gta-v-peds-component-and-props.html
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_PED_RANDOM_COMPONENT_VARIATION](?\_0xC8A9481A01E63C28).**
+		/// </summary>
+		public static void SetPedRandomComponentVariation_CFX(int _ped, int _p1)
+		{
+			Function.Call((Hash)0x4111BA46, _ped, _p1);
+		}
+		/// <summary>
+		/// Removes the blip from your map.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [REMOVE_BLIP](?\_0x86A652570E5F25DD).**
+		/// </summary>
+		public static void RemoveBlip_CFX(int _blip)
+		{
+			Function.Call((Hash)0xD8C3C1CD, _blip);
+		}
+		/// <summary>
+		/// For more info please refer to [this](https://gtaforums.com/topic/858970-all-gtao-face-ids-pedset-ped-head-blend-data-explained) topic.
+		/// **Other information:**
+		/// IDs start at zero and go Male Non-DLC, Female Non-DLC, Male DLC, and Female DLC.</br>
+		/// This native function is often called prior to calling natives such as:
+		/// 
+		/// *   [`SetPedHairColor`](#0xBB43F090)
+		/// *   [`SetPedHeadOverlayColor`](#0x78935A27)
+		/// *   [`SetPedHeadOverlay`](#0xD28DBA90)
+		/// *   [`SetPedFaceFeature`](#0x6C8D4458)
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_PED_HEAD_BLEND_DATA](?\_0x9414E18B9434C2FE).**
+		/// </summary>
+		public static void SetPedHeadBlendData(int _ped, int _shapeFirstID, int _shapeSecondID, int _shapeThirdID, int _skinFirstID, int _skinSecondID, int _skinThirdID, float _shapeMix, float _skinMix, float _thirdMix, bool _isParent)
+		{
+			Function.Call((Hash)0x60746B88, _ped, _shapeFirstID, _shapeSecondID, _shapeThirdID, _skinFirstID, _skinSecondID, _skinThirdID, _shapeMix, _skinMix, _thirdMix, _isParent);
+		}
+		/// <summary>
+		/// The entity will move towards the target until time is over (duration) or get in target's range (distance). p5 and p6 are unknown, but you could leave p5 = 1073741824 or 100 or even 0 (didn't see any difference but on the decompiled scripts, they use 1073741824 mostly) and p6 = 0
+		/// Note: I've only tested it on entity -> ped and target -> vehicle. It could work differently on other entities, didn't try it yet.
+		/// Example: TASK::TASK_GO_TO_ENTITY(pedHandle, vehicleHandle, 5000, 4.0, 100, 1073741824, 0)
+		/// Ped will run towards the vehicle for 5 seconds and stop when time is over or when he gets 4 meters(?) around the vehicle (with duration = -1, the task duration will be ignored).
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [TASK_GO_TO_ENTITY](?\_0x6A071245EB0D1882).**
+		/// </summary>
+		public static void TaskGoToEntity_CFX(int _entity, int _target, int _duration, float _distance, float _speed, float _p5, int _p6)
+		{
+			Function.Call((Hash)0x374827C2, _entity, _target, _duration, _distance, _speed, _p5, _p6);
+		}
+		/// <summary>
+		/// Used for freemode (online) characters.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [\_SET_PED_HAIR_COLOR](?\_0x4CFFC65454C93A49).**
+		/// </summary>
+		public static void SetPedHairColor(int _ped, int _colorID, int _highlightColorID)
+		{
+			Function.Call((Hash)0xBB43F090, _ped, _colorID, _highlightColorID);
+		}
+		/// <summary>
+		/// Set the model for a specific Player. Be aware that this will destroy the current Ped for the Player and create a new one, any reference to the old ped should be reset
+		/// Make sure to request the model first and wait until it has loaded.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_PLAYER_MODEL](?\_0x00A1CADD00108836).**
+		/// </summary>
+		public static void SetPlayerModel_CFX(int _player, uint _model)
+		{
+			Function.Call((Hash)0x774A4C54, _player, _model);
+		}
+		/// <summary>
+		/// Simply sets you as invincible (Health will not deplete).
+		/// Use 0x733A643B5B0C53C1 instead if you want Ragdoll enabled, which is equal to:
+		/// \*(DWORD \*)(playerPedAddress + 0x188) |= (1 << 9);
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_PLAYER_INVINCIBLE](?\_0x239528EACDC3E7DE).**
+		/// </summary>
+		public static void SetPlayerInvincible_CFX(int _player, bool _toggle)
+		{
+			Function.Call((Hash)0xDFB9A2A2, _player, _toggle);
+		}
+		/// <summary>
+		/// **This is the server-side RPC native equivalent of the client native [SET_PED_INTO_VEHICLE](?\_0xF75B0D629E1C063D).**
+		/// </summary>
+		public static void SetPedIntoVehicle_CFX(int _ped, int _vehicle, int _seatIndex)
+		{
+			Function.Call((Hash)0x7500C79, _ped, _vehicle, _seatIndex);
+		}
+		/// <summary>
+		/// Call SET_PLAYER_WANTED_LEVEL_NOW for immediate effect
+		/// wantedLevel is an integer value representing 0 to 5 stars even though the game supports the 6th wanted level but no police will appear since no definitions are present for it in the game files
+		/// disableNoMission-  Disables When Off Mission- appears to always be false
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_PLAYER_WANTED_LEVEL](?\_0x39FF19C64EF7DA5B).**
+		/// </summary>
+		public static void SetPlayerWantedLevel_CFX(int _player, int _wantedLevel, bool _disableNoMission)
+		{
+			Function.Call((Hash)0xB7A0914B, _player, _wantedLevel, _disableNoMission);
+		}
+		/// <summary>
+		/// //this part of the code is to determine at which entity the player is aiming, for example if you want to create a mod where you give orders to peds
+		/// Entity aimedentity;
+		/// Player player = PLAYER::PLAYER_ID();
+		/// PLAYER::\_GET_AIMED_ENTITY(player, \&aimedentity);
+		/// //bg is an array of peds
+		/// TASK::TASK_SHOOT_AT_ENTITY(bg\[i], aimedentity, 5000, MISC::GET_HASH_KEY("FIRING_PATTERN_FULL_AUTO"));
+		/// in practical usage, getting the entity the player is aiming at and then task the peds to shoot at the entity, at a button press event would be better.
+		/// Firing Pattern Hash Information: https://pastebin.com/Px036isB
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [TASK_SHOOT_AT_ENTITY](?\_0x08DA95E8298AE772).**
+		/// </summary>
+		public static void TaskShootAtEntity_CFX(int _entity, int _target, int _duration, uint _firingPattern)
+		{
+			Function.Call((Hash)0xAC0631C9, _entity, _target, _duration, _firingPattern);
+		}
+		/// <summary>
+		/// Set the heading of an entity in degrees also known as "Yaw".
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_ENTITY_HEADING](?\_0x8E2530AA8ADA980E).**
+		/// </summary>
+		public static void SetEntityHeading_CFX(int _entity, float _heading)
+		{
+			Function.Call((Hash)0xE0FF064D, _entity, _heading);
+		}
+		/// <summary>
+		/// **This is the server-side RPC native equivalent of the client native [TASK_GO_STRAIGHT_TO_COORD](?\_0xD76B57B44F1E6F8B).**
+		/// </summary>
+		public static void TaskGoStraightToCoord_CFX(int _ped, float _x, float _y, float _z, float _speed, int _timeout, float _targetHeading, float _distanceToSlide)
+		{
+			Function.Call((Hash)0x80A9E7A7, _ped, _x, _y, _z, _speed, _timeout, _targetHeading, _distanceToSlide);
+		}
+		/// <summary>
+		/// Makes the specified ped attack the target ped.
+		/// p2 should be 0
+		/// p3 should be 16
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [TASK_COMBAT_PED](?\_0xF166E48407BAC484).**
+		/// </summary>
+		public static void TaskCombatPed_CFX(int _ped, int _targetPed, int _p2, int _p3)
+		{
+			Function.Call((Hash)0xCB0D8932, _ped, _targetPed, _p2, _p3);
+		}
+		/// <summary>
+		/// See eDoorId declared in [`SET_VEHICLE_DOOR_SHUT`](#\_0x93D9BD300D7789E5)
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_DOOR_BROKEN](?\_0xD4D4F6A4AB575A33).**
+		/// </summary>
+		public static void SetVehicleDoorBroken_CFX(int _vehicle, int _doorIndex, bool _deleteDoor)
+		{
+			Function.Call((Hash)0x8147FEA7, _vehicle, _doorIndex, _deleteDoor);
+		}
+		/// <summary>
+		/// p1, p2, p3 are RGB values for color (255,0,0 for Red, ect)
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_CUSTOM_SECONDARY_COLOUR](?\_0x36CED73BFED89754).**
+		/// </summary>
+		public static void SetVehicleCustomSecondaryColour(int _vehicle, int _r, int _g, int _b)
+		{
+			Function.Call((Hash)0x9D77259E, _vehicle, _r, _g, _b);
+		}
+		/// <summary>
+		/// **This is the server-side RPC native equivalent of the client native [GIVE_WEAPON_TO_PED](?\_0xBF0FD6E56C964FCB).**
+		/// </summary>
+		public static void GiveWeaponToPed_CFX(int _ped, uint _weaponHash, int _ammoCount, bool _isHidden, bool _bForceInHand)
+		{
+			Function.Call((Hash)0xC4D88A85, _ped, _weaponHash, _ammoCount, _isHidden, _bForceInHand);
+		}
+		/// <summary>
+		/// ```
+		/// Used for freemode (online) characters.
+		/// Called after SET_PED_HEAD_OVERLAY().
+		/// ```
+		/// 
+		/// **Note:**
+		/// You may need to call [`SetPedHeadBlendData`](#0x9414E18B9434C2FE) prior to calling this native in order for it to work.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [\_SET_PED_HEAD_OVERLAY_COLOR](?\_0x497BF74A7B9CB952).**
+		/// </summary>
+		public static void SetPedHeadOverlayColor(int _ped, int _overlayID, int _colorType, int _colorID, int _secondColorID)
+		{
+			Function.Call((Hash)0x78935A27, _ped, _overlayID, _colorType, _colorID, _secondColorID);
+		}
+		/// <summary>
+		/// p1, p2, p3 are RGB values for color (255,0,0 for Red, ect)
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_CUSTOM_PRIMARY_COLOUR](?\_0x7141766F91D15BEA).**
+		/// </summary>
+		public static void SetVehicleCustomPrimaryColour(int _vehicle, int _r, int _g, int _b)
+		{
+			Function.Call((Hash)0x8DF9F9BC, _vehicle, _r, _g, _b);
+		}
+		/// <summary>
+		/// cpp
+		/// // Potential names and hash collisions included as comments
+		/// enum ePedConfigFlags {
+		/// \_0x67D1A445 = 0,
+		/// \_0xC63DE95E = 1,
+		/// CPED_CONFIG_FLAG_NoCriticalHits = 2,
+		/// CPED_CONFIG_FLAG_DrownsInWater = 3,
+		/// CPED_CONFIG_FLAG_DisableReticuleFixedLockon = 4,
+		/// \_0x37D196F4 = 5,
+		/// \_0xE2462399 = 6,
+		/// CPED_CONFIG_FLAG_UpperBodyDamageAnimsOnly = 7,
+		/// \_0xEDDEB838 = 8,
+		/// \_0xB398B6FD = 9,
+		/// \_0xF6664E68 = 10,
+		/// \_0xA05E7CA3 = 11,
+		/// \_0xCE394045 = 12,
+		/// CPED_CONFIG_FLAG_NeverLeavesGroup = 13,
+		/// \_0xCD8D1411 = 14,
+		/// \_0xB031F1A9 = 15,
+		/// \_0xFE65BEE3 = 16,
+		/// CPED_CONFIG_FLAG_BlockNonTemporaryEvents = 17,
+		/// \_0x380165BD = 18,
+		/// \_0x07C045C7 = 19,
+		/// \_0x583B5E2D = 20,
+		/// \_0x475EDA58 = 21,
+		/// \_0x8629D05B = 22,
+		/// \_0x1522968B = 23,
+		/// CPED_CONFIG_FLAG_IgnoreSeenMelee = 24,
+		/// \_0x4CC09C4B = 25,
+		/// \_0x034F3053 = 26,
+		/// \_0xD91BA7CC = 27,
+		/// \_0x5C8DC66E = 28,
+		/// \_0x8902EAA0 = 29,
+		/// \_0x6580B9D2 = 30,
+		/// \_0x0EF7A297 = 31,
+		/// \_0x6BF86E5B = 32,
+		/// CPED_CONFIG_FLAG_DieWhenRagdoll = 33,
+		/// CPED_CONFIG_FLAG_HasHelmet = 34,
+		/// CPED_CONFIG_FLAG_UseHelmet = 35,
+		/// \_0xEEB3D630 = 36,
+		/// \_0xB130D17B = 37,
+		/// \_0x5F071200 = 38,
+		/// CPED_CONFIG_FLAG_DisableEvasiveDives = 39,
+		/// \_0xC287AAFF = 40,
+		/// \_0x203328CC = 41,
+		/// CPED_CONFIG_FLAG_DontInfluenceWantedLevel = 42,
+		/// CPED_CONFIG_FLAG_DisablePlayerLockon = 43,
+		/// CPED_CONFIG_FLAG_DisableLockonToRandomPeds = 44,
+		/// \_0xEC4A8ACF = 45,
+		/// \_0xDB115BFA = 46,
+		/// CPED_CONFIG_FLAG_PedBeingDeleted = 47,
+		/// CPED_CONFIG_FLAG_BlockWeaponSwitching = 48,
+		/// \_0xF8E99565 = 49,
+		/// \_0xDD17FEE6 = 50,
+		/// \_0x7ED9B2C9 = 51,
+		/// \_0x655E8618 = 52,
+		/// \_0x5A6C1F6E = 53,
+		/// \_0xD749FC41 = 54,
+		/// \_0x357F63F3 = 55,
+		/// \_0xC5E60961 = 56,
+		/// \_0x29275C3E = 57,
+		/// CPED_CONFIG_FLAG_IsFiring = 58,
+		/// CPED_CONFIG_FLAG_WasFiring = 59,
+		/// CPED_CONFIG_FLAG_IsStanding = 60,
+		/// CPED_CONFIG_FLAG_WasStanding = 61,
+		/// CPED_CONFIG_FLAG_InVehicle = 62,
+		/// CPED_CONFIG_FLAG_OnMount = 63,
+		/// CPED_CONFIG_FLAG_AttachedToVehicle = 64,
+		/// CPED_CONFIG_FLAG_IsSwimming = 65,
+		/// CPED_CONFIG_FLAG_WasSwimming = 66,
+		/// CPED_CONFIG_FLAG_IsSkiing = 67,
+		/// CPED_CONFIG_FLAG_IsSitting = 68,
+		/// CPED_CONFIG_FLAG_KilledByStealth = 69,
+		/// CPED_CONFIG_FLAG_KilledByTakedown = 70,
+		/// CPED_CONFIG_FLAG_Knockedout = 71,
+		/// \_0x3E3C4560 = 72,
+		/// \_0x2994C7B7 = 73,
+		/// \_0x6D59D275 = 74,
+		/// CPED_CONFIG_FLAG_UsingCoverPoint = 75,
+		/// CPED_CONFIG_FLAG_IsInTheAir = 76,
+		/// \_0x2D493FB7 = 77,
+		/// CPED_CONFIG_FLAG_IsAimingGun = 78,
+		/// \_0x14D69875 = 79,
+		/// \_0x40B05311 = 80,
+		/// \_0x8B230BC5 = 81,
+		/// \_0xC74E5842 = 82,
+		/// \_0x9EA86147 = 83,
+		/// \_0x674C746C = 84,
+		/// \_0x3E56A8C2 = 85,
+		/// \_0xC144A1EF = 86,
+		/// \_0x0548512D = 87,
+		/// \_0x31C93909 = 88,
+		/// \_0xA0269315 = 89,
+		/// \_0xD4D59D4D = 90,
+		/// \_0x411D4420 = 91,
+		/// \_0xDF4AEF0D = 92,
+		/// CPED_CONFIG_FLAG_ForcePedLoadCover = 93,
+		/// \_0x300E4CD3 = 94,
+		/// \_0xF1C5BF04 = 95,
+		/// \_0x89C2EF13 = 96,
+		/// CPED_CONFIG_FLAG_VaultFromCover = 97,
+		/// \_0x02A852C8 = 98,
+		/// \_0x3D9407F1 = 99,
+		/// \_0x319B4558 = 100,
+		/// CPED_CONFIG_FLAG_ForcedAim = 101,
+		/// \_0xB942D71A = 102,
+		/// \_0xD26C55A8 = 103,
+		/// \_0xB89E703B = 104,
+		/// CPED_CONFIG_FLAG_ForceReload = 105,
+		/// \_0xD9E73DA2 = 106,
+		/// \_0xFF71DC2C = 107,
+		/// \_0x1E27E8D8 = 108,
+		/// \_0xF2C53966 = 109,
+		/// \_0xC4DBE247 = 110,
+		/// \_0x83C0A4BF = 111,
+		/// \_0x0E0FAF8C = 112,
+		/// \_0x26616660 = 113,
+		/// \_0x43B80B79 = 114,
+		/// \_0x0D2A9309 = 115,
+		/// \_0x12C1C983 = 116,
+		/// CPED_CONFIG_FLAG_BumpedByPlayer = 117,
+		/// \_0xE586D504 = 118,
+		/// \_0x52374204 = 119,
+		/// CPED_CONFIG_FLAG_IsHandCuffed = 120,
+		/// CPED_CONFIG_FLAG_IsAnkleCuffed = 121,
+		/// CPED_CONFIG_FLAG_DisableMelee = 122,
+		/// \_0xFE714397 = 123,
+		/// \_0xB3E660BD = 124,
+		/// \_0x5FED6BFD = 125,
+		/// \_0xC9D6F66F = 126,
+		/// \_0x519BC986 = 127,
+		/// CPED_CONFIG_FLAG_CanBeAgitated = 128,
+		/// \_0x9A4B617C = 129, // CPED_CONFIG_FLAG_FaceDirInsult
+		/// \_0xDAB70E9F = 130,
+		/// \_0xE569438A = 131,
+		/// \_0xBBC77D6D = 132,
+		/// \_0xCB59EF0F = 133,
+		/// \_0x8C5EA971 = 134,
+		/// CPED_CONFIG_FLAG_IsScuba = 135,
+		/// CPED_CONFIG_FLAG_WillArrestRatherThanJack = 136,
+		/// \_0xDCE59B58 = 137,
+		/// CPED_CONFIG_FLAG_RidingTrain = 138,
+		/// CPED_CONFIG_FLAG_ArrestResult = 139,
+		/// CPED_CONFIG_FLAG_CanAttackFriendly = 140,
+		/// \_0x98A4BE43 = 141,
+		/// \_0x6901E731 = 142,
+		/// \_0x9EC9BF6C = 143,
+		/// \_0x42841A8F = 144,
+		/// CPED_CONFIG_FLAG_ShootingAnimFlag = 145,
+		/// CPED_CONFIG_FLAG_DisableLadderClimbing = 146,
+		/// CPED_CONFIG_FLAG_StairsDetected = 147,
+		/// CPED_CONFIG_FLAG_SlopeDetected = 148,
+		/// \_0x1A15670B = 149,
+		/// \_0x61786EE5 = 150,
+		/// \_0xCB9186BD = 151,
+		/// \_0xF0710152 = 152,
+		/// \_0x43DFE310 = 153,
+		/// \_0xC43C624E = 154,
+		/// CPED_CONFIG_FLAG_CanPerformArrest = 155,
+		/// CPED_CONFIG_FLAG_CanPerformUncuff = 156,
+		/// CPED_CONFIG_FLAG_CanBeArrested = 157,
+		/// \_0xF7960FF5 = 158,
+		/// \_0x59564113 = 159,
+		/// \_0x0C6C3099 = 160,
+		/// \_0x645F927A = 161,
+		/// \_0xA86549B9 = 162,
+		/// \_0x8AAF337A = 163,
+		/// \_0x13BAA6E7 = 164,
+		/// \_0x5FB9D1F5 = 165,
+		/// CPED_CONFIG_FLAG_IsInjured = 166,
+		/// \_0x6398A20B = 167,
+		/// \_0xD8072639 = 168,
+		/// \_0xA05B1845 = 169,
+		/// \_0x83F6D220 = 170,
+		/// \_0xD8430331 = 171,
+		/// \_0x4B547520 = 172,
+		/// \_0xE66E1406 = 173,
+		/// \_0x1C4BFE0C = 174,
+		/// \_0x90008BFA = 175,
+		/// \_0x07C7A910 = 176,
+		/// \_0xF15F8191 = 177,
+		/// \_0xCE4E8BE2 = 178,
+		/// \_0x1D46E4F2 = 179,
+		/// CPED_CONFIG_FLAG_IsInCustody = 180,
+		/// \_0xE4FD9B3A = 181,
+		/// \_0x67AE0812 = 182,
+		/// CPED_CONFIG_FLAG_IsAgitated = 183,
+		/// CPED_CONFIG_FLAG_PreventAutoShuffleToDriversSeat = 184,
+		/// \_0x7B2D325E = 185,
+		/// CPED_CONFIG_FLAG_EnableWeaponBlocking = 186,
+		/// CPED_CONFIG_FLAG_HasHurtStarted = 187,
+		/// CPED_CONFIG_FLAG_DisableHurt = 188,
+		/// CPED_CONFIG_FLAG_PlayerIsWeird = 189,
+		/// \_0x32FC208B = 190,
+		/// \_0x0C296E5A = 191,
+		/// \_0xE63B73EC = 192,
+		/// \_0x04E9CC80 = 193,
+		/// CPED_CONFIG_FLAG_UsingScenario = 194,
+		/// CPED_CONFIG_FLAG_VisibleOnScreen = 195,
+		/// \_0xD88C58A1 = 196,
+		/// \_0x5A3DCF43 = 197, // CPED_CONFIG_FLAG_AvoidUnderSide
+		/// \_0xEA02B420 = 198,
+		/// \_0x3F559CFF = 199,
+		/// \_0x8C55D029 = 200,
+		/// \_0x5E6466F6 = 201,
+		/// \_0xEB5AD706 = 202,
+		/// \_0x0EDDDDE7 = 203,
+		/// \_0xA64F7B1D = 204,
+		/// \_0x48532CBA = 205,
+		/// \_0xAA25A9E7 = 206,
+		/// \_0x415B26B9 = 207,
+		/// CPED_CONFIG_FLAG_DisableExplosionReactions = 208,
+		/// CPED_CONFIG_FLAG_DodgedPlayer = 209,
+		/// \_0x67405504 = 210,
+		/// \_0x75DDD68C = 211,
+		/// \_0x2AD879B4 = 212,
+		/// \_0x51486F91 = 213,
+		/// \_0x32F79E21 = 214,
+		/// \_0xBF099213 = 215,
+		/// \_0x054AC8E2 = 216,
+		/// \_0x14E495CC = 217,
+		/// \_0x3C7DF9DF = 218,
+		/// \_0x848FFEF2 = 219,
+		/// CPED_CONFIG_FLAG_DontEnterLeadersVehicle = 220,
+		/// \_0x2618E1CF = 221,
+		/// \_0x84F722FA = 222,
+		/// \_0xD1B87B1F = 223,
+		/// \_0x728AA918 = 224,
+		/// CPED_CONFIG_FLAG_DisablePotentialToBeWalkedIntoResponse = 225,
+		/// CPED_CONFIG_FLAG_DisablePedAvoidance = 226,
+		/// \_0x59E91185 = 227,
+		/// \_0x1EA7225F = 228,
+		/// CPED_CONFIG_FLAG_DisablePanicInVehicle = 229,
+		/// \_0x6DCA7D88 = 230,
+		/// \_0xFC3E572D = 231,
+		/// \_0x08E9F9CF = 232,
+		/// \_0x2D3BA52D = 233,
+		/// \_0xFD2F53EA = 234,
+		/// \_0x31A1B03B = 235,
+		/// CPED_CONFIG_FLAG_IsHoldingProp = 236,
+		/// \_0x82ED0A66 = 237, // CPED_CONFIG_FLAG_BlocksPathingWhenDead
+		/// \_0xCE57C9A3 = 238,
+		/// \_0x26149198 = 239,
+		/// \_0x1B33B598 = 240,
+		/// \_0x719B6E87 = 241,
+		/// \_0x13E8E8E8 = 242,
+		/// \_0xF29739AE = 243,
+		/// \_0xABEA8A74 = 244,
+		/// \_0xB60EA2BA = 245,
+		/// \_0x536B0950 = 246,
+		/// \_0x0C754ACA = 247,
+		/// CPED_CONFIG_FLAG_DisableVehicleSeatRandomAnimations = 248,
+		/// \_0x12659168 = 249,
+		/// \_0x1BDF2F04 = 250,
+		/// \_0x7728FAA3 = 251,
+		/// \_0x6A807ED8 = 252,
+		/// CPED_CONFIG_FLAG_OnStairs = 253,
+		/// \_0xE1A2F73F = 254,
+		/// \_0x5B3697C8 = 255,
+		/// \_0xF1EB20A9 = 256,
+		/// \_0x8B7DF407 = 257,
+		/// \_0x329DCF1A = 258,
+		/// \_0x8D90DD1B = 259,
+		/// \_0xB8A292B7 = 260,
+		/// \_0x8374B087 = 261,
+		/// \_0x2AF558F0 = 262,
+		/// \_0x82251455 = 263,
+		/// \_0x30CF498B = 264,
+		/// \_0xE1CD50AF = 265,
+		/// \_0x72E4AE48 = 266,
+		/// \_0xC2657EA1 = 267,
+		/// \_0x29FF6030 = 268,
+		/// \_0x8248A5EC = 269,
+		/// CPED_CONFIG_FLAG_OnStairSlope = 270,
+		/// \_0xA0897933 = 271,
+		/// CPED_CONFIG_FLAG_DontBlipCop = 272,
+		/// CPED_CONFIG_FLAG_ClimbedShiftedFence = 273,
+		/// \_0xF7823618 = 274,
+		/// \_0xDC305CCE = 275, // CPED_CONFIG_FLAG_KillWhenTrapped
+		/// CPED_CONFIG_FLAG_EdgeDetected = 276,
+		/// \_0x92B67896 = 277,
+		/// \_0xCAD677C9 = 278,
+		/// CPED_CONFIG_FLAG_AvoidTearGas = 279,
+		/// \_0x5276AC7B = 280,
+		/// \_0x1032692A = 281,
+		/// \_0xDA23E7F1 = 282,
+		/// \_0x9139724D = 283,
+		/// \_0xA1457461 = 284,
+		/// \_0x4186E095 = 285,
+		/// \_0xAC68E2EB = 286,
+		/// CPED_CONFIG_FLAG_RagdollingOnBoat = 287,
+		/// CPED_CONFIG_FLAG_HasBrandishedWeapon = 288,
+		/// \_0x1B9EE8A1 = 289,
+		/// \_0xF3F5758C = 290,
+		/// \_0x2A9307F1 = 291,
+		/// \_0x7403D216 = 292,
+		/// \_0xA06A3C6C = 293,
+		/// CPED_CONFIG_FLAG_DisableShockingEvents = 294,
+		/// \_0xF8DA25A5 = 295,
+		/// \_0x7EF55802 = 296,
+		/// \_0xB31F1187 = 297,
+		/// \_0x84315402 = 298,
+		/// \_0x0FD69867 = 299,
+		/// \_0xC7829B67 = 300,
+		/// CPED_CONFIG_FLAG_DisablePedConstraints = 301,
+		/// \_0x6D23CF25 = 302,
+		/// \_0x2ADA871B = 303,
+		/// \_0x47BC8A58 = 304,
+		/// \_0xEB692FA5 = 305,
+		/// \_0x4A133C50 = 306,
+		/// \_0xC58099C3 = 307,
+		/// \_0xF3D76D41 = 308,
+		/// \_0xB0EEE9F2 = 309,
+		/// CPED_CONFIG_FLAG_IsInCluster = 310,
+		/// \_0x0FA153EF = 311,
+		/// \_0xD73F5CD3 = 312,
+		/// \_0xD4136C22 = 313,
+		/// \_0xE404CA6B = 314,
+		/// \_0xB9597446 = 315,
+		/// \_0xD5C98277 = 316,
+		/// \_0xD5060A9C = 317,
+		/// \_0x3E5F1CBB = 318,
+		/// \_0xD8BE1D54 = 319,
+		/// \_0x0B1F191F = 320,
+		/// \_0xC995167A = 321,
+		/// CPED_CONFIG_FLAG_HasHighHeels = 322,
+		/// \_0x86B01E54 = 323,
+		/// \_0x3A56FE15 = 324,
+		/// \_0xC03B736C = 325, // CPED_CONFIG_FLAG_SpawnedAtScenario
+		/// \_0xBBF47729 = 326,
+		/// \_0x22B668A8 = 327,
+		/// \_0x2624D4D4 = 328,
+		/// CPED_CONFIG_FLAG_DisableTalkTo = 329,
+		/// CPED_CONFIG_FLAG_DontBlip = 330,
+		/// CPED_CONFIG_FLAG_IsSwitchingWeapon = 331,
+		/// \_0x630F55F3 = 332,
+		/// \_0x150468FD = 333,
+		/// \_0x914EBD6B = 334,
+		/// \_0x79AF3B6D = 335,
+		/// \_0x75C7A632 = 336,
+		/// \_0x52D530E2 = 337,
+		/// \_0xDB2A90E0 = 338,
+		/// \_0x5922763D = 339,
+		/// \_0x12ADB567 = 340,
+		/// \_0x105C8518 = 341,
+		/// \_0x106F703D = 342,
+		/// \_0xED152C3E = 343,
+		/// \_0xA0EFE6A8 = 344,
+		/// \_0xBF348C82 = 345,
+		/// \_0xCDDFE830 = 346,
+		/// \_0x7B59BD9B = 347,
+		/// \_0x0124C788 = 348,
+		/// CPED_CONFIG_FLAG_EquipJetpack = 349,
+		/// \_0x08D361A5 = 350,
+		/// \_0xE13D1F7C = 351,
+		/// \_0x40E25FB9 = 352,
+		/// \_0x930629D9 = 353,
+		/// \_0xECCF0C7F = 354,
+		/// \_0xB6E9613B = 355,
+		/// \_0x490C0478 = 356,
+		/// \_0xE8865BEA = 357,
+		/// \_0xF3C34A29 = 358,
+		/// CPED_CONFIG_FLAG_IsDuckingInVehicle = 359,
+		/// \_0xF660E115 = 360,
+		/// \_0xAB0E6DED = 361,
+		/// CPED_CONFIG_FLAG_HasReserveParachute = 362,
+		/// CPED_CONFIG_FLAG_UseReserveParachute = 363,
+		/// \_0x5C5D9CD3 = 364,
+		/// \_0x8F7701F3 = 365,
+		/// \_0xBC4436AD = 366,
+		/// \_0xD7E07D37 = 367,
+		/// \_0x03C4FD24 = 368,
+		/// \_0x7675789A = 369,
+		/// \_0xB7288A88 = 370,
+		/// \_0xC06B6291 = 371,
+		/// \_0x95A4A805 = 372,
+		/// \_0xA8E9A042 = 373,
+		/// CPED_CONFIG_FLAG_NeverLeaveTrain = 374,
+		/// \_0xBAC674B3 = 375,
+		/// \_0x147F1FFB = 376,
+		/// \_0x4376DD79 = 377,
+		/// \_0xCD3DB518 = 378,
+		/// \_0xFE4BA4B6 = 379,
+		/// \_0x5DF03A55 = 380,
+		/// \_0xBCD816CD = 381,
+		/// \_0xCF02DD69 = 382,
+		/// \_0xF73AFA2E = 383,
+		/// \_0x80B9A9D0 = 384,
+		/// \_0xF601F7EE = 385,
+		/// \_0xA91350FC = 386,
+		/// \_0x3AB23B96 = 387,
+		/// CPED_CONFIG_FLAG_IsClimbingLadder = 388,
+		/// CPED_CONFIG_FLAG_HasBareFeet = 389,
+		/// \_0xB4B1CD4C = 390,
+		/// \_0x5459AFB8 = 391,
+		/// \_0x54F27667 = 392,
+		/// \_0xC11D3E8F = 393,
+		/// \_0x5419EB3E = 394,
+		/// \_0x82D8DBB4 = 395,
+		/// \_0x33B02D2F = 396,
+		/// \_0xAE66176D = 397,
+		/// \_0xA2692593 = 398,
+		/// \_0x714C7E31 = 399,
+		/// \_0xEC488AC7 = 400,
+		/// \_0xAE398504 = 401,
+		/// \_0xABC58D72 = 402,
+		/// \_0x5E5B9591 = 403,
+		/// \_0x6BA1091E = 404,
+		/// \_0x77840177 = 405,
+		/// \_0x1C7ACAC4 = 406,
+		/// \_0x124420E9 = 407,
+		/// \_0x75A65587 = 408,
+		/// \_0xDFD2D55B = 409,
+		/// \_0xBDD39919 = 410,
+		/// \_0x43DEC267 = 411,
+		/// \_0xE42B7797 = 412,
+		/// CPED_CONFIG_FLAG_IsHolsteringWeapon = 413,
+		/// \_0x4F8149F5 = 414,
+		/// \_0xDD9ECA7A = 415,
+		/// \_0x9E7EF9D2 = 416,
+		/// \_0x2C6ED942 = 417,
+		/// CPED_CONFIG_FLAG_IsSwitchingHelmetVisor = 418,
+		/// \_0xA488727D = 419,
+		/// \_0xCFF5F6DE = 420,
+		/// \_0x6D614599 = 421,
+		/// CPED_CONFIG_FLAG_DisableVehicleCombat = 422,
+		/// \_0xFE401D26 = 423,
+		/// CPED_CONFIG_FLAG_FallsLikeAircraft = 424,
+		/// \_0x2B42AE82 = 425,
+		/// \_0x7A95734F = 426,
+		/// \_0xDF4D8617 = 427,
+		/// \_0x578F1F14 = 428,
+		/// CPED_CONFIG_FLAG_DisableStartEngine = 429,
+		/// CPED_CONFIG_FLAG_IgnoreBeingOnFire = 430,
+		/// \_0x153C9500 = 431,
+		/// \_0xCB7A632E = 432,
+		/// \_0xDE727981 = 433,
+		/// CPED_CONFIG_FLAG_DisableHomingMissileLockon = 434,
+		/// \_0x12BBB935 = 435,
+		/// \_0xAD0A1277 = 436,
+		/// \_0xEA6AA46A = 437,
+		/// CPED_CONFIG_FLAG_DisableHelmetArmor = 438,
+		/// \_0xCB7F3A1E = 439,
+		/// \_0x50178878 = 440,
+		/// \_0x051B4F0D = 441,
+		/// \_0x2FC3DECC = 442,
+		/// \_0xC0030B0B = 443,
+		/// \_0xBBDAF1E9 = 444,
+		/// \_0x944FE59C = 445,
+		/// \_0x506FBA39 = 446,
+		/// \_0xDD45FE84 = 447,
+		/// \_0xE698AE75 = 448,
+		/// \_0x199633F8 = 449,
+		/// CPED_CONFIG_FLAG_PedIsArresting = 450,
+		/// CPED_CONFIG_FLAG_IsDecoyPed = 451,
+		/// \_0x3A251D83 = 452,
+		/// \_0xA56F6986 = 453,
+		/// \_0x1D19C622 = 454,
+		/// \_0xB68D3EAB = 455,
+		/// CPED_CONFIG_FLAG_CanBeIncapacitated = 456,
+		/// \_0x4BD5EBAD = 457,
+		/// }
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_PED_CONFIG_FLAG](?\_0x1913FE4CBF41C463).**
+		/// </summary>
+		public static void SetPedConfigFlag_CFX(int _ped, int _flagId, bool _value)
+		{
+			Function.Call((Hash)0x9CFBE10D, _ped, _flagId, _value);
+		}
+		/// <summary>
+		/// // Source GTA VC miss2 leak, matching constants for 0/2/4, testing
+		/// // They use 10 in am_mp_property_int, don't know what it does atm.
+		/// enum eCarLock {
+		/// CARLOCK_NONE = 0,
+		/// CARLOCK_UNLOCKED = 1,
+		/// CARLOCK_LOCKED = 2,
+		/// CARLOCK_LOCKOUT_PLAYER_ONLY = 3,
+		/// CARLOCK_LOCKED_PLAYER_INSIDE = 4,
+		/// CARLOCK_LOCKED_INITIALLY = 5,
+		/// CARLOCK_FORCE_SHUT_DOORS = 6,
+		/// CARLOCK_LOCKED_BUT_CAN_BE_DAMAGED = 7
+		/// };
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_DOORS_LOCKED](?\_0xB664292EAECF7FA6).**
+		/// </summary>
+		public static void SetVehicleDoorsLocked_CFX(int _vehicle, int _doorLockStatus)
+		{
+			Function.Call((Hash)0x4CDD35D0, _vehicle, _doorLockStatus);
+		}
+		/// <summary>
+		/// Firing Pattern Hash Information: https://pastebin.com/Px036isB
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [TASK_SHOOT_AT_COORD](?\_0x46A6CC01E0826106).**
+		/// </summary>
+		public static void TaskShootAtCoord_CFX(int _ped, float _x, float _y, float _z, int _duration, uint _firingPattern)
+		{
+			Function.Call((Hash)0x601C22E3, _ped, _x, _y, _z, _duration, _firingPattern);
+		}
+		/// <summary>
+		/// Flags are the same flags used in [`TASK_LEAVE_VEHICLE`](#\_0xD3DBCE61A490BE02)
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [TASK_LEAVE_ANY_VEHICLE](?\_0x504D54DF3F6F2247).**
+		/// </summary>
+		public static void TaskLeaveAnyVehicle_CFX(int _ped, int _p1, int _flags)
+		{
+			Function.Call((Hash)0xDBDD79FA, _ped, _p1, _flags);
+		}
+		/// <summary>
+		/// Flags:
+		/// SPC_AMBIENT_SCRIPT = (1 << 1),
+		/// SPC_CLEAR_TASKS = (1 << 2),
+		/// SPC_REMOVE_FIRES = (1 << 3),
+		/// SPC_REMOVE_EXPLOSIONS = (1 << 4),
+		/// SPC_REMOVE_PROJECTILES = (1 << 5),
+		/// SPC_DEACTIVATE_GADGETS = (1 << 6),
+		/// SPC_REENABLE_CONTROL_ON_DEATH = (1 << 7),
+		/// SPC_LEAVE_CAMERA_CONTROL_ON = (1 << 8),
+		/// SPC_ALLOW_PLAYER_DAMAGE = (1 << 9),
+		/// SPC_DONT_STOP_OTHER_CARS_AROUND_PLAYER = (1 << 10),
+		/// SPC_PREVENT_EVERYBODY_BACKOFF = (1 << 11),
+		/// SPC_ALLOW_PAD_SHAKE = (1 << 12)
+		/// See: https://alloc8or.re/gta5/doc/enums/eSetPlayerControlFlag.txt
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_PLAYER_CONTROL](?\_0x8D32347D6D4C40A2).**
+		/// </summary>
+		public static void SetPlayerControl_CFX(int _player, bool _bHasControl, int _flags)
+		{
+			Function.Call((Hash)0xD17AFCD8, _player, _bHasControl, _flags);
+		}
+		/// <summary>
+		/// This native is used to set component variation on a ped. Components, drawables and textures IDs are related to the ped model.
+		/// 
+		/// ### MP Freemode list of components
+		/// 
+		/// **0**: Face\
+		/// **1**: Mask\
+		/// **2**: Hair\
+		/// **3**: Torso\
+		/// **4**: Leg\
+		/// **5**: Parachute / bag\
+		/// **6**: Shoes\
+		/// **7**: Accessory\
+		/// **8**: Undershirt\
+		/// **9**: Kevlar\
+		/// **10**: Badge\
+		/// **11**: Torso 2
+		/// 
+		/// ### Related and useful natives
+		/// 
+		/// [GET_NUMBER_OF_PED_DRAWABLE_VARIATIONS](#\_0x27561561732A7842)\
+		/// [GET_NUMBER_OF_PED_TEXTURE_VARIATIONS](#\_0x8F7156A3142A6BAD)
+		/// [List of component/props ID](gtaxscripting.blogspot.com/2016/04/gta-v-peds-component-and-props.html) of player_two with examples
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_PED_COMPONENT_VARIATION](?\_0x262B14F48D29DE80).**
+		/// </summary>
+		public static void SetPedComponentVariation(int _ped, int _componentId, int _drawableId, int _textureId, int _paletteId)
+		{
+			Function.Call((Hash)0xD4F7B05C, _ped, _componentId, _drawableId, _textureId, _paletteId);
+		}
+		/// <summary>
+		/// **This is the server-side RPC native equivalent of the client native [TASK_WARP_PED_INTO_VEHICLE](?\_0x9A7D091411C5F684).**
+		/// </summary>
+		public static void TaskWarpPedIntoVehicle_CFX(int _ped, int _vehicle, int _seatIndex)
+		{
+			Function.Call((Hash)0x65D4A35D, _ped, _vehicle, _seatIndex);
+		}
+		/// <summary>
+		/// speed 1.0 = walk, 2.0 = run
+		/// p5 1 = normal, 3 = teleport to vehicle, 8 = normal/carjack ped from seat, 16 = teleport directly into vehicle
+		/// p6 is always 0
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [TASK_ENTER_VEHICLE](?\_0xC20E50AA46D09CA8).**
+		/// </summary>
+		public static void TaskEnterVehicle_CFX(int _ped, int _vehicle, int _timeout, int _seatIndex, float _speed, int _flag, int _p6)
+		{
+			Function.Call((Hash)0xB8689B4E, _ped, _vehicle, _timeout, _seatIndex, _speed, _flag, _p6);
+		}
+		/// <summary>
+		/// Flags from decompiled scripts:
+		/// 0 = normal exit and closes door.
+		/// 1 = normal exit and closes door.
+		/// 16 = teleports outside, door kept closed.  (This flag does not seem to work for the front seats in buses, NPCs continue to exit normally)
+		/// 64 = normal exit and closes door, maybe a bit slower animation than 0.
+		/// 256 = normal exit but does not close the door.
+		/// 4160 = ped is throwing himself out, even when the vehicle is still.
+		/// 262144 = ped moves to passenger seat first, then exits normally
+		/// Others to be tried out: 320, 512, 131072.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [TASK_LEAVE_VEHICLE](?\_0xD3DBCE61A490BE02).**
+		/// </summary>
+		public static void TaskLeaveVehicle_CFX(int _ped, int _vehicle, int _flags)
+		{
+			Function.Call((Hash)0x7B1141C6, _ped, _vehicle, _flags);
+		}
+		/// <summary>
+		/// It's similar to the one above, except the first 6 floats let you specify the initial position and rotation of the task. (Ped gets teleported to the position).
+		/// [Animations list](https://alexguirre.github.io/animations-list/)
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [TASK_PLAY_ANIM_ADVANCED](?\_0x83CDB10EA29B370B).**
+		/// </summary>
+		public static void TaskPlayAnimAdvanced_CFX(int _ped, string _animDict, string _animName, float _posX, float _posY, float _posZ, float _rotX, float _rotY, float _rotZ, float _animEnterSpeed, float _animExitSpeed, int _duration, int _flag, float _animTime, int _p14, int _p15)
+		{
+			Function.Call((Hash)0x3DDEB0E6, _ped, _animDict, _animName, _posX, _posY, _posZ, _rotX, _rotY, _rotZ, _animEnterSpeed, _animExitSpeed, _duration, _flag, _animTime, _p14, _p15);
+		}
+		/// <summary>
+		/// Sets the dirt level of the passed vehicle.
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_DIRT_LEVEL](?\_0x79D3B596FE44EE8B).**
+		/// </summary>
+		public static void SetVehicleDirtLevel_CFX(int _vehicle, float _dirtLevel)
+		{
+			Function.Call((Hash)0x2B39128B, _vehicle, _dirtLevel);
+		}
+		/// <summary>
+		/// **This is the server-side RPC native equivalent of the client native [SET_VEHICLE_NUMBER_PLATE_TEXT](?\_0x95A88F0B409CDA47).**
+		/// </summary>
+		public static void SetVehicleNumberPlateText(int _vehicle, string _plateText)
+		{
+			Function.Call((Hash)0x400F9556, _vehicle, _plateText);
+		}
+		/// <summary>
+		/// **This is the server-side RPC native equivalent of the client native [TASK_REACT_AND_FLEE_PED](?\_0x72C896464915D1B1).**
+		/// </summary>
+		public static void TaskReactAndFleePed(int _ped, int _fleeTarget)
+		{
+			Function.Call((Hash)0x8A632BD8, _ped, _fleeTarget);
+		}
+		/// <summary>
+		/// example from fm_mission_controller
+		/// TASK::TASK_GO_TO_COORD_ANY_MEANS(l\_649, sub_f7e86(-1, 0), 1.0, 0, 0, 786603, 0xbf800000);
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [TASK_GO_TO_COORD_ANY_MEANS](?\_0x5BC448CB78FA3E88).**
+		/// </summary>
+		public static void TaskGoToCoordAnyMeans_CFX(int _ped, float _x, float _y, float _z, float _speed, int _p5, bool _p6, int _walkingStyle, float _p8)
+		{
+			Function.Call((Hash)0xF91DF93B, _ped, _x, _y, _z, _speed, _p5, _p6, _walkingStyle, _p8);
+		}
+		/// <summary>
+		/// [Animations list](https://alexguirre.github.io/animations-list/)
+		/// 
+		/// ```
+		/// float blendInSpeed > normal speed is 8.0f
+		/// ----------------------
+		/// float blendOutSpeed > normal speed is 8.0f
+		/// ----------------------
+		/// int duration: time in millisecond
+		/// ----------------------
+		/// -1 _ _ _ _ _ _ _> Default (see flag)
+		/// 0 _ _ _ _ _ _ _ > Not play at all
+		/// Small value _ _ > Slow down animation speed
+		/// Other _ _ _ _ _ > freeze player control until specific time (ms) has
+		/// _ _ _ _ _ _ _ _ _ passed. (No effect if flag is set to be
+		/// _ _ _ _ _ _ _ _ _ controllable.)
+		/// int flag:
+		/// ----------------------
+		/// enum eAnimationFlags
+		/// {
+		/// ANIM_FLAG_NORMAL = 0,
+		/// ANIM_FLAG_REPEAT = 1,
+		/// ANIM_FLAG_STOP_LAST_FRAME = 2,
+		/// ANIM_FLAG_UPPERBODY = 16,
+		/// ANIM_FLAG_ENABLE_PLAYER_CONTROL = 32,
+		/// ANIM_FLAG_CANCELABLE = 120,
+		/// };
+		/// Odd number : loop infinitely
+		/// Even number : Freeze at last frame
+		/// Multiple of 4: Freeze at last frame but controllable
+		/// 01 to 15 > Full body
+		/// 10 to 31 > Upper body
+		/// 32 to 47 > Full body > Controllable
+		/// 48 to 63 > Upper body > Controllable
+		/// ...
+		/// 001 to 255 > Normal
+		/// 256 to 511 > Garbled
+		/// ...
+		/// playbackRate:
+		/// values are between 0.0 and 1.0
+		/// lockX:
+		/// 0 in most cases 1 for rcmepsilonism8 and rcmpaparazzo_3
+		/// > 1 for mini@sprunk
+		/// lockY:
+		/// 0 in most cases
+		/// 1 for missfam5_yoga, missfra1mcs_2_crew_react
+		/// lockZ:
+		/// 0 for single player
+		/// Can be 1 but only for MP
+		/// ```
+		/// 
+		/// **This is the server-side RPC native equivalent of the client native [TASK_PLAY_ANIM](?\_0xEA47FE3719165B94).**
+		/// </summary>
+		public static void TaskPlayAnim_CFX(int _ped, string _animDictionary, string _animationName, float _blendInSpeed, float _blendOutSpeed, int _duration, int _flag, float _playbackRate, bool _lockX, bool _lockY, bool _lockZ)
+		{
+			Function.Call((Hash)0x5AB552C6, _ped, _animDictionary, _animationName, _blendInSpeed, _blendOutSpeed, _duration, _flag, _playbackRate, _lockX, _lockY, _lockZ);
 		}
 	}
 }
