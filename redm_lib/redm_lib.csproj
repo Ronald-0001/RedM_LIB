@@ -48,6 +48,7 @@
     <Compile Include="Lib.cs" />
     <Compile Include="Math.cs" />
     <Compile Include="Generated_Files\Natives.cs" />
+    <Compile Include="Misc.cs" />
     <Compile Include="Print.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Generated_Files\Weather.cs" />
