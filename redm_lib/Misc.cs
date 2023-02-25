@@ -16,11 +16,11 @@ namespace RedLib
     {
         public int ServerId { get { return Source.Int; } }
         public Source Source { get; private set; }
-        public UUID Uuid { get; private set; }
+        public IdentityTable Identity { get; private set; }
         public Player(Source _source)
         {
             this.Source = _source;
-            this.Uuid = new UUID();
+            this.Identity = new IdentityTable(_source);
         }
         public override string ToString() => this.Source.Int.ToString();
         //
@@ -44,9 +44,91 @@ namespace RedLib
         {
             return _player.Source.Int; // implicit conversion
         }
-        public static implicit operator UUID(Player _player)  // implicit Player to UUID conversion operator
+    }
+    /// <summary>
+    /// Player identifier's
+    /// </summary>
+    public struct IdentityTable
+    {
+        public bool HasLicense { get; private set; }
+        public string License { get; private set; }
+        public bool HasLicense2 { get; private set; }
+        public string License2 { get; private set; }
+        public bool HasDiscord { get; private set; }
+        public string Discord { get; private set; }
+        public bool HasSteam { get; private set; }
+        public string Steam { get; private set; }
+        public bool HasEndpoint { get; private set; }
+        public string Endpoint { get; private set; }
+        public bool HasXboxLive { get; private set; }
+        public string XboxLive { get; private set; }
+        public bool HasMicrosoft { get; private set; }
+        public string Microsoft { get; private set; }
+        public IdentityTable(Source _source)
         {
-            return _player.Uuid; // implicit conversion
+            this.HasLicense = false;
+            this.License = "";
+            //
+            this.HasLicense2 = false;
+            this.License2 = "";
+            //
+            this.HasDiscord = false;
+            this.Discord = "";
+            //
+            this.HasSteam = false;
+            this.Steam = "";
+            //
+            this.HasEndpoint = false;
+            this.Endpoint = "";
+            //
+            this.HasXboxLive = false;
+            this.XboxLive = "";
+            //
+            this.HasMicrosoft = false;
+            this.Microsoft = "";
+            //
+            FetchTable(_source);
+        }
+        private void FetchTable(Source _source)
+        {
+            for (int i = 0; i < Lib.GetNumPlayerIdentifiers(_source.Int.ToString()); i++)
+            {
+                string identifier = Lib.GetPlayerIdentifier(_source.Int.ToString(), i);
+                switch (identifier.Substring(0, identifier.IndexOf(":")))
+                {
+                    case "license":
+                        this.HasLicense = true;
+                        this.License = identifier;
+                        break;
+                    case "license2":
+                        this.HasLicense2 = true;
+                        this.License2 = identifier;
+                        break;
+                    case "discord":
+                        this.HasDiscord = true;
+                        this.Discord = identifier;
+                        break;
+                    case "steam":
+                        this.HasSteam = true;
+                        this.Steam = identifier;
+                        break;
+                    case "ip":
+                        this.HasEndpoint = true;
+                        this.Endpoint = identifier;
+                        break;
+                    case "xbl":
+                        this.HasXboxLive = true;
+                        this.XboxLive = identifier;
+                        break;
+                    case "live":
+                        this.HasMicrosoft = true;
+                        this.Microsoft = identifier;
+                        break;
+                    default:
+                        Print.Error($"Unknown Identifier: {identifier}");
+                        break;
+                }
+            }
         }
     }
     /// <summary>
@@ -60,7 +142,7 @@ namespace RedLib
         public Source(string _source_str)
         {
             String = _source_str;
-            if (Int32.TryParse(_source_str.Substring(4), out int i)) Int = i;
+            if (Int32.TryParse(_source_str.Substring(_source_str.IndexOf(":")+1), out int i)) Int = i;
             else { Print.Error($"Failed to parse Source: {_source_str}"); Int = -1; }
         }
         public override string ToString() => this.String;
@@ -76,30 +158,6 @@ namespace RedLib
         public static implicit operator int(Source _source)  // implicit Source to int conversion operator
         {
             return _source.Int; // implicit conversion
-        }
-    }
-    /// <summary>
-    /// Unique User Identifier
-    /// //
-    /// Nullable UUID Struct
-    /// </summary>
-    public struct UUID // Unique User Identifier
-    {
-        private readonly uint? Uint;
-        public bool Valid { get { return this.Uint.HasValue; } }
-        public UUID(uint? _uuid = null)
-        {
-            this.Uint = _uuid;
-        }
-        public override string ToString() => this.Uint.HasValue ? this.Uint.Value.ToString() : "null";
-        //
-        public static implicit operator UUID(uint _uuid)  // implicit uint to uuid conversion operator
-        {
-            return new UUID(_uuid); // implicit conversion
-        }
-        public static implicit operator uint(UUID _uuid)  // implicit uuid to uint conversion operator
-        {
-            return _uuid.Uint.GetValueOrDefault(0); // implicit conversion
         }
     }
 }
