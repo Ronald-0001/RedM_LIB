@@ -27,7 +27,7 @@ namespace RedLib
 		}
 		public override string ToString() => $"{this.Name}";
 	}
-	public static class Weather
+	public static class Weather // todo split weather type and weather variation into 2 different partial classes
 	{
 		public static WeatherType BLIZZARD = new WeatherType(0x27EA2814, "BLIZZARD");
 		public static WeatherType CLOUDS = new WeatherType(0x30FDAF5C, "CLOUDS");
