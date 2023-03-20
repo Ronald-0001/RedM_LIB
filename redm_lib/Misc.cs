@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RedLib
+namespace RedLib.Junk
 {
     /// <summary>
     /// Replaces CitizenFX.Core.Player "CitizenFX.Core.Player is not valid with redm's dll???"
@@ -94,35 +94,36 @@ namespace RedLib
             for (int i = 0; i < Lib.GetNumPlayerIdentifiers(_source.Int.ToString()); i++)
             {
                 string identifier = Lib.GetPlayerIdentifier(_source.Int.ToString(), i);
+                string key = identifier.Substring(identifier.IndexOf(":") + 1);
                 switch (identifier.Substring(0, identifier.IndexOf(":")))
                 {
                     case "license":
                         this.HasLicense = true;
-                        this.License = identifier;
+                        this.License = key;
                         break;
                     case "license2":
                         this.HasLicense2 = true;
-                        this.License2 = identifier;
+                        this.License2 = key;
                         break;
                     case "discord":
                         this.HasDiscord = true;
-                        this.Discord = identifier;
+                        this.Discord = key;
                         break;
                     case "steam":
                         this.HasSteam = true;
-                        this.Steam = identifier;
+                        this.Steam = key;
                         break;
                     case "ip":
                         this.HasEndpoint = true;
-                        this.Endpoint = identifier;
+                        this.Endpoint = key;
                         break;
                     case "xbl":
                         this.HasXboxLive = true;
-                        this.XboxLive = identifier;
+                        this.XboxLive = key;
                         break;
                     case "live":
                         this.HasMicrosoft = true;
-                        this.Microsoft = identifier;
+                        this.Microsoft = key;
                         break;
                     default:
                         Print.Error($"Unknown Identifier: {identifier}");
@@ -142,7 +143,7 @@ namespace RedLib
         public Source(string _source_str)
         {
             String = _source_str;
-            if (Int32.TryParse(_source_str.Substring(_source_str.IndexOf(":")+1), out int i)) Int = i;
+            if (Int32.TryParse(_source_str.Substring(_source_str.IndexOf(":") + 1), out int i)) Int = i;
             else { Print.Error($"Failed to parse Source: {_source_str}"); Int = -1; }
         }
         public override string ToString() => this.String;
